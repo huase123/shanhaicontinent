@@ -1,0 +1,432 @@
+{
+    "pools": [
+        {
+            "name": "flower",
+            "rolls": {
+                "min": 3,
+                "max": 6
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:baisuilan",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:fengxinzi",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:hanxiaohua",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:hehuan",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:heshouwu",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:qiuhaitang",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:shancha",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:wangyoucao",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:xiwu",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:xunyicao",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:yueguanghua",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:zhushamei",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 2
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 4
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+
+            "name": "soulsoil",
+            "rolls": {
+                "min": 1,
+                "max": 5
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:soulsoil",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 1
+                            }
+                        },{
+
+                            "function": "set_data",
+                            "data": {
+                                "min": 1,
+                                "max": 6
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+
+            "name": "danyao",
+            "rolls": {
+                "min": 0,
+                "max": 1
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:danyao",
+                    "weight": 9,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 3
+                            }
+                        },{
+                            "function": "set_data",
+                            "data": 0
+                        }
+                    ]
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:hunye",
+                    "weight": 50,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 1,
+                                "max": 5
+                            }
+                        },{
+                            "function": "set_data",
+                            "data": 0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+
+            "name": "hungu",
+            "rolls": {
+                "min": 0,
+                "max": 1
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:exoskeletonbone",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:headbone",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:lefthandbone",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:leftlegbone",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:righthandbone",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:rightlegbone",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:trunkbone",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:soulbonemeal",
+                    "weight": 40,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": {
+                                "min": 0,
+                                "max": 2
+                            }
+                        },{
+                            "function": "set_data",
+                            "data": {
+                                "min": 0,
+                                "max": 5
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+
+            "name": "danfang",
+            "rolls": {
+                "min": 0,
+                "max": 1
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "shanhaicontinent:danfang",
+                    "weight": 10,
+                    "functions": [
+                        {
+                            "function": "set_count",
+                            "count": 1
+                        },{
+                            "function": "set_data",
+                            "data": {
+                                "min": 3,
+                                "max": 7
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

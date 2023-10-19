@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "X%X",
+    "X@X"
+  ],
+  "key": {
+    "%": {
+      "item": "minecraft:diamond"
+    },
+    "@": {
+      "item": "minecraft:iron_block"
+    },
+    "X": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result": {
+    "item": "shanhaicontinent:pot"
+  }
+}

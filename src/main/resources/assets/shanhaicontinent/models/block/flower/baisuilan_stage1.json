@@ -1,0 +1,7 @@
+{
+    "credit": "Auther：hause",
+    "parent": "shanhaicontinent:block/cross_normal",
+    "textures": {
+        "cross": "shanhaicontinent:blocks/flower/baisuilan_stage1"
+    }
+}

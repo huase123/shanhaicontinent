@@ -1,0 +1,7 @@
+{
+    "credit": "Auther：hause",
+    "parent": "block/cross",
+    "textures": {
+        "cross": "shanhaicontinent:blocks/flower/flower_stage3"
+    }
+}

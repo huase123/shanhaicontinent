@@ -1,0 +1,445 @@
+
+Shanhai Continent description=山海大陆：宇宙之初，混沌演化，造化之气，造化万物，山川海势，万物而生
+join world=：§2-%s-§f来到了山海大陆———-§e山海大陆：§b宇宙之初，混沌演化，造化之气，造化万物，山川海势，万物而生
+
+tile.shanhaicontinentpot.name=§e造化炉
+zhaohualu_list1=§6-------§d一生二6-------
+zhaohualu_list2=§6-------§a二生三6-------
+zhaohualu_list3=§6=======§c3生万物§6=======
+zhaohualu_list4=§f++++++§b夺天地之造化，炼制丹药§f++++++
+
+item.shanhaicontinenttextpickaxe.name=§c伪神器 §f§k****** §e《开天镐》
+kaitianfu_list1=§6-------§d穿梭太虚，开天辟地§6-------
+kaitianfu_list2=§6-------§a开天神镐，又名开天镐，为盘古大神的证道至宝§6-------
+kaitianfu_list3=§6=======§c§k******************§6=======
+kaitianfu_list4=§f++++++§0上古十大神器之一§f++++++
+
+
+item.shanhaicontinenttextsword.name=§c伪神器 §f§k****** §e《圣道之剑》
+shendaozhijianlist1=§6-------§d斩妖除魔，维护正道§6-------
+shendaozhijianlist2=§6-------§a蕴含着极为强大的力量，是一把斩妖除魔的神剑§6-------
+shendaozhijianlist3=§6=======§c§k******************§6=======
+shendaozhijianlist4=§f++++++§0上古十大神器之一§f++++++
+
+
+
+item.shanhaicontinenttrunkbone.name=§c躯干骨 §f§k****** §e《上古神秘骨》
+
+item.shanhaicontinentrightlegbone.name=§c右腿骨 §f§k****** §e《上古神秘骨》
+item.shanhaicontinentrighthandbone.name=§c右臂骨 §f§k****** §e《上古神秘骨》
+
+item.shanhaicontinentleftlegbone.name=§c左腿骨 §f§k****** §e《上古神秘骨》
+
+item.shanhaicontinentlefthandbone.name=§c左臂骨 §f§k****** §e《上古神秘骨》
+
+item.shanhaicontinentheadbone.name=§c头骨 §f§k****** §e《上古神秘骨》
+
+item.shanhaicontinentexoskeletonbone.name=§c外附骨 §f§k****** §e《上古神秘骨》
+
+
+item.shanhaicontinent.soulbonemeal_age0.name=§a魂骨粉******Ⅰ阶
+item.shanhaicontinent.soulbonemeal_age1.name=§b魂骨粉******Ⅱ阶
+item.shanhaicontinent.soulbonemeal_age2.name=§c魂骨粉******Ⅲ阶
+item.shanhaicontinent.soulbonemeal_age3.name=§d魂骨粉******Ⅳ阶
+item.shanhaicontinent.soulbonemeal_age4.name=§e魂骨粉******Ⅴ阶
+item.shanhaicontinent.soulbonemeal_age5.name=§7魂骨粉******Ⅵ阶
+item.shanhaicontinent.soulbonemeal_age6.name=§6魂骨粉******Ⅶ阶
+item.shanhaicontinent.soulbonemeal_age7.name=§5魂骨粉******Ⅷ阶
+item.shanhaicontinent.soulbonemeal_age8.name=§4魂骨粉******Ⅸ阶
+
+tile.shanhaicontinent.soulsoil_age0.name=§a魂土******Ⅰ阶
+tile.shanhaicontinent.soulsoil_age1.name=§b魂土******Ⅱ阶
+tile.shanhaicontinent.soulsoil_age2.name=§c魂土******Ⅲ阶
+tile.shanhaicontinent.soulsoil_age3.name=§d魂土******Ⅳ阶
+tile.shanhaicontinent.soulsoil_age4.name=§e魂土******Ⅴ阶
+tile.shanhaicontinent.soulsoil_age5.name=§7魂土******Ⅵ阶
+tile.shanhaicontinent.soulsoil_age6.name=§6魂土******Ⅶ阶
+tile.shanhaicontinent.soulsoil_age7.name=§5魂土******Ⅷ阶
+tile.shanhaicontinent.soulsoil_age8.name=§4魂土******Ⅸ阶
+
+
+item.shanhaicontinent.hunye_age0.name=§a精华*初级
+item.shanhaicontinent.hunye_age1.name=§b精华*中级
+item.shanhaicontinent.hunye_age2.name=§c精华*高级
+item.shanhaicontinent.hunye_age3.name=§d精华*顶级
+item.shanhaicontinent.hunye_age4.name=§e精华*神级
+item.shanhaicontinent.hunye_age5.name=§7精华*仙级
+
+
+
+item.shanhaicontinent.danfang_age0.name=§a丹方：§f《§a气魂丹§f》*Ⅰ阶
+item.shanhaicontinent.danfang_age1.name=§b丹方：§f《§b聚灵丹§f》*Ⅱ阶
+item.shanhaicontinent.danfang_age2.name=§c丹方：§f《§c玄元丹§f》*Ⅲ阶
+item.shanhaicontinent.danfang_age3.name=§d丹方：§f《§d养魂丹§f》*Ⅳ阶
+item.shanhaicontinent.danfang_age4.name=§e丹方：§f《§e凝碧丹§f》*Ⅴ阶
+item.shanhaicontinent.danfang_age5.name=§7丹方：§f《§7昊元丹§f》*Ⅵ阶
+item.shanhaicontinent.danfang_age6.name=§6丹方：§f《§6涤魂丹§f》*Ⅶ阶
+item.shanhaicontinent.danfang_age7.name=§5丹方：§f《§5皇极丹§f》*Ⅷ阶
+item.shanhaicontinent.danfang_age8.name=§4丹方：§f《§4怒神丹§f》*Ⅸ阶
+
+item.shanhaicontinent.danyao_age0.name=§a气魂丹*Ⅰ阶
+item.shanhaicontinent.danyao_age1.name=§b聚灵丹*Ⅱ阶
+item.shanhaicontinent.danyao_age2.name=§c玄元丹*Ⅲ阶
+item.shanhaicontinent.danyao_age3.name=§d养魂丹*Ⅳ阶
+item.shanhaicontinent.danyao_age4.name=§e凝碧丹*Ⅴ阶
+item.shanhaicontinent.danyao_age5.name=§7昊元丹*Ⅵ阶
+item.shanhaicontinent.danyao_age6.name=§6涤魂丹*Ⅶ阶
+item.shanhaicontinent.danyao_age7.name=§5皇极丹*Ⅷ阶
+item.shanhaicontinent.danyao_age8.name=§4怒神丹*Ⅸ阶
+
+danfang.qihundan=§0《§a气魂丹§0》
+danfang.qihundan.introduce=介绍：提升修为的丹药
+danfang.qihundan.effect=功效：增加一定真元
+danfang.qihundan.material=材料：§02*§f月光花*Ⅹ年  §02*§f百岁兰*Ⅹ年
+
+
+danfang0.peifang.list0=§0《§a气魂丹§0》制作中：
+danfang0.peifang.list1=§f百岁兰*Ⅹ年§0>>>>>§2木
+danfang0.peifang.list2=§f月光花*Ⅹ年§0>>>>>§9水
+danfang0.peifang.list3=§f百岁兰*Ⅹ年§0>>>>>§c火
+danfang0.peifang.list4=§f月光花*Ⅹ年§0>>>>>§e金
+danfang0.peifang.list5=§k0000§o0000
+danfang0.peifang.list6=§k0000§o0000
+
+
+danfang.jvlingdan=§0《§b聚灵丹§0》
+danfang.jvlingdan.introduce=介绍：提升修为的丹药
+danfang.jvlingdan.effect=功效：增加一定真元
+danfang.jvlingdan.material=材料：§01*§e朱莎梅*佰年  §02*§f含笑花*Ⅹ年  §02*§f合欢*Ⅹ年
+
+
+danfang1.peifang.list0=§0《§b聚灵丹§0》制作中：
+danfang1.peifang.list1=§e朱莎梅*佰年§0>>>>>§2木
+danfang1.peifang.list2=§f含笑花*Ⅹ年§0>>>>>§9水
+danfang1.peifang.list3=§f合欢*Ⅹ年§0>>>>>§c火
+danfang1.peifang.list4=§f含笑花*Ⅹ年§0>>>>>§e金
+danfang1.peifang.list5=§f合欢*Ⅹ年§0>>>>>§6土
+danfang1.peifang.list6=§k0000§o0000
+
+
+
+danfang.xvanyuandan=§0《§c玄元丹§0》
+danfang.xvanyuandan.introduce=介绍：提升修为的丹药
+danfang.xvanyuandan.effect=功效：增加一定真元
+danfang.xvanyuandan.material=材料：§01*§e月光花*佰年  §01*§e薰衣草*佰年  §02*§f何首乌*Ⅹ年  §02*§f秋海棠*Ⅹ年
+
+
+danfang2.peifang.list0=§0《§c玄元丹§0》制作中：
+danfang2.peifang.list1.0=§e月光花*佰年§0>>>>>§2木
+danfang2.peifang.list1.1=§e薰衣草*佰年§0>>>>>§c火
+danfang2.peifang.list2=§f何首乌*Ⅹ年§0>>>>>§9水
+danfang2.peifang.list3=§f秋海棠*Ⅹ年§0>>>>>§c火
+danfang2.peifang.list4=§f何首乌*Ⅹ年§0>>>>>§e金
+danfang2.peifang.list5=§f秋海棠*Ⅹ年§0>>>>>§6土
+danfang2.peifang.list6=§k0000§o0000
+
+danfang.yanghundan=§0《§d养魂丹§0》
+danfang.yanghundan.introduce=介绍：提升修为的丹药
+danfang.yanghundan.effect=功效：增加一定真元
+danfang.yanghundan.material=材料：§02*§e夕雾*佰年  §01*§e忘忧草*佰年  §01*§e山茶*佰年  §01*§e秋海棠*佰年
+
+
+danfang3.peifang.list0=§0《§d养魂丹§0》制作中：
+danfang3.peifang.list1=§e夕雾*佰年§0>>>>>§2木
+danfang3.peifang.list2=§e山茶*佰年§0>>>>>§9水
+danfang3.peifang.list3=§e秋海棠*佰年§0>>>>>§c火
+danfang3.peifang.list4=§e忘忧草*佰年§0>>>>>§e金
+danfang3.peifang.list5=§e夕雾*佰年§0>>>>>§6土
+danfang3.peifang.list6=§k0000§o0000
+
+
+danfang.lingbidan=§0《§e凝碧丹§0》
+danfang.lingbidan.introduce=介绍：提升修为的丹药
+danfang.lingbidan.effect=功效：增加一定真元
+danfang.lingbidan.material=材料：§01*§d秋海棠*仟年  §01*§d山茶*仟年  §02*§e何首乌*佰年  §02*§e合欢*佰年
+
+
+
+danfang4.peifang.list0=§0《§e凝碧丹§0》制作中：
+danfang4.peifang.list1.0=§d秋海棠*仟年§0>>>>>§2木
+danfang4.peifang.list1.1=§d山茶*仟年§0>>>>>§6土
+danfang4.peifang.list2=§e何首乌*佰年§0>>>>>§9水
+danfang4.peifang.list3=§e合欢*佰年§0>>>>>§c火
+danfang4.peifang.list4=§e何首乌*佰年§0>>>>>§e金
+danfang4.peifang.list5=§e合欢*佰年§0>>>>>§6土
+danfang4.peifang.list6=§k0000§o0000
+
+danfang.haoyuan=§0《§7昊元丹§0》
+danfang.haoyuan.introduce=介绍：提升修为的丹药
+danfang.haoyuan.effect=功效：增加一定真元
+danfang.haoyuan.material=材料：§01*§8含笑花*万年  §01*§d百岁兰*仟年  §02*§d朱莎梅*仟年  §02*§d月光花*仟年
+
+
+
+danfang5.peifang.list0=§0《§7昊元丹§0》制作中：
+danfang5.peifang.list1.0=§8含笑花*万年§0>>>>>§2木
+danfang5.peifang.list1.1=§d百岁兰*仟年§0>>>>>§6土
+danfang5.peifang.list2=§d朱莎梅*仟年§0>>>>>§9水
+danfang5.peifang.list3=§d月光花*仟年§0>>>>>§c火
+danfang5.peifang.list4=§d朱莎梅*仟年§0>>>>>§e金
+danfang5.peifang.list5=§d月光花*仟年§0>>>>>§6土
+danfang5.peifang.list6=§k0000§o0000
+
+
+
+danfang.xihundan=§0《§6涤魂丹§0》
+danfang.xihundan.introduce=介绍：提升修为的丹药
+danfang.xihundan.effect=功效：增加一定真元
+danfang.xihundan.material=材料：§01*§8百岁兰*万年  §01*§8风信子*万年  §01*§8含笑花*万年  §02*§8合欢*万年
+
+
+
+danfang6.peifang.list0=§0《§6涤魂丹§0》制作中：
+danfang6.peifang.list1=§8百岁兰*万年§0>>>>>§2木
+danfang6.peifang.list2=§8合欢*万年§0>>>>>§6土
+danfang6.peifang.list3=§8风信子*万年§0>>>>>§c火
+danfang6.peifang.list4=§8含笑花*万年§0>>>>>§e金
+danfang6.peifang.list5=§8合欢*万年§0>>>>>§6土
+danfang6.peifang.list6=§k0000§o0000
+
+
+
+danfang.huangjidan=§0《§5皇极丹§0》
+danfang.huangjidan.introduce=介绍：提升修为的丹药
+danfang.huangjidan.effect=功效：增加一定真元
+danfang.huangjidan.material=材料：§01§c秋海棠*Ⅹ万年  §01§c山茶*Ⅹ万年  §01§c忘忧草*Ⅹ万年  §01§c夕雾*Ⅹ万年  §01*§8薰衣草*万年
+
+
+danfang7.peifang.list0=§0《§5皇极丹§0》制作中：
+danfang7.peifang.list1=§c秋海棠*Ⅹ万年§0>>>>>§2木
+danfang7.peifang.list2=§c山茶*Ⅹ万年§0>>>>>§6土
+danfang7.peifang.list3=§c忘忧草*Ⅹ万年§0>>>>>§c火
+danfang7.peifang.list4=§c夕雾*Ⅹ万年§0>>>>>§e金
+danfang7.peifang.list5=§8薰衣草*万年§0>>>>>§6土
+danfang7.peifang.list6=§k0000§o0000
+
+
+
+danfang.lushendan=§0《§4怒神丹§0》
+danfang.lushendan.introduce=介绍：提升修为的丹药
+danfang.lushendan.effect=功效：增加一定真元
+danfang.lushendan.material=材料：§01*§4任意佰万年魂药  §01§c月光花*Ⅹ万年  §01§c朱莎梅*Ⅹ万年  §01§c合欢*Ⅹ万年  §01§c山茶*Ⅹ万年
+
+
+danfang8.peifang.list0=§0《§4怒神丹§0》制作中：
+danfang8.peifang.list1=§4任意佰万年魂药§0>>>>>§k木
+danfang8.peifang.list2=§c月光花*Ⅹ万年§0>>>>>§6土
+danfang8.peifang.list3=§c朱莎梅*Ⅹ万年§0>>>>>§c火
+danfang8.peifang.list4=§c合欢*Ⅹ万年§0>>>>>§e金
+danfang8.peifang.list5=§c山茶*Ⅹ万年§0>>>>>§6土
+danfang8.peifang.list6=§k0000§o0000
+
+
+
+
+
+
+
+tile.shanhaicontinent.baisuilan_age0.name=§2百岁兰种子
+tile.shanhaicontinent.baisuilan_age1.name=§f百岁兰******Ⅹ年
+tile.shanhaicontinent.baisuilan_age2.name=§e百岁兰******佰年
+tile.shanhaicontinent.baisuilan_age3.name=§d百岁兰******仟年
+tile.shanhaicontinent.baisuilan_age4.name=§8百岁兰******万年
+tile.shanhaicontinent.baisuilan_age5.name=§c百岁兰******Ⅹ万年
+tile.shanhaicontinent.baisuilan_age6.name=§4百岁兰******佰万年
+
+tile.shanhaicontinent.fengxinzi_age0.name=§2风信子种子
+tile.shanhaicontinent.fengxinzi_age1.name=§f风信子******Ⅹ年
+tile.shanhaicontinent.fengxinzi_age2.name=§e风信子******佰年
+tile.shanhaicontinent.fengxinzi_age3.name=§d风信子******仟年
+tile.shanhaicontinent.fengxinzi_age4.name=§8风信子******万年
+tile.shanhaicontinent.fengxinzi_age5.name=§c风信子******Ⅹ万年
+tile.shanhaicontinent.fengxinzi_age6.name=§4风信子******佰万年
+
+tile.shanhaicontinent.hanxiaohua_age0.name=§2含笑花种子
+tile.shanhaicontinent.hanxiaohua_age1.name=§f含笑花******Ⅹ年
+tile.shanhaicontinent.hanxiaohua_age2.name=§e含笑花******佰年
+tile.shanhaicontinent.hanxiaohua_age3.name=§d含笑花******仟年
+tile.shanhaicontinent.hanxiaohua_age4.name=§8含笑花******万年
+tile.shanhaicontinent.hanxiaohua_age5.name=§c含笑花******Ⅹ万年
+tile.shanhaicontinent.hanxiaohua_age6.name=§4含笑花******佰万年
+
+tile.shanhaicontinent.hehuan_age0.name=§2合欢种子
+tile.shanhaicontinent.hehuan_age1.name=§f合欢******Ⅹ年
+tile.shanhaicontinent.hehuan_age2.name=§e合欢******佰年
+tile.shanhaicontinent.hehuan_age3.name=§d合欢******仟年
+tile.shanhaicontinent.hehuan_age4.name=§8合欢******万年
+tile.shanhaicontinent.hehuan_age5.name=§c合欢******Ⅹ万年
+tile.shanhaicontinent.hehuan_age6.name=§4合欢******佰万年
+
+tile.shanhaicontinent.heshouwu_age0.name=§2何首乌种子
+tile.shanhaicontinent.heshouwu_age1.name=§f何首乌******Ⅹ年
+tile.shanhaicontinent.heshouwu_age2.name=§e何首乌******佰年
+tile.shanhaicontinent.heshouwu_age3.name=§d何首乌******仟年
+tile.shanhaicontinent.heshouwu_age4.name=§8何首乌******万年
+tile.shanhaicontinent.heshouwu_age5.name=§c何首乌******Ⅹ万年
+tile.shanhaicontinent.heshouwu_age6.name=§4何首乌******佰万年
+
+tile.shanhaicontinent.qiuhaitang_age0.name=§2秋海棠种子
+tile.shanhaicontinent.qiuhaitang_age1.name=§f秋海棠******Ⅹ年
+tile.shanhaicontinent.qiuhaitang_age2.name=§e秋海棠******佰年
+tile.shanhaicontinent.qiuhaitang_age3.name=§d秋海棠******仟年
+tile.shanhaicontinent.qiuhaitang_age4.name=§8秋海棠******万年
+tile.shanhaicontinent.qiuhaitang_age5.name=§c秋海棠******Ⅹ万年
+tile.shanhaicontinent.qiuhaitang_age6.name=§4秋海棠******佰万年
+
+tile.shanhaicontinent.shancha_age0.name=§2山茶种子
+tile.shanhaicontinent.shancha_age1.name=§f山茶******Ⅹ年
+tile.shanhaicontinent.shancha_age2.name=§e山茶******佰年
+tile.shanhaicontinent.shancha_age3.name=§d山茶******仟年
+tile.shanhaicontinent.shancha_age4.name=§8山茶******万年
+tile.shanhaicontinent.shancha_age5.name=§c山茶******Ⅹ万年
+tile.shanhaicontinent.shancha_age6.name=§4山茶******佰万年
+
+tile.shanhaicontinent.wangyoucao_age0.name=§2忘忧草种子
+tile.shanhaicontinent.wangyoucao_age1.name=§f忘忧草******Ⅹ年
+tile.shanhaicontinent.wangyoucao_age2.name=§e忘忧草******佰年
+tile.shanhaicontinent.wangyoucao_age3.name=§d忘忧草******仟年
+tile.shanhaicontinent.wangyoucao_age4.name=§8忘忧草******万年
+tile.shanhaicontinent.wangyoucao_age5.name=§c忘忧草******Ⅹ万年
+tile.shanhaicontinent.wangyoucao_age6.name=§4忘忧草******佰万年
+
+tile.shanhaicontinent.xiwu_age0.name=§2夕雾种子
+tile.shanhaicontinent.xiwu_age1.name=§f夕雾******Ⅹ年
+tile.shanhaicontinent.xiwu_age2.name=§e夕雾******佰年
+tile.shanhaicontinent.xiwu_age3.name=§d夕雾******仟年
+tile.shanhaicontinent.xiwu_age4.name=§8夕雾******万年
+tile.shanhaicontinent.xiwu_age5.name=§c夕雾******Ⅹ万年
+tile.shanhaicontinent.xiwu_age6.name=§4夕雾******佰万年
+
+tile.shanhaicontinent.xunyicao_age0.name=§2薰衣草种子
+tile.shanhaicontinent.xunyicao_age1.name=§f薰衣草******Ⅹ年
+tile.shanhaicontinent.xunyicao_age2.name=§e薰衣草******佰年
+tile.shanhaicontinent.xunyicao_age3.name=§d薰衣草******仟年
+tile.shanhaicontinent.xunyicao_age4.name=§8薰衣草******万年
+tile.shanhaicontinent.xunyicao_age5.name=§c薰衣草******Ⅹ万年
+tile.shanhaicontinent.xunyicao_age6.name=§4薰衣草******佰万年
+
+tile.shanhaicontinent.yueguanghua_age0.name=§2月光花种子
+tile.shanhaicontinent.yueguanghua_age1.name=§f月光花******Ⅹ年
+tile.shanhaicontinent.yueguanghua_age2.name=§e月光花******佰年
+tile.shanhaicontinent.yueguanghua_age3.name=§d月光花******仟年
+tile.shanhaicontinent.yueguanghua_age4.name=§8月光花******万年
+tile.shanhaicontinent.yueguanghua_age5.name=§c月光花******Ⅹ万年
+tile.shanhaicontinent.yueguanghua_age6.name=§4月光花******佰万年
+
+tile.shanhaicontinent.zhushamei_age0.name=§2朱莎梅种子
+tile.shanhaicontinent.zhushamei_age1.name=§f朱莎梅******Ⅹ年
+tile.shanhaicontinent.zhushamei_age2.name=§e朱莎梅******佰年
+tile.shanhaicontinent.zhushamei_age3.name=§d朱莎梅******仟年
+tile.shanhaicontinent.zhushamei_age4.name=§8朱莎梅******万年
+tile.shanhaicontinent.zhushamei_age5.name=§c朱莎梅******Ⅹ万年
+tile.shanhaicontinent.zhushamei_age6.name=§4朱莎梅******佰万年
+
+
+
+hungu.nianxian=§c年限: §e+%s
+hungu:jingyan=§c经验: §e+%s
+hungu:wugong=§c物攻: §e+%s
+hungu:baojishanghai=§c爆伤: §e+%s
+hungu:baojilv=§c暴击率: §e+%s
+hungu:zhenshang=§c真伤: §e+%s
+hungu:yuanshushanghai=§c元素伤害: §e+%s
+hungu:xixue=§c吸血: §e+%s
+hungu:wufang=§c物防: §e+%s
+hungu:yuansukangxing=§c元素抗性: §e+%s
+hungu:maxshengming=§c生命: §e+%s
+hungu:shengminghuifu=§c回复: §e+%s
+hungu:minghzong=§c命中: §e+%s
+hungu:shanbi=§c闪避: §e+%s
+hungu:jingshenli=§c精神力: §e+%s
+hungu:hunlizhi=§c魂力: §e+%s
+hungu:renxing=§c韧性: §e+%s
+hungu:wuchuan=§c物穿: §e+%s
+hungu:kangbao=§c抗暴: §e+%s
+
+
+message.use.success=§c经验: §e+%s
+message.use.fail=§e经验已达最大值，突破后再服用吧
+
+
+
+
+
+itemGroup.textTab=山海大陆：物品
+
+
+entity.Villager.shanhaicontinent.huncaoworker=魂草商人
+
+
+message.shanhaicontinent.welcome=§a欢迎 §r%2$s§a 来到 §r%1$s§a！
+message.shanhaicontinent.power.add.blue=§b蓝色之力 += §r%.1f
+message.shanhaicontinent.power.add.green=§a绿色之力 += §r%.1f
+message.shanhaicontinent.power.add.orange=§e橙色之力 += §r%.1f
+message.shanhaicontinent.power.insufficient=§c你拥有的力量还不够多
+
+tooltip.shanhaicontinent.power.blue=§b蓝色 §r%.1f
+tooltip.shanhaicontinent.power.green=§a绿色 §r%.1f
+tooltip.shanhaicontinent.power.orange=§e橙色 §r%.1f
+
+isflying:=§a飞行能力 §r%2$s§a  §r%1$s§a！
+
+
+message.hunhuan:true=魂环开关：§2开
+message.hunhuan:false=魂环开关：§2关
+
+
+player.shanhaicontinent.shengming.name=生命:§2%s
+player.shanhaicontinent.gongjili.name=攻击：§c%s
+player.shanhaicontinent.baojishanghai.name=爆伤：§6%s
+player.shanhaicontinent.baojilv.name=爆率：§6%s
+player.shanhaicontinent.zhenshang.name=真伤：§f%s
+player.shanhaicontinent.xixue.name=吸血：§4%s
+player.shanhaicontinent.wufang.name=物防：§9%s
+player.shanhaicontinent.huifu.name=回复：§a%s
+player.shanhaicontinent.mingzhong.name=命中：§d%s
+player.shanhaicontinent.shanbi.name=闪避：§e%s
+player.shanhaicontinent.jingshenli.name=精神力：§b%s
+player.shanhaicontinent.wuchuan.name=物穿：§6%s
+player.shanhaicontinent.kangbao.name=抗暴：§9%s
+player.shanhaicontinent.dengji.name=等级：§e%s
+player.shanhaicontinent.jingyan.name=经验：§1%s
+
+player.shanhaicontinent.hp.name=HP：  %s
+
+
+message.hunhuan.list-1=你离开了魂环
+message.hunhuan.list.no=等级不够或经验不足无法吸收魂环
+message.hunhuan.list.false=§b精神力§f不足，无法继续吸收魂环
+message.hunhuan.list0=你靠近了一个§e%s年§f魂环
+message.hunhuan.list1=开始吸收魂环，§6精神力§b-%s
+message.hunhuan.list2=正在吸收魂环，§6精神力§b-%s
+message.hunhuan.list3=正在吸收魂环，§6精神力§b-%s
+message.hunhuan.list4=正在吸收魂环，§6精神力§b-%s
+message.hunhuan.sccuess=成功吸收§e%s年§f魂环，等级§a+1
+message.hunhuan.fail=§e%s年§f魂环中的怨念过于强大，魂环吸收失败
+message.hunhuan.list6=正在吸收魂环，精神力-%s
+
+message.tupo.fail.client.jingyan=经验不够，再磨练一下把！
+message.tupo.fail.client.hunhuan=达到等级上限，需先吸收魂环
+message.tupo.fail=突破失败
+message.tupo.sccuess0=成功突破到§9%s§a级魂士
+message.tupo.sccuess1=成功突破到§9%s§b级魂师
+message.tupo.sccuess2=成功突破到§9%s§c级大魂师
+message.tupo.sccuess3=成功突破到§9%s§d级魂尊
+message.tupo.sccuess4=成功突破到§9%s§e级魂宗
+message.tupo.sccuess5=成功突破到§9%s§8级魂王
+message.tupo.sccuess6=成功突破到§9%s§7级魂帝
+message.tupo.sccuess7=成功突破到§9%s§6级魂圣
+message.tupo.sccuess8=成功突破到§9%s§5级魂斗罗
+message.tupo.sccuess9=成功突破到§9%s§4级封号斗罗
+message.tupo.sccuess-1=成功突破到§f%s§4级§f§0000神
+
+
+
+nianxian.display0.name=§2年限: §4%s
+nianxian.display1.name=§2年限: §c%s
+nianxian.display2.name=§2年限: §0%s
+nianxian.display3.name=§2年限: §5%s
+nianxian.display4.name=§2年限: §e%s
+nianxian.display5.name=§2年限: §f%s
+
+key.shanhai=山海大陆
+key.shanhaicontinent.mykey_p=突破
+key.shanhaicontinent.mykey_o=属性面板
+key.shanhaicontinent.mykey_K=魂环开关

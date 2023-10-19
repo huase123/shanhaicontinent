@@ -1,0 +1,8 @@
+{
+    "credit": "Auther：hause",
+    "parent": "shanhaicontinent:block/cross_soul",
+    "textures": {
+        "cross": "shanhaicontinent:blocks/flower/wangyoucao_stage3",
+        "cross_huan": "shanhaicontinent:blocks/flower/huan1"
+    }
+}

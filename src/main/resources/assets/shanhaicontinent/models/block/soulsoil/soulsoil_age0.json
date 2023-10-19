@@ -1,0 +1,7 @@
+{
+  "credit": "Auther：hause",
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "shanhaicontinent:blocks/soulsoil/soulsoil_age0"
+  }
+}

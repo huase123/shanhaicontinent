@@ -1,0 +1,14 @@
+{
+	"variants": {
+		"age=0": { "model": "shanhaicontinent:flower/wangyoucao_stage0" },
+		"age=1": { "model": "shanhaicontinent:flower/wangyoucao_stage1" },
+		"age=2": { "model": "shanhaicontinent:flower/wangyoucao_stage2" },
+		"age=3": { "model": "shanhaicontinent:flower/wangyoucao_stage3" },
+		"age=4": { "model": "shanhaicontinent:flower/wangyoucao_stage4" },
+		"age=5": { "model": "shanhaicontinent:flower/wangyoucao_stage5" },
+		"age=6": { "model": "shanhaicontinent:flower/wangyoucao_stage6" },
+		"age=7": { "model": "shanhaicontinent:flower/wangyoucao_stage7" },
+		"age=8": { "model": "shanhaicontinent:flower/wangyoucao_stage8" },
+		"age=9": { "model": "shanhaicontinent:flower/wangyoucao_stage9" }
+	}
+}

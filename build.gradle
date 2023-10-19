@@ -1,0 +1,148 @@
+buildscript {
+    repositories {
+        maven { url = 'https://maven.minecraftforge.net/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle'
+// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+apply plugin: 'eclipse'
+apply plugin: 'maven-publish'
+
+version = '1.0'
+group = 'hua.huase.shanhaicontinent' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'Mountain, Sea, and Continent'
+
+sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+
+minecraft {
+    mappings channel: 'snapshot', version: '20171003-1.12'
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+        }
+
+        server {
+
+            // Recommended logging data for a userdev environment
+            property 'forge.logging.markers', 'SCAN,REGISTRIES,REGISTRYDUMP'
+
+            // Recommended logging level for the console
+            property 'forge.logging.console.level', 'debug'
+        }
+
+//            accessTransformer = file('mezz.jei.api.META-INF.tf_at.cfg')
+//            accessTransformer = file('The Twilight Forest.META-INF.jei_at.cfg')
+            accessTransformer = file('src/main/resources/META-INF/shanhaicontinent_at.cfg')
+    }
+}
+
+    dependencies {
+        minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
+
+        // compile against the JEI API but do not include it at runtime
+        compile "curse.maven:mezz.jei.api-238222:3040523"
+//        compileOnly "curse.maven:mezz.jei-238222:3040523"
+        // at runtime, use the full JEI jar
+//        runtime "curse.maven:mezz.jei-238222:3040523"
+
+
+//暮色深林
+//        compile 'curse.maven:The Twilight Forest-227639:2618264'
+//    恐怖生物
+//    deobf 'curse.maven:Lycanites Mobs-224770:4486512'
+//地图
+//    deobf 'curse.maven:Mine and Slash-306575:2979044'
+//    deobf 'curse.maven:journeymap-32274:2916002'
+//饰品
+//    deobf "curse.maven:Baubles-227083:2518667"
+//    deobf 'curse.maven:jei-238222:3040523'
+//    runtime 'mezz.jei:jei_1.12.2:4.16.1.301'
+
+
+
+//    deobf "net.darkhax.tesla:Tesla-${tesla_mcversion}:${tesla_version}"
+//    deobf "mezz.jei:jei_${jei_mcversion}:${jei_version}:api"
+//    runtimeOnly "mezz.jei:jei_${jei_mcversion}:${jei_version}"
+//    deobf "net.industrial-craft:industrialcraft-2:${ic2_version}:api"
+//    deobf "TechReborn:TechReborn-${TR_mcversion}:${TR_version}:api"
+//    deobf "com.mod-buildcraft:buildcraft-api:${buildcraft_version}"
+
+/*
+    // compile against the JEI API but do not include it at runtime
+    deobf "mezz.jei:jei_${mc_version}:${jei_version}:api"
+    // at runtime, use the full JEI jar
+    runtime "mezz.jei:jei_${mc_version}:${jei_version}"*/
+
+
+//        implementation 'mezz.jei:jei_1.12.2:4.16.1'
+//        implementation files('/lip/jei_1.12.2-4.8.5.147.jar')
+
+}
+
+// Example for how to get properties into the manifest for reading by the runtime..
+jar {
+    manifest {
+        attributes([
+//                "FMLAT": "shanhaicontinent_at.cfg",
+                "Specification-Title": "examplemod",
+                "Specification-Vendor": "examplemodsareus",
+                "Specification-Version": "1", // We are version 1 of ourselves
+                "Implementation-Title": project.name,
+                "Implementation-Version": "${version}",
+                "Implementation-Vendor" :"examplemodsareus",
+                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+// Example configuration to allow publishing using the maven-publish task
+// This is the preferred method to reobfuscate your jar file
+jar.finalizedBy('reobfJar')
+// However if you are in a multi-project build, dev time needs unobfed jar files, so you can delay the obfuscation until publishing by doing
+publish.dependsOn('reobfJar')
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file:///${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+
+
+//导入mod描述文件
+sourceSets { main{ output.resourcesDir = output.classesDir}}
+
+//maven厂库
+repositories {
+    maven {
+        url "https://cursemaven.com"
+    }
+//    maven {
+//        // location of the maven that hosts JEI files
+//        name = "Progwml6 maven"
+//        url = "https://dvs1.progwml6.com/files/maven/"
+//    }
+//    maven {
+//        // location of a maven mirror for JEI files, as a fallback
+//        name = "ModMaven"
+//        url = "https://modmaven.dev"
+//    }
+}
