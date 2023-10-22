@@ -356,9 +356,10 @@ hungu:kangbao=§c抗暴: §e+%s
 
 message.use.success=§c经验: §e+%s
 message.use.fail=§e经验已达最大值，突破后再服用吧
+message.addjingshenli.success=§e精神力+%s
 
-
-
+displayer:jingshenli=所需精神力：%s
+message.addjingshenli.fail=§4%s超过了-1000~1000限制
 
 
 itemGroup.textTab=山海大陆：物品

@@ -51,7 +51,7 @@ minecraft {
         minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2860'
 
         // compile against the JEI API but do not include it at runtime
-        compile "curse.maven:mezz.jei.api-238222:3040523"
+//        compile "curse.maven:mezz.jei.api-238222:3040523"
 //        compileOnly "curse.maven:mezz.jei-238222:3040523"
         // at runtime, use the full JEI jar
 //        runtime "curse.maven:mezz.jei-238222:3040523"

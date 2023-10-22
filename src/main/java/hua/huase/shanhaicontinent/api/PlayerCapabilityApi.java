@@ -11,7 +11,7 @@ public interface PlayerCapabilityApi {
 
     public static boolean isXishouHunhuan(EntityPlayer player){
         PlayerCapability capability = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
-        if((capability.getDengji()+1)%10==0&&capability.getJingyan()>=capability.getMaxshengming()){
+        if((capability.getDengji()+1)%10==0&&capability.getJingyan()>=capability.getMaxjingyan()){
             return  true;
         }
 
