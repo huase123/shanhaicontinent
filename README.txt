@@ -1,4 +1,4 @@
-SoundSystem CodecIBXM Class License:
+Mountain, Sea, and Continent License:
 
 You are free to use this class for any purpose, commercial or otherwise.
 You may modify this class or source code, and distribute it any way you
