@@ -94,7 +94,7 @@ minecraft {
 jar {
     manifest {
         attributes([
-//                "FMLAT": "shanhaicontinent_at.cfg",
+                "FMLAT": "shanhaicontinent_at.cfg",
                 "Specification-Title": "examplemod",
                 "Specification-Vendor": "examplemodsareus",
                 "Specification-Version": "1", // We are version 1 of ourselves
