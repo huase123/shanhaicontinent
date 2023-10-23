@@ -95,7 +95,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
     private List<MonsterCapability> monsterCapabilityList;
     private List<ItemCapability> itemCapabilityList;
 
-    private int maxjingshenli;
+    private float maxjingshenli;
 
 
     public PlayerCapability (float wugong, float baojishanghai, float baojilv, float zhenshang, float yuanshushanghai, float xixue, float wufang, float yuansukangxing,
@@ -194,7 +194,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         nbt.setInteger("jingyan",jingyan);
         nbt.setInteger("maxjingyan",maxjingyan);
         nbt.setInteger("dengji",dengji);
-        nbt.setInteger("maxjingshenli",maxjingshenli);
+        nbt.setFloat("maxjingshenli",maxjingshenli);
 
         for (int i = 0; i < monsterCapabilityList.size(); i++) {
             nbt.setTag("monsterCapability"+i,monsterCapabilityList.get(i).serializeNBT());
@@ -236,7 +236,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.jingyan=nbt.getInteger("jingyan");
         this.maxjingyan=nbt.getInteger("maxjingyan");
         this.dengji=nbt.getInteger("dengji");
-        this.maxjingshenli=nbt.getInteger("maxjingshenli");
+        this.maxjingshenli=nbt.getFloat("maxjingshenli");
 
         this.monsterCapabilityList.clear();
         for (int i = 0; nbt.getTag("monsterCapability"+i)!=null; i++) {
@@ -563,14 +563,15 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.dengji += value;
     }
 
-    public int getMaxjingshenli() {
+    public float getMaxjingshenli() {
         return maxjingshenli;
     }
 
     public void setMaxjingshenli(int value) {
         this.maxjingshenli = value;
     }
-    public void addMaxjingshenli(int value) {
+    public void addMaxjingshenli(float value) {
+        value = new BigDecimal(value).setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
         this.maxjingshenli += value;
     }
 

@@ -41,6 +41,14 @@ public class ContainerGuiPot extends Container
         }
         return -1;
     }
+
+
+    public ItemStack getItemStack()
+    {
+        return SOLT0.extractItem(0, 1, true);
+    }
+
+
     public ContainerGuiPot(EntityPlayer player, World world, int x, int y, int z)
     {
         this.world = world;

@@ -90,6 +90,13 @@ public class VillagerRegistryHandler
                     new ItemStack(Items.PAPER, 1, 0),
                     new ItemStack(HanderAny.danfang,1,1)));
         });
+        DIRT_WORKER_CAREER.addTrade(3, (merchant, recipeList, random) ->
+        {
+            recipeList.add(new MerchantRecipe(
+                    new ItemStack(HanderAny.soulSoilItem, 15, 4),
+                    new ItemStack(Items.PAPER, 1, 0),
+                    new ItemStack(HanderAny.danfangjiuhua,1,0)));
+        });
 
 
         DIRT_WORKER_CAREER.addTrade(4, (merchant, recipeList, random) ->

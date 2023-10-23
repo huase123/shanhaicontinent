@@ -60,7 +60,7 @@ public class DanFang extends Item implements DanFangBase {
         setCreativeTab(Tabs);
         setHasSubtypes(true);
         HanderAny.danfang= this;
-        setMaxStackSize(1);
+        setMaxStackSize(16);
     }
 
 

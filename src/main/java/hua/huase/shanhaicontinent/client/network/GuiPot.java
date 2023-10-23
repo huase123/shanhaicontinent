@@ -1,6 +1,8 @@
 package hua.huase.shanhaicontinent.client.network;
 
 import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.item.danfangdir.DanFang;
+import hua.huase.shanhaicontinent.item.danfangdir.DanFangJiuHua;
 import hua.huase.shanhaicontinent.network.ContainerGuiPot;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -78,94 +80,105 @@ public class GuiPot extends GuiContainer
         String[] list5=null;
         String list6="";
 
-        switch (itemStace){
-            case 0:
-                list0 =I18n.format("danfang0.peifang.list0");
-                list1 = new String[]{I18n.format("danfang0.peifang.list1")};
-                list2 = new String[]{I18n.format("danfang0.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang0.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang0.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang0.peifang.list5")};
-                list6 =I18n.format("danfang0.peifang.list6");
-                break;
-            case 1:
-                list0 =I18n.format("danfang1.peifang.list0");
-                list1 = new String[]{I18n.format("danfang1.peifang.list1")};
-                list2 = new String[]{I18n.format("danfang1.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang1.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang1.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang1.peifang.list5")};
-                list6 =I18n.format("danfang1.peifang.list6");
-                break;
-            case 2:
-                list0 =I18n.format("danfang2.peifang.list0");
-                list1 = new String[]{I18n.format("danfang2.peifang.list1.0"),I18n.format("danfang2.peifang.list1.1")};
-                list2 = new String[]{I18n.format("danfang2.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang2.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang2.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang2.peifang.list5")};
-                list6 =I18n.format("danfang2.peifang.list6");
-                break;
-            case 3:
-                list0 =I18n.format("danfang3.peifang.list0");
-                list1 = new String[]{I18n.format("danfang3.peifang.list1")};
-                list2 = new String[]{I18n.format("danfang3.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang3.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang3.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang3.peifang.list5")};
-                list6 =I18n.format("danfang3.peifang.list6");
-                break;
-            case 4:
-                list0 =I18n.format("danfang4.peifang.list0");
-                list1 = new String[]{I18n.format("danfang4.peifang.list1.0"),I18n.format("danfang4.peifang.list1.1")};
-                list2 = new String[]{I18n.format("danfang4.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang4.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang4.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang4.peifang.list5")};
-                list6 =I18n.format("danfang4.peifang.list6");
-                break;
-            case 5:
-                list0 =I18n.format("danfang5.peifang.list0");
-                list1 = new String[]{I18n.format("danfang5.peifang.list1.0"),I18n.format("danfang4.peifang.list1.1")};
-                list2 = new String[]{I18n.format("danfang5.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang5.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang5.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang5.peifang.list5")};
-                list6 =I18n.format("danfang5.peifang.list6");
-                break;
-            case 6:
-                list0 =I18n.format("danfang6.peifang.list0");
-                list1 = new String[]{I18n.format("danfang6.peifang.list1")};
-                list2 = new String[]{I18n.format("danfang6.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang6.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang6.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang6.peifang.list5")};
-                list6 =I18n.format("danfang6.peifang.list6");
-                break;
-            case 7:
-                list0 =I18n.format("danfang7.peifang.list0");
-                list1 = new String[]{I18n.format("danfang7.peifang.list1")};
-                list2 = new String[]{I18n.format("danfang7.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang7.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang7.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang7.peifang.list5")};
-                list6 =I18n.format("danfang7.peifang.list6");
-                break;
-            case 8:
-                list0 =I18n.format("danfang8.peifang.list0");
-                list1 = new String[]{I18n.format("danfang8.peifang.list1")};
-                list2 = new String[]{I18n.format("danfang8.peifang.list2")};
-                list3 = new String[]{I18n.format("danfang8.peifang.list3")};
-                list4 = new String[]{I18n.format("danfang8.peifang.list4")};
-                list5 = new String[]{I18n.format("danfang8.peifang.list5")};
-                list6 =I18n.format("danfang8.peifang.list6");
-                break;
+        if(((ContainerGuiPot) this.inventorySlots).getItemStack().getItem() instanceof DanFang){
 
+            switch (itemStace){
+                case 0:
+                    list0 =I18n.format("danfang0.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang0.peifang.list1")};
+                    list2 = new String[]{I18n.format("danfang0.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang0.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang0.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang0.peifang.list5")};
+                    list6 =I18n.format("danfang0.peifang.list6");
+                    break;
+                case 1:
+                    list0 =I18n.format("danfang1.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang1.peifang.list1")};
+                    list2 = new String[]{I18n.format("danfang1.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang1.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang1.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang1.peifang.list5")};
+                    list6 =I18n.format("danfang1.peifang.list6");
+                    break;
+                case 2:
+                    list0 =I18n.format("danfang2.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang2.peifang.list1.0"),I18n.format("danfang2.peifang.list1.1")};
+                    list2 = new String[]{I18n.format("danfang2.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang2.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang2.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang2.peifang.list5")};
+                    list6 =I18n.format("danfang2.peifang.list6");
+                    break;
+                case 3:
+                    list0 =I18n.format("danfang3.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang3.peifang.list1")};
+                    list2 = new String[]{I18n.format("danfang3.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang3.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang3.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang3.peifang.list5")};
+                    list6 =I18n.format("danfang3.peifang.list6");
+                    break;
+                case 4:
+                    list0 =I18n.format("danfang4.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang4.peifang.list1.0"),I18n.format("danfang4.peifang.list1.1")};
+                    list2 = new String[]{I18n.format("danfang4.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang4.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang4.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang4.peifang.list5")};
+                    list6 =I18n.format("danfang4.peifang.list6");
+                    break;
+                case 5:
+                    list0 =I18n.format("danfang5.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang5.peifang.list1.0"),I18n.format("danfang4.peifang.list1.1")};
+                    list2 = new String[]{I18n.format("danfang5.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang5.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang5.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang5.peifang.list5")};
+                    list6 =I18n.format("danfang5.peifang.list6");
+                    break;
+                case 6:
+                    list0 =I18n.format("danfang6.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang6.peifang.list1")};
+                    list2 = new String[]{I18n.format("danfang6.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang6.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang6.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang6.peifang.list5")};
+                    list6 =I18n.format("danfang6.peifang.list6");
+                    break;
+                case 7:
+                    list0 =I18n.format("danfang7.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang7.peifang.list1")};
+                    list2 = new String[]{I18n.format("danfang7.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang7.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang7.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang7.peifang.list5")};
+                    list6 =I18n.format("danfang7.peifang.list6");
+                    break;
+                case 8:
+                    list0 =I18n.format("danfang8.peifang.list0");
+                    list1 = new String[]{I18n.format("danfang8.peifang.list1")};
+                    list2 = new String[]{I18n.format("danfang8.peifang.list2")};
+                    list3 = new String[]{I18n.format("danfang8.peifang.list3")};
+                    list4 = new String[]{I18n.format("danfang8.peifang.list4")};
+                    list5 = new String[]{I18n.format("danfang8.peifang.list5")};
+                    list6 =I18n.format("danfang8.peifang.list6");
+                    break;
+
+            }
         }
 
 
+        if(((ContainerGuiPot) this.inventorySlots).getItemStack().getItem() instanceof DanFangJiuHua) {
 
-
+            list0 =I18n.format("danfangjiuhua.peifang.list0");
+            list1 = new String[]{I18n.format("danfangjiuhua.peifang.list1")};
+            list2 = new String[]{I18n.format("danfangjiuhua.peifang.list2")};
+            list3 = new String[]{I18n.format("danfangjiuhua.peifang.list3")};
+            list4 = new String[]{I18n.format("danfangjiuhua.peifang.list4")};
+            list5 = new String[]{I18n.format("danfangjiuhua.peifang.list5")};
+            list6 =I18n.format("danfangjiuhua.peifang.list6");
+        }
 
             drawText(list0,left+17,top+130);
             if(compressorProgress>0&&compressorProgress<=40){

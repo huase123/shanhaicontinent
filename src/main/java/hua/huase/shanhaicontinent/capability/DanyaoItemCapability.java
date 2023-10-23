@@ -115,6 +115,13 @@ public class DanyaoItemCapability extends BaseCapability{
             }
         }
 
+        if(danfang==2){
+            this.setJingshenli(5);
+            for (int i = 0; i <random.nextInt(8) ; i++) {
+                if(random.nextInt(2)==0)setRand(1);
+            }
+        }
+
     }
 
     public void setRand(int age) {

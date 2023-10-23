@@ -34,6 +34,7 @@ public interface ItemListDisplay {
     static void addDanyaoLsit(List list, DanyaoItemCapability capability){
 
 //        list.clear();
+        if(capability.getJingshenli()>0)	list.add(I18n.translateToLocalFormatted("hungu:jingshenli", capability.getJingshenli()));
         if(capability.getJingyan()>0)	list.add(I18n.translateToLocalFormatted("hungu:jingyan", capability.getJingyan()));
         if(capability.getWugong()>0)	list.add(I18n.translateToLocalFormatted("hungu:wugong", capability.getWugong()));
         if(capability.getBaojishanghai()>0)	list.add(I18n.translateToLocalFormatted("hungu:baojishanghai", capability.getBaojishanghai()));

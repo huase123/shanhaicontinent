@@ -2,6 +2,8 @@ package hua.huase.shanhaicontinent.block;
 
 import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.block.soulsoil.SoulSoilBase;
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
+import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -19,6 +21,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -156,10 +159,25 @@ public class FlowerBlock extends Block
     }
     public void grow(World worldIn, BlockPos pos,IBlockState state)
     {
-        int i = this.getAge(state);
+        int i = this.getMetaFromState(state);
         if(i <this.getMaxAge()){
             worldIn.setBlockState(pos, this.withAge(i+1), 2);
             worldIn.playEvent(2005, pos, 5);
+            i = Math.max(i-3,1);
+            AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).grow(16);
+            List<EntityPlayer> list = worldIn.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+            for (EntityPlayer entityplayer : list)
+            {
+                if(entityplayer!=null){
+                    PlayerCapability capability = entityplayer.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
+                    if(capability.getJingshenli()<capability.getMaxjingshenli()) {
+                        capability.addJingshenli(i);
+                        entityplayer.sendMessage(new TextComponentTranslation(net.minecraft.client.resources.I18n.format("message.addjingshenli.success", i)));
+                    }
+                }
+            }
+
+
         }
     }
 
@@ -186,19 +204,6 @@ public class FlowerBlock extends Block
         int age = state.getValue(AGE).intValue();
         return  age;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

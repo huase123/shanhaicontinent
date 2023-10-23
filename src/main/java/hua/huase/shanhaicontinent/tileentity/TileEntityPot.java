@@ -113,6 +113,8 @@ public class TileEntityPot extends TileEntity implements ITickable
     @Override
     public void update() {
 
+        if (this.world.isRemote) return;
+
         if(oldItemstack!=this.SLOT0.extractItem(0, 1, true)){
             oldItemstack=this.SLOT0.extractItem(0, 1, true);
             this.compressorProgress=0;

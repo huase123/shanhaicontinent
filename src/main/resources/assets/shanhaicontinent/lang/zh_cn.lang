@@ -77,6 +77,9 @@ item.shanhaicontinent.danfang_age6.name=§6丹方：§f《§6涤魂丹§f》*Ⅶ
 item.shanhaicontinent.danfang_age7.name=§5丹方：§f《§5皇极丹§f》*Ⅷ阶
 item.shanhaicontinent.danfang_age8.name=§4丹方：§f《§4怒神丹§f》*Ⅸ阶
 
+item.shanhaicontinent.danfangjiuhua.name=§4丹方：§1《§b九花玉露丸§1》***
+
+
 item.shanhaicontinent.danyao_age0.name=§a气魂丹*Ⅰ阶
 item.shanhaicontinent.danyao_age1.name=§b聚灵丹*Ⅱ阶
 item.shanhaicontinent.danyao_age2.name=§c玄元丹*Ⅲ阶
@@ -86,6 +89,8 @@ item.shanhaicontinent.danyao_age5.name=§7昊元丹*Ⅵ阶
 item.shanhaicontinent.danyao_age6.name=§6涤魂丹*Ⅶ阶
 item.shanhaicontinent.danyao_age7.name=§5皇极丹*Ⅷ阶
 item.shanhaicontinent.danyao_age8.name=§4怒神丹*Ⅸ阶
+
+item.shanhaicontinent.danyaojiuhua.name=§1《§b九花玉露丸§1》
 
 danfang.qihundan=§0《§a气魂丹§0》
 danfang.qihundan.introduce=介绍：提升修为的丹药
@@ -231,8 +236,19 @@ danfang8.peifang.list6=§k0000§o0000
 
 
 
+danfang.jiuhua=§1《§b九花玉露丸§1》***
+danfang.jiuhua.introduce=介绍：九花玉露丸是一种非常珍贵的药草，它是由九种名贵草药炼制而成，对精神修复有着起效
+danfang.jiuhua.effect=功效：回复百分之十的精神力
+danfang.jiuhua.material=材料：§01*§e百年以上的合欢  §01*§e百年以上的秋海棠  §01*§e百年以上的山茶  §01*§e百年以上的夕雾  §01*§e百年以上的月光花
 
 
+danfangjiuhua.peifang.list0=§1《§b九花玉露丸§1》制作中：
+danfangjiuhua.peifang.list1=§4百年以上的合欢§0>>>>>§k木
+danfangjiuhua.peifang.list2=§c百年以上的秋海棠§0>>>>>§9水
+danfangjiuhua.peifang.list3=§c百年以上的山茶§0>>>>>§c火
+danfangjiuhua.peifang.list4=§c百年以上的夕雾§0>>>>>§e金
+danfangjiuhua.peifang.list5=§c百年以上的月光花§0>>>>>§6土
+danfangjiuhua.peifang.list6=§k0000§o0000
 
 
 tile.shanhaicontinent.baisuilan_age0.name=§2百岁兰种子
@@ -347,7 +363,7 @@ hungu:maxshengming=§c生命: §e+%s
 hungu:shengminghuifu=§c回复: §e+%s
 hungu:minghzong=§c命中: §e+%s
 hungu:shanbi=§c闪避: §e+%s
-hungu:jingshenli=§c精神力: §e+%s
+hungu:jingshenli=§c最大精神力: §e+%s
 hungu:hunlizhi=§c魂力: §e+%s
 hungu:renxing=§c韧性: §e+%s
 hungu:wuchuan=§c物穿: §e+%s
@@ -361,24 +377,14 @@ message.addjingshenli.success=§e精神力+%s
 displayer:jingshenli=所需精神力：%s
 message.addjingshenli.fail=§4%s超过了-1000~1000限制
 
+message.usejiuhua.success=§e最大精神力: §b+%s
+
 
 itemGroup.textTab=山海大陆：物品
 
 
 entity.Villager.shanhaicontinent.huncaoworker=魂草商人
 
-
-message.shanhaicontinent.welcome=§a欢迎 §r%2$s§a 来到 §r%1$s§a！
-message.shanhaicontinent.power.add.blue=§b蓝色之力 += §r%.1f
-message.shanhaicontinent.power.add.green=§a绿色之力 += §r%.1f
-message.shanhaicontinent.power.add.orange=§e橙色之力 += §r%.1f
-message.shanhaicontinent.power.insufficient=§c你拥有的力量还不够多
-
-tooltip.shanhaicontinent.power.blue=§b蓝色 §r%.1f
-tooltip.shanhaicontinent.power.green=§a绿色 §r%.1f
-tooltip.shanhaicontinent.power.orange=§e橙色 §r%.1f
-
-isflying:=§a飞行能力 §r%2$s§a  §r%1$s§a！
 
 
 message.hunhuan:true=魂环开关：§2开

@@ -5,13 +5,11 @@ import hua.huase.shanhaicontinent.block.BlockPot;
 import hua.huase.shanhaicontinent.block.FlowerBlock;
 import hua.huase.shanhaicontinent.block.soulsoil.SoulSoil;
 import hua.huase.shanhaicontinent.creativetab.TabExample;
-import hua.huase.shanhaicontinent.item.Danyao;
-import hua.huase.shanhaicontinent.item.Hunye;
-import hua.huase.shanhaicontinent.item.ItemTextPickaxe;
-import hua.huase.shanhaicontinent.item.ItemTextSword;
+import hua.huase.shanhaicontinent.item.*;
 import hua.huase.shanhaicontinent.item.bone.*;
 import hua.huase.shanhaicontinent.item.bonemeal.SoulBoneMeal;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFang;
+import hua.huase.shanhaicontinent.item.danfangdir.DanFangJiuHua;
 import hua.huase.shanhaicontinent.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -48,8 +46,10 @@ public class HanderAny {
     public static ItemBlock soulSoilItem;
     public static Item soulbonemeal ;
     public static Item danfang ;
+    public static Item danfangjiuhua ;
     public static Item hunye ;
     public static Item danyao ;
+    public static Item danyaojiuhua ;
     //注册方块
     public static FlowerBlock baisuilan= new FlowerBlock("baisuilan",TabExample.TAB2);
     public static FlowerBlock fengxinzi= new FlowerBlock("fengxinzi",TabExample.TAB2);
@@ -106,8 +106,10 @@ public class HanderAny {
         new TrunkBone("trunkbone", TabExample.TAB2);
         new SoulBoneMeal("soulbonemeal", TabExample.TAB2);
         new DanFang("danfang", TabExample.TAB2);
+        new DanFangJiuHua("danfangjiuhua", TabExample.TAB2);
         new Hunye("hunye", TabExample.TAB2);
         new Danyao("danyao", TabExample.TAB2);
+        new DanyaoJiuhua("danyaojiuhua", TabExample.TAB2);
         e.getRegistry().registerAll(itemList.toArray(new Item[0]));
         e.getRegistry().register(soulSoilItem);
         e.getRegistry().register(soulbonemeal);

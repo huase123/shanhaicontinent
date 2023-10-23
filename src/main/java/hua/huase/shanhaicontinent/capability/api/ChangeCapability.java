@@ -25,6 +25,8 @@ public interface ChangeCapability {
             playerCapability.setWuchuan(playerCapability.getWuchuan()+danyaoItemCapability.getWuchuan());
             playerCapability.setKangbao(playerCapability.getKangbao()+danyaoItemCapability.getKangbao());
 
+            playerCapability.addMaxjingshenli(danyaoItemCapability.getJingshenli());
+
             NetworkRegistryHandler.PlayerListen.sendClientCustomPacket(player);
         }
     }
