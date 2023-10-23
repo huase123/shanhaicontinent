@@ -25,7 +25,7 @@ public class CommandZDY extends CommandBase {
     @Override
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException {
 
-        if(args!=null)return;
+        if(args==null)return;
 
 
         if(Float.parseFloat(args[0])>1000||Float.parseFloat(args[0])<-1000) {

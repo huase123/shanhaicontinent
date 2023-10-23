@@ -1,10 +1,14 @@
 package hua.huase.shanhaicontinent.client.event;
 
 import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
+import hua.huase.shanhaicontinent.capability.MonsterCapability;
+import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketOpenBaublesInventory;
 import hua.huase.shanhaicontinent.client.keybinding.MyKeyBinding;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,17 +23,170 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
+import static hua.huase.shanhaicontinent.client.event.RenderWorldHunhuan.EXPLOSION_TEXTURE;
 import static net.minecraft.entity.SharedMonsterAttributes.MAX_HEALTH;
 
 @EventBusSubscriber
 public class ClientEventHandler
 {
+
+
+    @SideOnly(Side.CLIENT)
+    public static int tickplayer=0;
+    @SubscribeEvent
+    public static void renderHandEvent(RenderWorldLastEvent event) {
+
+
+
+
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
+            if(player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).isHunhuankaiguan()) {
+
+
+                int limitFramerate = Minecraft.getMinecraft().gameSettings.limitFramerate;
+                float i = (float)tickplayer / limitFramerate ;
+                PlayerCapability capability1 = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
+                if (capability1 == null) return;
+
+                double x = 0;
+                double y = 0;
+                double z = 0;
+
+
+                int i1 = 1;
+                for (MonsterCapability monsterCapability1 : capability1.getMonsterCapabilityList()) {
+
+                    int nianxian = monsterCapability1.getNianxian();
+                    GlStateManager.pushMatrix();
+                    GlStateManager.translate((float) x, (float) y + 0.05f, (float) z);
+                    GlStateManager.rotate(90, 1, 0, 0);
+                    GlStateManager.rotate(i1 % 2 == 0 ? i * 15f : -i * 15f, 0, 0, 1);
+
+
+//                    GlStateManager.rotate(renderArmYaw, 0.0F, 1.0F, 0.0F);
+//                    GlStateManager.rotate(renderArmPitch, 1.0F, 0.0F, 0.0F);
+
+                    float v = i;
+                    GlStateManager.scale(0.3f + i1 / 10f, 0.3f + i1 / 10f, 0);
+
+                    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+
+                    if (nianxian >= 1000000) {
+                        GlStateManager.color(v <= 1 ? 1 : v <= 2 ? 2 - v : v <= 4 ? 0 : v <= 5 ? v - 4 : 1, v <= 1 ? v : v <= 3 ? 1 : v <= 4 ? 4 - v : 0, v <= 2 ? 0 : v <= 3 ? v - 2 : v <= 5 ? 1 : v <= 5 ? 1 : 6 - v, 1.0f);
+                    } else if (nianxian >= 100000) {
+                        GlStateManager.color(1.5f, 0, 0, 0.8f);
+
+                    } else if (nianxian >= 10000) {
+                        GlStateManager.color(0, 0f, 0, 0.8f);
+                    } else if (nianxian >= 1000) {
+                        GlStateManager.color(1.5f, 0f, 1f, 0.8f);
+                    } else if (nianxian >= 100) {
+                        GlStateManager.color(1.5f, 1f, 0, 0.8f);
+                    } else if (nianxian >= 1) {
+                        GlStateManager.color(1.5f, 1.5f, 1.5f, 0.8f);
+                    }
+
+
+                    GlStateManager.disableLighting();
+                    GlStateManager.enablePolygonOffset();
+                    GlStateManager.depthMask(false);
+                    GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+                    GlStateManager.doPolygonOffset(-3, -30);
+
+                    GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+
+
+                    Minecraft.getMinecraft().getTextureManager().bindTexture(EXPLOSION_TEXTURE);
+                    Tessellator tessellator = Tessellator.getInstance(); //获取Tessellator的一般方式
+                    BufferBuilder buffer = tessellator.getBuffer();//获取记录顶点信息的"数组"
+
+                    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
+
+                    buffer.pos(-6, -6, 0).tex(0, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+                    buffer.pos(-6, 6, 0).tex(0, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+                    buffer.pos(6, 6, 0).tex(1, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+                    buffer.pos(6, -6, 0).tex(1, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+
+
+                    tessellator.draw(); //将数组和渲染方式提交到GPU
+
+                    GlStateManager.disableBlend();
+                    GlStateManager.depthMask(true);
+                    GlStateManager.disablePolygonOffset();
+                    GlStateManager.enableLighting();
+                    GlStateManager.popMatrix();
+//=====================
+
+                    GlStateManager.pushMatrix();
+                    GlStateManager.translate((float) x, (float) y + 0.05f, (float) z);
+//                    GlStateManager.rotate(-90, 1, 0, 0);
+                    GlStateManager.rotate(-90, 1, 0, 0);
+                    GlStateManager.rotate(i1 % 2 == 0 ? i * 15f : -i * 15f, 0, 0, 1);
+
+                    GlStateManager.scale(0.3f + i1 / 10f, 0.3f + i1 / 10f, 0);
+
+                    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+
+
+                    if (nianxian >= 1000000) {
+                        GlStateManager.color(v <= 1 ? 1 : v <= 2 ? 2 - v : v <= 4 ? 0 : v <= 5 ? v - 4 : 1, v <= 1 ? v : v <= 3 ? 1 : v <= 4 ? 4 - v : 0, v <= 2 ? 0 : v <= 3 ? v - 2 : v <= 5 ? 1 : v <= 5 ? 1 : 6 - v, 1.0f);
+                    } else if (nianxian >= 100000) {
+                        GlStateManager.color(1.5f, 0, 0, 0.8f);
+
+                    } else if (nianxian >= 10000) {
+                        GlStateManager.color(0, 0f, 0, 0.8f);
+                    } else if (nianxian >= 1000) {
+                        GlStateManager.color(1.5f, 0f, 1f, 0.8f);
+                    } else if (nianxian >= 100) {
+                        GlStateManager.color(1.5f, 1f, 0, 0.8f);
+                    } else if (nianxian >= 1) {
+                        GlStateManager.color(1.5f, 1.5f, 1.5f, 0.8f);
+                    }
+
+
+                    GlStateManager.disableLighting();
+                    GlStateManager.enablePolygonOffset();
+                    GlStateManager.depthMask(false);
+                    GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+                    GlStateManager.doPolygonOffset(-3, -30);
+
+                    GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+
+
+                    Minecraft.getMinecraft().getTextureManager().bindTexture(EXPLOSION_TEXTURE);
+                    buffer = tessellator.getBuffer();//获取记录顶点信息的"数组"
+                    buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
+
+                    buffer.pos(-6, -6, 0).tex(0, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+                    buffer.pos(-6, 6, 0).tex(0, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+                    buffer.pos(6, 6, 0).tex(1, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+                    buffer.pos(6, -6, 0).tex(1, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+
+
+                    tessellator.draw(); //将数组和渲染方式提交到GPU
+
+                    GlStateManager.disableBlend();
+                    GlStateManager.depthMask(true);
+                    GlStateManager.disablePolygonOffset();
+                    GlStateManager.enableLighting();
+
+                    GlStateManager.popMatrix();
+                    i1++;
+
+
+
+                }
+                tickplayer = tickplayer<=limitFramerate*24?tickplayer+1:0;
+            }
+    }
 
 
     public static boolean b = false;
@@ -66,8 +223,8 @@ public class ClientEventHandler
 
 
         if(jingtoukaiguan){
-
-            Minecraft.getMinecraft().renderGlobal.notifyBlockUpdate(Minecraft.getMinecraft().world,new BlockPos(Minecraft.getMinecraft().player.posX,Minecraft.getMinecraft().player.posY,Minecraft.getMinecraft().player.posZ),null,null,1);
+            EntityPlayerSP player = Minecraft.getMinecraft().player;
+            Minecraft.getMinecraft().renderGlobal.notifyBlockUpdate(Minecraft.getMinecraft().world,new BlockPos(player.posX, player.posY, player.posZ),null,null,1);
 
 //            Minecraft.getMinecraft().gameSettings.thirdPersonView = 1;
             int limitFramerate = Minecraft.getMinecraft().gameSettings.limitFramerate;

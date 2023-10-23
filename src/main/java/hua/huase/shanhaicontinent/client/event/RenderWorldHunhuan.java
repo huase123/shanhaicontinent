@@ -5,6 +5,7 @@ import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -12,7 +13,6 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -39,7 +39,7 @@ public class RenderWorldHunhuan {
     public static void renderLivingText(RenderLivingEvent.Post event) {
         EntityPlayerSP player = Minecraft.getMinecraft().player;
         PlayerCapability capability = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
-        if (capability.isHunhuankaiguan()) {
+        if (true) {
 
 
             EntityLivingBase entityIn = event.getEntity();
@@ -193,8 +193,7 @@ public class RenderWorldHunhuan {
 
 
 
-
-            if(entityIn  instanceof EntityPlayer) {
+            if(entityIn  instanceof EntityOtherPlayerMP) {
                 if(entityIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).isHunhuankaiguan()){
 
 
@@ -322,16 +321,9 @@ public class RenderWorldHunhuan {
                         GlStateManager.popMatrix();
                         i1++;
                     }
-
-
-
-                    timemap.put(entityIn.getEntityId(),time>= 20*limitFramerate ? 0:++time);
-
-
-
-
                 }
             }
+            timemap.put(entityIn.getEntityId(),time>= 20*limitFramerate ? 0:++time);
         }
     }
 
