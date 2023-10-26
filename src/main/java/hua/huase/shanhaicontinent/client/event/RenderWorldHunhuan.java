@@ -54,6 +54,7 @@ public class RenderWorldHunhuan {
 
             if(entityIn  instanceof IMob && entityIn instanceof EntityLivingBase &&entityIn.getEntityAttribute(NIANLING)!=null ){
                     int nianxian = (int) entityIn.getEntityAttribute(NIANLING).getBaseValue();
+                    if(nianxian<=0) return;
 
                     double x = entityIn.posX-player.posX;
                     double y = entityIn.posY- player.posY;

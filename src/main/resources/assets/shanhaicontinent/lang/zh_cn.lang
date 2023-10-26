@@ -374,6 +374,9 @@ message.use.success=§c经验: §e+%s
 message.use.fail=§e经验已达最大值，突破后再服用吧
 message.addjingshenli.success=§e精神力+%s
 
+message.removehunhuan.success=§c魂环移除成功
+message.removehunhuan.fail=§4魂环移除失败：未知原因
+
 displayer:jingshenli=所需精神力：%s
 message.addjingshenli.fail=§4%s超过了-1000~1000限制
 

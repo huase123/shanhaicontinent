@@ -88,7 +88,7 @@ public class HunhuanEntity extends Entity {
 
             this.setDead();
         }
-        if (!this.world.isRemote)//是否为服务器线程
+        if (!this.world.isRemote)
         {
 
             int STAGE = viewPlayer;

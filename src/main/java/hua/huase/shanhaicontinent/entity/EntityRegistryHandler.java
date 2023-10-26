@@ -1,5 +1,6 @@
 package hua.huase.shanhaicontinent.entity;
 
+import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -27,6 +28,10 @@ public class EntityRegistryHandler
             EntityEntryBuilder.create().entity(HunhuanEntity.class)
                     .id(HunhuanEntity.ID, 3).name(HunhuanEntity.NAME).tracker(64, 10, true).build();
 
+    public static final EntityEntry JiNengThread =
+            EntityEntryBuilder.create().entity(EntityJiNengThread.class)
+                    .id(EntityJiNengThread.ID, 4).name(EntityJiNengThread.NAME).tracker(64, 10, true).build();
+
 
 
 
@@ -39,5 +44,6 @@ public class EntityRegistryHandler
 //        registry.register(DIRT_BALL);
 //        registry.register(ENTITY_THROWABLE_TEXT);
         registry.register(HUNHUANENTITY);
+        registry.register(JiNengThread);
     }
 }

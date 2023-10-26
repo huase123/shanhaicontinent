@@ -9,7 +9,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.PLYAER_CAPABILITY;
 
-public class CommandZDY extends CommandBase {
+public class Commandaddjingshenli extends CommandBase {
 
     
     @Override
@@ -44,45 +44,6 @@ public class CommandZDY extends CommandBase {
 
         }
 
-
-/*        sender.getCommandSenderEntity().changeDimension(21,new ITeleporter(){
-            @Override
-            public void placeEntity(World world, Entity entity, float yaw) {
-
-            }
-
-            @Override
-            public boolean isVanilla() {
-                return false;
-            }
-        });*/
-
-
-        /*
-        if (!server.getWorld(0).isRemote && !entityIn.isRiding() && !entityIn.isBeingRidden() && entityIn.isNonBoss() && entityIn.getEntityBoundingBox().intersects(state.getBoundingBox(worldIn, pos).offset(pos)))
-        {
-            entityIn.changeDimension(1);
-        }
-        */
-/*
-
-        String im ="GetEcho";
-        PlayerList list =server.getPlayerList();
-        list.transferPlayerToDimension((EntityPlayerMP) list.getPlayers().toArray()[0],21,new Teleporter(server.getWorld(-1)));
-        server.setPlayerList(list);
-        if(args!=null&&args.length>0){
-            for(String gtu:args){
-                im+=gtu;
-            }
-            TextComponentString text= new TextComponentString(im);
-            text.getStyle().setColor(TextFormatting.GREEN);
-            sender.sendMessage(text);
-        }else {
-            TextComponentString text= new TextComponentString("You must Write <Messgage>!");
-            text.getStyle().setColor(TextFormatting.RED);
-            sender.sendMessage(text);
-        }
-*/
 
     }
     // 可以不覆写，但默认权限要求是 4（即游戏管理员），所以请按需覆写

@@ -2,6 +2,7 @@ package hua.huase.shanhaicontinent.item;
 
 import com.google.common.collect.Multimap;
 import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -94,30 +95,34 @@ public class ItemTextSword extends ItemSword
         return multimap;
     }
 
-
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
     {
 
         int min = Math.min(this.getMaxItemUseDuration(stack) - timeLeft, 40);
         if(min<10)return;
 
+        float d0 = -MathHelper.sin(entityLiving.rotationYaw * 0.017453292F) ;
+        float d2 = MathHelper.cos(entityLiving.rotationYaw * 0.017453292F) ;
+        double d3 = 3D;
         if (worldIn.isRemote )
         {
 
-            float d0 = -MathHelper.sin(entityLiving.rotationYaw * 0.017453292F) * MathHelper.cos(entityLiving.rotationPitch * 0.017453292F);
-            float d1 = -MathHelper.sin(entityLiving.rotationPitch * 0.017453292F);
-            float d2 = MathHelper.cos(entityLiving.rotationYaw * 0.017453292F) * MathHelper.cos(entityLiving.rotationPitch * 0.017453292F);
-            double d3 = 5D;
             entityLiving.motionX += d0 * d3;
-//            entityLiving.motionY += d1 * d3*0.1;
-            entityLiving.motionY =0;
             entityLiving.motionZ += d2 * d3;
 
         }
+        if(!worldIn.isRemote){
+            EntityJiNengThread jiNengThread = new EntityJiNengThread(entityLiving.world);
+            jiNengThread.posX = entityLiving.posX;
+            jiNengThread.posY = entityLiving.posY;
+            jiNengThread.posZ = entityLiving.posZ;
+            jiNengThread.motionX += d0*2;
+            jiNengThread.motionZ += d2*2;
+            entityLiving.world.spawnEntity(jiNengThread);
+            worldIn.playSound((EntityPlayer)null, entityLiving.posX, entityLiving.posY, entityLiving.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + 1 * 0.5F);
+            entityLiving.hurtResistantTime=20;
+        }
 
-        worldIn.playSound((EntityPlayer)null, entityLiving.posX, entityLiving.posY, entityLiving.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + 1 * 0.5F);
-
-        entityLiving.hurtResistantTime=20;
 
     }
 

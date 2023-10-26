@@ -1,6 +1,8 @@
 package hua.huase.shanhaicontinent.client.renderer;
 
+import hua.huase.shanhaicontinent.client.renderer.jiuneng.RenderJiNengThread;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class RenderRegistryHandler
@@ -12,6 +14,7 @@ public class RenderRegistryHandler
 
 */
         RenderingRegistry.registerEntityRenderingHandler(HunhuanEntity.class, RenderHunHuan::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityJiNengThread.class, RenderJiNengThread::new);
 
 
 

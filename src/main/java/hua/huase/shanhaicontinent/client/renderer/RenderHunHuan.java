@@ -182,35 +182,6 @@ public class RenderHunHuan extends RenderEntity {
         GlStateManager.popMatrix();
 
 
-/*
-
-
-        EntityPlayerSP player = Minecraft.getMinecraft().player;
-        float renderArmYaw = player.renderArmYaw;
-        float renderArmPitch = player.renderArmPitch;
-
-        FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
-        int strLenHalved = fontRenderer.getStringWidth(I18n.translateToLocalFormatted("displayer:jingshenli",nianxian/20f)) / 2;
-
-        GlStateManager.pushMatrix();
-        GlStateManager.translate((float)x, (float)y+1.2, (float)z);
-        GlStateManager.rotate(180, 1, 0, 0);
-        GlStateManager.rotate(180, 0, 1, 0);
-
-        GlStateManager.rotate(renderArmYaw, 0.0F, 1.0F, 0.0F);
-        GlStateManager.rotate(renderArmPitch/2, 1.0F, 0.0F, 0.0F);
-        GlStateManager.scale(0.04F, 0.03F, 0.04F);
-        GlStateManager.color(0.0F, 0.0F, 0.0F, 1.0F); //将画笔置为黑色, 便于进行绘画(这里没有进行绘画)
-
-
-//        fontRenderer.drawString(String.valueOf(1000), -strLenHalved, 0, 0xffffffff,true);
-        fontRenderer.drawString(I18n.translateToLocalFormatted("displayer:jingshenli",nianxian/20f), -strLenHalved, 0, 0xffffffff,false);
-
-        GlStateManager.popMatrix();
-*/
-
-
-
 
 
 

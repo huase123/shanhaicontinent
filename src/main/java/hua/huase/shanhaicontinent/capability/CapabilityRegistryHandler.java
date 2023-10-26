@@ -165,23 +165,27 @@ public class CapabilityRegistryHandler
         if (event.getObject() instanceof IMob&&event.getObject()instanceof Entity){
             Entity entity = (Entity) event.getObject();
 
-            switch (entity.world.provider.getDimension()) {
-                case -1:
-                    if(random.nextInt(3)!=0)return;
-                    break;
-                case 0:
-                    if(random.nextInt(3)!=0)return;
-                    break;
-                case 1:
-                    if(random.nextInt(3)!=0)return;
-            }
 
+            ((EntityLivingBase) entity).getAttributeMap().registerAttribute(NIANLING);
             if((entity).hasCapability(CapabilityRegistryHandler.MONSTER_CAPABILITY,null)||event.getObject()==null)
                 return;
 
+            MonsterCapabilityProvider monsterCapabilityProvider = new MonsterCapabilityProvider(false);
+            switch (entity.world.provider.getDimension()) {
+                case -1:
+                    if(random.nextInt(3)==0) monsterCapabilityProvider = new MonsterCapabilityProvider(entity.world.provider.getDimension(),random);
+                    break;
+                case 0:
+                    if(random.nextInt(3)==0) monsterCapabilityProvider = new MonsterCapabilityProvider(entity.world.provider.getDimension(),random);
+                    break;
+                case 1:
+                    if(random.nextInt(3)==0) monsterCapabilityProvider = new MonsterCapabilityProvider(entity.world.provider.getDimension(),random);
+                    break;
 
+                default:
 
-            MonsterCapabilityProvider monsterCapabilityProvider = new MonsterCapabilityProvider(entity.world.provider.getDimension(),random);
+            }
+
             event.addCapability(new ResourceLocation(ExampleMod.MODID + ":shanhaicontinent_Capability"), monsterCapabilityProvider);
 
 
@@ -233,7 +237,7 @@ public class CapabilityRegistryHandler
 
     private static final UUID MAX_HEALTHID = UUID.fromString("1707f7535-349a-4613-b33f-4a5eaf4d0ed7");
 
-    public static final IAttribute NIANLING = (new RangedAttribute((IAttribute)null, "generic.nianling", 20.0D, Float.MIN_VALUE, Float.MAX_VALUE)).setDescription("nianling").setShouldWatch(true); // Forge: set smallest max-health value to fix MC-119183. This gets rounded to float so we use the smallest positive float value.
+    public static final IAttribute NIANLING = (new RangedAttribute((IAttribute)null, "generic.nianling", 0, -1, Double.MAX_VALUE)).setDescription("nianling").setShouldWatch(true);
 
 
     //实体加入世界事件
@@ -262,8 +266,9 @@ public class CapabilityRegistryHandler
 
 
                 int nianxian = monsterCapability.getNianxian();
+                if(nianxian<=0) return;
 
-                ((EntityLivingBase) entity).getAttributeMap().registerAttribute(NIANLING);
+
                 ((EntityLivingBase)entity).getEntityAttribute(NIANLING)
                         .setBaseValue(monsterCapability.getNianxian());
 

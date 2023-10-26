@@ -8,12 +8,11 @@ import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.client.keybinding.MyKeyBinding;
 import hua.huase.shanhaicontinent.client.particles.ParticlesHander;
 import hua.huase.shanhaicontinent.client.renderer.RenderRegistryHandler;
-import hua.huase.shanhaicontinent.comand.CommandZDY;
+import hua.huase.shanhaicontinent.comand.Commandaddjingshenli;
+import hua.huase.shanhaicontinent.comand.Commandremovehunhuan;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -105,7 +104,8 @@ public class ExampleMod
     // 一般的命令需要这样注册。请注意，这个事件是基于逻辑服务器的。
     @Mod.EventHandler
     public void onServerStarting(FMLServerStartingEvent event) {
-        event.registerServerCommand(new CommandZDY());
+        event.registerServerCommand(new Commandaddjingshenli());
+        event.registerServerCommand(new Commandremovehunhuan());
     }
 
 

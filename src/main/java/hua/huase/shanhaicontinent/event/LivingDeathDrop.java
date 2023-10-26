@@ -27,6 +27,7 @@ public class LivingDeathDrop {
         if(entityLiving instanceof IMob && entityLiving.getCapability(MONSTER_CAPABILITY,null)!=null&&!entityLiving.world.isRemote){
             int nianxian = entityLiving.getCapability(MONSTER_CAPABILITY, null).getNianxian();
 
+            if(nianxian<=0) return;
             if ("player".equals(damageSource.getDamageType())) {
 
                 MonsterCapability monsterCapability = entityLiving.getCapability(MONSTER_CAPABILITY, null);
