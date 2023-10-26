@@ -44,7 +44,7 @@ public class MonsterCapability extends BaseCapability{
         this.nianxian = nianxian;
         this.shuxing = shuxing;
 
-        if(nianxian<=100){
+        if(nianxian<100){
             float g = 10 + (float) nianxian / 5 + random.nextInt(10);
             float l= 10 + (float) nianxian / 100 * 10 ;
 
@@ -67,7 +67,7 @@ public class MonsterCapability extends BaseCapability{
             super.setHunlizhi(0);
             super.setRenxing(0);
 
-        }else if(nianxian<=1000){
+        }else if(nianxian<1000){
 
             float g = 50 + (float) nianxian / 10 + random.nextInt(50);
             float l= 20 + (float) nianxian / 1000 * 10 ;
@@ -91,7 +91,7 @@ public class MonsterCapability extends BaseCapability{
             super.setHunlizhi(0);
             super.setRenxing(0);
 
-        }else if(nianxian<=10000){
+        }else if(nianxian<10000){
 
             float g = 250 + (float) nianxian / 20 + random.nextInt(250);
             float l= 30 + (float) nianxian / 10000 * 10 ;
@@ -114,7 +114,7 @@ public class MonsterCapability extends BaseCapability{
             super.setJingshenli(0);
             super.setHunlizhi(0);
             super.setRenxing(0);
-        }else if(nianxian<=100000){
+        }else if(nianxian<100000){
             float g = 750 + (float) nianxian / 67 + random.nextInt(750);
             float l= 40 + (float) nianxian / 100000 * 10 ;
 
@@ -136,7 +136,7 @@ public class MonsterCapability extends BaseCapability{
             super.setJingshenli(0);
             super.setHunlizhi(0);
             super.setRenxing(0);
-        }else if(nianxian>1000000){
+        }else if(nianxian<1000000){
 
             float g = 3750 + (float) nianxian / 133 + random.nextInt(3750);
             float l= 50 + (float) nianxian / 1000000 * 10 ;

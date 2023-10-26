@@ -105,6 +105,7 @@ public class HunhuanEntity extends Entity {
                     player = entityplayer;
                 }
 
+
                 if (player==null){
                     if(STAGE!=0&&STAGE<340){
 
@@ -119,6 +120,12 @@ public class HunhuanEntity extends Entity {
                     return;
 
                 }else{
+
+                    if(!player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).isHunhuankaiguan()){
+                        return;
+                    }
+
+
                     playerTite = player;
 
 

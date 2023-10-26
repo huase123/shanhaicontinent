@@ -46,7 +46,7 @@ public class ItemCapability extends BaseCapability{
         this.shuxing = shuxing;
 
 
-        if(nianxian<=100){
+        if(nianxian<100){
             float g = (10 + (float) nianxian / 5 + random.nextInt(10))*0.1f;
             float l= 1 + nianxian / 100f ;
 
@@ -69,7 +69,7 @@ public class ItemCapability extends BaseCapability{
             super.setHunlizhi(0);
             super.setRenxing(0);
 
-        }else if(nianxian<=1000){
+        }else if(nianxian<1000){
 
             float g = (50 + (float) nianxian / 10 + random.nextInt(50))*0.1f;
             float l= 2 + nianxian / 1000f ;
@@ -93,7 +93,7 @@ public class ItemCapability extends BaseCapability{
             super.setHunlizhi(0);
             super.setRenxing(0);
 
-        }else if(nianxian<=10000){
+        }else if(nianxian<10000){
 
             float g = (250 + (float) nianxian / 20 + random.nextInt(250))*0.1f;
             float l= 3 + nianxian / 10000f ;
@@ -116,7 +116,7 @@ public class ItemCapability extends BaseCapability{
             super.setJingshenli(0);
             super.setHunlizhi(0);
             super.setRenxing(0);
-        }else if(nianxian<=100000){
+        }else if(nianxian<100000){
             float g = (750 + (float) nianxian / 67 + random.nextInt(750))*0.1f;
             float l= 4 + nianxian / 100000f ;
 
@@ -138,7 +138,7 @@ public class ItemCapability extends BaseCapability{
             super.setJingshenli(0);
             super.setHunlizhi(0);
             super.setRenxing(0);
-        }else if(nianxian>1000000){
+        }else if(nianxian<1000000){
 
             float g = (3750 + (float) nianxian / 133 + random.nextInt(3750))*0.1f;
             float l= 5 + nianxian / 1000000f ;

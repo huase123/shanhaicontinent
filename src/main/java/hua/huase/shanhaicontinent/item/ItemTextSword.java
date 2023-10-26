@@ -9,12 +9,19 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -36,6 +43,9 @@ public class ItemTextSword extends ItemSword
                 66F,
                 100));
         this.setUnlocalizedName(ExampleMod.MODID + name);
+
+
+
         this.setRegistryName(name);
         this.setCreativeTab(Tabs);
         HanderAny.itemList.add(this);
@@ -83,6 +93,51 @@ public class ItemTextSword extends ItemSword
 
         return multimap;
     }
+
+
+    public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
+    {
+
+        int min = Math.min(this.getMaxItemUseDuration(stack) - timeLeft, 40);
+        if(min<10)return;
+
+        if (worldIn.isRemote )
+        {
+
+            float d0 = -MathHelper.sin(entityLiving.rotationYaw * 0.017453292F) * MathHelper.cos(entityLiving.rotationPitch * 0.017453292F);
+            float d1 = -MathHelper.sin(entityLiving.rotationPitch * 0.017453292F);
+            float d2 = MathHelper.cos(entityLiving.rotationYaw * 0.017453292F) * MathHelper.cos(entityLiving.rotationPitch * 0.017453292F);
+            double d3 = 5D;
+            entityLiving.motionX += d0 * d3;
+//            entityLiving.motionY += d1 * d3*0.1;
+            entityLiving.motionY =0;
+            entityLiving.motionZ += d2 * d3;
+
+        }
+
+        worldIn.playSound((EntityPlayer)null, entityLiving.posX, entityLiving.posY, entityLiving.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + 1 * 0.5F);
+
+        entityLiving.hurtResistantTime=20;
+
+    }
+
+
+
+
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        playerIn.setActiveHand(handIn);
+        return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+//        ItemStack itemstack = playerIn.getHeldItem(handIn);
+//        return new ActionResult(EnumActionResult.PASS, itemstack);
+    }
+
+    public int getMaxItemUseDuration(ItemStack stack)
+    {
+        return 72000;
+    }
+
+
+
 
 
 

@@ -238,7 +238,7 @@ danfang8.peifang.list6=§k0000§o0000
 
 danfang.jiuhua=§1《§b九花玉露丸§1》***
 danfang.jiuhua.introduce=介绍：九花玉露丸是一种非常珍贵的药草，它是由九种名贵草药炼制而成，对精神修复有着起效
-danfang.jiuhua.effect=功效：回复百分之十的精神力
+danfang.jiuhua.effect=功效：增加5点最大精神力
 danfang.jiuhua.material=材料：§01*§e百年以上的合欢  §01*§e百年以上的秋海棠  §01*§e百年以上的山茶  §01*§e百年以上的夕雾  §01*§e百年以上的月光花
 
 
@@ -387,8 +387,8 @@ entity.Villager.shanhaicontinent.huncaoworker=魂草商人
 
 
 
-message.hunhuan:true=魂环开关：§2开
-message.hunhuan:false=魂环开关：§2关
+message.hunhuan:true=§2魂环已开启，靠近魂环将自动吸收魂环
+message.hunhuan:false=§2魂环已关闭，将不会自动吸收魂环
 
 
 player.shanhaicontinent.shengming.name=生命:§2%s
