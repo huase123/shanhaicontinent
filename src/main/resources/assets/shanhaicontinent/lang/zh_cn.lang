@@ -378,7 +378,7 @@ message.removehunhuan.success=§c魂环移除成功
 message.removehunhuan.fail=§4魂环移除失败：未知原因
 
 displayer:jingshenli=所需精神力：%s
-message.addjingshenli.fail=§4%s超过了-1000~1000限制
+message.addjingshenli.fail=§4%s超过了-10000~10000限制
 
 message.usejiuhua.success=§e最大精神力: §b+%s
 

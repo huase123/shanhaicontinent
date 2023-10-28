@@ -42,7 +42,7 @@ public class PlayerEventUpdate {
                 player.setHealth(player.getHealth()+capability.getShengminghuifu()/5f);
             }
             if(capability.getJingshenli()<capability.getMaxjingshenli()&&player.getHealth()>0f){
-                capability.setJingshenli(capability.getJingshenli()+0.1f);
+                capability.setJingshenli(capability.getJingshenli()+0.1f*capability.getMaxjingshenli());
 
             }
             PacketHandler.INSTANCE.sendToAllTracking(new PacketPlayerCapability(capability,player),new NetworkRegistry.TargetPoint(player.dimension,player.posX,player.posY,player.posZ,60));

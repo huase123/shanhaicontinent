@@ -18,6 +18,7 @@ public class RenderRegistryHandler
 
 
 
+//        RenderingRegistry.registerEntityRenderingHandler(EntityJiNengThread.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
 /*
 
         RenderingRegistry.registerEntityRenderingHandler(EntityDirtBall.class, manager ->

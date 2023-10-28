@@ -6,86 +6,140 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderEntity;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class RenderJiNengThread extends RenderEntity {
 
 
-    private static final ResourceLocation POLAR_BEAR_TEXTURE = new ResourceLocation("shanhaicontinent:textures/picture/particletext.png");
-//    protected ModelBase modelBoat = new HunhuanModel();
+    private static final ResourceLocation POLAR_BEAR_TEXTURE = new ResourceLocation("shanhaicontinent:textures/jineng/jianqi3/1.png");
+    public  static List<ResourceLocation> pacture = new ArrayList<ResourceLocation>();
 public RenderJiNengThread(RenderManager renderManager) {
-
         super(renderManager);
+        for (int i = 0; i < 8; i++) {
+            pacture.add(new ResourceLocation("shanhaicontinent:textures/jineng/jianqi3/"+(i+1)+".png"));
+        }
     }
 
 //    float time = 0f;
-    public static Map<Integer, Integer> timemap=new HashMap();
+    public int time=0;
 
     public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-        GlStateManager.disableLighting();
-        TextureMap texturemap = Minecraft.getMinecraft().getTextureMapBlocks();
-        TextureAtlasSprite textureatlassprite = texturemap.getAtlasSprite("minecraft:blocks/fire_layer_0");
-        TextureAtlasSprite textureatlassprite1 = texturemap.getAtlasSprite("minecraft:blocks/fire_layer_1");
+
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y, (float)z);
-        float f = entity.width * 1.4F;
-        GlStateManager.scale(f, f, f);
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        float f1 = 0.5F;
-        float f2 = 0.0F;
-        float f3 = entity.height / f;
-        float f4 = (float)(entity.posY - entity.getEntityBoundingBox().minY);
-        GlStateManager.rotate(-this.renderManager.playerViewY, 0.0F, 1.0F, 0.0F);
-        GlStateManager.translate(0.0F, 0.0F, -0.3F + (float)((int)f3) * 0.02F);
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-        float f5 = 0.0F;
-        int i = 0;
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-
-        while (f3 > 0.0F)
-        {
-            TextureAtlasSprite textureatlassprite2 = i % 2 == 0 ? textureatlassprite : textureatlassprite1;
-            this.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-            float f6 = textureatlassprite2.getMinU();
-            float f7 = textureatlassprite2.getMinV();
-            float f8 = textureatlassprite2.getMaxU();
-            float f9 = textureatlassprite2.getMaxV();
-
-            if (i / 2 % 2 == 0)
-            {
-                float f10 = f8;
-                f8 = f6;
-                f6 = f10;
-            }
-
-            bufferbuilder.pos((double)(f1 - 0.0F), (double)(0.0F - f4), (double)f5).tex((double)f8, (double)f9).endVertex();
-            bufferbuilder.pos((double)(-f1 - 0.0F), (double)(0.0F - f4), (double)f5).tex((double)f6, (double)f9).endVertex();
-            bufferbuilder.pos((double)(-f1 - 0.0F), (double)(1.4F - f4), (double)f5).tex((double)f6, (double)f7).endVertex();
-            bufferbuilder.pos((double)(f1 - 0.0F), (double)(1.4F - f4), (double)f5).tex((double)f8, (double)f7).endVertex();
-            f3 -= 0.45F;
-            f4 -= 0.45F;
-            f1 *= 0.9F;
-            f5 += 0.03F;
-            ++i;
-        }
-
-        tessellator.draw();
-        GlStateManager.popMatrix();
+        GlStateManager.rotate(90, 1, 0, 0);
+        GlStateManager.rotate(-entityYaw+45, 0, 0, 1);
+        GlStateManager.rotate(30, 0, 1, 0);
+        GlStateManager.disableLighting();
+        GlStateManager.enablePolygonOffset();
+        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+        GlStateManager.depthMask(false);
+        GlStateManager.doPolygonOffset(-1, 20);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(pacture.get(time/10));
+        Tessellator tessellator = Tessellator.getInstance(); //获取Tessellator的一般方式
+        BufferBuilder buffer = tessellator.getBuffer();//获取记录顶点信息的"数组"
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
+        buffer.pos(  -6,   -6, 0).tex(0, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(  -6, 6, 0).tex(0, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6, 6, 0).tex(1, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6,   -6, 0).tex(1, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        tessellator.draw(); //将数组和渲染方式提交到GPU
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask(true);
+        GlStateManager.disablePolygonOffset();
         GlStateManager.enableLighting();
-//        super.doRender(entity, x, y, z, entityYaw, partialTicks);
+        GlStateManager.popMatrix();
+
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)x, (float)y, (float)z);
+        GlStateManager.rotate(90, 1, 0, 0);
+        GlStateManager.rotate(-entityYaw+45, 0, 0, 1);
+        GlStateManager.rotate(-30, 0, 1, 0);
+        GlStateManager.disableLighting();
+        GlStateManager.enablePolygonOffset();
+        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+        GlStateManager.depthMask(false);
+        GlStateManager.doPolygonOffset(-1, 20);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(pacture.get(time/10));
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
+        buffer.pos(  -6,   -6, 0).tex(0, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(  -6, 6, 0).tex(0, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6, 6, 0).tex(1, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6,   -6, 0).tex(1, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        tessellator.draw(); //将数组和渲染方式提交到GPU
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask(true);
+        GlStateManager.disablePolygonOffset();
+        GlStateManager.enableLighting();
+        GlStateManager.popMatrix();
+
+
+
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)x, (float)y, (float)z);
+        GlStateManager.rotate(-90, 1, 0, 0);
+        GlStateManager.rotate(entityYaw-45, 0, 0, 1);
+        GlStateManager.rotate(30, 0, 1, 0);
+        GlStateManager.disableLighting();
+        GlStateManager.enablePolygonOffset();
+        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+        GlStateManager.depthMask(false);
+        GlStateManager.doPolygonOffset(-1, 20);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(pacture.get(time/10));
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
+        buffer.pos(  -6,   -6, 0).tex(0, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(  -6, 6, 0).tex(0, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6, 6, 0).tex(1, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6,   -6, 0).tex(1, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        tessellator.draw(); //将数组和渲染方式提交到GPU
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask(true);
+        GlStateManager.disablePolygonOffset();
+        GlStateManager.enableLighting();
+        GlStateManager.popMatrix();
+
+
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)x, (float)y, (float)z);
+        GlStateManager.rotate(-90, 1, 0, 0);
+        GlStateManager.rotate(entityYaw-45, 0, 0, 1);
+        GlStateManager.rotate(-30, 0, 1, 0);
+        GlStateManager.disableLighting();
+        GlStateManager.enablePolygonOffset();
+        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+        GlStateManager.depthMask(false);
+        GlStateManager.doPolygonOffset(-1, 20);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(pacture.get(time/10));
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
+        buffer.pos(  -6,   -6, 0).tex(0, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(  -6, 6, 0).tex(0, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6, 6, 0).tex(1, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        buffer.pos(6,   -6, 0).tex(1, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        tessellator.draw(); //将数组和渲染方式提交到GPU
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask(true);
+        GlStateManager.disablePolygonOffset();
+        GlStateManager.enableLighting();
+        GlStateManager.popMatrix();
+
+
+
+
+
+        time = time>=7*10? 0:++time;
+
+
     }
 
 

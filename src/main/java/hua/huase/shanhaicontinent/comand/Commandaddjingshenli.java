@@ -28,7 +28,7 @@ public class Commandaddjingshenli extends CommandBase {
         if(args==null)return;
 
 
-        if(Float.parseFloat(args[0])>1000||Float.parseFloat(args[0])<-1000) {
+        if(Float.parseFloat(args[0])>10000||Float.parseFloat(args[0])<-10000) {
             sender.getCommandSenderEntity().sendMessage(new TextComponentTranslation(net.minecraft.client.resources.I18n.format("message.addjingshenli.fail", args[0])));
             return;
         }

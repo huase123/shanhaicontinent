@@ -2,7 +2,6 @@ package hua.huase.shanhaicontinent.item;
 
 import com.google.common.collect.Multimap;
 import hua.huase.shanhaicontinent.ExampleMod;
-import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
@@ -10,19 +9,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -94,33 +86,19 @@ public class ItemTextSword extends ItemSword
 
         return multimap;
     }
+/*
 
     public void onPlayerStoppedUsing(ItemStack stack, World worldIn, EntityLivingBase entityLiving, int timeLeft)
     {
 
-        int min = Math.min(this.getMaxItemUseDuration(stack) - timeLeft, 40);
-        if(min<10)return;
 
-        float d0 = -MathHelper.sin(entityLiving.rotationYaw * 0.017453292F) ;
-        float d2 = MathHelper.cos(entityLiving.rotationYaw * 0.017453292F) ;
-        double d3 = 3D;
-        if (worldIn.isRemote )
-        {
-
-            entityLiving.motionX += d0 * d3;
-            entityLiving.motionZ += d2 * d3;
-
-        }
         if(!worldIn.isRemote){
-            EntityJiNengThread jiNengThread = new EntityJiNengThread(entityLiving.world);
-            jiNengThread.posX = entityLiving.posX;
-            jiNengThread.posY = entityLiving.posY;
-            jiNengThread.posZ = entityLiving.posZ;
-            jiNengThread.motionX += d0*2;
-            jiNengThread.motionZ += d2*2;
-            entityLiving.world.spawnEntity(jiNengThread);
-            worldIn.playSound((EntityPlayer)null, entityLiving.posX, entityLiving.posY, entityLiving.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + 1 * 0.5F);
-            entityLiving.hurtResistantTime=20;
+            EntityPlayer entityLiving1 = (EntityPlayer) entityLiving;
+            EntityJiNengThread jiNengThread = new EntityJiNengThread(worldIn,entityLiving1);
+            jiNengThread.shoot(entityLiving1, entityLiving1.rotationPitch, entityLiving1.rotationYaw,0,2.0f,0.0f);
+            worldIn.spawnEntity(jiNengThread);
+            worldIn.playSound((EntityPlayer)null, entityLiving1.posX, entityLiving1.posY, entityLiving1.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
+            entityLiving1.hurtResistantTime=20;
         }
 
 
@@ -135,11 +113,12 @@ public class ItemTextSword extends ItemSword
 //        ItemStack itemstack = playerIn.getHeldItem(handIn);
 //        return new ActionResult(EnumActionResult.PASS, itemstack);
     }
+*/
 
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
-        return 72000;
-    }
+//    public int getMaxItemUseDuration(ItemStack stack)
+//    {
+//        return 72000;
+//    }
 
 
 
