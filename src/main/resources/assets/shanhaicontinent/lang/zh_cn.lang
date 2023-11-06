@@ -410,23 +410,23 @@ player.shanhaicontinent.kangbao.name=抗暴：§9%s
 player.shanhaicontinent.dengji.name=等级：§e%s
 player.shanhaicontinent.jingyan.name=经验：§1%s
 
-player.shanhaicontinent.hp.name=HP：  %s
+player.shanhaicontinent.hp.name=HP：  %0.1f
 
 
-message.hunhuan.list-1=你离开了魂环
-message.hunhuan.list.no=等级不够或经验不足无法吸收魂环
+message.hunhuan.list-1=§2你离开了魂环
+message.hunhuan.list.no=§c等级不够或经验不足无法吸收魂环
 message.hunhuan.list.false=§b精神力§f不足，无法继续吸收魂环
-message.hunhuan.list0=你靠近了一个§e%s年§f魂环
+message.hunhuan.list0=你靠近了一个%s年§e魂环
 message.hunhuan.list1=开始吸收魂环，§6精神力§b-%s
 message.hunhuan.list2=正在吸收魂环，§6精神力§b-%s
 message.hunhuan.list3=正在吸收魂环，§6精神力§b-%s
 message.hunhuan.list4=正在吸收魂环，§6精神力§b-%s
-message.hunhuan.sccuess=成功吸收§e%s年§f魂环，等级§a+1
-message.hunhuan.fail=§e%s年§f魂环中的怨念过于强大，魂环吸收失败
-message.hunhuan.list6=正在吸收魂环，精神力-%s
+message.hunhuan.sccuess=成功吸收%s年§e魂环§f，等级§a+1
+message.hunhuan.fail=%s年§e魂环§f中的怨念过于强大，魂环吸收失败
+message.hunhuan.list6=正在吸收魂环，§6精神力-%s
 
-message.tupo.fail.client.jingyan=经验不够，再磨练一下把！
-message.tupo.fail.client.hunhuan=达到等级上限，需先吸收魂环
+message.tupo.fail.client.jingyan=§b经验不够，再磨练一下把！
+message.tupo.fail.client.hunhuan=§6达到等级上限，需先吸收魂环
 message.tupo.fail=突破失败
 message.tupo.sccuess0=成功突破到§9%s§a级魂士
 message.tupo.sccuess1=成功突破到§9%s§b级魂师
@@ -448,6 +448,13 @@ nianxian.display2.name=§2年限: §0%s
 nianxian.display3.name=§2年限: §5%s
 nianxian.display4.name=§2年限: §e%s
 nianxian.display5.name=§2年限: §f%s
+
+0nianxian=§4年限:
+1nianxian=§c年限:
+2nianxian=§0年限:
+3nianxian=§5年限:
+4nianxian=§e年限:
+5nianxian=§f年限:
 
 key.shanhai=山海大陆
 key.shanhaicontinent.mykey_p=突破

@@ -172,7 +172,7 @@ public class FlowerBlock extends Block
                     PlayerCapability capability = entityplayer.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
                     if(capability.getJingshenli()<capability.getMaxjingshenli()) {
                         capability.addJingshenli(i);
-                        entityplayer.sendMessage(new TextComponentTranslation(net.minecraft.client.resources.I18n.format("message.addjingshenli.success", i)));
+                        entityplayer.sendMessage(new TextComponentTranslation("message.addjingshenli.success", i));
                     }
                 }
             }

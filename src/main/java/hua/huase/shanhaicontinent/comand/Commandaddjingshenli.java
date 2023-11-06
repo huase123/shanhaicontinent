@@ -29,7 +29,7 @@ public class Commandaddjingshenli extends CommandBase {
 
 
         if(Float.parseFloat(args[0])>10000||Float.parseFloat(args[0])<-10000) {
-            sender.getCommandSenderEntity().sendMessage(new TextComponentTranslation(net.minecraft.client.resources.I18n.format("message.addjingshenli.fail", args[0])));
+            sender.getCommandSenderEntity().sendMessage(new TextComponentTranslation("message.addjingshenli.fail", args[0]));
             return;
         }
 
@@ -39,7 +39,7 @@ public class Commandaddjingshenli extends CommandBase {
             PlayerCapability capability = sender.getCommandSenderEntity().getCapability(PLYAER_CAPABILITY, null);
 
             capability.addJingshenli(Float.parseFloat(args[0]));
-            sender.getCommandSenderEntity().sendMessage(new TextComponentTranslation(net.minecraft.client.resources.I18n.format("message.addjingshenli.success", args[0])));
+            sender.getCommandSenderEntity().sendMessage(new TextComponentTranslation("message.addjingshenli.success", args[0]));
 
 
         }

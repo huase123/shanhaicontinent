@@ -3,10 +3,8 @@ package hua.huase.shanhaicontinent.client.particles;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SideOnly(Side.CLIENT)
+//@SideOnly(Side.CLIENT)
 public class ParticlesHander {
    public static EnumParticleTypes enumParticleTypes ;
    public static EnumParticleTypes enumParticleTypesText ;

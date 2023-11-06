@@ -130,7 +130,7 @@ public class GuiPot extends GuiContainer
                     break;
                 case 5:
                     list0 =I18n.format("danfang5.peifang.list0");
-                    list1 = new String[]{I18n.format("danfang5.peifang.list1.0"),I18n.format("danfang4.peifang.list1.1")};
+                    list1 = new String[]{I18n.format("danfang5.peifang.list1.0"),I18n.format("danfang5.peifang.list1.1")};
                     list2 = new String[]{I18n.format("danfang5.peifang.list2")};
                     list3 = new String[]{I18n.format("danfang5.peifang.list3")};
                     list4 = new String[]{I18n.format("danfang5.peifang.list4")};

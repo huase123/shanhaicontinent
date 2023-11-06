@@ -2,8 +2,8 @@ package hua.huase.shanhaicontinent.client.keybinding;
 
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketOpenHunhuan;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketOpenHunhuan;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.text.TextComponentTranslation;

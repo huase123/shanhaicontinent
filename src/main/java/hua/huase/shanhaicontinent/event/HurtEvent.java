@@ -3,11 +3,9 @@ package hua.huase.shanhaicontinent.event;
 import hua.huase.shanhaicontinent.api.HuitEventApi;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
-import hua.huase.shanhaicontinent.client.particles.ParticlesHander;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
-import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -103,7 +101,7 @@ public class HurtEvent {
 
     public static void displayerDamage  (EntityLivingBase target, float amount )
     {
-
+/*
         if(target==null)return;
 
 
@@ -127,7 +125,7 @@ public class HurtEvent {
 
                 });
         }
-
+*/
     }
 
 

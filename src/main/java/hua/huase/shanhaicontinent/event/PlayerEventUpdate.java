@@ -2,9 +2,9 @@ package hua.huase.shanhaicontinent.event;
 
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketPlayerCapability;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketSync;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketPlayerCapability;
+import hua.huase.shanhaicontinent.seedpacket.PacketSync;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -36,13 +36,15 @@ public class PlayerEventUpdate {
     public static void onStartTracking(TickEvent.PlayerTickEvent event) {
         EntityPlayer target = event.player;
         EntityPlayer player =  target;
+        if(target.isDead)return;
         PlayerCapability capability = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
         if (event.phase==TickEvent.Phase.END&&target instanceof EntityPlayerMP && !target.world.isRemote &&target.ticksExisted%20==0) {
             if(player.getHealth()<player.getMaxHealth()&&player.getHealth()>0f){
                 player.setHealth(player.getHealth()+capability.getShengminghuifu()/5f);
             }
             if(capability.getJingshenli()<capability.getMaxjingshenli()&&player.getHealth()>0f){
-                capability.setJingshenli(capability.getJingshenli()+0.1f*capability.getMaxjingshenli());
+//                capability.addJingshenli(0.1f*capability.getMaxjingshenli());
+                capability.addJingshenli(capability.getDengji()/10f);
 
             }
             PacketHandler.INSTANCE.sendToAllTracking(new PacketPlayerCapability(capability,player),new NetworkRegistry.TargetPoint(player.dimension,player.posX,player.posY,player.posZ,60));

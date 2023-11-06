@@ -4,7 +4,7 @@ import hua.huase.shanhaicontinent.WorldGen.structureal.TemplateHander;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.client.keybinding.MyKeyBinding;
 import hua.huase.shanhaicontinent.client.particles.ParticlesHander;
 import hua.huase.shanhaicontinent.client.renderer.RenderRegistryHandler;

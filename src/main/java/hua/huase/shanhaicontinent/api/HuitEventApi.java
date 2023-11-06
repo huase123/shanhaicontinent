@@ -28,7 +28,7 @@ public interface HuitEventApi {
 
         boolean b = random.nextInt(100) <= capability.getBaojilv();
         float v = b? (amount+capability.getWugong()+capability.getZhenshang()) * Math.max((capability.getBaojishanghai()+100f)/100f,1f):amount+capability.getWugong()+capability.getZhenshang();
-
+        if(!entityLiving.isDead)
         entityLiving.setHealth(capability.getXixue()/(capability.getXixue()+100)*v+entityLiving.getHealth());
 
         return v;
@@ -36,7 +36,7 @@ public interface HuitEventApi {
     public static float monHuitOther(MonsterCapability capability, float amount,EntityLivingBase entityLiving){
         boolean b = random.nextInt(100) <= capability.getBaojilv();
         float v = b? (amount+capability.getWugong()+capability.getZhenshang()) * Math.max((capability.getBaojishanghai()+100f)/100f,1f):amount+capability.getWugong()+capability.getZhenshang();
-
+        if(!entityLiving.isDead)
         entityLiving.setHealth(capability.getXixue()/(capability.getXixue()+100)*v+entityLiving.getHealth());
         return v;
     }
@@ -52,7 +52,7 @@ public interface HuitEventApi {
         boolean b = random.nextInt(100) <= capability0.getBaojilv();
         float jianshang =1f- Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)/(Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)+500f);
         float v = b? (capability0.getWugong()*jianshang + capability0.getZhenshang()+amount) * Math.max((capability0.getBaojishanghai()-capability1.getKangbao()+100f)/100f,1f):(capability0.getWugong()*jianshang + capability0.getZhenshang()+amount);
-
+        if(!entityLiving.isDead)
         entityLiving.setHealth(capability0.getXixue()/(capability0.getXixue()+100)*v+entityLiving.getHealth());
         return v;
     }
@@ -64,7 +64,7 @@ public interface HuitEventApi {
         boolean b = random.nextInt(100) <= capability0.getBaojilv();
         float jianshang =1- Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)/(Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)+500f);
         float v = b? (capability0.getWugong()*jianshang + capability0.getZhenshang()+amount) * Math.max((capability0.getBaojishanghai()-capability1.getKangbao()+100f)/100f,1f):(capability0.getWugong()*jianshang + capability0.getZhenshang()+amount);
-
+        if(!entityLiving.isDead)
         entityLiving.setHealth(capability0.getXixue()/(capability0.getXixue()+100)*v+entityLiving.getHealth());
         return v;
     }
@@ -76,7 +76,7 @@ public interface HuitEventApi {
         boolean b = random.nextInt(100) <= capability0.getBaojilv();
         float jianshang =1- Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)/(Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)+500f);
         float v = b? (capability0.getWugong()*jianshang + capability0.getZhenshang()+amount) * Math.max((capability0.getBaojishanghai()-capability1.getKangbao()+100f)/100f,1f):(capability0.getWugong()*jianshang + capability0.getZhenshang()+amount);
-
+        if(!entityLiving.isDead)
         entityLiving.setHealth(capability0.getXixue()/(capability0.getXixue()+100)*v+entityLiving.getHealth());
         return v;
     }
@@ -89,7 +89,7 @@ public interface HuitEventApi {
         boolean b = random.nextInt(100) <= capability0.getBaojilv();
         float jianshang =1- Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)/(Math.max(capability1.getWufang() - capability0.getWuchuan(), 0f)+500f);
         float v = b? (capability0.getWugong()*jianshang + capability0.getZhenshang()+amount) * Math.max((capability0.getBaojishanghai()-capability1.getKangbao()+100f)/100f,1f):(capability0.getWugong()*jianshang + capability0.getZhenshang()+amount);
-
+        if(!entityLiving.isDead)
         entityLiving.setHealth(capability0.getXixue()/(capability0.getXixue()+100)*v+entityLiving.getHealth());
 
         return v;

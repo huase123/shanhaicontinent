@@ -2,8 +2,8 @@ package hua.huase.shanhaicontinent.capability.baubles;
 
 import hua.huase.shanhaicontinent.api.BaublesApi;
 import hua.huase.shanhaicontinent.api.IBaublesItemHandler;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketSync;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketSync;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;

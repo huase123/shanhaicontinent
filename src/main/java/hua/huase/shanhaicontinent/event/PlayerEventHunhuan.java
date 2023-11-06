@@ -1,8 +1,8 @@
 package hua.huase.shanhaicontinent.event;
 
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketPlayerCapability;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketPlayerCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.event.entity.player.PlayerEvent;

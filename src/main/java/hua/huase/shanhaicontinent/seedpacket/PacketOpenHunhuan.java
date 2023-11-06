@@ -1,4 +1,4 @@
-package hua.huase.shanhaicontinent.capability.baubles.seedpacket;
+package hua.huase.shanhaicontinent.seedpacket;
 
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;

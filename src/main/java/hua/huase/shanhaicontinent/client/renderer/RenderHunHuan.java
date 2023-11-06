@@ -185,7 +185,7 @@ public class RenderHunHuan extends RenderEntity {
 
 
 
-        timemap.put(entity.getEntityId(),time>= 20*limitFramerate ? 0:++time);
+        timemap.put(entity.getEntityId(),time>= 18*limitFramerate ? 0:++time);
 
 
 

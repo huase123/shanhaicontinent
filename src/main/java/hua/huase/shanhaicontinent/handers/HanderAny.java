@@ -10,6 +10,7 @@ import hua.huase.shanhaicontinent.item.bone.*;
 import hua.huase.shanhaicontinent.item.bonemeal.SoulBoneMeal;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFang;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFangJiuHua;
+import hua.huase.shanhaicontinent.item.jineng.jingubang.Wuqijingubang;
 import hua.huase.shanhaicontinent.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -94,6 +95,9 @@ public class HanderAny {
     @SubscribeEvent
     public static void handleItem(RegistryEvent.Register<Item> e){
         registry=e.getRegistry();
+
+        new Wuqijingubang("wuqijingubang", TabExample.TAB2);
+
         new ItemTextPickaxe("textpickaxe", TabExample.TAB2);
         new ItemTextSword("textsword", TabExample.TAB2);
 

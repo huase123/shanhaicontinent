@@ -1,4 +1,4 @@
-package hua.huase.shanhaicontinent.capability.baubles.seedpacket;
+package hua.huase.shanhaicontinent.seedpacket;
 
 import hua.huase.shanhaicontinent.ExampleMod;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -20,6 +20,7 @@ public class PacketHandler
 		INSTANCE.registerMessage(PacketOpenHunhuan.class, PacketOpenHunhuan.class, 6, Side.SERVER);
 		INSTANCE.registerMessage(PacketPlayerCapability.Handler.class, PacketPlayerCapability.class, 7, Side.CLIENT);
 		INSTANCE.registerMessage(PacketHunhuanKaiguan.Handler.class, PacketHunhuanKaiguan.class, 8, Side.CLIENT);
+		INSTANCE.registerMessage(PacketJiNengKaiguan.class, PacketJiNengKaiguan.class, 9, Side.SERVER);
 
 //		INSTANCE.registerMessage(PacketHeartDisplay.Handler.class, PacketHeartDisplay.class, 9, Side.CLIENT);
 	}

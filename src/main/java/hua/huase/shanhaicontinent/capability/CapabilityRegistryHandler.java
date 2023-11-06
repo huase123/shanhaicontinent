@@ -4,12 +4,11 @@ import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.api.BaublesApi;
 import hua.huase.shanhaicontinent.api.IBaublesItemHandler;
 import hua.huase.shanhaicontinent.capability.baubles.*;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketHandler;
-import hua.huase.shanhaicontinent.capability.baubles.seedpacket.PacketMonster;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketMonster;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.item.Danyao;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.IAttribute;
@@ -22,6 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.translation.I18n;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
@@ -243,9 +243,10 @@ public class CapabilityRegistryHandler
     //实体加入世界事件
     @SubscribeEvent
     public static void onPlayerJoin(EntityJoinWorldEvent event){
+        if(event==null)return;
         Entity entity = event.getEntity();
 
-
+        if(entity==null)return;
 
         if (!entity.world.isRemote )
         {
@@ -298,17 +299,17 @@ public class CapabilityRegistryHandler
 
                 entity.setCustomNameTag("");
                 if(nianxian>=1000000){
-                    entity.setCustomNameTag(I18n.format(entity.getDisplayName().getFormattedText())+"---------------"+net.minecraft.util.text.translation.I18n.translateToLocalFormatted("nianxian.display0.name", monsterCapability.getNianxian()));
+                    entity.setCustomNameTag(I18n.translateToLocalFormatted(entity.getDisplayName().getFormattedText())+"---------------"+I18n.translateToLocalFormatted("0nianxian")+ monsterCapability.getNianxian());
                 }else if(nianxian>=100000){
-                    entity.setCustomNameTag(I18n.format(entity.getDisplayName().getFormattedText())+"---------------"+net.minecraft.util.text.translation.I18n.translateToLocalFormatted("nianxian.display1.name", monsterCapability.getNianxian()));
+                    entity.setCustomNameTag(I18n.translateToLocalFormatted(entity.getDisplayName().getFormattedText())+"---------------"+I18n.translateToLocalFormatted("1nianxian")+ monsterCapability.getNianxian());
                }else if(nianxian>=10000){
-                    entity.setCustomNameTag(I18n.format(entity.getDisplayName().getFormattedText())+"---------------"+net.minecraft.util.text.translation.I18n.translateToLocalFormatted("nianxian.display2.name", monsterCapability.getNianxian()));
+                    entity.setCustomNameTag(I18n.translateToLocalFormatted(entity.getDisplayName().getFormattedText())+"---------------"+I18n.translateToLocalFormatted("2nianxian")+ monsterCapability.getNianxian());
                 }else if(nianxian>=1000){
-                    entity.setCustomNameTag(I18n.format(entity.getDisplayName().getFormattedText())+"---------------"+net.minecraft.util.text.translation.I18n.translateToLocalFormatted("nianxian.display3.name", monsterCapability.getNianxian()));
+                    entity.setCustomNameTag(I18n.translateToLocalFormatted(entity.getDisplayName().getFormattedText())+"---------------"+I18n.translateToLocalFormatted("3nianxian")+monsterCapability.getNianxian());
                 }else if(nianxian>=100){
-                    entity.setCustomNameTag(I18n.format(entity.getDisplayName().getFormattedText())+"---------------"+net.minecraft.util.text.translation.I18n.translateToLocalFormatted("nianxian.display4.name", monsterCapability.getNianxian()));
+                    entity.setCustomNameTag(I18n.translateToLocalFormatted(entity.getDisplayName().getFormattedText())+"---------------"+I18n.translateToLocalFormatted("4nianxian")+ monsterCapability.getNianxian());
                 }else if(nianxian>=1){
-                    entity.setCustomNameTag(I18n.format(entity.getDisplayName().getFormattedText())+"---------------"+net.minecraft.util.text.translation.I18n.translateToLocalFormatted("nianxian.display5.name", monsterCapability.getNianxian()));
+                    entity.setCustomNameTag(I18n.translateToLocalFormatted(entity.getDisplayName().getFormattedText())+"---------------"+I18n.translateToLocalFormatted("5nianxian")+ monsterCapability.getNianxian());
                 }
 
 

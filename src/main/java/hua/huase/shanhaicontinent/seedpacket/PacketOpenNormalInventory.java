@@ -1,4 +1,4 @@
-package hua.huase.shanhaicontinent.capability.baubles.seedpacket;
+package hua.huase.shanhaicontinent.seedpacket;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.IThreadListener;

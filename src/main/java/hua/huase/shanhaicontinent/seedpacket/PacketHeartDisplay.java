@@ -1,4 +1,4 @@
-package hua.huase.shanhaicontinent.capability.baubles.seedpacket;
+package hua.huase.shanhaicontinent.seedpacket;
 
 import hua.huase.shanhaicontinent.client.particles.ParticlesHander;
 import io.netty.buffer.ByteBuf;

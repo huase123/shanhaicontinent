@@ -46,11 +46,11 @@ public class Commandremovehunhuan extends CommandBase {
         if(monsterCapabilityList!=null&&monsterCapabilityList.size()>0){
             capability.setDengji(monsterCapabilityList.size()*10-1);
             monsterCapabilityList.remove(monsterCapabilityList.size()-1);
-            entity.getCommandSenderEntity().sendMessage(new TextComponentTranslation(net.minecraft.client.resources.I18n.format("message.removehunhuan.success")));
+            entity.getCommandSenderEntity().sendMessage(new TextComponentTranslation("message.removehunhuan.success"));
 
         }else {
 
-            entity.getCommandSenderEntity().sendMessage(new TextComponentTranslation(net.minecraft.client.resources.I18n.format("message.removehunhuan.fail")));
+            entity.getCommandSenderEntity().sendMessage(new TextComponentTranslation("message.removehunhuan.fail"));
         }
 
 

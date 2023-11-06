@@ -1,4 +1,4 @@
-package hua.huase.shanhaicontinent.item;
+package hua.huase.shanhaicontinent.item.jineng.jingubang;
 
 import com.google.common.collect.Multimap;
 import hua.huase.shanhaicontinent.ExampleMod;
@@ -32,12 +32,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class ItemTextSword extends ItemSword
+public class Wuqijingubang extends ItemSword
 {
-    public ItemTextSword(String name, CreativeTabs Tabs)
+    public Wuqijingubang(String name, CreativeTabs Tabs)
     {
         super(EnumHelper.addToolMaterial(
-                "weishenqi",
+                "hunqi",
                 4,
                 0,
                 1.0F,
@@ -81,11 +81,12 @@ public class ItemTextSword extends ItemSword
         Multimap<String, AttributeModifier> multimap = super.getItemAttributeModifiers(equipmentSlot);
         multimap.clear();
 
-        if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
+        if (equipmentSlot == EntityEquipmentSlot.MAINHAND||equipmentSlot == EntityEquipmentSlot.OFFHAND)
         {
             multimap.put(SharedMonsterAttributes.MOVEMENT_SPEED.getName(), new AttributeModifier(UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3"), "Weapon modifier", 1.0D, 2));
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3"), "Weapon modifier", (double)this.getAttackDamage(), 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3"), "Weapon modifier", 4.0D, 0));
+            multimap.put(EntityPlayer.REACH_DISTANCE.getName(), new AttributeModifier(UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3"), "Weapon modifier", 2.0D, 0));
+//            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3"), "Weapon modifier", (double)this.getAttackDamage(), 0));
+//            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3"), "Weapon modifier", 4.0D, 0));
 //            multimap.put(SharedMonsterAttributes.MAX_HEALTH.getName(), new AttributeModifier(UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3"), "Weapon modifier", 100.0D, 0));
 
 
@@ -106,7 +107,7 @@ public class ItemTextSword extends ItemSword
 
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        playerIn.getCooldownTracker().setCooldown(this, 40);
+        playerIn.getCooldownTracker().setCooldown(this, 400);
 //        playerIn.setActiveHand(handIn);
 
         EntityPlayer entityLiving1 =  playerIn;
