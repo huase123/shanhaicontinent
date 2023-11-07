@@ -90,6 +90,7 @@ public  class GuiPlayerExpanded extends GuiContainer
 			drawCapability(capability,left+24,top+13);
 		}
 		List<MonsterCapability> monsterCapabilityList = capability.getMonsterCapabilityList();
+		if(monsterCapabilityList==null)return;
 		for (int i = 0; i < Math.min(monsterCapabilityList.size(),5); i++) {
 			MonsterCapability monsterCapability = monsterCapabilityList.get(i);
 			drawHunhuan(monsterCapability.getNianxian(),left+277,top+12+i*40,x,y);

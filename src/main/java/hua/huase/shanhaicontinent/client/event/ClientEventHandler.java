@@ -50,7 +50,7 @@ public class ClientEventHandler
 
 
         EntityPlayerSP player = Minecraft.getMinecraft().player;
-        if(player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).isHunhuankaiguan()) {
+        if(player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()!=0) {
 
 
             int limitFramerate = Minecraft.getMinecraft().gameSettings.limitFramerate;
@@ -64,6 +64,7 @@ public class ClientEventHandler
 
 
             int i1 = 1;
+            if(capability1.getMonsterCapabilityList()==null)return;
             for (MonsterCapability monsterCapability1 : capability1.getMonsterCapabilityList()) {
 
                 int nianxian = monsterCapability1.getNianxian();

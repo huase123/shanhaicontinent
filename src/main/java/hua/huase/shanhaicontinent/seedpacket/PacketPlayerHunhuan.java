@@ -113,7 +113,7 @@ public class PacketPlayerHunhuan implements IMessage, IMessageHandler<PacketPlay
 //								playerCapability.getMonsterCapabilityList().add(entity.getCapability(MONSTER_CAPABILITY, null));
 								List<MonsterCapability> monsterCapabilityList = playerCapability.getMonsterCapabilityList();
 								monsterCapabilityList.add(entity.getCapability(MONSTER_CAPABILITY, null));
-								playerCapability.setMonsterCapabilityList(monsterCapabilityList);
+//								playerCapability.setMonsterCapabilityList(monsterCapabilityList);
 								playerCapability.addDengji(1);
 								NetworkRegistryHandler.PlayerListen.sendClientCustomPacket((EntityPlayer) player);
 								player.sendMessage(new TextComponentTranslation("message.hunhuan.sccuess", nianxian ));

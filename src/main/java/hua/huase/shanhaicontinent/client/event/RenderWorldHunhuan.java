@@ -195,7 +195,7 @@ public class RenderWorldHunhuan {
 
 
             if(entityIn  instanceof EntityOtherPlayerMP) {
-                if(entityIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).isHunhuankaiguan()){
+                if(entityIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()!=0){
 
 
 

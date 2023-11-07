@@ -4,8 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.INBTSerializable;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /*玩家属性
         物攻
@@ -86,13 +85,21 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
     private float hunlizhuanhualv;
     private float renxing;
     private int jingjie;
-    private boolean hunhuankaiguan;
+    private short hunhuankaiguan;
     private float wuchuan;
     private float kangbao;
     private int jingyan;
     private int maxjingyan;
     private int dengji;
-    private List<MonsterCapability> monsterCapabilityList;
+    private Map<String,List<MonsterCapability>> monsterCapabilityLists;
+    private List<String> wuhunListsname;
+
+    public static HashSet<String> wuhunListsnameall= new HashSet<>();
+
+    static {
+        wuhunListsnameall.add("jingubang");
+    }
+
     private List<ItemCapability> itemCapabilityList;
 
     private float maxjingshenli;
@@ -100,10 +107,10 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
     public PlayerCapability (float wugong, float baojishanghai, float baojilv, float zhenshang, float yuanshushanghai, float xixue, float wufang, float yuansukangxing,
                              float yuansuqinheli, float shengming, float maxshengming, float shengminghuifu, float minghzong, float shanbi, float jingshenli, float hunlizhi,
-                             float hunlizhuanhualv,int jingjie, float renxing, boolean hunhuankaiguan, float wuchuan , float kangbao,int jingyan,int maxjingyan){
+                             float hunlizhuanhualv,int jingjie, float renxing, short hunhuankaiguan, float wuchuan , float kangbao,int jingyan,int maxjingyan){
         this.wugong=wugong;
         this.baojishanghai=baojishanghai;
-        this.baojilv=baojilv;
+
         this.zhenshang=zhenshang;
         this.yuanshushanghai=yuanshushanghai;
         this.xixue=xixue;
@@ -151,15 +158,19 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.hunlizhuanhualv=0;
         this.jingjie=1;
         this.renxing=0;
-        this.hunhuankaiguan=true;
+        this.hunhuankaiguan=0;
         this.wuchuan=0;
         this.kangbao=0;
         this.jingyan=0;
         this.maxjingyan=50;
         this.dengji=0;
-        this.monsterCapabilityList=new ArrayList<>();
+        this.monsterCapabilityLists=new HashMap<>();
+        this.wuhunListsname=new ArrayList<>();
         this.itemCapabilityList=new ArrayList<>();
         this.maxjingshenli=1;
+
+        this.wuhunListsname.add("jingubang");
+        monsterCapabilityLists.put(wuhunListsname.get(0),new ArrayList<>());
 
     }
 
@@ -188,7 +199,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         nbt.setFloat("hunlizhuanhualv",hunlizhuanhualv);
         nbt.setInteger("jingjie",jingjie);
         nbt.setFloat("renxing",renxing);
-        nbt.setBoolean("hunhuankaiguan",hunhuankaiguan);
+        nbt.setShort("hunhuankaiguan",hunhuankaiguan);
         nbt.setFloat("wuchuan",wuchuan);
         nbt.setFloat("kangbao",kangbao);
         nbt.setInteger("jingyan",jingyan);
@@ -196,12 +207,24 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         nbt.setInteger("dengji",dengji);
         nbt.setFloat("maxjingshenli",maxjingshenli);
 
-        for (int i = 0; i < monsterCapabilityList.size(); i++) {
-            nbt.setTag("monsterCapability"+i,monsterCapabilityList.get(i).serializeNBT());
+
+        for (Map.Entry<String, List<MonsterCapability>> stringListEntry : monsterCapabilityLists.entrySet()) {
+            int i=0;
+
+            nbt.setTag(stringListEntry.getKey()+":monsterCapability",new NBTTagCompound());
+            for (MonsterCapability monsterCapability : stringListEntry.getValue()) {
+                nbt.setTag(stringListEntry.getKey()+":monsterCapability"+i,monsterCapability.serializeNBT());
+                i++;
+            }
+
         }
 
         for (int i = 0; i < itemCapabilityList.size(); i++) {
             nbt.setTag("itemCapability"+i,itemCapabilityList.get(i).serializeNBT());
+        }
+
+        for (String s : wuhunListsname) {
+            nbt.setString(s,s);
         }
 
 
@@ -230,7 +253,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.hunlizhuanhualv=nbt.getFloat("hunlizhuanhualv");
         this.jingjie=nbt.getInteger("jingjie");
         this.renxing=nbt.getFloat("renxing");
-        this.hunhuankaiguan=nbt.getBoolean("hunhuankaiguan");
+        this.hunhuankaiguan=nbt.getShort("hunhuankaiguan");
         this.wuchuan=nbt.getFloat("wuchuan");
         this.kangbao=nbt.getFloat("kangbao");
         this.jingyan=nbt.getInteger("jingyan");
@@ -238,12 +261,31 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.dengji=nbt.getInteger("dengji");
         this.maxjingshenli=nbt.getFloat("maxjingshenli");
 
-        this.monsterCapabilityList.clear();
-        for (int i = 0; nbt.getTag("monsterCapability"+i)!=null; i++) {
-            MonsterCapability monsterCapability = new MonsterCapability();
-            monsterCapability.deserializeNBT((NBTTagCompound) nbt.getTag("monsterCapability"+i));
-            this.monsterCapabilityList.add(monsterCapability);
+
+        wuhunListsname.clear();
+        for (String s : wuhunListsnameall) {
+            if(nbt.getString(s)!=null){
+
+                wuhunListsname.add(nbt.getString(s));
+            }
         }
+
+
+
+
+        this.monsterCapabilityLists.clear();
+        for (String s : wuhunListsnameall) {
+            if(nbt.getTag(s+":monsterCapability")!=null){
+                for (int i = 0; nbt.getTag(s+":monsterCapability"+i)!=null; i++) {
+                    MonsterCapability monsterCapability = new MonsterCapability();
+                    monsterCapability.deserializeNBT((NBTTagCompound) nbt.getTag(s+":monsterCapability"+i));
+                    monsterCapabilityLists.put(s,new ArrayList<>());
+                    monsterCapabilityLists.get(s).add(monsterCapability);
+                }
+            }
+
+        }
+
 
         this.itemCapabilityList.clear();
         for (int i = 0; nbt.getTag("itemCapability"+i)!=null; i++) {
@@ -501,11 +543,11 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.renxing += value;
     }
 
-    public boolean isHunhuankaiguan() {
+    public short getHunhuankaiguan() {
         return hunhuankaiguan;
     }
 
-    public void setHunhuankaiguan(boolean value) {
+    public void setHunhuankaiguan(short value) {
         this.hunhuankaiguan = value;
     }
     public float getWuchuan() {
@@ -583,12 +625,36 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.itemCapabilityList = itemCapabilityList;
     }
 
-    public void setMonsterCapabilityList(List<MonsterCapability> monsterCapabilityList) {
-        this.monsterCapabilityList = monsterCapabilityList;
+    public void setMonsterCapabilityListAll(Map<String, List<MonsterCapability>> monsterCapabilityList) {
+        this.monsterCapabilityLists = monsterCapabilityLists;
     }
 
+    public Map<String, List<MonsterCapability>> setMonsterCapabilityListAll() {
+        return monsterCapabilityLists;
+    }
+
+/*
+
+    public void setMonsterCapabilityList(Map<String, List<MonsterCapability>> monsterCapabilityList) {
+        this.monsterCapabilityLists = monsterCapabilityLists;
+    }
+*/
+
     public List<MonsterCapability> getMonsterCapabilityList() {
-        return monsterCapabilityList;
+        if(hunhuankaiguan==0)return null;
+        return monsterCapabilityLists.get(wuhunListsname.get(getHunhuankaiguan()-1));
+
+
+    }
+
+
+
+    public void setWuhunListsname(List wuhunListsname) {
+        this.wuhunListsname = wuhunListsname;
+    }
+
+    public List<String> getWuhunListsname() {
+        return wuhunListsname;
     }
 
 

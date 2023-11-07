@@ -25,6 +25,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -122,7 +123,7 @@ public class HunhuanEntity extends Entity {
 
                 }else{
 
-                    if(!player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).isHunhuankaiguan()){
+                    if(player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()==0){
                         return;
                     }
 
@@ -196,8 +197,9 @@ public class HunhuanEntity extends Entity {
                                 if(new Random().nextInt(3)!=0||jingshenli>nianxian/10){
     //								playerCapability.getMonsterCapabilityList().add(entity.getCapability(MONSTER_CAPABILITY, null));
                                     List<MonsterCapability> monsterCapabilityList = playerCapability.getMonsterCapabilityList();
+                                    if(monsterCapabilityList==null)monsterCapabilityList=new ArrayList<>();
                                     monsterCapabilityList.add(this.getCapability(MONSTER_CAPABILITY, null));
-                                    playerCapability.setMonsterCapabilityList(monsterCapabilityList);
+//                                    playerCapability.setMonsterCapabilityList(monsterCapabilityList);
                                     ChangeCapability.addHunhuan(playerCapability,this.getCapability(MONSTER_CAPABILITY, null),  player);
                                     playerCapability.addDengji(1);
                                     NetworkRegistryHandler.PlayerListen.sendClientCustomPacket((EntityPlayer) player);
