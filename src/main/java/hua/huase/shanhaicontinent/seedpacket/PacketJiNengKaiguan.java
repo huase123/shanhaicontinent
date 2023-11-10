@@ -1,9 +1,17 @@
 package hua.huase.shanhaicontinent.seedpacket;
 
+import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
+import hua.huase.shanhaicontinent.capability.MonsterCapability;
+import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
+import hua.huase.shanhaicontinent.handers.HanderAny;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IThreadListener;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -28,18 +36,36 @@ public class PacketJiNengKaiguan implements IMessage, IMessageHandler<PacketJiNe
 		EntityPlayerMP player = ctx.getServerHandler().player;
 		if(player==null)return null;
 		if(useTime.get(player.getEntityId())==null){
-			useTime.put(player.getEntityId(),player.world.getWorldTime()-180);
+			useTime.put(player.getEntityId(),player.world.getWorldTime()-180L);
 		}
 
 		if(useTime.get(player.getEntityId())+200L<=player.world.getWorldTime()) {
 			useTime.put(player.getEntityId(),player.world.getWorldTime());
 			IThreadListener mainThread = (WorldServer) player.world;
 			mainThread.addScheduledTask(new Runnable(){ public void run() {
-				for (int i = 0; i < 9; i++) {
-
-					EntityJinengItem jinengItem = new EntityJinengItem(player.world,player,i);
-					player.world.spawnEntity(jinengItem);
+				PlayerCapability capability = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
+				int i=0;
+				if(capability.getMonsterCapabilityList()==null)return;
+				for (MonsterCapability monsterCapability : capability.getMonsterCapabilityList()) {
+					if(capability.getWuhunname().equals("null"))return;
+					if(capability.getWuhunname().equals("jingubang")){
+						ItemStack itemStack = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID + ":wuqijingubang")),1,0);
+						NBTTagCompound compound = new NBTTagCompound();
+						compound.setInteger("nianxian",monsterCapability.getNianxian());
+						compound.setInteger("playerid",player.getEntityId());
+						compound.setString("playername",player.getName());
+						itemStack.setTagCompound(compound);
+						EntityJinengItem jinengItem = new EntityJinengItem(player.world,player,i,itemStack).setItemStack();
+						player.world.spawnEntity(jinengItem);
+						i++;
+					}
 				}
+//
+//				for (int i = 0; i < 9; i++) {
+//
+//					EntityJinengItem jinengItem = new EntityJinengItem(player.world,player,i);
+//					player.world.spawnEntity(jinengItem);
+//				}
 
 
 			}});

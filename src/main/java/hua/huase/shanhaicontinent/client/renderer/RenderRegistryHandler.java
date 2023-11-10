@@ -7,8 +7,6 @@ import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
 import hua.huase.shanhaicontinent.handers.HanderAny;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -25,8 +23,8 @@ public class RenderRegistryHandler
 
         RenderingRegistry.registerEntityRenderingHandler(EntityJinengItem.class, manager ->
         {
-            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
-            return new RenderJiNengItme(manager, HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":wuqijingubang")), renderItem);
+//            RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
+            return new RenderJiNengItme(manager, HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":wuqijingubang")));
         });
 
         RenderingRegistry.registerEntityRenderingHandler(EntityJiNengThread.class, RenderJiNengThread::new);

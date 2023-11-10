@@ -1,17 +1,15 @@
 package hua.huase.shanhaicontinent.client.renderer.jiuneng;
 
+import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.entity.RenderEntity;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -23,22 +21,18 @@ import org.lwjgl.opengl.GL11;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
+
+import static hua.huase.shanhaicontinent.client.event.RenderWorldHunhuan.EXPLOSION_TEXTURE;
 
 @SideOnly(Side.CLIENT)
 public class RenderJiNengItme extends RenderEntity {
 
-    private final RenderItem itemRenderer;
-    private final Random random = new Random();
-    private final ItemStack item ;
-    private static final ResourceLocation POLAR_BEAR_TEXTURE = new ResourceLocation("shanhaicontinent:textures/picture/particletext1.png");
-    private static final ResourceLocation POLAR_ITEM_TEXTURE = new ResourceLocation("shanhaicontinent:textures/items/textsword.png");
-
+    private  ItemStack item ;
+    private static final ResourceLocation POLAR_BEAR_TEXTURE = new ResourceLocation("shanhaicontinent:textures/picture/particletext.png");
     public static Map<Integer, Integer> timemap=new HashMap();
-    public RenderJiNengItme(RenderManager renderManagerIn,Item item,RenderItem itemRenderer)
+    public RenderJiNengItme(RenderManager renderManagerIn,Item item)
     {
         super(renderManagerIn);
-        this.itemRenderer = itemRenderer;
         this.shadowSize = 0.15F;
         this.shadowOpaque = 0.75F;
         this.item=new ItemStack(item,1);
@@ -51,40 +45,105 @@ public class RenderJiNengItme extends RenderEntity {
         int limitFramerate = Minecraft.getMinecraft().gameSettings.limitFramerate;
         float ticks = (float) ((float)time/(float)limitFramerate);
 
+        if(((EntityJinengItem)entity).getItemStack()!=null)this.item=((EntityJinengItem)entity).getItemStack();
 
+        // 渲染
+        // 清空颜色缓冲
+//        GL11.glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+//        GL11.glClear(GL_COLOR_BUFFER_BIT);
+//        GlStateManager.matrixMode(5889);
+//        GlStateManager.loadIdentity();
 
         GlStateManager.pushMatrix();
-
-        GlStateManager.translate((float)x, (float)y+0.15+0.1f*MathHelper.sin(ticks/4.5f*3.14159265359f), (float)z);
+        GlStateManager.translate((float)x, (float)y+0.35+0.1f* MathHelper.sin(ticks/4.5f*3.14159265359f), (float)z);
         GlStateManager.rotate(ticks*40, 0.0F, 1.0F, 0.0F);
-        IBakedModel ibakedmodel = Minecraft.getMinecraft().getRenderItem().getItemModelWithOverrides(item, entity.world, (EntityLivingBase)null);
-        IBakedModel transformedModel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GROUND, false);
-        Minecraft.getMinecraft().getRenderItem().renderItem(item, transformedModel);
+        GlStateManager.scale(0.8F, 0.8F, 0.8F);
+        Minecraft.getMinecraft().getRenderItem().renderItem(item, ItemCameraTransforms.TransformType.GROUND);
         GlStateManager.popMatrix();
 
+        int nianxian = item.getTagCompound().getInteger("nianxian");
+
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float)x, (float)y+0.2, (float)z);
+        GlStateManager.translate((float)x, (float)y+0.2f, (float)z);
         GlStateManager.rotate(90, 1, 0, 0);
         GlStateManager.rotate(ticks*20f, 0, 0, 1);
-//        GlStateManager.scale(1f, 1f, 1);
-        float v = ticks/3;
+        GlStateManager.scale(1.5f, 1.5f, 0);
 
-        Minecraft.getMinecraft().getTextureManager().bindTexture(POLAR_BEAR_TEXTURE);
-        Tessellator tessellator = Tessellator.getInstance(); //获取Tessellator的一般方式
-        BufferBuilder buffer = tessellator.getBuffer();//获取记录顶点信息的"数组"
+        if (nianxian >= 1000000) {
+            GlStateManager.color(ticks <= 1 ? 1 : ticks <= 2 ? 2 - ticks : ticks <= 4 ? 0 : ticks <= 5 ? ticks - 4 : 1, ticks <= 1 ? ticks : ticks <= 3 ? 1 : ticks <= 4 ? 4 - ticks : 0, ticks <= 2 ? 0 : ticks <= 3 ? ticks - 2 : ticks <= 5 ? 1 : ticks <= 5 ? 1 : 6 - ticks, 1.0f);
+        } else if (nianxian >= 100000) {
+            GlStateManager.color(1.5f, 0, 0, 0.8f);
+        } else if (nianxian >= 10000) {
+            GlStateManager.color(0, 0f, 0, 0.8f);
+        } else if (nianxian >= 1000) {
+            GlStateManager.color(1.5f, 0f, 1f, 0.8f);
+        } else if (nianxian >= 100) {
+            GlStateManager.color(1.5f, 1f, 0, 0.8f);
+        } else if (nianxian >= 1) {
+            GlStateManager.color(1.5f, 1.5f, 1.5f, 0.8f);
+        }
+        GlStateManager.disableLighting();
+        GlStateManager.disableColorMaterial();
+        GlStateManager.enablePolygonOffset();
+        GlStateManager.depthMask(false);
+        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+        GlStateManager.doPolygonOffset(-3, -3);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(EXPLOSION_TEXTURE);
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder buffer = tessellator.getBuffer();
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(  -0.5,   -0.5, 0).tex(0, 0).endVertex();
+        buffer.pos(  -0.5, 0.5, 0).tex(0, 1).endVertex();
+        buffer.pos(0.5, 0.5, 0).tex(1, 1).endVertex();
+        buffer.pos(0.5,   -0.5, 0).tex(1, 0).endVertex();
+        tessellator.draw();
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask(true);
+        GlStateManager.disablePolygonOffset();
+        GlStateManager.enableLighting();
+        GlStateManager.enableColorMaterial();
+        GlStateManager.popMatrix();
 
-        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
-//        buffer.begin(7, DefaultVertexFormats.POSITION_TEX); //指定数组的组织方式(位置 + UV方式), 以及要画的图像的顶点数(矩形四个顶点)
 
-        buffer.pos(  -0.5,   -0.5, 0).tex(0, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
-        buffer.pos(  -0.5, 0.5, 0).tex(0, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
-        buffer.pos(0.5, 0.5, 0).tex(1, 1).endVertex(); //提供矩形的四个顶点, 并绑定UV
-        buffer.pos(0.5,   -0.5, 0).tex(1, 0).endVertex(); //提供矩形的四个顶点, 并绑定UV
+        GlStateManager.disableLighting();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate((float)x, (float)y+0.2f, (float)z);
+        GlStateManager.rotate(-90, 1, 0, 0);
+        GlStateManager.rotate(ticks*20f, 0, 0, 1);
+        GlStateManager.scale(1.5f, 1.5f, 0);
 
-
-        tessellator.draw(); //将数组和渲染方式提交到GPU
-
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        if (nianxian >= 1000000) {
+            GlStateManager.color(ticks <= 1 ? 1 : ticks <= 2 ? 2 - ticks : ticks <= 4 ? 0 : ticks <= 5 ? ticks - 4 : 1, ticks <= 1 ? ticks : ticks <= 3 ? 1 : ticks <= 4 ? 4 - ticks : 0, ticks <= 2 ? 0 : ticks <= 3 ? ticks - 2 : ticks <= 5 ? 1 : ticks <= 5 ? 1 : 6 - ticks, 1.0f);
+        } else if (nianxian >= 100000) {
+            GlStateManager.color(1.5f, 0, 0, 0.8f);
+        } else if (nianxian >= 10000) {
+            GlStateManager.color(0, 0f, 0, 0.8f);
+        } else if (nianxian >= 1000) {
+            GlStateManager.color(1.5f, 0f, 1f, 0.8f);
+        } else if (nianxian >= 100) {
+            GlStateManager.color(1.5f, 1f, 0, 0.8f);
+        } else if (nianxian >= 1) {
+            GlStateManager.color(1.5f, 1.5f, 1.5f, 0.8f);
+        }
+        GlStateManager.disableLighting();
+        GlStateManager.enablePolygonOffset();
+        GlStateManager.depthMask(false);
+        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
+        GlStateManager.doPolygonOffset(-3, -3);
+        GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(EXPLOSION_TEXTURE);
+        buffer.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        buffer.pos(  -0.5,   -0.5, 0).tex(0, 0).endVertex();
+        buffer.pos(  -0.5, 0.5, 0).tex(0, 1).endVertex();
+        buffer.pos(0.5, 0.5, 0).tex(1, 1).endVertex();
+        buffer.pos(0.5,   -0.5, 0).tex(1, 0).endVertex();
+        tessellator.draw();
+        GlStateManager.disableBlend();
+        GlStateManager.depthMask(true);
+        GlStateManager.disablePolygonOffset();
+        GlStateManager.enableLighting();
+        GlStateManager.enableColorMaterial();
         GlStateManager.popMatrix();
 
 
@@ -92,16 +151,14 @@ public class RenderJiNengItme extends RenderEntity {
 
 
 
-//        super.doRender(entity, x, y, z, entityYaw, partialTicks);
         timemap.put(entity.getEntityId(),time>= 9*limitFramerate ? 0:++time);
-
-
     }
 
 
 
     protected ResourceLocation getEntityTexture(EntityItem entity)
     {
-        return POLAR_ITEM_TEXTURE;
+//        return POLAR_ITEM_TEXTURE;
+        return null;
     }
 }

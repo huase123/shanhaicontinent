@@ -1,21 +1,25 @@
 package hua.huase.shanhaicontinent.entity.jinengitem;
 
 import hua.huase.shanhaicontinent.ExampleMod;
-import hua.huase.shanhaicontinent.handers.HanderAny;
+import hua.huase.shanhaicontinent.entity.EntityDirtBallKing;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityJinengItem extends Entity {
     public static final String ID = "JinengItem";
     public static final String NAME = ExampleMod.MODID + ".JinengItem";
-    private  long exiistTime;
+    private final long exiistTime;
     private  EntityPlayer entityPlayer;
+    private  ItemStack itemStack;
 
     private float f;
     private float f2;
@@ -26,24 +30,34 @@ public class EntityJinengItem extends Entity {
         this.setSize(0.5F, 0.5F);
     }
 
+    private static final DataParameter<ItemStack> ITEM_STACK =
+            EntityDataManager.createKey(EntityDirtBallKing.class, DataSerializers.ITEM_STACK);
     @Override
     protected void entityInit() {
 
+        this.getDataManager().register(ITEM_STACK, ItemStack.EMPTY);
     }
 
-    public EntityJinengItem(World worldIn, EntityPlayer entityPlayer,int posint) {
+    public ItemStack getItemStack()
+    {
+        return (ItemStack)this.getDataManager().get(ITEM_STACK);
+    }
+    public EntityJinengItem setItemStack()
+    {
+        this.getDataManager().set(ITEM_STACK, itemStack);
+        this.getDataManager().setDirty(ITEM_STACK);
+        return this;
+    }
+    public EntityJinengItem(World worldIn, EntityPlayer entityPlayer,int posint,ItemStack stack) {
         super(worldIn);
         this.entityPlayer = entityPlayer;
+        this.itemStack=stack;
         this.exiistTime = worldIn.getWorldTime();
         this.posint=posint;
         this.rotationYaw=entityPlayer.rotationYaw;
         this.rotationPitch=entityPlayer.rotationPitch;
-
         f = -MathHelper.sin(((posint%3-1)*45+entityPlayer.rotationYaw) * 0.017453292F)*2f;
         f2 = MathHelper.cos(((posint%3-1)*45+entityPlayer.rotationYaw) * 0.017453292F)*2f;
-
-
-
         this.setPosition(entityPlayer.posX+f,entityPlayer.posY+posint/3,entityPlayer.posZ+f2);
         this.setSize(0.5F, 0.5F);
     }
@@ -56,10 +70,9 @@ public class EntityJinengItem extends Entity {
 
         if (!this.world.isRemote)
         {
-                if (itemstack.isEmpty())
+                if (itemstack.isEmpty()&&entityPlayer.getEntityId()==player.getEntityId())
                 {
-                       player.setHeldItem(hand,new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":wuqijingubang"))));
-
+                       player.setHeldItem(hand,this.itemStack);
                         this.setDead();
 
                 }
@@ -81,17 +94,37 @@ public class EntityJinengItem extends Entity {
 
     public boolean isInvisible()
     {
-        return true;
+        return false;
+    }{
+        super.isInvisible();
     }
-    @Override
-    protected void readEntityFromNBT(NBTTagCompound compound) {
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        if (!this.getItemStack().isEmpty())
+        {
+            compound.setTag("Item", this.getItemStack().writeToNBT(new NBTTagCompound()));
+        }
 
     }
 
-    @Override
-    protected void writeEntityToNBT(NBTTagCompound compound) {
+    public void readEntityFromNBT(NBTTagCompound compound)
+    {
+        NBTTagCompound nbttagcompound = compound.getCompoundTag("Item");
+
+        if (nbttagcompound != null && !nbttagcompound.hasNoTags())
+        {
+            ItemStack itemStack1 = new ItemStack(nbttagcompound);
+
+            this.getDataManager().set(ITEM_STACK, itemStack1);
+            this.getDataManager().setDirty(ITEM_STACK);
+            this.world.updateComparatorOutputLevel(this.getPosition(), Blocks.AIR);
+        }
 
     }
+
+
+
 
     public void onUpdate()
     {
@@ -104,6 +137,8 @@ public class EntityJinengItem extends Entity {
             if (entityPlayer != null) {
                 this.setPosition(entityPlayer.posX+f,entityPlayer.posY+posint/3,entityPlayer.posZ+f2);
 
+            }else {
+                this.setDead();
             }
         }
         super.onUpdate();

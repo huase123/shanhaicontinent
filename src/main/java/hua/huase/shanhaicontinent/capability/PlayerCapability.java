@@ -169,8 +169,8 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.itemCapabilityList=new ArrayList<>();
         this.maxjingshenli=1;
 
-        this.wuhunListsname.add("jingubang");
-        monsterCapabilityLists.put(wuhunListsname.get(0),new ArrayList<>());
+//        this.wuhunListsname.add("jingubang");
+//        monsterCapabilityLists.put(wuhunListsname.get(0),new ArrayList<>());
 
     }
 
@@ -207,6 +207,9 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         nbt.setInteger("dengji",dengji);
         nbt.setFloat("maxjingshenli",maxjingshenli);
 
+        for (String s : wuhunListsname) {
+            nbt.setString(s,s);
+        }
 
         for (Map.Entry<String, List<MonsterCapability>> stringListEntry : monsterCapabilityLists.entrySet()) {
             int i=0;
@@ -221,10 +224,6 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
         for (int i = 0; i < itemCapabilityList.size(); i++) {
             nbt.setTag("itemCapability"+i,itemCapabilityList.get(i).serializeNBT());
-        }
-
-        for (String s : wuhunListsname) {
-            nbt.setString(s,s);
         }
 
 
@@ -264,7 +263,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
         wuhunListsname.clear();
         for (String s : wuhunListsnameall) {
-            if(nbt.getString(s)!=null){
+            if(nbt.hasKey(s)){
 
                 wuhunListsname.add(nbt.getString(s));
             }
@@ -275,11 +274,12 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
         this.monsterCapabilityLists.clear();
         for (String s : wuhunListsnameall) {
-            if(nbt.getTag(s+":monsterCapability")!=null){
-                for (int i = 0; nbt.getTag(s+":monsterCapability"+i)!=null; i++) {
+            if(nbt.hasKey(s+":monsterCapability")){
+//                for (int i = 0; nbt.getTag(s+":monsterCapability"+i)!=null; i++) {
+                monsterCapabilityLists.put(s,new ArrayList<>());
+                for (int i = 0; nbt.hasKey(s+":monsterCapability"+i); i++) {
                     MonsterCapability monsterCapability = new MonsterCapability();
                     monsterCapability.deserializeNBT((NBTTagCompound) nbt.getTag(s+":monsterCapability"+i));
-                    monsterCapabilityLists.put(s,new ArrayList<>());
                     monsterCapabilityLists.get(s).add(monsterCapability);
                 }
             }
@@ -288,7 +288,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
 
         this.itemCapabilityList.clear();
-        for (int i = 0; nbt.getTag("itemCapability"+i)!=null; i++) {
+        for (int i = 0; nbt.hasKey("itemCapability"+i); i++) {
             ItemCapability itemCapability = new ItemCapability();
             itemCapability.deserializeNBT((NBTTagCompound) nbt.getTag("itemCapability"+i));
             this.itemCapabilityList.add(itemCapability);
@@ -629,7 +629,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.monsterCapabilityLists = monsterCapabilityLists;
     }
 
-    public Map<String, List<MonsterCapability>> setMonsterCapabilityListAll() {
+    public Map<String, List<MonsterCapability>> getMonsterCapabilityLists() {
         return monsterCapabilityLists;
     }
 
@@ -655,6 +655,11 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
     public List<String> getWuhunListsname() {
         return wuhunListsname;
+    }
+
+    public String getWuhunname() {
+        if(hunhuankaiguan==0)return "null";
+        return wuhunListsname.get(hunhuankaiguan-1);
     }
 
 

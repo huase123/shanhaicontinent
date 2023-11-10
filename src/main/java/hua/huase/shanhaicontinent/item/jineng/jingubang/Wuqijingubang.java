@@ -4,6 +4,7 @@ import com.google.common.collect.Multimap;
 import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
 import hua.huase.shanhaicontinent.handers.HanderAny;
+import hua.huase.shanhaicontinent.item.jineng.JinengMethond;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,6 +23,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
@@ -32,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
-public class Wuqijingubang extends ItemSword
+public class Wuqijingubang extends ItemSword implements JinengMethond
 {
     public Wuqijingubang(String name, CreativeTabs Tabs)
     {
@@ -54,10 +56,20 @@ public class Wuqijingubang extends ItemSword
 
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
     {
-        stack.damageItem(0, attacker);
-        target.addPotionEffect(new PotionEffect(MobEffects.WITHER,100,1,true,true));
-        return true;
+        if(JinengMethond.isBinding(stack,attacker)){
+            stack.damageItem(0, attacker);
+            target.addPotionEffect(new PotionEffect(MobEffects.WITHER,100,1,true,true));
+            return true;
+        }
+        return false;
     }
+
+
+    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    {
+        return JinengMethond.isBinding(stack,entityLiving);
+    }
+
 
     public boolean canHarvestBlock(IBlockState blockIn)
     {
@@ -107,7 +119,7 @@ public class Wuqijingubang extends ItemSword
 
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        playerIn.getCooldownTracker().setCooldown(this, 400);
+        playerIn.getCooldownTracker().setCooldown(this, 10);
 //        playerIn.setActiveHand(handIn);
 
         EntityPlayer entityLiving1 =  playerIn;
@@ -157,11 +169,14 @@ public class Wuqijingubang extends ItemSword
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {
         super.addInformation(itemstack, world, list, flag);
-//        list.remove(list.size()-1);
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("shendaozhijianlist1"));
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("shendaozhijianlist2"));
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("shendaozhijianlist3"));
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("shendaozhijianlist4"));
+        if(itemstack.getTagCompound()!=null&&itemstack.getTagCompound().getString("playername")!=null){
+            list.add(net.minecraft.util.text.translation.I18n.translateToLocal("itembanding.player.sccuess")
+                    +""+
+                    itemstack.getTagCompound().getString("playername")
+            );
+        }else {
+            list.add(net.minecraft.util.text.translation.I18n.translateToLocal("itembanding.player.fail"));
+        }
     }
 
 

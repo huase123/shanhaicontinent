@@ -2,6 +2,7 @@ package hua.huase.shanhaicontinent.seedpacket;
 
 import hua.huase.shanhaicontinent.api.PlayerCapabilityApi;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
+import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -11,6 +12,10 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class PacketTuPo implements IMessage, IMessageHandler<PacketTuPo, IMessage> {
 
@@ -34,6 +39,15 @@ public class PacketTuPo implements IMessage, IMessageHandler<PacketTuPo, IMessag
 			TextComponentTranslation iTextComponents =new TextComponentTranslation("message.tupo.fail" );
 			if(PlayerCapabilityApi.tuPo(player)){
 				iTextComponents = new TextComponentTranslation("message.tupo.sccuess" + -1, dengji + 1);
+
+				if(dengji==5){
+					capability.getWuhunListsname().add("jingubang");
+
+					Map<String, List<MonsterCapability>> monsterCapabilityLists = capability.getMonsterCapabilityLists();
+					monsterCapabilityLists.put("jingubang",new ArrayList<>());
+					player.sendMessage(new TextComponentTranslation("message.sccuessjuexingwuhun.jingubang" ));
+				}
+
 
 				int round = Math.round((dengji + 1) / 10);
 				switch (round){

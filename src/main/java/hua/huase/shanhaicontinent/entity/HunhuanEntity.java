@@ -6,10 +6,10 @@ import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.capability.api.ChangeCapability;
+import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketHunhuanKaiguan;
 import hua.huase.shanhaicontinent.seedpacket.PacketPlayerCapability;
-import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +25,6 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -197,12 +196,13 @@ public class HunhuanEntity extends Entity {
                                 if(new Random().nextInt(3)!=0||jingshenli>nianxian/10){
     //								playerCapability.getMonsterCapabilityList().add(entity.getCapability(MONSTER_CAPABILITY, null));
                                     List<MonsterCapability> monsterCapabilityList = playerCapability.getMonsterCapabilityList();
-                                    if(monsterCapabilityList==null)monsterCapabilityList=new ArrayList<>();
+//                                    if(monsterCapabilityList==null)monsterCapabilityList=new ArrayList<>();
                                     monsterCapabilityList.add(this.getCapability(MONSTER_CAPABILITY, null));
 //                                    playerCapability.setMonsterCapabilityList(monsterCapabilityList);
                                     ChangeCapability.addHunhuan(playerCapability,this.getCapability(MONSTER_CAPABILITY, null),  player);
                                     playerCapability.addDengji(1);
                                     NetworkRegistryHandler.PlayerListen.sendClientCustomPacket((EntityPlayer) player);
+
                                     player.sendMessage(new TextComponentTranslation("message.hunhuan.sccuess", nianxian));
                                     viewPlayer= 0;
                                     kaiguan=false;
