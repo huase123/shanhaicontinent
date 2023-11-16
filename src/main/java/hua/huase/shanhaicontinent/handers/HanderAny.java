@@ -10,7 +10,7 @@ import hua.huase.shanhaicontinent.item.bone.*;
 import hua.huase.shanhaicontinent.item.bonemeal.SoulBoneMeal;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFang;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFangJiuHua;
-import hua.huase.shanhaicontinent.item.jineng.jingubang.Wuqijingubang;
+import hua.huase.shanhaicontinent.item.jineng.jingubang.*;
 import hua.huase.shanhaicontinent.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -52,18 +52,18 @@ public class HanderAny {
     public static Item danyao ;
     public static Item danyaojiuhua ;
     //注册方块
-    public static FlowerBlock baisuilan= new FlowerBlock("baisuilan",TabExample.TAB2);
-    public static FlowerBlock fengxinzi= new FlowerBlock("fengxinzi",TabExample.TAB2);
-    public static FlowerBlock hanxiaohua= new FlowerBlock("hanxiaohua",TabExample.TAB2);
-    public static FlowerBlock hehuan= new FlowerBlock("hehuan",TabExample.TAB2);
-    public static FlowerBlock heshouwu= new FlowerBlock("heshouwu",TabExample.TAB2);
-    public static FlowerBlock qiuhaitang= new FlowerBlock("qiuhaitang",TabExample.TAB2);
-    public static FlowerBlock shancha= new FlowerBlock("shancha",TabExample.TAB2);
-    public static FlowerBlock wangyoucao= new FlowerBlock("wangyoucao",TabExample.TAB2);
-    public static FlowerBlock xiwu= new FlowerBlock("xiwu",TabExample.TAB2);
-    public static FlowerBlock xunyicao= new FlowerBlock("xunyicao",TabExample.TAB2);
-    public static FlowerBlock yueguanghua= new FlowerBlock("yueguanghua",TabExample.TAB2);
-    public static FlowerBlock zhushamei= new FlowerBlock("zhushamei",TabExample.TAB2);
+    public static FlowerBlock baisuilan= new FlowerBlock("baisuilan",TabExample.TAB1);
+    public static FlowerBlock fengxinzi= new FlowerBlock("fengxinzi",TabExample.TAB1);
+    public static FlowerBlock hanxiaohua= new FlowerBlock("hanxiaohua",TabExample.TAB1);
+    public static FlowerBlock hehuan= new FlowerBlock("hehuan",TabExample.TAB1);
+    public static FlowerBlock heshouwu= new FlowerBlock("heshouwu",TabExample.TAB1);
+    public static FlowerBlock qiuhaitang= new FlowerBlock("qiuhaitang",TabExample.TAB1);
+    public static FlowerBlock shancha= new FlowerBlock("shancha",TabExample.TAB1);
+    public static FlowerBlock wangyoucao= new FlowerBlock("wangyoucao",TabExample.TAB1);
+    public static FlowerBlock xiwu= new FlowerBlock("xiwu",TabExample.TAB1);
+    public static FlowerBlock xunyicao= new FlowerBlock("xunyicao",TabExample.TAB1);
+    public static FlowerBlock yueguanghua= new FlowerBlock("yueguanghua",TabExample.TAB1);
+    public static FlowerBlock zhushamei= new FlowerBlock("zhushamei",TabExample.TAB1);
 
 
 
@@ -76,8 +76,8 @@ public class HanderAny {
         // 和物品一样，每一个方块都有唯一一个注册名，不能使用大写字母。
 
 
-        soulsoil = new SoulSoil("soulsoil",TabExample.TAB2);
-        pot = new BlockPot("pot",TabExample.TAB2);
+        soulsoil = new SoulSoil("soulsoil",TabExample.TAB1);
+        pot = new BlockPot("pot",TabExample.TAB1);
 
 
         event.getRegistry().registerAll(blockList.toArray(new Block[0]));
@@ -97,23 +97,32 @@ public class HanderAny {
         registry=e.getRegistry();
 
         new Wuqijingubang("wuqijingubang", TabExample.TAB2);
+        new WuqijnFSHY("wuqijnfshy", TabExample.TAB2);
+        new WuqijnJGZ("wuqijnjgz", TabExample.TAB2);
+        new WuqijnDH("wuqijndh", TabExample.TAB2);
+        new WuqijnJDY("wuqijnjdy", TabExample.TAB2);
+        new WuqijnJLCY("wuqijnjlcy", TabExample.TAB2);
+        new WuqijnJGZS("wuqijnjgzs", TabExample.TAB2);
+        new WuqijnDZSY("wuqijndzsy", TabExample.TAB2);
+        new WuqijnDZSFT("wuqijndzsft", TabExample.TAB2);
 
-        new ItemTextPickaxe("textpickaxe", TabExample.TAB2);
-        new ItemTextSword("textsword", TabExample.TAB2);
+        new ItemTextPickaxe("textpickaxe", TabExample.TAB1);
+        new ItemTextSword("textsword", TabExample.TAB1);
+        new ItemTextSword("elysiabowtext", TabExample.TAB1);
 
-        new ExoskeletonBone("exoskeletonbone", TabExample.TAB2);
-        new HeadBone("headbone", TabExample.TAB2);
-        new LeftHandBone("lefthandbone", TabExample.TAB2);
-        new LeftLegBone("leftlegbone", TabExample.TAB2);
-        new RightHandBone("righthandbone", TabExample.TAB2);
-        new RightLegBone("rightlegbone", TabExample.TAB2);
-        new TrunkBone("trunkbone", TabExample.TAB2);
-        new SoulBoneMeal("soulbonemeal", TabExample.TAB2);
-        new DanFang("danfang", TabExample.TAB2);
-        new DanFangJiuHua("danfangjiuhua", TabExample.TAB2);
-        new Hunye("hunye", TabExample.TAB2);
-        new Danyao("danyao", TabExample.TAB2);
-        new DanyaoJiuhua("danyaojiuhua", TabExample.TAB2);
+        new ExoskeletonBone("exoskeletonbone", TabExample.TAB1);
+        new HeadBone("headbone", TabExample.TAB1);
+        new LeftHandBone("lefthandbone", TabExample.TAB1);
+        new LeftLegBone("leftlegbone", TabExample.TAB1);
+        new RightHandBone("righthandbone", TabExample.TAB1);
+        new RightLegBone("rightlegbone", TabExample.TAB1);
+        new TrunkBone("trunkbone", TabExample.TAB1);
+        new SoulBoneMeal("soulbonemeal", TabExample.TAB1);
+        new DanFang("danfang", TabExample.TAB1);
+        new DanFangJiuHua("danfangjiuhua", TabExample.TAB1);
+        new Hunye("hunye", TabExample.TAB1);
+        new Danyao("danyao", TabExample.TAB1);
+        new DanyaoJiuhua("danyaojiuhua", TabExample.TAB1);
         e.getRegistry().registerAll(itemList.toArray(new Item[0]));
         e.getRegistry().register(soulSoilItem);
         e.getRegistry().register(soulbonemeal);

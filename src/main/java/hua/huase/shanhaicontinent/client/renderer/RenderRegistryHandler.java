@@ -1,10 +1,12 @@
 package hua.huase.shanhaicontinent.client.renderer;
 
 import hua.huase.shanhaicontinent.ExampleMod;
-import hua.huase.shanhaicontinent.client.renderer.jiuneng.RenderJiNengItme;
-import hua.huase.shanhaicontinent.client.renderer.jiuneng.RenderJiNengThread;
+import hua.huase.shanhaicontinent.client.renderer.jineng.RenderJiNengItme;
+import hua.huase.shanhaicontinent.client.renderer.jineng.RenderJiNengThread;
+import hua.huase.shanhaicontinent.client.renderer.jineng.jingubang.RenderJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
+import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import net.minecraft.util.ResourceLocation;
@@ -28,6 +30,7 @@ public class RenderRegistryHandler
         });
 
         RenderingRegistry.registerEntityRenderingHandler(EntityJiNengThread.class, RenderJiNengThread::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityJiNengFSHY.class, RenderJiNengFSHY::new);
 
 
 

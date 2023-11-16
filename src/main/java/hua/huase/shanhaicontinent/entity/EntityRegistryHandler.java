@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.entity;
 
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
+import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -39,6 +40,12 @@ public class EntityRegistryHandler
 
 
 
+    public static final EntityEntry JiNengFSHY =
+            EntityEntryBuilder.create().entity(EntityJiNengFSHY.class)
+                    .id(EntityJiNengFSHY.ID, 6).name(EntityJiNengFSHY.NAME).tracker(64, 10, true).build();
+
+
+
 
 
 
@@ -53,5 +60,6 @@ public class EntityRegistryHandler
         registry.register(HUNHUANENTITY);
         registry.register(JiNengItem);
         registry.register(JiNengThread);
+        registry.register(JiNengFSHY);
     }
 }

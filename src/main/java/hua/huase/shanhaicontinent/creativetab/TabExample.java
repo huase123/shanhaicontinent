@@ -5,8 +5,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class TabExample extends CreativeTabs {
-//    public static final CreativeTabs TAB1=new TabExample("shanhaicontinent");
-    public static final CreativeTabs TAB2=new TabExample("textTab");
+    public static final CreativeTabs TAB1 =new TabExample("shanhaicontinent.wuping");
+    public static final CreativeTabs TAB2=new TabExample("shanhaicontinent.wuhun");
 
     public TabExample(String TABNANE) {
         super(CreativeTabs.getNextID(), TABNANE);

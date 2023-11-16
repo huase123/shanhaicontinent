@@ -4,20 +4,24 @@ import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.api.BaublesApi;
 import hua.huase.shanhaicontinent.api.IBaublesItemHandler;
 import hua.huase.shanhaicontinent.capability.baubles.*;
-import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
-import hua.huase.shanhaicontinent.seedpacket.PacketMonster;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.item.Danyao;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
+import hua.huase.shanhaicontinent.potion.PotionRegistryHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketMonster;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -39,6 +43,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import static hua.huase.shanhaicontinent.capability.baubles.BaublesCapabilities.CAPABILITY_ITEM_BAUBLE;
+import static hua.huase.shanhaicontinent.potion.PotionRegistryHandler.POTION_LIST;
 import static net.minecraft.entity.SharedMonsterAttributes.MAX_HEALTH;
 import static net.minecraft.entity.SharedMonsterAttributes.MOVEMENT_SPEED;
 
@@ -240,7 +245,6 @@ public class CapabilityRegistryHandler
     public static final IAttribute NIANLING = (new RangedAttribute((IAttribute)null, "generic.nianling", 0, -1, Double.MAX_VALUE)).setDescription("nianling").setShouldWatch(true);
 
 
-    //实体加入世界事件
     @SubscribeEvent
     public static void onPlayerJoin(EntityJoinWorldEvent event){
         if(event==null)return;
@@ -255,9 +259,9 @@ public class CapabilityRegistryHandler
 
 
             if (entity instanceof EntityPlayer) {
+                EntityPlayer entityPlayer = (EntityPlayer) entity;
+                NetworkRegistryHandler.PlayerListen.sendClientCustomPacket(entityPlayer);
 
-
-                NetworkRegistryHandler.PlayerListen.sendClientCustomPacket((EntityPlayer) entity);
 
             }else if (entity instanceof IMob && entity instanceof EntityLivingBase) {
 
@@ -361,9 +365,21 @@ public class CapabilityRegistryHandler
 //        PacketHandler.INSTANCE.sendToAllTracking(new PacketPlayerCapability(newPlayerCapobility,event.getEntityPlayer()),new NetworkRegistry.TargetPoint(event.getEntityPlayer().dimension,event.getEntityPlayer().posX,event.getEntityPlayer().posY,event.getEntityPlayer().posZ,60));
 
         BaublesContainer bco = (BaublesContainer) BaublesApi.getBaublesHandler(event.getOriginal());
-            NBTTagCompound nbt = bco.serializeNBT();
-            BaublesContainer bcn = (BaublesContainer) BaublesApi.getBaublesHandler(event.getEntityPlayer());
-            bcn.deserializeNBT(nbt);
+        NBTTagCompound nbt = bco.serializeNBT();
+        BaublesContainer bcn = (BaublesContainer) BaublesApi.getBaublesHandler(event.getEntityPlayer());
+        bcn.deserializeNBT(nbt);
+
+        for (Potion potion : POTION_LIST) {
+
+            PotionEffect potioneffect = event.getOriginal().getActivePotionMap().get(PotionRegistryHandler.POTION_DIRT_PROTECTION);
+            if(potioneffect!=null){
+                potion.removeAttributesModifiersFromEntity(event.getEntityPlayer(),event.getEntityPlayer().getAttributeMap(), potioneffect.getAmplifier());
+            }
+        }
+
+        ItemStack itemstack1 = event.getOriginal().getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+        ItemStack itemstack = event.getEntityPlayer().getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
+
 
 
     }

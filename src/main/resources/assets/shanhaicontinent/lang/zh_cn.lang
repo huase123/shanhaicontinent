@@ -21,6 +21,12 @@ shendaozhijianlist2=§6-------§a蕴含着极为强大的力量，是一把斩�
 shendaozhijianlist3=§6=======§c§k******************§6=======
 shendaozhijianlist4=§f++++++§0上古十大神器之一§f++++++
 
+itembanding.player.sccuess=§8拥有者：
+itembanding.player.fail=§8拥有者：§f未知
+item.shanhaicontinentwuqijingubang.name=§4破天神棍 §f------ §e《极品器武魂》
+item.jingubang.list0=§e技能1：§3《万破》§f：§7每10级增加10%的物攻
+item.jingubang.list1=§e被动效果：§7等级越高攻速越快
+item.jingubang.list2=§e被动效果：§7触及距离§e+2
 
 
 item.shanhaicontinenttrunkbone.name=§c躯干骨 §f§k****** §e《上古神秘骨》
@@ -383,7 +389,8 @@ message.addjingshenli.fail=§4%s超过了-10000~10000限制
 message.usejiuhua.success=§e最大精神力: §b+%s
 
 
-itemGroup.textTab=山海大陆：物品
+itemGroup.shanhaicontinent.wuping=山海大陆：物品
+itemGroup.shanhaicontinent.wuhun=山海大陆：武魂
 
 
 entity.Villager.shanhaicontinent.huncaoworker=魂草商人

@@ -2,8 +2,8 @@
 	"credit": "Auther：hause",
 	"texture_size": [32, 32],
 	"textures": {
-		"2": "shanhaicontinent:items/jingubang",
-		"particle": "shanhaicontinent:items/jingubang"
+		"2": "shanhaicontinent:items/jgb/jingubang",
+		"particle": "shanhaicontinent:items/jgb/jingubang"
 	},
 	"elements": [
 		{

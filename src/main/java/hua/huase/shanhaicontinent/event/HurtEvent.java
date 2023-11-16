@@ -6,10 +6,12 @@ import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.DamageSource;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import static hua.huase.shanhaicontinent.ExampleMod.parTicleCritNum;
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.MONSTER_CAPABILITY;
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.PLYAER_CAPABILITY;
 
@@ -45,7 +47,7 @@ public class HurtEvent {
         if(source.getTrueSource()!=null){
             Entity trueSource = source.getTrueSource();
 
-            entityLiving.hurtResistantTime=entityLiving.maxHurtResistantTime-4;
+//            entityLiving.hurtResistantTime=entityLiving.maxHurtResistantTime-4;
             if(trueSource.getCapability(MONSTER_CAPABILITY,null)!=null){
                 if(entityLiving.getCapability(PLYAER_CAPABILITY,null)!=null){
                         MonsterCapability monsterCapability = trueSource.getCapability(MONSTER_CAPABILITY, null);
@@ -101,7 +103,6 @@ public class HurtEvent {
 
     public static void displayerDamage  (EntityLivingBase target, float amount )
     {
-/*
         if(target==null)return;
 
 
@@ -120,12 +121,11 @@ public class HurtEvent {
 //                    PacketHandler.INSTANCE.sendToAllTracking(new PacketHeartDisplay((int) amount, (int) x, (int) y, (int) z),new NetworkRegistry.TargetPoint(target.dimension,x,y,z,30));
 
 //                    mc.spawnParticle(enumparticletypes, flag1, d0, d1, d2, i, d3, d4, d5, d6, aint);
-                   mc.spawnParticle(ParticlesHander.parTicleCritNum,  x, y, z, 1, 1.0, 0, 0, 0D,  (int) amount, 0);
+                   mc.spawnParticle(parTicleCritNum,  x, y, z, 1, 1.0, 0, 0, 0D,  (int) amount, 0);
 //                    Minecraft.getMinecraft().world.spawnParticle(ParticlesHander.parTicleCritNum, true, 1, 1, 1, 1, 1, 1, (int) x, (int) y, (int) z, (int) amount, 0);
 
                 });
         }
-*/
     }
 
 

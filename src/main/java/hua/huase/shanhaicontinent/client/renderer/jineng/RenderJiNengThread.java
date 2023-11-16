@@ -1,4 +1,4 @@
-package hua.huase.shanhaicontinent.client.renderer.jiuneng;
+package hua.huase.shanhaicontinent.client.renderer.jineng;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;

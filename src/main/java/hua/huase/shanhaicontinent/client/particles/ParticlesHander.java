@@ -2,14 +2,15 @@ package hua.huase.shanhaicontinent.client.particles;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraftforge.common.util.EnumHelper;
+
+import static hua.huase.shanhaicontinent.ExampleMod.parTicleCritNum;
 
 //@SideOnly(Side.CLIENT)
 public class ParticlesHander {
    public static EnumParticleTypes enumParticleTypes ;
    public static EnumParticleTypes enumParticleTypesText ;
-   public static EnumParticleTypes parTicleCritNum = EnumHelper.addEnum(EnumParticleTypes.class,
-           "HEATHNUM", new Class[]{String.class, int.class, boolean.class, int.class}, "heathnum", EnumParticleTypes.values().length, false, 2);
+//   public static EnumParticleTypes parTicleCritNum = EnumHelper.addEnum(EnumParticleTypes.class,
+//           "HEATHNUM", new Class[]{String.class, int.class, boolean.class, int.class}, "heathnum", EnumParticleTypes.values().length, false, 2);
 
 
 

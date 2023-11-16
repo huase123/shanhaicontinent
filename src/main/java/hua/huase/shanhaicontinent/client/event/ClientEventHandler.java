@@ -102,7 +102,7 @@ public class ClientEventHandler
                 GlStateManager.enablePolygonOffset();
                 GlStateManager.depthMask(false);
                 GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
-                GlStateManager.doPolygonOffset(-3, -30);
+                GlStateManager.doPolygonOffset(-3, -10);
 
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 
@@ -159,7 +159,7 @@ public class ClientEventHandler
                 GlStateManager.enablePolygonOffset();
                 GlStateManager.depthMask(false);
                 GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
-                GlStateManager.doPolygonOffset(-3, -30);
+                GlStateManager.doPolygonOffset(-3, -10);
 
                 GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 

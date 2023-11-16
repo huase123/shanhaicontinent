@@ -4,15 +4,17 @@ import hua.huase.shanhaicontinent.WorldGen.structureal.TemplateHander;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
-import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.client.keybinding.MyKeyBinding;
 import hua.huase.shanhaicontinent.client.particles.ParticlesHander;
 import hua.huase.shanhaicontinent.client.renderer.RenderRegistryHandler;
 import hua.huase.shanhaicontinent.comand.Commandaddjingshenli;
 import hua.huase.shanhaicontinent.comand.Commandremovehunhuan;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
+import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -38,6 +40,10 @@ public class ExampleMod
     public static final HashMap<Integer, PlayerCapability> playerHashMap = new HashMap();
 
     private static Logger logger;
+
+    public static EnumParticleTypes parTicleCritNum = EnumHelper.addEnum(EnumParticleTypes.class,
+            "HEATHNUM", new Class[]{String.class, int.class, boolean.class, int.class}, "heathnum", EnumParticleTypes.values().length, false, 2);
+
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -66,13 +72,12 @@ public class ExampleMod
 
 
 
+
     }
 
     @EventHandler
     public void initPost(FMLPostInitializationEvent event)
     {
-
-
 
     }
 

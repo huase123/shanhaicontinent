@@ -1,6 +1,5 @@
 package hua.huase.shanhaicontinent.seedpacket;
 
-import hua.huase.shanhaicontinent.client.particles.ParticlesHander;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
@@ -9,6 +8,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+
+import static hua.huase.shanhaicontinent.ExampleMod.parTicleCritNum;
 
 public class PacketHeartDisplay implements IMessage{
 
@@ -57,7 +58,7 @@ public class PacketHeartDisplay implements IMessage{
 					World world = FMLClientHandler.instance().getClient().world;
 
 					if (world == null) return;
-					world.spawnParticle(ParticlesHander.parTicleCritNum,false, (double) message.x, (double) message.y, (double) message.z, 1.0, 1.0, 1.0,  message.number, 0);
+					world.spawnParticle(parTicleCritNum,false, (double) message.x, (double) message.y, (double) message.z, 1.0, 1.0, 1.0,  message.number, 0);
 
 
 
