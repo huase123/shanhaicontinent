@@ -1,13 +1,14 @@
 package hua.huase.shanhaicontinent.item.jineng.jingubang;
 
 import hua.huase.shanhaicontinent.ExampleMod;
-import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import hua.huase.shanhaicontinent.item.jineng.JinengMethond;
 import hua.huase.shanhaicontinent.potion.PotionRegistryHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -16,10 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -64,26 +62,28 @@ public class WuqijnJLCY extends Item implements JinengMethond
     }
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        playerIn.getCooldownTracker().setCooldown(this, 100);
-//        playerIn.setActiveHand(handIn);
+        if(!JinengMethond.isBinding(playerIn.getHeldItem(handIn),playerIn)) {
 
-        EntityPlayer entityLiving1 =  playerIn;
+            return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+        }
+        playerIn.getCooldownTracker().setCooldown(this, 800);
         if(!worldIn.isRemote){
+            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().grow(15.0D,0.0D,15.0D));
+            for (Entity entity : list) {
+                if (!worldIn.isRemote&&entity!=null&&entity instanceof EntityLivingBase && playerIn!=null && entity !=playerIn)
+                {
+                    ((EntityLivingBase)entity).addPotionEffect(new PotionEffect(PotionRegistryHandler.Potion_Wuqijn_JLCY,400,0,true,true));
+                    entity.attackEntityFrom(DamageSource.causePlayerDamage(playerIn),playerIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getWugong()*0.1f);
+                    worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
 
-            playerIn.addPotionEffect(new PotionEffect(PotionRegistryHandler.POTION_DIRT_PROTECTION,600,0,true,true));
 
+                }
+            }
 
-
-            EntityJiNengFSHY jiNengThread = new EntityJiNengFSHY(worldIn,entityLiving1);
-            jiNengThread.shoot(entityLiving1, entityLiving1.rotationPitch, entityLiving1.rotationYaw,0,2f,0.0f);
-            worldIn.spawnEntity(jiNengThread);
-            worldIn.playSound((EntityPlayer)null, entityLiving1.posX, entityLiving1.posY, entityLiving1.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
-            entityLiving1.hurtResistantTime=20;
         }
 
         return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
-
 //添加数据
     public net.minecraftforge.common.capabilities.ICapabilityProvider initCapabilities(ItemStack stack, @Nullable NBTTagCompound nbt)
     {
@@ -103,9 +103,9 @@ public class WuqijnJLCY extends Item implements JinengMethond
         }else {
             list.add(net.minecraft.util.text.translation.I18n.translateToLocal("itembanding.player.fail"));
         }
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.fshy.list0"));
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.fshy.list1"));
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.fshy.list2"));
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.jlcy.list0"));
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.jlcy.list1"));
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.jlcy.list2"));
 
     }
 

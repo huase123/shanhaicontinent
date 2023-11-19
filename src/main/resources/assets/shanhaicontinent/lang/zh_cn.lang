@@ -23,10 +23,81 @@ shendaozhijianlist4=§f++++++§0上古十大神器之一§f++++++
 
 itembanding.player.sccuess=§8拥有者：
 itembanding.player.fail=§8拥有者：§f未知
-item.shanhaicontinentwuqijingubang.name=§4破天神棍 §f------ §e《极品器武魂》
+
+item.shanhaicontinentwuqijingubang.name=§e魂器：§4破天神棍 §f------ §e《极品器武魂》
 item.jingubang.list0=§e技能1：§3《万破》§f：§7每10级增加10%的物攻
 item.jingubang.list1=§e被动效果：§7等级越高攻速越快
 item.jingubang.list2=§e被动效果：§7触及距离§e+2
+
+item.shanhaicontinentwuqijnfshy.name=§e技能：§3《分身化影》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.fshy.list0=§a分出三根破天神棍，对前方造成伤害
+item.jingubang.jineng.fshy.list1=§e伤害加成：§9+%200物攻
+item.jingubang.jineng.fshy.list2=§f冷却：§7 5s
+
+
+item.shanhaicontinentwuqijnfshy.name=§e技能：§3《分身化影》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.fshy.list0=§a分出三根金箍棒，对前方造成伤害
+item.jingubang.jineng.fshy.list1=§e伤害加成：§9+%200物攻
+item.jingubang.jineng.fshy.list2=§f冷却：§7 5s
+
+
+
+item.shanhaicontinentwuqijnjgz.name=§e技能：§3《禁锢咒》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.jgz.list0=§a禁锢8格范围内的敌人
+item.jingubang.jineng.jgz.list1=§e持续时间：§9 8s
+item.jingubang.jineng.jgz.list2=§f冷却：§7 20s
+
+
+
+item.shanhaicontinentwuqijndh.name=§e技能：§3《定海》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.dh.list0=§a以自身为中心，形成一个魂力漩涡，对5格范围内的敌人造成伤害
+item.jingubang.jineng.dh.list1=§e伤害加成：§9+160%物攻
+item.jingubang.jineng.dh.list2=§f冷却：§7 8s
+
+
+
+
+item.shanhaicontinentwuqijnjdy.name=§e技能：§3《金斗云》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.jdy.list0=§a武魂分出一些魂力可以使自己超速行驶
+item.jingubang.jineng.jdy.list1=§e持续时间：§9 20s
+item.jingubang.jineng.jdy.list2=§f冷却：§7 50s
+
+
+
+
+item.shanhaicontinentwuqijnjlcy.name=§e技能：§3《九龙禅音》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.jlcy.list0=§a身旁召唤九龙并发出令人长时间眩晕的禅音，对15格范围内的敌人施加减速和伤害
+item.jingubang.jineng.jlcy.list1=§e持续时间：§9 20s §e伤害加成：§9+10%物攻
+item.jingubang.jineng.jlcy.list2=§f冷却：§7 40s
+
+
+
+
+
+item.shanhaicontinentwuqijnjgzs.name=§e技能：§3《金箍真身》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.jgzs.list0=§a自己与破天神棍融为一体，提升自身3000物攻，50%爆伤，20%爆率
+item.jingubang.jineng.jgzs.list1=§e持续时间：§9 50s
+item.jingubang.jineng.jgzs.list2=§f冷却：§7 100s
+
+
+
+
+item.shanhaicontinentwuqijndzsy.name=§e技能：§3《斗战圣域》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.dzsy.list0=§a周身形成超强的领域，所有跨入领域的人会受到红莲业火的焚烧，而自己不断增强
+item.jingubang.jineng.dzsy.list1=§e效果：§9 伤害+20%的物攻，每5秒增加1000物攻、20爆伤、10爆率，范围10格
+item.jingubang.jineng.dzsy.list2=§e持续时间：§9 50s §f冷却：§7 100s
+
+
+
+
+
+item.shanhaicontinentwuqijndzsft.name=§e技能：§3《斗战胜佛体》 §f------ 武魂：§e《破天神棍》
+item.jingubang.jineng.dzsft.list0=§a上古神王附体,并对20格范围内的敌人造成伤害
+item.jingubang.jineng.dzsft.list1=§e效果：§9 +9999物攻、物防，100爆率，100的爆伤 §e伤害加成：§9+300%物攻
+item.jingubang.jineng.dzsft.list2=§e持续时间：§9 30s §f冷却：§7 60s
+
+
+
 
 
 item.shanhaicontinenttrunkbone.name=§c躯干骨 §f§k****** §e《上古神秘骨》

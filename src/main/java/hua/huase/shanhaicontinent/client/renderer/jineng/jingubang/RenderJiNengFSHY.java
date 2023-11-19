@@ -28,8 +28,6 @@ public RenderJiNengFSHY(RenderManager renderManager) {
         super(renderManager);
     }
 
-//    float time = 0f;
-    public int time=0;
 
     public void doRender(Entity entity, double x, double y, double z, float entityYaw, float partialTicks)
     {

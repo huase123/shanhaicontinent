@@ -7,7 +7,6 @@ import hua.huase.shanhaicontinent.capability.baubles.*;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.item.Danyao;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
-import hua.huase.shanhaicontinent.potion.PotionRegistryHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketMonster;
 import net.minecraft.entity.Entity;
@@ -16,12 +15,10 @@ import net.minecraft.entity.ai.attributes.IAttribute;
 import net.minecraft.entity.ai.attributes.RangedAttribute;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -370,15 +367,10 @@ public class CapabilityRegistryHandler
         bcn.deserializeNBT(nbt);
 
         for (Potion potion : POTION_LIST) {
-
-            PotionEffect potioneffect = event.getOriginal().getActivePotionMap().get(PotionRegistryHandler.POTION_DIRT_PROTECTION);
-            if(potioneffect!=null){
-                potion.removeAttributesModifiersFromEntity(event.getEntityPlayer(),event.getEntityPlayer().getAttributeMap(), potioneffect.getAmplifier());
+            if(event.getOriginal().isPotionActive(potion)){
+                potion.removeAttributesModifiersFromEntity(event.getEntityPlayer(),event.getEntityPlayer().getAttributeMap(), event.getOriginal().getActivePotionEffect(potion).getAmplifier());
             }
         }
-
-        ItemStack itemstack1 = event.getOriginal().getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
-        ItemStack itemstack = event.getEntityPlayer().getItemStackFromSlot(EntityEquipmentSlot.MAINHAND);
 
 
 

@@ -4,7 +4,6 @@ import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import hua.huase.shanhaicontinent.item.jineng.JinengMethond;
-import hua.huase.shanhaicontinent.potion.PotionRegistryHandler;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,7 +14,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -64,21 +62,20 @@ public class WuqijnFSHY extends Item implements JinengMethond
     }
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+        if(!JinengMethond.isBinding(playerIn.getHeldItem(handIn),playerIn)) {
+
+            return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+        }
         playerIn.getCooldownTracker().setCooldown(this, 100);
 //        playerIn.setActiveHand(handIn);
 
-        EntityPlayer entityLiving1 =  playerIn;
         if(!worldIn.isRemote){
 
-            playerIn.addPotionEffect(new PotionEffect(PotionRegistryHandler.POTION_DIRT_PROTECTION,600,0,true,true));
-
-
-
-            EntityJiNengFSHY jiNengThread = new EntityJiNengFSHY(worldIn,entityLiving1);
-            jiNengThread.shoot(entityLiving1, entityLiving1.rotationPitch, entityLiving1.rotationYaw,0,2f,0.0f);
+            EntityJiNengFSHY jiNengThread = new EntityJiNengFSHY(worldIn,playerIn);
+            jiNengThread.shoot(playerIn, playerIn.rotationPitch, playerIn.rotationYaw,0,2f,0.0f);
             worldIn.spawnEntity(jiNengThread);
-            worldIn.playSound((EntityPlayer)null, entityLiving1.posX, entityLiving1.posY, entityLiving1.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
-            entityLiving1.hurtResistantTime=20;
+            worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
+
         }
 
         return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));

@@ -1,7 +1,6 @@
 package hua.huase.shanhaicontinent.item.jineng.jingubang;
 
 import hua.huase.shanhaicontinent.ExampleMod;
-import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import hua.huase.shanhaicontinent.item.jineng.JinengMethond;
 import hua.huase.shanhaicontinent.potion.PotionRegistryHandler;
@@ -64,23 +63,18 @@ public class WuqijnJGZS extends Item implements JinengMethond
     }
 
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-        playerIn.getCooldownTracker().setCooldown(this, 100);
-//        playerIn.setActiveHand(handIn);
+        if(!JinengMethond.isBinding(playerIn.getHeldItem(handIn),playerIn)) {
 
-        EntityPlayer entityLiving1 =  playerIn;
-        if(!worldIn.isRemote){
-
-            playerIn.addPotionEffect(new PotionEffect(PotionRegistryHandler.POTION_DIRT_PROTECTION,600,0,true,true));
-
-
-
-            EntityJiNengFSHY jiNengThread = new EntityJiNengFSHY(worldIn,entityLiving1);
-            jiNengThread.shoot(entityLiving1, entityLiving1.rotationPitch, entityLiving1.rotationYaw,0,2f,0.0f);
-            worldIn.spawnEntity(jiNengThread);
-            worldIn.playSound((EntityPlayer)null, entityLiving1.posX, entityLiving1.posY, entityLiving1.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
-            entityLiving1.hurtResistantTime=20;
+            return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
         }
+        playerIn.getCooldownTracker().setCooldown(this, 2000);
 
+        if(!worldIn.isRemote){
+            playerIn.addPotionEffect(new PotionEffect(PotionRegistryHandler.Potion_Wuqijn_JGZS,1000,0,true,true));
+            worldIn.playSound((EntityPlayer)null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
+
+
+        }
         return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
 
@@ -103,9 +97,9 @@ public class WuqijnJGZS extends Item implements JinengMethond
         }else {
             list.add(net.minecraft.util.text.translation.I18n.translateToLocal("itembanding.player.fail"));
         }
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.fshy.list0"));
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.fshy.list1"));
-        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.fshy.list2"));
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.jgzs.list0"));
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.jgzs.list1"));
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("item.jingubang.jineng.jgzs.list2"));
 
     }
 

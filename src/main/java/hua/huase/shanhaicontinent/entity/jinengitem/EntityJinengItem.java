@@ -1,7 +1,6 @@
 package hua.huase.shanhaicontinent.entity.jinengitem;
 
 import hua.huase.shanhaicontinent.ExampleMod;
-import hua.huase.shanhaicontinent.entity.EntityDirtBallKing;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -13,6 +12,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityJinengItem extends Entity {
     public static final String ID = "JinengItem";
@@ -31,11 +32,23 @@ public class EntityJinengItem extends Entity {
     }
 
     private static final DataParameter<ItemStack> ITEM_STACK =
-            EntityDataManager.createKey(EntityDirtBallKing.class, DataSerializers.ITEM_STACK);
+            EntityDataManager.createKey(EntityJinengItem.class, DataSerializers.ITEM_STACK);
+    private static final DataParameter<Integer> PLAYER_ID =
+            EntityDataManager.createKey(EntityJinengItem.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> PLAYER_POSINT =
+            EntityDataManager.createKey(EntityJinengItem.class, DataSerializers.VARINT);
+    private static final DataParameter<Float> PLAYER_F =
+            EntityDataManager.createKey(EntityJinengItem.class, DataSerializers.FLOAT);
+    private static final DataParameter<Float> PLAYER_F2 =
+            EntityDataManager.createKey(EntityJinengItem.class, DataSerializers.FLOAT);
     @Override
     protected void entityInit() {
 
         this.getDataManager().register(ITEM_STACK, ItemStack.EMPTY);
+        this.getDataManager().register(PLAYER_ID, 0);
+        this.getDataManager().register(PLAYER_POSINT, 0);
+        this.getDataManager().register(PLAYER_F, 0f);
+        this.getDataManager().register(PLAYER_F2, 0f);
     }
 
     public ItemStack getItemStack()
@@ -45,6 +58,10 @@ public class EntityJinengItem extends Entity {
     public EntityJinengItem setItemStack()
     {
         this.getDataManager().set(ITEM_STACK, itemStack);
+        this.getDataManager().set(PLAYER_ID, entityPlayer.getEntityId());
+        this.getDataManager().set(PLAYER_POSINT, posint);
+        this.getDataManager().set(PLAYER_F, f);
+        this.getDataManager().set(PLAYER_F2, f2);
         this.getDataManager().setDirty(ITEM_STACK);
         return this;
     }
@@ -106,12 +123,16 @@ public class EntityJinengItem extends Entity {
             compound.setTag("Item", this.getItemStack().writeToNBT(new NBTTagCompound()));
         }
 
+        compound.setInteger("PlayerId", this.getDataManager().get(PLAYER_ID));
+        compound.setInteger("PLAYERPOSINT", this.getDataManager().get(PLAYER_POSINT));
+        compound.setFloat("PLAYERF", this.getDataManager().get(PLAYER_F));
+        compound.setFloat("PLAYERF2", this.getDataManager().get(PLAYER_F2));
+
     }
 
     public void readEntityFromNBT(NBTTagCompound compound)
     {
         NBTTagCompound nbttagcompound = compound.getCompoundTag("Item");
-
         if (nbttagcompound != null && !nbttagcompound.hasNoTags())
         {
             ItemStack itemStack1 = new ItemStack(nbttagcompound);
@@ -121,9 +142,23 @@ public class EntityJinengItem extends Entity {
             this.world.updateComparatorOutputLevel(this.getPosition(), Blocks.AIR);
         }
 
+        this.getDataManager().set(PLAYER_ID, compound.getInteger("PlayerId"));
+        this.getDataManager().set(PLAYER_POSINT, compound.getInteger("PLAYERPOSINT"));
+        this.getDataManager().set(PLAYER_F, compound.getFloat("PLAYERF"));
+        this.getDataManager().set(PLAYER_F2, compound.getFloat("PLAYERF2"));
+
+
     }
 
 
+
+
+    @SideOnly(Side.CLIENT)
+    public void setPositionAndRotationDirect(double x, double y, double z, float yaw, float pitch, int posRotationIncrements, boolean teleport)
+    {
+//        this.setPosition(x, y, z);
+//        this.setRotation(yaw, pitch);
+    }
 
 
     public void onUpdate()
@@ -132,15 +167,28 @@ public class EntityJinengItem extends Entity {
         if (!this.world.isRemote) {
             if (exiistTime + 200 <= this.world.getWorldTime() || entityPlayer == null) {
                 this.setDead();
+                return;
             }
 
-            if (entityPlayer != null) {
-                this.setPosition(entityPlayer.posX+f,entityPlayer.posY+posint/3,entityPlayer.posZ+f2);
+            if((entityPlayer.posX + f-this.posX)*(entityPlayer.posX + f-this.posX)>1.4f||(entityPlayer.posY + f-this.posY)*(entityPlayer.posY + f-this.posY)>1.4f||(entityPlayer.posZ + f-this.posZ)*(entityPlayer.posZ + f-this.posZ)>1.4f){
 
-            }else {
-                this.setDead();
+                this.setPosition(entityPlayer.posX + f, entityPlayer.posY + posint / 3, entityPlayer.posZ + f2);
+
+            }
+
+
+
+        }else {
+            Entity entityByID = this.world.getEntityByID(this.getDataManager().get(PLAYER_ID).intValue());
+            if (entityByID != null) {
+//                this.setPosition(entityByID.posX+this.getDataManager().get(PLAYER_F), entityByID.posY+this.getDataManager().get(PLAYER_POSINT)/3, entityByID.posZ+this.getDataManager().get(PLAYER_F2));
+                this.setPosition(entityByID.posX+this.getDataManager().get(PLAYER_F), entityByID.posY+this.getDataManager().get(PLAYER_POSINT)/3, entityByID.posZ+this.getDataManager().get(PLAYER_F2));
+
             }
         }
+
+
+
         super.onUpdate();
 
     }

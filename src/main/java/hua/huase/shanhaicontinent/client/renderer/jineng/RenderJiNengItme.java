@@ -2,7 +2,6 @@ package hua.huase.shanhaicontinent.client.renderer.jineng;
 
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -16,7 +15,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -52,7 +50,7 @@ public class RenderJiNengItme extends RenderEntity {
 
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)15728880%65536, (float)15728880/ 65536);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-
+if(item==null)return;
 
         GlStateManager.pushMatrix();
         GlStateManager.translate((float)x, (float)y+0.35+0.1f* MathHelper.sin(ticks/4.5f*3.14159265359f), (float)z);
@@ -61,6 +59,7 @@ public class RenderJiNengItme extends RenderEntity {
         Minecraft.getMinecraft().getRenderItem().renderItem(item, ItemCameraTransforms.TransformType.GROUND);
         GlStateManager.popMatrix();
 
+        if(item.getTagCompound()==null)return;
         int nianxian = item.getTagCompound().getInteger("nianxian");
 
         GlStateManager.pushMatrix();
@@ -143,59 +142,9 @@ public class RenderJiNengItme extends RenderEntity {
 
 
 
-        EntityPlayerSP entityplayersp = Minecraft.getMinecraft().player;
-        float f3 = entityplayersp == null ? 0.0F : entityplayersp.getCooldownTracker().getCooldown(this.item.getItem(), Minecraft.getMinecraft().getRenderPartialTicks());
-
-        if (f3 > 0.0F)
-        {
-            GlStateManager.pushMatrix();
-            renderItemOffsetAABB(entity.getEntityBoundingBox().grow(0.1f+(entity.getEntityBoundingBox().minX-entity.getEntityBoundingBox().maxX)*(1f-f3)*0.5f), x - entity.lastTickPosX, y - entity.lastTickPosY, z - entity.lastTickPosZ);
-            GlStateManager.popMatrix();
-        }
-
-
         timemap.put(entity.getEntityId(),time>= 9*limitFramerate ? 0:++time);
     }
 
-
-    public static void renderItemOffsetAABB(AxisAlignedBB boundingBox, double x, double y, double z)
-    {
-        GlStateManager.disableTexture2D();
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        GlStateManager.color(1.0F, 1.0F, 1.0F, 0.5F);
-        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
-        bufferbuilder.setTranslation(x, y, z);
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_NORMAL);
-        bufferbuilder.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).normal(0.0F, 0.0F, -1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ).normal(0.0F, 0.0F, -1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.minY, boundingBox.minZ).normal(0.0F, 0.0F, -1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.minY, boundingBox.minZ).normal(0.0F, 0.0F, -1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.minY, boundingBox.maxZ).normal(0.0F, 0.0F, 1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ).normal(0.0F, 0.0F, 1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ).normal(0.0F, 0.0F, 1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).normal(0.0F, 0.0F, 1.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.minY, boundingBox.minZ).normal(0.0F, -1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.minY, boundingBox.minZ).normal(0.0F, -1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ).normal(0.0F, -1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.minY, boundingBox.maxZ).normal(0.0F, -1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).normal(0.0F, 1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ).normal(0.0F, 1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ).normal(0.0F, 1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).normal(0.0F, 1.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.minY, boundingBox.maxZ).normal(-1.0F, 0.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.maxY, boundingBox.maxZ).normal(-1.0F, 0.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.maxY, boundingBox.minZ).normal(-1.0F, 0.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.minX, boundingBox.minY, boundingBox.minZ).normal(-1.0F, 0.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.minY, boundingBox.minZ).normal(1.0F, 0.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.minZ).normal(1.0F, 0.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.maxY, boundingBox.maxZ).normal(1.0F, 0.0F, 0.0F).endVertex();
-        bufferbuilder.pos(boundingBox.maxX, boundingBox.minY, boundingBox.maxZ).normal(1.0F, 0.0F, 0.0F).endVertex();
-        tessellator.draw();
-        bufferbuilder.setTranslation(0.0D, 0.0D, 0.0D);
-        GlStateManager.enableBlend(); //开启混合器(使GL支持Alpha透明通道)
-        GlStateManager.enableTexture2D();
-    }
 
     protected ResourceLocation getEntityTexture(EntityItem entity)
     {

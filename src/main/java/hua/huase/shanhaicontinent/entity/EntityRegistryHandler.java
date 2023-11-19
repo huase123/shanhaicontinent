@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.entity;
 
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
+import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengDZSY;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
 import net.minecraftforge.event.RegistryEvent;
@@ -32,17 +33,22 @@ public class EntityRegistryHandler
 
     public static final EntityEntry JiNengItem =
             EntityEntryBuilder.create().entity(EntityJinengItem.class)
-                    .id(EntityJinengItem.ID, 4).name(EntityJinengItem.NAME).tracker(64, 10, true).build();
+                    .id(EntityJinengItem.ID, 4).name(EntityJinengItem.NAME).tracker(64, 10, false).build();
 
     public static final EntityEntry JiNengThread =
             EntityEntryBuilder.create().entity(EntityJiNengThread.class)
                     .id(EntityJiNengThread.ID, 5).name(EntityJiNengThread.NAME).tracker(64, 10, true).build();
 
 
-
     public static final EntityEntry JiNengFSHY =
             EntityEntryBuilder.create().entity(EntityJiNengFSHY.class)
                     .id(EntityJiNengFSHY.ID, 6).name(EntityJiNengFSHY.NAME).tracker(64, 10, true).build();
+
+
+
+    public static final EntityEntry JiNengDZSY =
+            EntityEntryBuilder.create().entity(EntityJiNengDZSY.class)
+                    .id(EntityJiNengDZSY.ID, 7).name(EntityJiNengDZSY.NAME).tracker(64, 10, true).build();
 
 
 
@@ -61,5 +67,6 @@ public class EntityRegistryHandler
         registry.register(JiNengItem);
         registry.register(JiNengThread);
         registry.register(JiNengFSHY);
+        registry.register(JiNengDZSY);
     }
 }

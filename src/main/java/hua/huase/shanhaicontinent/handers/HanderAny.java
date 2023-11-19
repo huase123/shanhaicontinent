@@ -107,6 +107,7 @@ public class HanderAny {
         new WuqijnDZSFT("wuqijndzsft", TabExample.TAB2);
 
         new ItemTextPickaxe("textpickaxe", TabExample.TAB1);
+        new ItemTextPickaxe("textshouqiang", TabExample.TAB1);
         new ItemTextSword("textsword", TabExample.TAB1);
         new ItemTextSword("elysiabowtext", TabExample.TAB1);
 
