@@ -2,7 +2,6 @@ package hua.huase.shanhaicontinent.seedpacket;
 
 import hua.huase.shanhaicontinent.api.PlayerCapabilityApi;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
-import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -13,9 +12,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import static hua.huase.shanhaicontinent.api.PlayerCapabilityApi.juexingWuHun;
 
 public class PacketTuPo implements IMessage, IMessageHandler<PacketTuPo, IMessage> {
 
@@ -39,14 +36,6 @@ public class PacketTuPo implements IMessage, IMessageHandler<PacketTuPo, IMessag
 			TextComponentTranslation iTextComponents =new TextComponentTranslation("message.tupo.fail" );
 			if(PlayerCapabilityApi.tuPo(player)){
 				iTextComponents = new TextComponentTranslation("message.tupo.sccuess" + -1, dengji + 1);
-
-				if(dengji==5){
-					capability.getWuhunListsname().add("jingubang");
-
-					Map<String, List<MonsterCapability>> monsterCapabilityLists = capability.getMonsterCapabilityLists();
-					monsterCapabilityLists.put("jingubang",new ArrayList<>());
-					player.sendMessage(new TextComponentTranslation("message.sccuessjuexingwuhun.jingubang" ));
-				}
 
 
 				int round = Math.round((dengji + 1) / 10);
@@ -82,6 +71,42 @@ public class PacketTuPo implements IMessage, IMessageHandler<PacketTuPo, IMessag
 						iTextComponents=new TextComponentTranslation("message.tupo.sccuess" + round, dengji + 1);
 						break;
 				}
+
+				player.sendMessage(iTextComponents);
+
+				if(dengji==5){
+					boolean b = false;
+					switch (player.world.rand.nextInt(2)){
+						case 0:
+							b = juexingWuHun(player,"jingubang");
+						break;
+
+						case 1:
+							b = juexingWuHun(player, "huang");
+							break;
+
+					}
+					if(b){
+
+						switch (player.world.rand.nextInt(10)){
+							case 0:
+								juexingWuHun(player,"jingubang");
+								break;
+
+							case 1:
+								juexingWuHun(player, "huang");
+								break;
+
+						}
+
+					}
+
+
+
+				}
+
+				return;
+
 			}
 			player.sendMessage(iTextComponents);
 		}});

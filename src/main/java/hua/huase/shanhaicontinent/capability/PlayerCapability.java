@@ -98,6 +98,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
     static {
         wuhunListsnameall.add("jingubang");
+        wuhunListsnameall.add("huang");
     }
 
     private List<ItemCapability> itemCapabilityList;
@@ -580,9 +581,18 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
     }
 
     public void setJingyan(int value) {
+        if(value>maxjingyan){
+            this.jingyan = maxjingyan;
+            return;
+        }
         this.jingyan = value;
     }
     public void addJingyan(int value) {
+
+        if(jingyan +value>maxjingyan){
+            this.jingyan = maxjingyan;
+            return;
+        }
         this.jingyan += value;
     }
     public int getMaxjingyan() {

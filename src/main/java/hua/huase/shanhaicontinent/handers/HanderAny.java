@@ -10,6 +10,9 @@ import hua.huase.shanhaicontinent.item.bone.*;
 import hua.huase.shanhaicontinent.item.bonemeal.SoulBoneMeal;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFang;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFangJiuHua;
+import hua.huase.shanhaicontinent.item.jineng.WuHunHuang;
+import hua.huase.shanhaicontinent.item.jineng.WuHunJingubang;
+import hua.huase.shanhaicontinent.item.jineng.huang.*;
 import hua.huase.shanhaicontinent.item.jineng.jingubang.*;
 import hua.huase.shanhaicontinent.tileentity.TileEntityPot;
 import net.minecraft.block.Block;
@@ -64,6 +67,7 @@ public class HanderAny {
     public static FlowerBlock xunyicao= new FlowerBlock("xunyicao",TabExample.TAB1);
     public static FlowerBlock yueguanghua= new FlowerBlock("yueguanghua",TabExample.TAB1);
     public static FlowerBlock zhushamei= new FlowerBlock("zhushamei",TabExample.TAB1);
+    public static FlowerBlock bianhua= new FlowerBlock("bianhua",TabExample.TAB1);
 
 
 
@@ -106,10 +110,23 @@ public class HanderAny {
         new WuqijnDZSY("wuqijndzsy", TabExample.TAB2);
         new WuqijnDZSFT("wuqijndzsft", TabExample.TAB2);
 
+        new WuHunHuangyishenweizhong("wuhunhuangyishenweizhong", TabExample.TAB2);
+        new WuHunHuangKPBS("wuhunhuangkpbs", TabExample.TAB2);
+        new WuHunHuangSNSL("wuhunhuangsnsl", TabExample.TAB2);
+        new WuHunHuangLSF("wuhunhuanglsf", TabExample.TAB2);
+        new WuHunHuangCMJJ("wuhunhuangcmjj", TabExample.TAB2);
+        new WuHunHuangLDLHG("wuhunhuangldlhg", TabExample.TAB2);
+        new WuHunHuangLHBS("wuhunhuanglhbs", TabExample.TAB2);
+        new WuHunHuangBSQ("wuhunhuangbsq", TabExample.TAB2);
+        new WuHunHuangBZMZZS("wuhunhuangbzmzzs", TabExample.TAB2);
+
+
+        new WuHunHuang("huang",TabExample.TAB2);
+        new WuHunJingubang("jingubang",TabExample.TAB2);
+
+
         new ItemTextPickaxe("textpickaxe", TabExample.TAB1);
-        new ItemTextPickaxe("textshouqiang", TabExample.TAB1);
         new ItemTextSword("textsword", TabExample.TAB1);
-        new ItemTextSword("elysiabowtext", TabExample.TAB1);
 
         new ExoskeletonBone("exoskeletonbone", TabExample.TAB1);
         new HeadBone("headbone", TabExample.TAB1);
@@ -143,6 +160,7 @@ public class HanderAny {
         e.getRegistry().register(xunyicao.itemBlock);
         e.getRegistry().register(yueguanghua.itemBlock);
         e.getRegistry().register(zhushamei.itemBlock);
+        e.getRegistry().register(bianhua.itemBlock);
 
     }
 
@@ -309,6 +327,11 @@ public class HanderAny {
                     zhushamei.itemBlock,
                     i,
                     new ModelResourceLocation(new ResourceLocation(zhushamei.itemBlock.getRegistryName().toString()+"_age"+i),"inventory")
+            );
+            ModelLoader.setCustomModelResourceLocation(
+                    bianhua.itemBlock,
+                    i,
+                    new ModelResourceLocation(new ResourceLocation(bianhua.itemBlock.getRegistryName().toString()+"_age"+i),"inventory")
             );
 
 

@@ -46,6 +46,8 @@ public class OreGeneration implements IWorldGenerator {
 
             this.runGenerator(this.quartz_ore, world, random, chunkX, chunkZ, 4, 30, 80);
         }
+
+        this.generateBianhua(world, random, chunkX, chunkZ,1);
     }
     public void generateEnd(World world, Random random, int chunkX, int chunkZ) {
         for (int i = 0; i < 2; i++) {
@@ -71,8 +73,6 @@ public class OreGeneration implements IWorldGenerator {
     public void generateFlower(World world, Random randomx, int chunkX, int chunkZ,int chance) {
 
 
-
-
         int i = chunkX;
         int j = chunkZ;
 
@@ -89,8 +89,39 @@ public class OreGeneration implements IWorldGenerator {
             int zRand = chunkZ * 16+8;
             BlockPos pos = new BlockPos(xRand, yRand, zRand);
             int j14 = world.getHeight(pos).getY();
-            WorldGenFlowerBlock gen = new WorldGenFlowerBlock();
-            gen.generate(world, random, pos.add(0,j14,0));
+//            WorldGenFlowerBlock gen = new WorldGenFlowerBlock();
+            WorldGenFlowerBlock.generate(world, random, pos.add(0,j14,0));
+
+
+        }
+
+
+
+
+
+    }
+
+
+    public void generateBianhua(World world, Random randomx, int chunkX, int chunkZ,int chance) {
+
+
+        int i = chunkX;
+        int j = chunkZ;
+
+        int k = chunkX ;
+        int l = chunkZ ;
+        Random random = world.setRandomSeed(k, l, 2023109);
+        k = k + random.nextInt(4);
+        l = l + random.nextInt(4);
+
+        if (i == k && j == l)
+        {
+            int xRand = chunkX * 16+8;
+            int yRand = 0;
+            int zRand = chunkZ * 16+8;
+            BlockPos pos = new BlockPos(xRand, yRand, zRand);
+//            WorldGenFlowerBlock gen = new WorldGenFlowerBlock();
+            WorldGenFlowerBlock.generateBianhua(world, random, pos.add(0,31,0));
 
 
         }

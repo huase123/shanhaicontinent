@@ -50,7 +50,7 @@ public class MonsterCapability extends BaseCapability{
 
             super.setWugong(g);
             super.setWufang(g/3);
-            super.setWuchuan(g/3);
+            super.setWuchuan(g/15);
             super.setZhenshang(g/10);
             super.setMaxshengming(10*g);
             super.setShengming(10*g);
@@ -74,9 +74,9 @@ public class MonsterCapability extends BaseCapability{
 
             super.setWugong(g);
             super.setWufang(g/3);
-            super.setWuchuan(g/3);
+            super.setWuchuan(g/15);
             super.setZhenshang(g/10);
-            super.setMaxshengming(10*g);
+            super.setMaxshengming(20*g);
             super.setShengming(10*g);
             super.setBaojilv(l);
             super.setBaojishanghai(5*l);
@@ -98,9 +98,9 @@ public class MonsterCapability extends BaseCapability{
 
             super.setWugong(g);
             super.setWufang(g/3);
-            super.setWuchuan(g/3);
+            super.setWuchuan(g/15);
             super.setZhenshang(g/10);
-            super.setMaxshengming(10*g);
+            super.setMaxshengming(30*g);
             super.setShengming(10*g);
             super.setBaojilv(l);
             super.setBaojishanghai(5*l);
@@ -120,9 +120,9 @@ public class MonsterCapability extends BaseCapability{
 
             super.setWugong(g);
             super.setWufang(g/3);
-            super.setWuchuan(g/3);
+            super.setWuchuan(g/15);
             super.setZhenshang(g/10);
-            super.setMaxshengming(10*g);
+            super.setMaxshengming(40*g);
             super.setShengming(10*g);
             super.setBaojilv(l);
             super.setBaojishanghai(5*l);
@@ -143,9 +143,9 @@ public class MonsterCapability extends BaseCapability{
 
             super.setWugong(g);
             super.setWufang(g/3);
-            super.setWuchuan(g/3);
+            super.setWuchuan(g/15);
             super.setZhenshang(g/10);
-            super.setMaxshengming(10*g);
+            super.setMaxshengming(50*g);
             super.setShengming(10*g);
             super.setBaojilv(l);
             super.setBaojishanghai(5*l);
@@ -165,9 +165,9 @@ public class MonsterCapability extends BaseCapability{
 
             super.setWugong(g);
             super.setWufang(g/3);
-            super.setWuchuan(g/3);
+            super.setWuchuan(g/15);
             super.setZhenshang(g/10);
-            super.setMaxshengming(10*g);
+            super.setMaxshengming(60*g);
             super.setShengming(10*g);
             super.setBaojilv(l);
             super.setBaojishanghai(5*l);

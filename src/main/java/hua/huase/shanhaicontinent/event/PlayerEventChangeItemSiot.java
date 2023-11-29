@@ -25,7 +25,7 @@ public class PlayerEventChangeItemSiot {
             ((JinengMethond) from.getItem()).removeAttributeModifiers(from,entityLiving,slot);
         }
 
-        if (!to.isEmpty()&&to.getItem()instanceof JinengMethond)
+        if (!to.isEmpty()&&to.getItem()instanceof JinengMethond  && to.getTagCompound()!=null && to.getTagCompound().getString("playername").equals(entityLiving.getName()))
         {
             ((JinengMethond) to.getItem()).addAttributeModifiers(to,entityLiving,slot);
         }

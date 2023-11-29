@@ -26,7 +26,13 @@ public class KeyBindingHunHuan {
                 PlayerCapability capability = entity.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
                 short hunhuankaiguan = capability.getHunhuankaiguan();
                 hunhuankaiguan = (short) (hunhuankaiguan>=capability.getWuhunListsname().size()? 0:hunhuankaiguan+1);
-                entity.sendMessage(new TextComponentTranslation("message.hunhuan:"+(hunhuankaiguan)));
+
+                if(hunhuankaiguan==0){
+                    entity.sendMessage(new TextComponentTranslation("message.close.hunhuan:"));
+                }else {
+                    entity.sendMessage(new TextComponentTranslation("message.open.hunhuan:" + capability.getWuhunListsname().get(hunhuankaiguan - 1)));
+                }
+
                 capability.setHunhuankaiguan(hunhuankaiguan);
                 PacketHandler.INSTANCE.sendToServer(new PacketOpenHunhuan(hunhuankaiguan));
 

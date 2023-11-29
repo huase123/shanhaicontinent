@@ -8,8 +8,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.lang.reflect.Field;
-
 @Mod.EventBusSubscriber
 public class CreateEntityItem
 {
@@ -21,8 +19,8 @@ public class CreateEntityItem
 //        if(!event.getEntityItem().getItem().isEmpty() && event.getEntityItem().getItem().getItem() == HanderAny.itemList.get(13) || event.getEntityItem().getItem().getItem() == HanderAny.itemList.get(12)){
         if(!event.getEntityItem().getItem().isEmpty()
                 && event.getEntityItem().getItem().getItem() == HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":textpickaxe"))
-                || event.getEntityItem().getItem().getItem() ==
-                HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":textsword"))){
+                || event.getEntityItem().getItem().getItem() == HanderAny.bianhua.itemBlock
+                || event.getEntityItem().getItem().getItem() == HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":textsword"))){
 
 
             EntityItem entityItem = event.getEntityItem();

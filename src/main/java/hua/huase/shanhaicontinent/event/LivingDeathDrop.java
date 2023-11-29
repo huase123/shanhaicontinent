@@ -1,12 +1,16 @@
 package hua.huase.shanhaicontinent.event;
 
 import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.ItemCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
+import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.handers.HanderAny;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -22,6 +26,7 @@ public class LivingDeathDrop {
 
     @SubscribeEvent
     public static void onEntityStruckByLightning(LivingDeathEvent event){
+
         EntityLivingBase entityLiving = event.getEntityLiving();
         DamageSource damageSource = event.getSource();
         if(entityLiving instanceof IMob && entityLiving.getCapability(MONSTER_CAPABILITY,null)!=null&&!entityLiving.world.isRemote){
@@ -39,7 +44,9 @@ public class LivingDeathDrop {
                 MonsterCapability monsterCapability1 = hunhuanEntity.getCapability(MONSTER_CAPABILITY, null);
                 monsterCapability1.deserializeNBT(monsterCapability.serializeNBT());
                 entityLiving.world.spawnEntity(hunhuanEntity);
-                livingDrop(entityLiving,nianxian);
+                Entity trueSource = damageSource.getTrueSource();
+                livingDrop(entityLiving,nianxian,trueSource);
+
             }
 
 //            PacketHandler.INSTANCE.sendToAllTracking(new PacketMonster(monsterCapability,hunhuanEntity.getEntityId()),hunhuanEntity);
@@ -52,7 +59,7 @@ public class LivingDeathDrop {
 
 
 
-    public static void livingDrop(EntityLivingBase entityLivingBase,int nianxian) {
+    public static void livingDrop(EntityLivingBase entityLivingBase,int nianxian,Entity entityPlayer) {
 
         switch (random.nextInt(100)){
             case 0:
@@ -78,19 +85,43 @@ public class LivingDeathDrop {
             break;
 
         }
-        if(nianxian>=1000000){
-            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 5),0);
-        }else if(nianxian>=100000){
-            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 4),0);
-        }else if(nianxian>=10000){
-            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 3),0);
-        }else if(nianxian>=1000){
-            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 2),0);
-        }else if(nianxian>=100){
-            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 1),0);
-        }else if(nianxian>=1){
-            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 0),0);
+
+        if(entityPlayer!= null && entityPlayer instanceof EntityPlayer){
+            PlayerCapability capability = entityPlayer.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
+            if(nianxian>=1000000){
+                capability.addJingyan(2000);
+            }else if(nianxian>=100000){
+                capability.addJingyan(1000+nianxian/1000);
+                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 4),0);
+            }else if(nianxian>=10000){
+                capability.addJingyan(500+nianxian/500);
+                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 3),0);
+            }else if(nianxian>=1000){
+                capability.addJingyan(100+nianxian/250);
+                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 2),0);
+            }else if(nianxian>=100){
+                capability.addJingyan(20+nianxian/100);
+                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 1),0);
+            }else if(nianxian>=1){
+                capability.addJingyan(1+nianxian/10);
+                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 0),0);
+            }
+
         }
+
+//        if(nianxian>=1000000){
+//            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 5),0);
+//        }else if(nianxian>=100000){
+//            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 4),0);
+//        }else if(nianxian>=10000){
+//            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 3),0);
+//        }else if(nianxian>=1000){
+//            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 2),0);
+//        }else if(nianxian>=100){
+//            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 1),0);
+//        }else if(nianxian>=1){
+//            entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 0),0);
+//        }
 
 
 

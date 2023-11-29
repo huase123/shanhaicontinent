@@ -58,7 +58,7 @@ public interface ChangeCapability {
             playerCapability.setZhenshang(playerCapability.getZhenshang()+danyaoItemCapability.getZhenshang()/10);
             playerCapability.setXixue(playerCapability.getXixue()+danyaoItemCapability.getXixue()/10);
             playerCapability.setWufang(playerCapability.getWufang()+danyaoItemCapability.getWufang()/10);
-            playerCapability.setMaxshengming(playerCapability.getMaxshengming()+danyaoItemCapability.getShengming()/10);
+            playerCapability.setMaxshengming(playerCapability.getMaxshengming()+danyaoItemCapability.getMaxshengming()/10);
             playerCapability.setShengminghuifu(playerCapability.getShengminghuifu()+danyaoItemCapability.getShengminghuifu()/10);
             playerCapability.setMinghzong(playerCapability.getMinghzong()+danyaoItemCapability.getMinghzong()/10);
             playerCapability.setShanbi(playerCapability.getShanbi()+danyaoItemCapability.getShanbi()/10);
@@ -68,6 +68,9 @@ public interface ChangeCapability {
             NetworkRegistryHandler.PlayerListen.sendClientCustomPacket(player);
         }
     }
+
+
+
     public static void removeItem(PlayerCapability playerCapability, ItemCapability danyaoItemCapability, EntityPlayer player){
 
         if(playerCapability!=null&&danyaoItemCapability!=null){
@@ -87,4 +90,32 @@ public interface ChangeCapability {
             NetworkRegistryHandler.PlayerListen.sendClientCustomPacket(player);
         }
     }
+
+
+
+    public static void addCapabilityZhuanShi(PlayerCapability playerCapability, PlayerCapability danyaoItemCapability, EntityPlayer player){
+
+        if(playerCapability!=null&&danyaoItemCapability!=null){
+            playerCapability.setWugong(playerCapability.getWugong()+danyaoItemCapability.getWugong()/10);
+            playerCapability.setBaojishanghai(playerCapability.getBaojishanghai()+danyaoItemCapability.getBaojishanghai()/10);
+            playerCapability.setBaojilv(playerCapability.getBaojilv()+danyaoItemCapability.getBaojilv()/10);
+            playerCapability.setZhenshang(playerCapability.getZhenshang()+danyaoItemCapability.getZhenshang()/10);
+            playerCapability.setXixue(playerCapability.getXixue()+danyaoItemCapability.getXixue()/10);
+            playerCapability.setWufang(playerCapability.getWufang()+danyaoItemCapability.getWufang()/10);
+            playerCapability.setMaxshengming(playerCapability.getMaxshengming()+danyaoItemCapability.getMaxjingshenli()/10);
+            playerCapability.setShengminghuifu(playerCapability.getShengminghuifu()+danyaoItemCapability.getShengminghuifu()/10);
+            playerCapability.setMinghzong(playerCapability.getMinghzong()+danyaoItemCapability.getMinghzong()/10);
+            playerCapability.setShanbi(playerCapability.getShanbi()+danyaoItemCapability.getShanbi()/10);
+            playerCapability.setWuchuan(playerCapability.getWuchuan()+danyaoItemCapability.getWuchuan()/10);
+            playerCapability.setKangbao(playerCapability.getKangbao()+danyaoItemCapability.getKangbao()/10);
+
+            playerCapability.setMaxjingshenli((int) (playerCapability.getMaxjingshenli()+danyaoItemCapability.getMaxjingshenli()/10));
+            playerCapability.setJingshenli(0);
+            player.setHealth(playerCapability.getMaxshengming());
+
+//            NetworkRegistryHandler.PlayerListen.sendClientCustomPacket(player);
+        }
+    }
+
+
 }

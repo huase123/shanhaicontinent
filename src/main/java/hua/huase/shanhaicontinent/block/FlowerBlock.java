@@ -5,6 +5,7 @@ import hua.huase.shanhaicontinent.block.soulsoil.SoulSoilBase;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.handers.HanderAny;
+import hua.huase.shanhaicontinent.potion.PotionRegistryHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -12,9 +13,12 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -24,6 +28,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -73,7 +78,10 @@ public class FlowerBlock extends Block
 
         HanderAny.blockList.add(this);
 //        HanderAny.itemList.add(itemBlock);
-        flowerBlocksList.add(this);
+        if(!name.equals("bianhua")){
+
+            flowerBlocksList.add(this);
+        }
     }
 
 
@@ -81,8 +89,21 @@ public class FlowerBlock extends Block
     public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         NonNullList<ItemStack> ret = NonNullList.create();
-//        getDrops(ret, world, pos, state, fortune);
-        ret.add(new ItemStack(this,1,Math.max(this.getAge(state)-3,0)));
+//        getDrops(ret, world, pos, state, fortune);\
+        if(state.getBlock()==HanderAny.bianhua&&world instanceof WorldServer){
+
+            float f = 6.0F;
+            double d0 = (double)(((WorldServer)world).rand.nextFloat() * f) - 3.0D;
+            double d1 = (double)(((WorldServer)world).rand.nextFloat() * f) - 3.0D;
+            double d2 = (double)(((WorldServer)world).rand.nextFloat() * f) - 3.0D;
+            EntityItem entityitem = new EntityItem(((WorldServer)world), (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(this,1,Math.max(this.getAge(state)-3,0)));
+            entityitem.setDefaultPickupDelay();
+            entityitem.health=999;
+            ((WorldServer)world).spawnEntity(entityitem);
+        }else {
+
+            ret.add(new ItemStack(this,1,Math.max(this.getAge(state)-3,0)));
+        }
         return ret;
     }
 
@@ -152,6 +173,31 @@ public class FlowerBlock extends Block
                     worldIn.playEvent(2005, pos, 0);
                 }
             }
+
+
+//增加精神力
+            i = Math.max(i,1);
+            AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).grow(16);
+            List<EntityPlayer> list = worldIn.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+            for (EntityPlayer entityplayer : list)
+            {
+                if(entityplayer!=null){
+                    PlayerCapability capability = entityplayer.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
+                    if(capability.getJingshenli()<capability.getMaxjingshenli()) {
+                        capability.addJingshenli(i);
+                        entityplayer.sendMessage(new TextComponentTranslation("message.addjingshenli.success", i));
+                    }
+
+
+                    if(state.getBlock()==HanderAny.bianhua){
+                        ((EntityLivingBase)entityplayer).addPotionEffect(new PotionEffect(PotionRegistryHandler.Potion_Debuff_BiAnHua,200,0,true,true));
+
+                    }
+
+                }
+            }
+
+
         }
 
 
@@ -163,19 +209,19 @@ public class FlowerBlock extends Block
         if(i <this.getMaxAge()){
             worldIn.setBlockState(pos, this.withAge(i+1), 2);
             worldIn.playEvent(2005, pos, 5);
-            i = Math.max(i-3,1);
-            AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).grow(16);
-            List<EntityPlayer> list = worldIn.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
-            for (EntityPlayer entityplayer : list)
-            {
-                if(entityplayer!=null){
-                    PlayerCapability capability = entityplayer.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
-                    if(capability.getJingshenli()<capability.getMaxjingshenli()) {
-                        capability.addJingshenli(i);
-                        entityplayer.sendMessage(new TextComponentTranslation("message.addjingshenli.success", i));
-                    }
-                }
-            }
+//            i = Math.max(i-3,1);
+//            AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).grow(16);
+//            List<EntityPlayer> list = worldIn.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
+//            for (EntityPlayer entityplayer : list)
+//            {
+//                if(entityplayer!=null){
+//                    PlayerCapability capability = entityplayer.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
+//                    if(capability.getJingshenli()<capability.getMaxjingshenli()) {
+//                        capability.addJingshenli(i);
+//                        entityplayer.sendMessage(new TextComponentTranslation("message.addjingshenli.success", i));
+//                    }
+//                }
+//            }
 
 
         }

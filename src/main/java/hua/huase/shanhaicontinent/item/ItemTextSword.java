@@ -18,12 +18,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -128,6 +126,17 @@ public class ItemTextSword extends ItemSword
             worldIn.spawnEntity(jiNengThread);
             worldIn.playSound((EntityPlayer)null, entityLiving1.posX, entityLiving1.posY, entityLiving1.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
             entityLiving1.hurtResistantTime=20;
+
+
+            for (int i = 0; i < 360; i++) {
+                double d0 = (double)(-MathHelper.sin(i * 0.017453292F));
+                double d1 = (double)MathHelper.cos(i * 0.017453292F);
+
+                    ((WorldServer)entityLiving1.world).spawnParticle(EnumParticleTypes.REDSTONE, entityLiving1.posX + d0, entityLiving1.posY + (double)entityLiving1.height * 0.5D, entityLiving1.posZ + d1, 0, d0, 0.0D, d1, 1.0D);
+
+            }
+
+
         }
 
 
