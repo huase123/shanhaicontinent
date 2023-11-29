@@ -42,7 +42,7 @@ public class ExampleMod
     private static Logger logger;
 
     public static EnumParticleTypes parTicleCritNum = EnumHelper.addEnum(EnumParticleTypes.class,
-            "HEATHNUM", new Class[]{String.class, int.class, boolean.class, int.class}, "heathnum", EnumParticleTypes.values().length, false, 2);
+            "HEATHNUM", new Class[]{String.class, int.class, boolean.class, int.class}, "heathnum", EnumParticleTypes.values().length, true, 2);
 
 
     @EventHandler

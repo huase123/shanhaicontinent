@@ -5,6 +5,7 @@ import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -14,6 +15,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import static hua.huase.shanhaicontinent.ExampleMod.parTicleCritNum;
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.MONSTER_CAPABILITY;
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.PLYAER_CAPABILITY;
+import static hua.huase.shanhaicontinent.potion.PotionRegistryHandler.Potion_Huang_LHBS;
 
 @Mod.EventBusSubscriber
 public class HurtEvent {
@@ -29,17 +31,17 @@ public class HurtEvent {
             if(entityLiving.getCapability(PLYAER_CAPABILITY,null)!=null){
                 PlayerCapability capability = entityLiving.getCapability(PLYAER_CAPABILITY, null);
                 event.setAmount(HuitEventApi.otherHuitPlayer(capability,event.getAmount()));
-                displayerDamage(entityLiving,event.getAmount());
+                displayerDamage(entityLiving,event);
                 return;
             }
 
             if(entityLiving.getCapability(MONSTER_CAPABILITY,null)!=null){
                 MonsterCapability capability = entityLiving.getCapability(MONSTER_CAPABILITY, null);
                 event.setAmount(HuitEventApi.otherHuitMon(capability,event.getAmount()));
-                displayerDamage(entityLiving,event.getAmount());
+                displayerDamage(entityLiving,event);
                 return;
             }
-            displayerDamage(entityLiving,event.getAmount());
+            displayerDamage(entityLiving,event);
             return;
 
         }
@@ -53,7 +55,7 @@ public class HurtEvent {
                         MonsterCapability monsterCapability = trueSource.getCapability(MONSTER_CAPABILITY, null);
                         PlayerCapability playerCapability = entityLiving.getCapability(PLYAER_CAPABILITY, null);
                         event.setAmount(HuitEventApi.monHuitPlayer(monsterCapability,playerCapability, event.getAmount(), (EntityLivingBase) trueSource));
-                    displayerDamage(entityLiving,event.getAmount());
+                    displayerDamage(entityLiving,event);
                         return;
                 }
 
@@ -61,13 +63,13 @@ public class HurtEvent {
                     MonsterCapability monsterCapability0 = trueSource.getCapability(MONSTER_CAPABILITY, null);
                     MonsterCapability monsterCapability1 = entityLiving.getCapability(MONSTER_CAPABILITY, null);
                     event.setAmount(HuitEventApi.monHuitmon(monsterCapability0,monsterCapability1, event.getAmount(), (EntityLivingBase) trueSource));
-                    displayerDamage(entityLiving,event.getAmount());
+                    displayerDamage(entityLiving,event);
                     return;
                 }
 
                 MonsterCapability monsterCapability = trueSource.getCapability(MONSTER_CAPABILITY, null);
                 event.setAmount(HuitEventApi.monHuitOther(monsterCapability,event.getAmount(),(EntityLivingBase) trueSource));
-                displayerDamage(entityLiving,event.getAmount());
+                displayerDamage(entityLiving,event);
                 return;
             }
             if(trueSource.getCapability(PLYAER_CAPABILITY,null)!=null){
@@ -75,7 +77,7 @@ public class HurtEvent {
                         PlayerCapability playerCapability0 = trueSource.getCapability(PLYAER_CAPABILITY, null);
                         PlayerCapability playerCapability1 = entityLiving.getCapability(PLYAER_CAPABILITY, null);
                         event.setAmount(HuitEventApi.playerHuitPlayer(playerCapability0,playerCapability1, event.getAmount(), (EntityLivingBase) trueSource));
-                    displayerDamage(entityLiving,event.getAmount());
+                    displayerDamage(entityLiving,event);
                         return;
                 }
 
@@ -83,17 +85,17 @@ public class HurtEvent {
                     PlayerCapability playerCapability = trueSource.getCapability(PLYAER_CAPABILITY, null);
                     MonsterCapability monsterCapability = entityLiving.getCapability(MONSTER_CAPABILITY, null);
                     event.setAmount(HuitEventApi.playerHuitMon(playerCapability,monsterCapability, event.getAmount(), (EntityLivingBase) trueSource));
-                    displayerDamage(entityLiving,event.getAmount());
+                    displayerDamage(entityLiving,event);
                     return;
                 }
 
                 PlayerCapability playerCapability = trueSource.getCapability(PLYAER_CAPABILITY, null);
                 event.setAmount(HuitEventApi.playerHuitOther(playerCapability,event.getAmount(),(EntityLivingBase) trueSource));
-                displayerDamage(entityLiving,event.getAmount());
+                displayerDamage(entityLiving,event);
                 return;
             }
 
-            displayerDamage(entityLiving,event.getAmount());
+            displayerDamage(entityLiving,event);
 
 
         }
@@ -101,10 +103,24 @@ public class HurtEvent {
     }
 
 
-    public static void displayerDamage  (EntityLivingBase target, float amount )
+    public static void displayerDamage  (EntityLivingBase target, LivingDamageEvent event )
     {
         if(target==null)return;
 
+        float amount=event.getAmount();
+
+        EntityLivingBase entityLiving = target;
+        if(entityLiving !=null&& entityLiving instanceof EntityPlayer){
+            if(entityLiving.isPotionActive(Potion_Huang_LHBS)&&entityLiving.getHealth()-amount<=0){
+                entityLiving.removePotionEffect(Potion_Huang_LHBS);
+                entityLiving.setHealth(entityLiving.getMaxHealth());
+                entityLiving.world.setEntityState(entityLiving, (byte)35);
+                event.setAmount(0);
+//                event.setCanceled(true);
+                return;
+            }
+        }
+//
 
 
         double x = target.posX;

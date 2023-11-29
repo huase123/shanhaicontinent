@@ -3,10 +3,18 @@ package hua.huase.shanhaicontinent.client.renderer;
 import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.client.renderer.jineng.RenderJiNengItme;
 import hua.huase.shanhaicontinent.client.renderer.jineng.RenderJiNengThread;
+import hua.huase.shanhaicontinent.client.renderer.jineng.huang.RenderWuHunHuangBSJ;
+import hua.huase.shanhaicontinent.client.renderer.jineng.huang.RenderWuHunHuangCMJJ;
+import hua.huase.shanhaicontinent.client.renderer.jineng.huang.RenderWuHunHuangKPBS;
+import hua.huase.shanhaicontinent.client.renderer.jineng.huang.RenderWuHunHuangSNSL;
 import hua.huase.shanhaicontinent.client.renderer.jineng.jingubang.RenderJiNengDZSY;
 import hua.huase.shanhaicontinent.client.renderer.jineng.jingubang.RenderJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangBSJ;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangCMJJ;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangKPBS;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangSNSL;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengDZSY;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
@@ -37,6 +45,10 @@ public class RenderRegistryHandler
                 new RenderJiNengDZSY(manager, HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":wuqijndzsy"))));
 
 
+        RenderingRegistry.registerEntityRenderingHandler(EntityWuHunHuangKPBS.class, RenderWuHunHuangKPBS::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityWuHunHuangSNSL.class, RenderWuHunHuangSNSL::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityWuHunHuangCMJJ.class, RenderWuHunHuangCMJJ::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityWuHunHuangBSJ.class, RenderWuHunHuangBSJ::new);
 
 //        RenderingRegistry.registerEntityRenderingHandler(EntityJiNengThread.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
 

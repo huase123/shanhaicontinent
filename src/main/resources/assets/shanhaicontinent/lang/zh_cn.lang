@@ -24,20 +24,28 @@ shendaozhijianlist4=§f++++++§0上古十大神器之一§f++++++
 itembanding.player.sccuess=§8拥有者：
 itembanding.player.fail=§8拥有者：§f未知
 
+
+
+item.shanhaicontinent.jingubang.name=§4<破天神棍> §f------ §c《武魂果实》
+item.wuhunguoshi.jingubang.list0=§e服用后自动觉醒武魂§4<破天神棍>
+
+
 item.shanhaicontinentwuqijingubang.name=§e魂器：§4破天神棍 §f------ §e《极品器武魂》
 item.jingubang.list0=§e技能1：§3《万破》§f：§7每10级增加10%的物攻
 item.jingubang.list1=§e被动效果：§7等级越高攻速越快
 item.jingubang.list2=§e被动效果：§7触及距离§e+2
 
+
+
 item.shanhaicontinentwuqijnfshy.name=§e技能：§3《分身化影》 §f------ 武魂：§e《破天神棍》
 item.jingubang.jineng.fshy.list0=§a分出三根破天神棍，对前方造成伤害
-item.jingubang.jineng.fshy.list1=§e伤害加成：§9+%200物攻
+item.jingubang.jineng.fshy.list1=§e伤害加成：§9+200%物攻
 item.jingubang.jineng.fshy.list2=§f冷却：§7 5s
 
 
 item.shanhaicontinentwuqijnfshy.name=§e技能：§3《分身化影》 §f------ 武魂：§e《破天神棍》
 item.jingubang.jineng.fshy.list0=§a分出三根金箍棒，对前方造成伤害
-item.jingubang.jineng.fshy.list1=§e伤害加成：§9+%200物攻
+item.jingubang.jineng.fshy.list1=§e伤害加成：§9+200%物攻
 item.jingubang.jineng.fshy.list2=§f冷却：§7 5s
 
 
@@ -97,6 +105,64 @@ item.jingubang.jineng.dzsft.list1=§e效果：§9 +9999物攻、物防，100爆�
 item.jingubang.jineng.dzsft.list2=§e持续时间：§9 30s §f冷却：§7 60s
 
 
+
+
+item.shanhaicontinent.huang.name=§4<荒> §f------ §c《武魂果实》
+item.wuhunguoshi.huang.list0=§e服用后自动觉醒武魂§4<荒>
+
+
+
+item.shanhaicontinentwuhunhuangyishenweizhong.name=§e武魂-荒： §f------ §e《极品武魂》
+item.wuhun.huang.yishenweizhong.list0=§e技能1：§3《以身为种》§f：§7每10级提升4%的物攻、物防、真伤、爆伤、抗暴、回复
+item.wuhun.huang.yishenweizhong.list1=§e被动效果：§7等级越高攻速越快
+item.wuhun.huang.yishenweizhong.list2=§3--副手生效
+
+
+item.shanhaicontinentwuhunhuangkpbs.name=§e技能：§3《鲲鹏宝术》 §f------ 武魂：§e《荒》
+item.wuhun.huang.kpbs.list0=§a向前位移，对路过的敌人造成伤害
+item.wuhun.huang.kpbs.list1=§e伤害加成：§9+200%物攻
+item.wuhun.huang.kpbs.list2=§f冷却：§7 10s
+
+
+item.shanhaicontinentwuhunhuangsnsl.name=§e技能：§3《狻猊神雷》 §f------ 武魂：§e《荒》
+item.wuhun.huang.snsl.list0=§a召唤雷电轰击地面
+item.wuhun.huang.snsl.list1=§e伤害加成：§9+200%物攻
+item.wuhun.huang.snsl.list2=§f冷却：§7 6s
+
+item.shanhaicontinentwuhunhuanglsf.name=§e技能：§3《柳神法》 §f------ 武魂：§e《荒》
+item.wuhun.huang.lsf.list0=§a对8格范围内的敌人造成伤害，并回复生命值
+item.wuhun.huang.lsf.list1=§e伤害加成：§9+100%物攻  §a回复：§a已损失生命值的50%生命值
+item.wuhun.huang.lsf.list2=§f冷却：§7 12s
+
+
+item.shanhaicontinentwuhunhuangcmjj.name=§e技能：§3《草灭剑诀》 §f------ 武魂：§e《荒》
+item.wuhun.huang.cmjj.list0=§a一株草可斩日月星辰!挑出一剑，对前方大范围敌人伤害
+item.wuhun.huang.cmjj.list1=§e伤害加成：§9+500%物攻
+item.wuhun.huang.cmjj.list2=§f冷却：§7 20s
+
+
+item.shanhaicontinentwuhunhuangldlhg.name=§e技能：§3《六道轮回天功》 §f------ 武魂：§e《荒》
+item.wuhun.huang.ldlhg.list0=§a刷新所有技能冷却
+item.wuhun.huang.ldlhg.list1=
+item.wuhun.huang.ldlhg.list2=§f冷却：§7 20s
+
+
+item.shanhaicontinentwuhunhuanglhbs.name=§e技能：§3《轮回宝术》 §f------ 武魂：§e《荒》
+item.wuhun.huang.lhbs.list0=§a受到致命伤满血复活
+item.wuhun.huang.lhbs.list1=§e持续时间：§9 100s
+item.wuhun.huang.lhbs.list2=§f冷却：§7 300s
+
+
+item.shanhaicontinentwuhunhuangbsq.name=§e技能：§3《抱剑杀》 §f------ 武魂：§e《荒》
+item.wuhun.huang.bsq.list0=§a对前方单体造成伤害
+item.wuhun.huang.bsq.list1=§e伤害加成：§9+1000%物攻
+item.wuhun.huang.bsq.list2=§f冷却：§7 20s
+
+
+item.shanhaicontinentwuhunhuangbzmzzs.name=§e技能：§3《不知名至尊术》 §f------ 武魂：§e《荒》
+item.wuhun.huang.bzmzzs.list0=§a物攻+6666、物防+6666、爆伤+66、爆率+66、回复+666，吸血+66
+item.wuhun.huang.bzmzzs.list1=§e持续时间：§9 50s
+item.wuhun.huang.bzmzzs.list2=§f冷却：§7 100s
 
 
 
@@ -171,7 +237,7 @@ item.shanhaicontinent.danyaojiuhua.name=§1《§b九花玉露丸§1》
 
 danfang.qihundan=§0《§a气魂丹§0》
 danfang.qihundan.introduce=介绍：提升修为的丹药
-danfang.qihundan.effect=功效：增加一定真元
+danfang.qihundan.effect=功效：增加一定经验
 danfang.qihundan.material=材料：§02*§f月光花*Ⅹ年  §02*§f百岁兰*Ⅹ年
 
 
@@ -186,7 +252,7 @@ danfang0.peifang.list6=§k0000§o0000
 
 danfang.jvlingdan=§0《§b聚灵丹§0》
 danfang.jvlingdan.introduce=介绍：提升修为的丹药
-danfang.jvlingdan.effect=功效：增加一定真元
+danfang.jvlingdan.effect=功效：增加一定经验
 danfang.jvlingdan.material=材料：§01*§e朱莎梅*佰年  §02*§f含笑花*Ⅹ年  §02*§f合欢*Ⅹ年
 
 
@@ -202,7 +268,7 @@ danfang1.peifang.list6=§k0000§o0000
 
 danfang.xvanyuandan=§0《§c玄元丹§0》
 danfang.xvanyuandan.introduce=介绍：提升修为的丹药
-danfang.xvanyuandan.effect=功效：增加一定真元
+danfang.xvanyuandan.effect=功效：增加一定经验
 danfang.xvanyuandan.material=材料：§01*§e月光花*佰年  §01*§e薰衣草*佰年  §02*§f何首乌*Ⅹ年  §02*§f秋海棠*Ⅹ年
 
 
@@ -217,7 +283,7 @@ danfang2.peifang.list6=§k0000§o0000
 
 danfang.yanghundan=§0《§d养魂丹§0》
 danfang.yanghundan.introduce=介绍：提升修为的丹药
-danfang.yanghundan.effect=功效：增加一定真元
+danfang.yanghundan.effect=功效：增加一定经验
 danfang.yanghundan.material=材料：§02*§e夕雾*佰年  §01*§e忘忧草*佰年  §01*§e山茶*佰年  §01*§e秋海棠*佰年
 
 
@@ -232,7 +298,7 @@ danfang3.peifang.list6=§k0000§o0000
 
 danfang.lingbidan=§0《§e凝碧丹§0》
 danfang.lingbidan.introduce=介绍：提升修为的丹药
-danfang.lingbidan.effect=功效：增加一定真元
+danfang.lingbidan.effect=功效：增加一定经验
 danfang.lingbidan.material=材料：§01*§d秋海棠*仟年  §01*§d山茶*仟年  §02*§e何首乌*佰年  §02*§e合欢*佰年
 
 
@@ -248,7 +314,7 @@ danfang4.peifang.list6=§k0000§o0000
 
 danfang.haoyuan=§0《§7昊元丹§0》
 danfang.haoyuan.introduce=介绍：提升修为的丹药
-danfang.haoyuan.effect=功效：增加一定真元
+danfang.haoyuan.effect=功效：增加一定经验
 danfang.haoyuan.material=材料：§01*§8含笑花*万年  §01*§d百岁兰*仟年  §02*§d朱莎梅*仟年  §02*§d月光花*仟年
 
 
@@ -266,7 +332,7 @@ danfang5.peifang.list6=§k0000§o0000
 
 danfang.xihundan=§0《§6涤魂丹§0》
 danfang.xihundan.introduce=介绍：提升修为的丹药
-danfang.xihundan.effect=功效：增加一定真元
+danfang.xihundan.effect=功效：增加一定经验
 danfang.xihundan.material=材料：§01*§8百岁兰*万年  §01*§8风信子*万年  §01*§8含笑花*万年  §02*§8合欢*万年
 
 
@@ -283,7 +349,7 @@ danfang6.peifang.list6=§k0000§o0000
 
 danfang.huangjidan=§0《§5皇极丹§0》
 danfang.huangjidan.introduce=介绍：提升修为的丹药
-danfang.huangjidan.effect=功效：增加一定真元
+danfang.huangjidan.effect=功效：增加一定经验
 danfang.huangjidan.material=材料：§01§c秋海棠*Ⅹ万年  §01§c山茶*Ⅹ万年  §01§c忘忧草*Ⅹ万年  §01§c夕雾*Ⅹ万年  §01*§8薰衣草*万年
 
 
@@ -299,7 +365,7 @@ danfang7.peifang.list6=§k0000§o0000
 
 danfang.lushendan=§0《§4怒神丹§0》
 danfang.lushendan.introduce=介绍：提升修为的丹药
-danfang.lushendan.effect=功效：增加一定真元
+danfang.lushendan.effect=功效：增加一定经验
 danfang.lushendan.material=材料：§01*§4任意佰万年魂药  §01§c月光花*Ⅹ万年  §01§c朱莎梅*Ⅹ万年  §01§c合欢*Ⅹ万年  §01§c山茶*Ⅹ万年
 
 
@@ -326,6 +392,15 @@ danfangjiuhua.peifang.list3=§c百年以上的山茶§0>>>>>§c火
 danfangjiuhua.peifang.list4=§c百年以上的夕雾§0>>>>>§e金
 danfangjiuhua.peifang.list5=§c百年以上的月光花§0>>>>>§6土
 danfangjiuhua.peifang.list6=§k0000§o0000
+
+
+tile.shanhaicontinent.bianhua_age0.name=§2彼岸花种子
+tile.shanhaicontinent.bianhua_age1.name=§f彼岸花******Ⅹ年
+tile.shanhaicontinent.bianhua_age2.name=§e彼岸花******佰年
+tile.shanhaicontinent.bianhua_age3.name=§d彼岸花******仟年
+tile.shanhaicontinent.bianhua_age4.name=§8彼岸花******万年
+tile.shanhaicontinent.bianhua_age5.name=§c彼岸花******Ⅹ万年
+tile.shanhaicontinent.bianhua_age6.name=§4彼岸花******佰万年
 
 
 tile.shanhaicontinent.baisuilan_age0.name=§2百岁兰种子
@@ -460,6 +535,11 @@ message.addjingshenli.fail=§4%s超过了-10000~10000限制
 message.usejiuhua.success=§e最大精神力: §b+%s
 
 
+message.juexingwuhun.sccuess.huang=§e成功觉醒武魂：§4<荒>
+message.juexingwuhun.sccuess.jingubang=§e成功觉醒武魂：§4<破天神棍>
+message.juexingwuhun.fail.cf=§e觉醒武魂失败：§2你可能已拥有该武魂
+
+
 itemGroup.shanhaicontinent.wuping=山海大陆：物品
 itemGroup.shanhaicontinent.wuhun=山海大陆：武魂
 
@@ -468,8 +548,9 @@ entity.Villager.shanhaicontinent.huncaoworker=魂草商人
 
 
 
-message.hunhuan:true=§2魂环已开启，靠近魂环将自动吸收魂环
-message.hunhuan:false=§2魂环已关闭，将不会自动吸收魂环
+message.open.hunhuan:huang=§2武魂§4<荒>§2已开启，靠近魂环将自动吸收魂环，R键生成技能
+message.open.hunhuan:jingubang=§2武魂§4<破天神棍>§2已开启，靠近魂环将自动吸收魂环，R键打开技能
+message.close.hunhuan:=§2魂环已关闭，将不会自动吸收魂环
 
 
 player.shanhaicontinent.shengming.name=生命:§2%s
@@ -535,6 +616,20 @@ nianxian.display5.name=§2年限: §f%s
 5nianxian=§f年限:
 
 key.shanhai=山海大陆
+key.shanhaicontinent.mykey_R=生成技能
 key.shanhaicontinent.mykey_p=突破
 key.shanhaicontinent.mykey_o=属性面板
 key.shanhaicontinent.mykey_K=魂环开关
+
+
+effect.shanhaicontinent.bianhua=§a梦回万古
+
+effect.shanhaicontinent.wuqijndzsft=§b斗战神佛体
+effect.shanhaicontinent.wuqijndzsy=§b斗战圣域
+effect.shanhaicontinent.wuqijnjdy=§b金斗云
+effect.shanhaicontinent.wuqijnjgz=§4紧箍咒
+effect.shanhaicontinent.wuqijnjgzs=§b金箍真身
+effect.shanhaicontinent.wuqijnjlcy=§4九龙禅音
+
+effect.shanhaicontinent.wuhunhuangbzmzzs=§b不知名至尊术
+effect.shanhaicontinent.wuhunhuanglhbs=§b轮回宝术

@@ -44,20 +44,27 @@ public class ClientEventHandler
     public static int tickplayer=0;
     @SideOnly(Side.CLIENT)
     public static float donghua=0;
+    @SideOnly(Side.CLIENT)
+    public static float hunhuankaiguan=0;
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void renderHandEvent(RenderWorldLastEvent event) {
 
 
 
-            EntityPlayerSP player = Minecraft.getMinecraft().player;
+        EntityPlayerSP player = Minecraft.getMinecraft().player;
+        short hunhuankaiguan1 = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null).getHunhuankaiguan();
+//        if(hunhuankaiguan1 ==0&&donghua!=0f){
+//            donghua=0f;
+//        }
 
-        if(player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()==0&&donghua!=0f){
+        if(hunhuankaiguan1 !=hunhuankaiguan){
+            hunhuankaiguan= hunhuankaiguan1;
             donghua=0f;
         }
 
 
-        if(player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()!=0) {
+        if(hunhuankaiguan1 !=0) {
 
 
             int limitFramerate = Minecraft.getMinecraft().gameSettings.limitFramerate;
@@ -87,7 +94,8 @@ public class ClientEventHandler
     //                    GlStateManager.rotate(renderArmPitch, 1.0F, 0.0F, 0.0F);
 
                     float v = i;
-                    GlStateManager.scale(0.1f + i1 / 10f, 0.1f + i1 / 10f, 0);
+                        float v1 = 1f-capability1.getMonsterCapabilityList().size() / 10f;
+                        GlStateManager.scale(v1+i1 / 10f, v1+i1 / 10f, 0);
 
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 

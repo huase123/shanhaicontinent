@@ -1,5 +1,8 @@
 package hua.huase.shanhaicontinent.item.jineng;
 
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
+import hua.huase.shanhaicontinent.capability.MonsterCapability;
+import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +21,25 @@ public interface JinengMethond {
 
     static boolean isBinding(ItemStack stack, Entity entityPlayer) {
         if(stack.getTagCompound()!=null && entityPlayer instanceof EntityPlayer && stack.getTagCompound().getString("playername").equals(entityPlayer.getName())){
-            return true;
+
+            PlayerCapability capability = entityPlayer.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
+            Map<String, List<MonsterCapability>> monsterCapabilityLists1 = capability.getMonsterCapabilityLists();
+
+
+            for (Map.Entry<String, List<MonsterCapability>> stringListEntry : monsterCapabilityLists1.entrySet()) {
+                int i=0;
+
+//                nbt.setTag(stringListEntry.getKey()+":monsterCapability",new NBTTagCompound());
+                for (MonsterCapability monsterCapability : stringListEntry.getValue()) {
+                    Item item = monsterCapabilityLists.get(stringListEntry.getKey()).get(i);
+                    if(stack.getItem().equals(item)){
+                        return true;
+                    }
+                    i++;
+                }
+
+            }
+//            return true;
         }
 
         stack.setCount(0);

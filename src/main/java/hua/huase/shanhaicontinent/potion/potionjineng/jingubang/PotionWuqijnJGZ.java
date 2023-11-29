@@ -1,4 +1,4 @@
-package hua.huase.shanhaicontinent.potion.potionjineng;
+package hua.huase.shanhaicontinent.potion.potionjineng.jingubang;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;

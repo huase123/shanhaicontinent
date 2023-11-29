@@ -1,8 +1,10 @@
 package hua.huase.shanhaicontinent.creativetab;
 
+import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.handers.HanderAny;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 
 public class TabExample extends CreativeTabs {
     public static final CreativeTabs TAB1 =new TabExample("shanhaicontinent.wuping");
@@ -13,7 +15,7 @@ public class TabExample extends CreativeTabs {
     }
 
     @Override
-    public ItemStack getTabIconItem() {        return new ItemStack(Items.BED);
+    public ItemStack getTabIconItem() {        return new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":textsword")));
     }
 
     @Override

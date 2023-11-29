@@ -34,7 +34,7 @@ public class PacketJiNengKaiguan implements IMessage, IMessageHandler<PacketJiNe
 		EntityPlayerMP player = ctx.getServerHandler().player;
 		if(player==null)return null;
 		if(useTime.get(player.getEntityId())==null){
-			useTime.put(player.getEntityId(),player.world.getWorldTime()-180L);
+			useTime.put(player.getEntityId(),player.world.getWorldTime()-200L);
 		}
 
 		if(useTime.get(player.getEntityId())+200L<=player.world.getWorldTime()) {

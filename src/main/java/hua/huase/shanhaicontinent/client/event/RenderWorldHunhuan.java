@@ -30,9 +30,12 @@ import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.NI
 public class RenderWorldHunhuan {
 
     public static final ResourceLocation EXPLOSION_TEXTURE = new ResourceLocation(ExampleMod.MODID,"textures/picture/particletext.png");
+    @SideOnly(Side.CLIENT)
     public static Map<Integer, Integer> timemap=new HashMap();
+    @SideOnly(Side.CLIENT)
     public static Map<Integer, Float> timedonghuamap=new HashMap();
-//    public static float time=0f;
+    @SideOnly(Side.CLIENT)
+    public static Map<Integer, Short> hunhuankaiguan=new HashMap();
 
     //    世界实体渲染事件
     @SubscribeEvent
@@ -196,14 +199,16 @@ public class RenderWorldHunhuan {
 
 
             if(entityIn  instanceof EntityOtherPlayerMP) {
-
+                short hunhuankaiguan1 = entityIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null).getHunhuankaiguan();
                 if(timedonghuamap.get(entityIn.getEntityId()) == null) timedonghuamap.put(entityIn.getEntityId(),0f);
-                if(entityIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()==0){
+                if(hunhuankaiguan.get(entityIn.getEntityId()) == null) hunhuankaiguan.put(entityIn.getEntityId(),hunhuankaiguan1);
+                if(hunhuankaiguan1 !=hunhuankaiguan.get(entityIn.getEntityId())){
+                    hunhuankaiguan.put(entityIn.getEntityId(),hunhuankaiguan1);
                     timedonghuamap.put(entityIn.getEntityId(),0f);
 
                 }
 
-                if(entityIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()!=0){
+                if(hunhuankaiguan1 !=0){
                     PlayerCapability capability1 = entityIn.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
                     if(capability1==null) return;
 
@@ -223,7 +228,10 @@ public class RenderWorldHunhuan {
                             GlStateManager.rotate(90, 1, 0, 0);
                             GlStateManager.rotate(i1%2==0? ticks*18f:-ticks*18f, 0, 0, 1);
                             float v = ticks;
-                            GlStateManager.scale(0.3f+ i1 /10f, 0.3f+ i1 /10f, 0);
+
+                            float v1 = 1f-capability1.getMonsterCapabilityList().size() / 10f;
+                            GlStateManager.scale(v1+i1 / 10f, v1+i1 / 10f, 0);
+
 
                             GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 

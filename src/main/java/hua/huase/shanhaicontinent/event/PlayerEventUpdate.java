@@ -40,7 +40,7 @@ public class PlayerEventUpdate {
         PlayerCapability capability = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
         if (event.phase==TickEvent.Phase.END&&target instanceof EntityPlayerMP && !target.world.isRemote &&target.ticksExisted%20==0) {
             if(player.getHealth()<player.getMaxHealth()&&player.getHealth()>0f){
-                player.setHealth(player.getHealth()+capability.getShengminghuifu()/5f);
+                player.setHealth(player.getHealth()+capability.getShengminghuifu()/2f);
             }
             if(capability.getJingshenli()<capability.getMaxjingshenli()&&player.getHealth()>0f){
 //                capability.addJingshenli(0.1f*capability.getMaxjingshenli());
@@ -54,7 +54,8 @@ public class PlayerEventUpdate {
 
 
         if(event.phase==TickEvent.Phase.END&&capability.getDengji()>=50&&target.ticksExisted%100==0){
-            player.capabilities.allowFlying=true;}
+            player.capabilities.allowFlying=true;
+        }
 
 
         if (!player.world.isRemote) {

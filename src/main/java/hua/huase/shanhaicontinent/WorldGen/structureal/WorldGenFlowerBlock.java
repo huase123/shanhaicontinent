@@ -21,7 +21,7 @@ public class WorldGenFlowerBlock {
         this.state = state;
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+    public static boolean generate(World worldIn, Random rand, BlockPos position)
     {
         for (int i = 0; i < 64; ++i)
         {
@@ -34,6 +34,25 @@ public class WorldGenFlowerBlock {
 
                     worldIn.setBlockState(blockpos, HanderAny.soulsoil.getStateFromMeta(0), 2);
                     worldIn.setBlockState(blockpos.up(), FlowerBlock.flowerBlocksList.get(rand.nextInt(FlowerBlock.flowerBlocksList.size())).getStateFromMeta(rand.nextInt(6)), 2);
+                }
+            }
+        }
+
+        return true;
+    }
+    public static boolean generateBianhua(World worldIn, Random rand, BlockPos position)
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), 0, rand.nextInt(8) - rand.nextInt(8));
+
+            if (!worldIn.isAirBlock(blockpos) &&worldIn.isAirBlock(blockpos.up()))
+            {
+                IBlockState state = worldIn.getBlockState(blockpos);
+                if(state.getBlock() == Blocks.LAVA){
+
+                    worldIn.setBlockState(blockpos, HanderAny.soulsoil.getStateFromMeta(8), 2);
+                    worldIn.setBlockState(blockpos.up(), HanderAny.bianhua.getStateFromMeta(rand.nextInt(8)), 2);
                 }
             }
         }

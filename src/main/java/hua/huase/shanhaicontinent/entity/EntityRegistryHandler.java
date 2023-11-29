@@ -1,6 +1,10 @@
 package hua.huase.shanhaicontinent.entity;
 
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangBSJ;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangCMJJ;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangKPBS;
+import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangSNSL;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengDZSY;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
@@ -13,7 +17,8 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 @EventBusSubscriber
 public class EntityRegistryHandler
-{/*
+{
+    /*
     public static final EntityEntry DIRT_BALL_KING =
             EntityEntryBuilder.create().entity(EntityDirtBallKing.class)
                     .id(EntityDirtBallKing.ID, 0).name(EntityDirtBallKing.NAME).tracker(80, 3, true)
@@ -27,28 +32,53 @@ public class EntityRegistryHandler
                     .id(EntityThrowableText.ID, 2).name(EntityThrowableText.NAME).tracker(64, 10, true).build();
 
 */
+    public static int entityID=0;
     public static final EntityEntry HUNHUANENTITY =
             EntityEntryBuilder.create().entity(HunhuanEntity.class)
-                    .id(HunhuanEntity.ID, 3).name(HunhuanEntity.NAME).tracker(64, 10, true).build();
+                    .id(HunhuanEntity.ID, entityID++).name(HunhuanEntity.NAME).tracker(64, 10, true).build();
 
     public static final EntityEntry JiNengItem =
             EntityEntryBuilder.create().entity(EntityJinengItem.class)
-                    .id(EntityJinengItem.ID, 4).name(EntityJinengItem.NAME).tracker(64, 10, false).build();
+                    .id(EntityJinengItem.ID, entityID++).name(EntityJinengItem.NAME).tracker(64, 10, false).build();
 
     public static final EntityEntry JiNengThread =
             EntityEntryBuilder.create().entity(EntityJiNengThread.class)
-                    .id(EntityJiNengThread.ID, 5).name(EntityJiNengThread.NAME).tracker(64, 10, true).build();
+                    .id(EntityJiNengThread.ID, entityID++).name(EntityJiNengThread.NAME).tracker(64, 10, true).build();
 
 
     public static final EntityEntry JiNengFSHY =
             EntityEntryBuilder.create().entity(EntityJiNengFSHY.class)
-                    .id(EntityJiNengFSHY.ID, 6).name(EntityJiNengFSHY.NAME).tracker(64, 10, true).build();
+                    .id(EntityJiNengFSHY.ID, entityID++).name(EntityJiNengFSHY.NAME).tracker(64, 10, true).build();
 
 
 
     public static final EntityEntry JiNengDZSY =
             EntityEntryBuilder.create().entity(EntityJiNengDZSY.class)
-                    .id(EntityJiNengDZSY.ID, 7).name(EntityJiNengDZSY.NAME).tracker(64, 10, true).build();
+                    .id(EntityJiNengDZSY.ID, entityID++).name(EntityJiNengDZSY.NAME).tracker(64, 10, true).build();
+
+
+
+    public static final EntityEntry WuHunHuangKPBS =
+            EntityEntryBuilder.create().entity(EntityWuHunHuangKPBS.class)
+                    .id(EntityWuHunHuangKPBS.ID, entityID++).name(EntityWuHunHuangKPBS.NAME).tracker(64, 10, true).build();
+
+
+
+
+    public static final EntityEntry WuHunHuangSNSL =
+            EntityEntryBuilder.create().entity(EntityWuHunHuangSNSL.class)
+                    .id(EntityWuHunHuangSNSL.ID, entityID++).name(EntityWuHunHuangSNSL.NAME).tracker(64, 10, true).build();
+
+
+    public static final EntityEntry WuHunHuangCMJJ =
+            EntityEntryBuilder.create().entity(EntityWuHunHuangCMJJ.class)
+                    .id(EntityWuHunHuangCMJJ.ID, entityID++).name(EntityWuHunHuangCMJJ.NAME).tracker(64, 10, true).build();
+
+
+
+    public static final EntityEntry WuHunHuangBSJ =
+            EntityEntryBuilder.create().entity(EntityWuHunHuangBSJ.class)
+                    .id(EntityWuHunHuangBSJ.ID, entityID++).name(EntityWuHunHuangBSJ.NAME).tracker(64, 10, true).build();
 
 
 
@@ -60,13 +90,14 @@ public class EntityRegistryHandler
     public static void onRegistry(RegistryEvent.Register<EntityEntry> event)
     {
         IForgeRegistry<EntityEntry> registry = event.getRegistry();
-//        registry.register(DIRT_BALL_KING);
-//        registry.register(DIRT_BALL);
-//        registry.register(ENTITY_THROWABLE_TEXT);
         registry.register(HUNHUANENTITY);
         registry.register(JiNengItem);
         registry.register(JiNengThread);
         registry.register(JiNengFSHY);
         registry.register(JiNengDZSY);
+        registry.register(WuHunHuangKPBS);
+        registry.register(WuHunHuangSNSL);
+        registry.register(WuHunHuangCMJJ);
+        registry.register(WuHunHuangBSJ);
     }
 }

@@ -91,6 +91,8 @@ public class EventHandlerEntity {
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event)
     {
+
+
         EntityLivingBase entityLiving = event.getEntityLiving();
         if (!entityLiving.world.isRemote&&entityLiving instanceof EntityPlayer&&!entityLiving.world.getGameRules().getBoolean("keepInventory"))
         {
