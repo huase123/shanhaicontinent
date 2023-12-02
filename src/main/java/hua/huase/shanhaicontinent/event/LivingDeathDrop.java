@@ -12,6 +12,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -20,6 +22,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.MONSTER_CAPABILITY;
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.random;
+import static net.minecraft.util.EnumHand.MAIN_HAND;
+import static net.minecraft.util.EnumHand.OFF_HAND;
 
 @Mod.EventBusSubscriber
 public class LivingDeathDrop {
@@ -61,7 +65,40 @@ public class LivingDeathDrop {
 
     public static void livingDrop(EntityLivingBase entityLivingBase,int nianxian,Entity entityPlayer) {
 
-        switch (random.nextInt(100)){
+        EntityPlayer entityPlayer1 = (EntityPlayer) entityPlayer;
+        ItemStack heldItem0 = entityPlayer1.getHeldItem(MAIN_HAND);
+        ItemStack heldItem1 = entityPlayer1.getHeldItem(OFF_HAND);
+        NBTTagList enchantmentTagList = heldItem1.getEnchantmentTagList();
+        int lv=0;
+        NBTTagList nbttaglist = heldItem0.getEnchantmentTagList();
+
+        for (int j = 0; j < nbttaglist.tagCount(); ++j)
+        {
+            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(j);
+            int k = nbttagcompound.getShort("id");
+            int l = nbttagcompound.getShort("lvl");
+
+            if (k == 21&&lv<l)
+            {
+                lv=l;
+            }
+        }
+
+        for (int j = 0; j < enchantmentTagList.tagCount(); ++j)
+        {
+            NBTTagCompound nbttagcompound = nbttaglist.getCompoundTagAt(j);
+            int k = nbttagcompound.getShort("id");
+            int l = nbttagcompound.getShort("lvl");
+
+            if (k == 21&&lv<l)
+            {
+                lv=l;
+            }
+        }
+
+
+
+        switch (random.nextInt(Math.max(20,100-lv*20))){
             case 0:
                 entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":exoskeletonbone")), 1, 0, new ItemCapabilityProvider(nianxian).serializeItemNBT()),0);
             break;
@@ -92,19 +129,14 @@ public class LivingDeathDrop {
                 capability.addJingyan(2000);
             }else if(nianxian>=100000){
                 capability.addJingyan(1000+nianxian/1000);
-                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 4),0);
             }else if(nianxian>=10000){
                 capability.addJingyan(500+nianxian/500);
-                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 3),0);
             }else if(nianxian>=1000){
                 capability.addJingyan(100+nianxian/250);
-                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 2),0);
             }else if(nianxian>=100){
                 capability.addJingyan(20+nianxian/100);
-                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 1),0);
             }else if(nianxian>=1){
                 capability.addJingyan(1+nianxian/10);
-                entityLivingBase.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), random.nextInt(10), 0),0);
             }
 
         }

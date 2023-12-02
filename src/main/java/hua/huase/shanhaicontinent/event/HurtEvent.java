@@ -131,16 +131,18 @@ public class HurtEvent {
         if(amount>=0 && !target.world.isRemote){
             if(target.world==null)return;
             WorldServer mc = (WorldServer) target.world;
-                mc.addScheduledTask(() ->
+            mc.spawnParticle(parTicleCritNum,  x, y, z, 1, 1.0, 0, 0, 0D,  (int) amount, 0);
+/*
+            mc.addScheduledTask(() ->
                 {
 
 //                    PacketHandler.INSTANCE.sendToAllTracking(new PacketHeartDisplay((int) amount, (int) x, (int) y, (int) z),new NetworkRegistry.TargetPoint(target.dimension,x,y,z,30));
+                    mc.spawnParticle(parTicleCritNum,  x, y, z, 1, 1.0, 0, 0, 0D,  (int) amount, 0);
 
 //                    mc.spawnParticle(enumparticletypes, flag1, d0, d1, d2, i, d3, d4, d5, d6, aint);
-                   mc.spawnParticle(parTicleCritNum,  x, y, z, 1, 1.0, 0, 0, 0D,  (int) amount, 0);
 //                    Minecraft.getMinecraft().world.spawnParticle(ParticlesHander.parTicleCritNum, true, 1, 1, 1, 1, 1, 1, (int) x, (int) y, (int) z, (int) amount, 0);
 
-                });
+                });*/
         }
     }
 

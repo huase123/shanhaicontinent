@@ -85,7 +85,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
-                            if (itemStack1.getItem() == HanderAny.baisuilan.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.baisuilan.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(1, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -95,7 +95,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(2, 1, true);
-                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(2, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -106,7 +106,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.baisuilan.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.baisuilan.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -116,7 +116,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -149,7 +149,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
-                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(1, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -159,7 +159,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(2, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(2, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -170,7 +170,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -180,7 +180,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -190,7 +190,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -224,8 +224,8 @@ public class DanFang extends Item implements DanFangBase {
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
                             ItemStack itemStack2 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() == 2&&
-                                    itemStack2.getItem() == HanderAny.xunyicao.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() >= 2&&
+                                    itemStack2.getItem() == HanderAny.xunyicao.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(1, 1, false);
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
@@ -236,7 +236,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(2, 1, true);
-                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(2, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -247,7 +247,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -257,7 +257,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -267,7 +267,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() == 1) {
+                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() >= 1) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -300,7 +300,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
-                            if (itemStack1.getItem() == HanderAny.xiwu.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.xiwu.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(1, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -310,7 +310,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(2, 1, true);
-                            if (itemStack1.getItem() == HanderAny.shancha.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.shancha.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(2, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -321,7 +321,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -331,7 +331,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.wangyoucao.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.wangyoucao.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -341,7 +341,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.xiwu.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.xiwu.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -375,8 +375,8 @@ public class DanFang extends Item implements DanFangBase {
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
                             ItemStack itemStack2 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() == 3&&
-                                    itemStack2.getItem() == HanderAny.shancha.itemBlock && itemStack2.getMetadata() == 3) {
+                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() >= 3&&
+                                    itemStack2.getItem() == HanderAny.shancha.itemBlock && itemStack2.getMetadata() >= 3) {
                                 solt1.extractItem(1, 1, false);
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
@@ -387,7 +387,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(2, 1, true);
-                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(2, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -398,7 +398,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -408,7 +408,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.heshouwu.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -418,7 +418,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() == 2) {
+                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() >= 2) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -452,8 +452,8 @@ public class DanFang extends Item implements DanFangBase {
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
                             ItemStack itemStack2 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() == 4&&
-                                    itemStack2.getItem() == HanderAny.baisuilan.itemBlock && itemStack2.getMetadata() == 3) {
+                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() >= 4&&
+                                    itemStack2.getItem() == HanderAny.baisuilan.itemBlock && itemStack2.getMetadata() >= 3) {
                                 solt1.extractItem(1, 1, false);
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
@@ -464,7 +464,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(2, 1, true);
-                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() == 3) {
+                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() >= 3) {
                                 solt1.extractItem(2, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -475,7 +475,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() == 3) {
+                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() >= 3) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -485,7 +485,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() == 3) {
+                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() >= 3) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -495,7 +495,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() == 3) {
+                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() >= 3) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -528,7 +528,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
-                            if (itemStack1.getItem() == HanderAny.baisuilan.itemBlock && itemStack1.getMetadata() == 4) {
+                            if (itemStack1.getItem() == HanderAny.baisuilan.itemBlock && itemStack1.getMetadata() >= 4) {
                                 solt1.extractItem(1, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -538,7 +538,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() == 4) {
+                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() >= 4) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -549,7 +549,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.fengxinzi.itemBlock && itemStack1.getMetadata() == 4) {
+                            if (itemStack1.getItem() == HanderAny.fengxinzi.itemBlock && itemStack1.getMetadata() >= 4) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -559,7 +559,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() == 4) {
+                            if (itemStack1.getItem() == HanderAny.hanxiaohua.itemBlock && itemStack1.getMetadata() >= 4) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -569,7 +569,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() == 4) {
+                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() >= 4) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -602,7 +602,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
-                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.qiuhaitang.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(1, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -612,7 +612,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.shancha.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.shancha.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -623,7 +623,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.wangyoucao.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.wangyoucao.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -633,7 +633,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.xiwu.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.xiwu.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -643,7 +643,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.xunyicao.itemBlock && itemStack1.getMetadata() == 4) {
+                            if (itemStack1.getItem() == HanderAny.xunyicao.itemBlock && itemStack1.getMetadata() >= 4) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -676,7 +676,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 40) {
                             ItemStack itemStack1 = solt1.extractItem(1, 1, true);
-                            if (Block.getBlockFromItem(itemStack1.getItem()) instanceof FlowerBlock && itemStack1.getMetadata() == 6) {
+                            if (Block.getBlockFromItem(itemStack1.getItem()) instanceof FlowerBlock && itemStack1.getMetadata() >= 6) {
                                 solt1.extractItem(1, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -686,7 +686,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 80) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.yueguanghua.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -697,7 +697,7 @@ public class DanFang extends Item implements DanFangBase {
 
                         if (compressorProgress == 120) {
                             ItemStack itemStack1 = solt1.extractItem(3, 1, true);
-                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.zhushamei.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(3, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -707,7 +707,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 160) {
                             ItemStack itemStack1 = solt1.extractItem(4, 1, true);
-                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.hehuan.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(4, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {
@@ -717,7 +717,7 @@ public class DanFang extends Item implements DanFangBase {
                         }
                         if (compressorProgress == 200) {
                             ItemStack itemStack1 = solt1.extractItem(5, 1, true);
-                            if (itemStack1.getItem() == HanderAny.shancha.itemBlock && itemStack1.getMetadata() == 5) {
+                            if (itemStack1.getItem() == HanderAny.shancha.itemBlock && itemStack1.getMetadata() >= 5) {
                                 solt1.extractItem(5, 1, false);
                                 tileEntityPot.changeFuel();
                             } else {

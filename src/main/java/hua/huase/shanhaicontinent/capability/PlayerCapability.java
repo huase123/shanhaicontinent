@@ -140,21 +140,21 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
 
 
     public PlayerCapability (){
-        this.wugong=1;
+        this.wugong=2;
         this.baojishanghai=50f;
         this.baojilv=10f;
-        this.zhenshang=0;
+        this.zhenshang=2;
         this.yuanshushanghai=0;
         this.xixue=1.0f;
-        this.wufang=0;
+        this.wufang=10;
         this.yuansukangxing=0;
         this.yuansuqinheli=0;
-        this.shengming=21;
-        this.maxshengming=21;
-        this.shengminghuifu=1f;
+        this.shengming=40;
+        this.maxshengming=40;
+        this.shengminghuifu=5f;
         this.minghzong=1f;
         this.shanbi=1f;
-        this.jingshenli=1;
+        this.jingshenli=10;
         this.hunlizhi=0;
         this.hunlizhuanhualv=0;
         this.jingjie=1;
@@ -163,7 +163,7 @@ public class PlayerCapability  implements INBTSerializable<NBTTagCompound> {
         this.wuchuan=0;
         this.kangbao=0;
         this.jingyan=0;
-        this.maxjingyan=50;
+        this.maxjingyan=20;
         this.dengji=0;
         this.monsterCapabilityLists=new HashMap<>();
         this.wuhunListsname=new ArrayList<>();

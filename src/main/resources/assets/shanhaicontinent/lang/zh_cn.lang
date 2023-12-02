@@ -190,6 +190,9 @@ item.shanhaicontinent.soulbonemeal_age6.name=§6魂骨粉******Ⅶ阶
 item.shanhaicontinent.soulbonemeal_age7.name=§5魂骨粉******Ⅷ阶
 item.shanhaicontinent.soulbonemeal_age8.name=§4魂骨粉******Ⅸ阶
 
+soulbonemeal_list0=§a右键魂土，催生一大片§b魂草
+
+
 tile.shanhaicontinent.soulsoil_age0.name=§a魂土******Ⅰ阶
 tile.shanhaicontinent.soulsoil_age1.name=§b魂土******Ⅱ阶
 tile.shanhaicontinent.soulsoil_age2.name=§c魂土******Ⅲ阶
@@ -200,6 +203,7 @@ tile.shanhaicontinent.soulsoil_age6.name=§6魂土******Ⅶ阶
 tile.shanhaicontinent.soulsoil_age7.name=§5魂土******Ⅷ阶
 tile.shanhaicontinent.soulsoil_age8.name=§4魂土******Ⅸ阶
 
+soulsoil_list0=§a用于种植魂草，等价决定了§b魂草§a的生长速度和上限
 
 item.shanhaicontinent.hunye_age0.name=§a精华*初级
 item.shanhaicontinent.hunye_age1.name=§b精华*中级
@@ -207,7 +211,7 @@ item.shanhaicontinent.hunye_age2.name=§c精华*高级
 item.shanhaicontinent.hunye_age3.name=§d精华*顶级
 item.shanhaicontinent.hunye_age4.name=§e精华*神级
 item.shanhaicontinent.hunye_age5.name=§7精华*仙级
-
+hunye_list0=§b魂草§a在§b造化炉§a中提炼获得
 
 
 item.shanhaicontinent.danfang_age0.name=§a丹方：§f《§a气魂丹§f》*Ⅰ阶
@@ -232,7 +236,7 @@ item.shanhaicontinent.danyao_age5.name=§7昊元丹*Ⅵ阶
 item.shanhaicontinent.danyao_age6.name=§6涤魂丹*Ⅶ阶
 item.shanhaicontinent.danyao_age7.name=§5皇极丹*Ⅷ阶
 item.shanhaicontinent.danyao_age8.name=§4怒神丹*Ⅸ阶
-
+danyao_list0=§a由§e造化炉§b炼制获得，材料：§1单方、§2煤炭、§3魂草
 item.shanhaicontinent.danyaojiuhua.name=§1《§b九花玉露丸§1》
 
 danfang.qihundan=§0《§a气魂丹§0》
@@ -393,7 +397,7 @@ danfangjiuhua.peifang.list4=§c百年以上的夕雾§0>>>>>§e金
 danfangjiuhua.peifang.list5=§c百年以上的月光花§0>>>>>§6土
 danfangjiuhua.peifang.list6=§k0000§o0000
 
-
+flowerblock_list0=§a可在§b魂土§a上培养
 tile.shanhaicontinent.bianhua_age0.name=§2彼岸花种子
 tile.shanhaicontinent.bianhua_age1.name=§f彼岸花******Ⅹ年
 tile.shanhaicontinent.bianhua_age2.name=§e彼岸花******佰年
@@ -571,11 +575,11 @@ player.shanhaicontinent.jingyan.name=经验：§1%s
 
 player.shanhaicontinent.hp.name=HP：  %0.1f
 
-
+message.hunhuan.fenjie=分解完成
 message.hunhuan.list-1=§2你离开了魂环
 message.hunhuan.list.no=§c等级不够或经验不足无法吸收魂环
 message.hunhuan.list.false=§b精神力§f不足，无法继续吸收魂环
-message.hunhuan.list0=你靠近了一个%s年§e魂环
+message.hunhuan.list0=你靠近了一个§6%s年§e魂环，§f将自动吸收魂环，§b你也可以蹲下来分解魂环
 message.hunhuan.list1=开始吸收魂环，§6精神力§b-%s
 message.hunhuan.list2=正在吸收魂环，§6精神力§b-%s
 message.hunhuan.list3=正在吸收魂环，§6精神力§b-%s
@@ -700,6 +704,9 @@ advancement.shanhaicontinent.hunye.desc=§f利用§e造化炉§f提炼§d精华,
 
 advancement.shanhaicontinent.danyao=制作丹药
 advancement.shanhaicontinent.danyao.desc=§f利用§e造化炉§f制作§d丹药,§a配方槽放§b单方,§a燃料槽放§b煤炭§a，属性槽放§d魂草
+
+advancement.shanhaicontinent.fenjiebonemeal=魂骨分解
+advancement.shanhaicontinent.fenjiebonemeal.desc=§f利用§e造化炉§f分解§d魂骨,§a配方槽放§b开天镐,§a燃料槽放§b煤炭§a，属性槽放§d魂骨
 
 advancement.shanhaicontinent.bone=魂骨
 advancement.shanhaicontinent.bone.desc=成功获得一块魂骨，击杀魂怪概率掉落或秘境宝箱获得

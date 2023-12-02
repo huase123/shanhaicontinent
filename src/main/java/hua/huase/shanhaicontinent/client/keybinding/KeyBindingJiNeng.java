@@ -1,5 +1,6 @@
 package hua.huase.shanhaicontinent.client.keybinding;
 
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketJiNengKaiguan;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,7 +19,7 @@ public class KeyBindingJiNeng {
         if (MyKeyBinding.MYKEY_R.isPressed()) {
 
             EntityLivingBase entity = event.getEntityLiving();
-            if (entity instanceof EntityPlayer) {
+            if (entity instanceof EntityPlayer && entity.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()!=0) {
 
                 PacketHandler.INSTANCE.sendToServer(new PacketJiNengKaiguan());
 

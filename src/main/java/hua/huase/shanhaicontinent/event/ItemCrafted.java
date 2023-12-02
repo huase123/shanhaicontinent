@@ -42,7 +42,7 @@ public class ItemCrafted {
             if(capability==null)return;
             int nianxian = capability.getNianxian();
 
-            crafting.setCount(8);
+//            crafting.setCount(8);
 
             if(nianxian>=1000000){
                 crafting.setCount(9);

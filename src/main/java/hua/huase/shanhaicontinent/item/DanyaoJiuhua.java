@@ -58,6 +58,7 @@ public class DanyaoJiuhua extends Item {
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
         ItemStack item = playerIn.getHeldItem(handIn);
 
+        playerIn.getCooldownTracker().setCooldown(this, 5);
         if (!worldIn.isRemote) {
 
             DanyaoItemCapability danyaocapability1 = item.getCapability(CapabilityRegistryHandler.DANYAOITEMCAPABILITYCAPABILITY, null);
@@ -85,6 +86,7 @@ public class DanyaoJiuhua extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {
         super.addInformation(itemstack, world, list, flag);
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("danyao_list0"));
         NBTTagCompound tagCompound = itemstack.getTagCompound();
         if (tagCompound!=null) {
 

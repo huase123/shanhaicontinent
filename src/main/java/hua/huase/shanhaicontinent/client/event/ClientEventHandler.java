@@ -152,7 +152,8 @@ public class ClientEventHandler
                     GlStateManager.rotate(-90, 1, 0, 0);
                     GlStateManager.rotate(i1 % 2 == 0 ? i * 15f : -i * 15f, 0, 0, 1);
 
-                    GlStateManager.scale(0.1f + i1 / 10f, 0.1f + i1 / 10f, 0);
+//                    GlStateManager.scale(0.1f + i1 / 10f, 0.1f + i1 / 10f, 0);
+                    GlStateManager.scale(v1+i1 / 10f, v1+i1 / 10f, 0);
 
                     GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 

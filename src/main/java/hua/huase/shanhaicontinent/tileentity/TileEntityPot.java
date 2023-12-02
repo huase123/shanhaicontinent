@@ -2,8 +2,11 @@ package hua.huase.shanhaicontinent.tileentity;
 
 import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.block.FlowerBlock;
+import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.DanyaoItemCapabilityProvider;
+import hua.huase.shanhaicontinent.capability.baubles.IBauble;
 import hua.huase.shanhaicontinent.handers.HanderAny;
+import hua.huase.shanhaicontinent.item.ItemTextPickaxe;
 import hua.huase.shanhaicontinent.item.danfangdir.DanFangBase;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -128,12 +131,13 @@ public class TileEntityPot extends TileEntity implements ITickable
                 ItemStack itemStack = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")));
 
 
-                if (Items.COAL.equals(this.SLOT1.extractItem(0, 1, true).getItem())) {
+                if (Items.COAL.equals(this.SLOT1.extractItem(0, 1, true).getItem())||this.fuel!=0) {
                     boolean b = false;
                     if(Block.getBlockFromItem(this.SLOT1.extractItem(1, 1, true).getItem()) instanceof FlowerBlock&&this.SLOT1.extractItem(1, 1, true).getMetadata()>0){
                         itemStack = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), 1, this.SLOT1.extractItem(1, 1, true).getMetadata()-1, new DanyaoItemCapabilityProvider(1,this.SLOT1.extractItem(1, 1, true).getMetadata()-1).serializeItemNBT());
 
                         if (this.SLOT7.insertItem(0, itemStack, true).isEmpty()) {
+                            this.changeFuel();
                         if (this.compressorProgress >= 240) {
                             this.SLOT7.insertItem(0, itemStack, false);
                                 this.SLOT1.extractItem(1, 1, false);
@@ -146,7 +150,9 @@ public class TileEntityPot extends TileEntity implements ITickable
                         itemStack = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), 1, this.SLOT1.extractItem(2, 1, true).getMetadata()-1, new DanyaoItemCapabilityProvider(1,this.SLOT1.extractItem(2, 1, true).getMetadata()-1).serializeItemNBT());
 
                         if (this.SLOT7.insertItem(0, itemStack, true).isEmpty()) {
-                        if (this.compressorProgress >= 240) {    this.SLOT7.insertItem(0, itemStack, false);
+                            this.changeFuel();
+                        if (this.compressorProgress >= 240) {
+                                this.SLOT7.insertItem(0, itemStack, false);
                                 this.SLOT1.extractItem(2, 1, false);
                                 b=true;
                             }
@@ -157,6 +163,7 @@ public class TileEntityPot extends TileEntity implements ITickable
                         itemStack = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), 1, this.SLOT1.extractItem(3, 1, true).getMetadata()-1, new DanyaoItemCapabilityProvider(1,this.SLOT1.extractItem(3, 1, true).getMetadata()-1).serializeItemNBT());
 
                         if (this.SLOT7.insertItem(0, itemStack, true).isEmpty()) {
+                            this.changeFuel();
                         if (this.compressorProgress >= 240) {   this.SLOT7.insertItem(0, itemStack, false);
                                 this.SLOT1.extractItem(3, 1, false);
                                 b=true;
@@ -168,6 +175,7 @@ public class TileEntityPot extends TileEntity implements ITickable
                         itemStack = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), 1, this.SLOT1.extractItem(4, 1, true).getMetadata()-1, new DanyaoItemCapabilityProvider(1,this.SLOT1.extractItem(4, 1, true).getMetadata()-1).serializeItemNBT());
 
                         if (this.SLOT7.insertItem(0, itemStack, true).isEmpty()) {
+                            this.changeFuel();
                         if (this.compressorProgress >= 240) {   this.SLOT7.insertItem(0, itemStack, false);
                                 this.SLOT1.extractItem(4, 1, false);
                                 b=true;
@@ -179,6 +187,7 @@ public class TileEntityPot extends TileEntity implements ITickable
                         itemStack = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), 1, this.SLOT1.extractItem(5, 1, true).getMetadata()-1, new DanyaoItemCapabilityProvider(1,this.SLOT1.extractItem(5, 1, true).getMetadata()-1).serializeItemNBT());
 
                         if (this.SLOT7.insertItem(0,itemStack, true).isEmpty()) {
+                            this.changeFuel();
                         if (this.compressorProgress >= 240) {  this.SLOT7.insertItem(0,itemStack, false);
                                 this.SLOT1.extractItem(5, 1, false);
                                 b=true;
@@ -199,6 +208,69 @@ public class TileEntityPot extends TileEntity implements ITickable
             DanFangBase item = (DanFangBase) this.SLOT0.extractItem(0, 1, true).getItem();
             this.compressorProgress = item.update(this,this.SLOT0.extractItem(0, 1, true),SLOT0,SLOT1,SLOT7,this.compressorProgress);
 //            this.markDirty();
+
+        } else if (this.SLOT0.extractItem(0, 1, true).getItem() instanceof ItemTextPickaxe){
+
+            if (this.compressorProgress % 80 == 0) {
+
+                if (Items.COAL.equals(this.SLOT1.extractItem(0, 1, true).getItem())||this.fuel!=0) {
+
+                    boolean b = false;
+                    for (int i = 1; i < 6; i++) {
+                        if (this.SLOT1.extractItem(i, 1, true).getItem() instanceof IBauble){
+                            int nianxian = this.SLOT1.extractItem(i, 1, true).getCapability(CapabilityRegistryHandler.ITEM_CAPABILITY, null).getNianxian();
+
+                            ItemStack crafting = new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":soulbonemeal")), 1, 0);
+
+                            if(nianxian>=1000000){
+                                crafting.setCount(9);
+                                crafting.setItemDamage(8);
+                            }else if(nianxian>=100000){
+                                crafting.setCount(nianxian/100000+1);
+                                crafting.setItemDamage(7);
+                            }else if(nianxian>=10000){
+                                crafting.setCount(nianxian/10000+1);
+                                crafting.setItemDamage(6);
+                            }else if(nianxian>=8000){
+                                crafting.setCount(nianxian/1000+1);
+                                crafting.setItemDamage(5);
+                            }else if(nianxian>=5000){
+                                crafting.setCount(nianxian/800+1);
+                                crafting.setItemDamage(4);
+                            }else if(nianxian>=1000){
+                                crafting.setCount(nianxian/500+1);
+                                crafting.setItemDamage(3);
+                            }else if(nianxian>=500){
+                                crafting.setCount(nianxian/100+1);
+                                crafting.setItemDamage(2);
+                            }else if(nianxian>=100){
+                                crafting.setCount(nianxian/50+1);
+                                crafting.setItemDamage(1);
+                            }else if(nianxian>=1){
+                                crafting.setCount(nianxian/10+1);
+                                crafting.setItemDamage(0);
+                            }
+
+
+                            if (this.SLOT7.insertItem(0,crafting, true).isEmpty()) {
+                                this.changeFuel();
+                                if (this.compressorProgress >= 240) {  this.SLOT7.insertItem(0,crafting, false);
+                                    this.SLOT1.extractItem(i, 1, false);
+                                    b=true;
+                                }
+                                this.compressorProgress += 1;
+                            }
+                        }
+                    }
+                    if(b){
+
+                        this.compressorProgress =0;
+                    }
+                }
+            }else {
+                this.compressorProgress += 1;
+                this.markDirty();
+            }
 
         } else if (this.compressorProgress > 0) {
             this.compressorProgress = 0;

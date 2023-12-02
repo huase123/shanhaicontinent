@@ -13,6 +13,13 @@
     "background": "shanhaicontinent:textures/blocks/ore_ruby.png",
     "announce_to_chat": true
   },
+  "rewards": {
+    "recipes": [
+      "shanhaicontinent:pot",
+      "shanhaicontinent:textpickaxe"
+
+    ]
+  },
   "criteria": {
     "shanhaicontinent": {
       "trigger": "minecraft:location"

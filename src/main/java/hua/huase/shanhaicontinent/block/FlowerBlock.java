@@ -12,6 +12,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -309,6 +310,14 @@ public class FlowerBlock extends Block
 @Nullable
 public static List<FlowerBlock> flowerBlocksList = new ArrayList<FlowerBlock>();
 
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {
+        super.addInformation(itemstack, world, list, flag);
+//        list.remove(list.size()-1);
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("flowerblock_list0"));
+    }
 
 
 

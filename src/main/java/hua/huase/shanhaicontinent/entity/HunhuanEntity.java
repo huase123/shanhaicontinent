@@ -7,6 +7,7 @@ import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.capability.api.ChangeCapability;
+import hua.huase.shanhaicontinent.handers.HanderAny;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketHandler;
 import hua.huase.shanhaicontinent.seedpacket.PacketHunhuanKaiguan;
@@ -16,11 +17,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
@@ -31,6 +34,7 @@ import java.util.List;
 import java.util.Random;
 
 import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.MONSTER_CAPABILITY;
+import static hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler.random;
 
 public class HunhuanEntity extends Entity {
     public static final String ID = "Hunhuan";
@@ -42,6 +46,7 @@ public class HunhuanEntity extends Entity {
     public HunhuanEntity(World worldIn) {
         super(worldIn);
         this.exiistTime = worldIn.getWorldTime();
+        this.setSize(2.0F, 1.0F);
     }
 
 
@@ -73,32 +78,49 @@ public class HunhuanEntity extends Entity {
 
     }
 
+    public void setDead()
+    {
+
+        for (EntityPlayer entityPlayer : Collections.singletonList(playerTite)) {
+            if(entityPlayer!=null)
+                PacketHandler.INSTANCE.sendTo(new PacketHunhuanKaiguan(false), (EntityPlayerMP) entityPlayer);
+        }
+
+        this.isDead = true;
+    }
+
+
     public  int viewPlayer=0;
+    public  int sneakingTime=0;
     public  Boolean kaiguan=false;
     public   EntityPlayer playerTite = null;
     public void onUpdate()
     {
         super.onUpdate();
 
-        if(exiistTime+2000<=this.world.getWorldTime()){
-
-            for (EntityPlayer entityPlayer : Collections.singletonList(playerTite)) {
-                if(entityPlayer!=null)
-                    PacketHandler.INSTANCE.sendTo(new PacketHunhuanKaiguan(kaiguan), (EntityPlayerMP) entityPlayer);
-            }
+        if(exiistTime+2000<=this.world.getWorldTime()||(exiistTime>this.world.getWorldTime()&&this.world.getWorldTime()>1000)){
 
             this.setDead();
+            return;
         }
         if (!this.world.isRemote)
         {
 
+            int nianxian = this.getCapability(MONSTER_CAPABILITY, null).getNianxian();
+
             int STAGE = viewPlayer;
+
+
+
+
+
             if(STAGE%20==0){
                 this.getDataManager().set(STAGELIFE, this.getCapability(MONSTER_CAPABILITY, null).getNianxian());
                 double k = this.posX;
                 double l = this.posY;
                 double i1 = this.posZ;
-                AxisAlignedBB axisalignedbb = (new AxisAlignedBB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).grow(1).expand(0.0D, 0.0D, 0.0D);
+//                AxisAlignedBB axisalignedbb = (new AxisAlignedBB((double)k, (double)l, (double)i1, (double)(k + 1), (double)(l + 1), (double)(i1 + 1))).grow(1).expand(0.0D, 0.0D, 0.0D);
+                AxisAlignedBB axisalignedbb = (new AxisAlignedBB(this.getPosition())).grow(1.5D, 0.5D, 1.5D);
                 List<EntityPlayer> list = this.world.<EntityPlayer>getEntitiesWithinAABB(EntityPlayer.class, axisalignedbb);
                 if(list.size()>1)return;
                 EntityPlayer player = null;
@@ -123,7 +145,31 @@ public class HunhuanEntity extends Entity {
 
                 }else{
 
+
+                    if(player.isSneaking()){
+                        this.sneakingTime++;
+                        if(Math.pow(sneakingTime,4)>=nianxian){
+
+                            this.entityDropItem(nianxian);
+                            this.setDead();
+
+                            playerTite.sendMessage(new TextComponentTranslation("message.hunhuan.fenjie"));
+                        }
+
+                        viewPlayer= 0;
+                        return;
+                    }else {
+                        this.sneakingTime=0;
+                    }
+
+
+
+
+
                     if(player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY,null).getHunhuankaiguan()==0){
+
+
+                        viewPlayer= 0;
                         return;
                     }
 
@@ -132,8 +178,8 @@ public class HunhuanEntity extends Entity {
 
 
                     PlayerCapability playerCapability = player.getCapability(CapabilityRegistryHandler.PLYAER_CAPABILITY, null);
-                    MonsterCapability monsterCapability = this.getCapability(MONSTER_CAPABILITY, null);
-                    int nianxian = monsterCapability.getNianxian();
+
+
 
                     if(STAGE==0){
                         player.sendMessage(new TextComponentTranslation("message.hunhuan.list0", nianxian));
@@ -252,6 +298,27 @@ public class HunhuanEntity extends Entity {
 
             viewPlayer= ++STAGE;
         }
+    }
+
+
+
+    public void entityDropItem(int nianxian){
+        int i = random.nextInt(3)+1;
+        if(nianxian>=1000000){
+            this.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), i+3, 5),0);
+        }else if(nianxian>=100000){
+            this.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), i*nianxian/100000, 4),0);
+        }else if(nianxian>=10000){
+            this.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), i*nianxian/10000, 3),0);
+        }else if(nianxian>=1000){
+            this.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), i*nianxian/1000, 2),0);
+        }else if(nianxian>=100){
+            this.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), i*nianxian/100, 1),0);
+        }else if(nianxian>=1){
+            this.entityDropItem(new ItemStack(HanderAny.registry.getValue(new ResourceLocation(ExampleMod.MODID+":hunye")), i*nianxian/10+1, 0),0);
+        }
+
+
     }
 
 }

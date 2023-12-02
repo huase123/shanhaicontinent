@@ -37,7 +37,7 @@ public class PacketJiNengKaiguan implements IMessage, IMessageHandler<PacketJiNe
 			useTime.put(player.getEntityId(),player.world.getWorldTime()-200L);
 		}
 
-		if(useTime.get(player.getEntityId())+200L<=player.world.getWorldTime()) {
+		if(useTime.get(player.getEntityId())+200L<=player.world.getWorldTime()||useTime.get(player.getEntityId())>=player.world.getWorldTime()) {
 			useTime.put(player.getEntityId(),player.world.getWorldTime());
 			IThreadListener mainThread = (WorldServer) player.world;
 			mainThread.addScheduledTask(new Runnable(){ public void run() {

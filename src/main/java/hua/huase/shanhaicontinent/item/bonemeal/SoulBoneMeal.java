@@ -4,6 +4,7 @@ import hua.huase.shanhaicontinent.ExampleMod;
 import hua.huase.shanhaicontinent.block.soulsoil.SoulSoilBase;
 import hua.huase.shanhaicontinent.handers.HanderAny;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -14,6 +15,10 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class SoulBoneMeal extends Item {
 
@@ -110,6 +115,17 @@ public class SoulBoneMeal extends Item {
 
         return false;
     }
+
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack itemstack, World world, List<String> list, ITooltipFlag flag) {
+        super.addInformation(itemstack, world, list, flag);
+//        list.remove(list.size()-1);
+        list.add(net.minecraft.util.text.translation.I18n.translateToLocal("soulbonemeal_list0"));
+    }
+
+
 
 
 }
