@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.entity;
 
 import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.advancements.TFAdvancements;
 import hua.huase.shanhaicontinent.api.PlayerCapabilityApi;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
@@ -200,7 +201,10 @@ public class HunhuanEntity extends Entity {
                                     monsterCapabilityList.add(this.getCapability(MONSTER_CAPABILITY, null));
 //                                    playerCapability.setMonsterCapabilityList(monsterCapabilityList);
                                     ChangeCapability.addHunhuan(playerCapability,this.getCapability(MONSTER_CAPABILITY, null),  player);
-                                    playerCapability.addDengji(1);
+//                                    playerCapability.addDengji(1);
+
+                                    TFAdvancements.PLAYER_XISHOUHUNHUAN.trigger((EntityPlayerMP) player,nianxian);
+                                    PlayerCapabilityApi.tuPo(player);
                                     NetworkRegistryHandler.PlayerListen.sendClientCustomPacket((EntityPlayer) player);
 
                                     player.sendMessage(new TextComponentTranslation("message.hunhuan.sccuess", nianxian));

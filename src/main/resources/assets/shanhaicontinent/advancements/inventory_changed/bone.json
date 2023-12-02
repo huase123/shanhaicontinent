@@ -1,0 +1,103 @@
+{
+  "parent": "shanhaicontinent:root",
+  "display": {
+    "frame": "task",
+    "icon": {
+      "item": "shanhaicontinent:exoskeletonbone",
+      "data": 0
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.bone"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.bone.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "exoskeletonbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:exoskeletonbone"
+          }
+        ]
+      }
+    },
+    "headbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:headbone"
+          }
+        ]
+      }
+    },
+    "lefthandbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:lefthandbone"
+          }
+        ]
+      }
+    },
+    "leftlegbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:leftlegbone"
+          }
+        ]
+      }
+    },
+    "righthandbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:righthandbone"
+          }
+        ]
+      }
+    },
+    "rightlegbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:rightlegbone"
+          }
+        ]
+      }
+    },
+    "trunkbone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:trunkbone"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+     "exoskeletonbone",
+     "headbone",
+     "lefthandbone",
+     "leftlegbone",
+     "righthandbone",
+     "rightlegbone",
+     "trunkbone"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  }
+}

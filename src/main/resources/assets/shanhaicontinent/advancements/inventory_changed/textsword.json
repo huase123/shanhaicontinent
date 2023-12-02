@@ -1,0 +1,32 @@
+{
+  "parent": "shanhaicontinent:inventory_changed/textpickaxe",
+  "display": {
+    "frame": "task",
+    "icon": {
+      "item": "shanhaicontinent:textsword",
+      "data": 0
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.textsword"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.textsword.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:textsword"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

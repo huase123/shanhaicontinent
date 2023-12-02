@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.event;
 
 import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.advancements.TFAdvancements;
 import hua.huase.shanhaicontinent.api.BaublesApi;
 import hua.huase.shanhaicontinent.api.IBaublesItemHandler;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
@@ -11,6 +12,7 @@ import hua.huase.shanhaicontinent.handers.HanderAny;
 import hua.huase.shanhaicontinent.item.jineng.JinengMethond;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -85,6 +87,7 @@ public class PlayerEventSleepInBed {
                 }
             }
 
+            TFAdvancements.PLAYER_ZHUANSHENG.trigger((EntityPlayerMP) entityPlayer);
 
             NetworkRegistryHandler.PlayerListen.sendClientCustomPacket(entityPlayer);
         }

@@ -1,0 +1,28 @@
+{
+  "parent": "shanhaicontinent:tupo/dengji_60",
+  "display": {
+    "frame": "goal",
+    "icon": {
+      "item": "shanhaicontinent:soulbonemeal",
+      "data": 7
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.dengji_70"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.dengji_70.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "dengji_1": {
+      "trigger": "shanhaicontinent:dengji",
+      "conditions": {
+        "dengji": 70
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

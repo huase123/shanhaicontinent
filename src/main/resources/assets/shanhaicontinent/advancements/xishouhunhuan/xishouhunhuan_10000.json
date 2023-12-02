@@ -1,0 +1,29 @@
+{
+  "parent": "shanhaicontinent:xishouhunhuan/xishouhunhuan_1000",
+  "display": {
+    "frame": "goal",
+    "icon": {
+      "item": "shanhaicontinent:baisuilan",
+      "data": 3
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.xishouhunhuan_10000"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.xishouhunhuan_10000.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "dengji_1": {
+      "trigger": "shanhaicontinent:xishouhunhuan",
+      "conditions": {
+        "min": 1000,
+        "max": 10000
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

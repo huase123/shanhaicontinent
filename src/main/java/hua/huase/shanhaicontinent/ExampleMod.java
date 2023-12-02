@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent;
 
 import hua.huase.shanhaicontinent.WorldGen.structureal.TemplateHander;
+import hua.huase.shanhaicontinent.advancements.TFAdvancements;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
@@ -59,6 +60,8 @@ public class ExampleMod
 
         PacketHandler.init();
         changeAttributesIO();
+//成就系统
+        TFAdvancements.init();
 
     }
 

@@ -1,0 +1,32 @@
+{
+  "parent": "shanhaicontinent:root",
+  "display": {
+    "frame": "task",
+    "icon": {
+      "item": "shanhaicontinent:bianhua",
+      "data": 6
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.bianhua"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.bianhua.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:bianhua"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}
