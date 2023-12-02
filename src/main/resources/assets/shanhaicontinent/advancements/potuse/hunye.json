@@ -1,0 +1,32 @@
+{
+  "parent": "shanhaicontinent:potuse/pot",
+  "display": {
+    "frame": "task",
+    "icon": {
+      "item": "shanhaicontinent:hunye",
+      "data": 0
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.hunye"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.hunye.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:hunye"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

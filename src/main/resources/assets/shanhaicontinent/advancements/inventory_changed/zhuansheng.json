@@ -1,0 +1,24 @@
+{
+  "parent": "shanhaicontinent:inventory_changed/bianhua",
+  "display": {
+    "frame": "goal",
+    "icon": {
+      "item": "shanhaicontinent:wuhunhuangbzmzzs"
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.zhuansheng"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.zhuansheng.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "zhuansheng": {
+      "trigger": "minecraft:zhuansheng"
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

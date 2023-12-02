@@ -5,7 +5,7 @@ join world=：§2-%s-§f来到了山海大陆———-§e山海大陆：§b宇�
 tile.shanhaicontinentpot.name=§e造化炉
 zhaohualu_list1=§6-------§d一生二6-------
 zhaohualu_list2=§6-------§a二生三6-------
-zhaohualu_list3=§6=======§c3生万物§6=======
+zhaohualu_list3=§6=======§c三生万物§6=======
 zhaohualu_list4=§f++++++§b夺天地之造化，炼制丹药§f++++++
 
 item.shanhaicontinenttextpickaxe.name=§c伪神器 §f§k****** §e《开天镐》
@@ -633,3 +633,88 @@ effect.shanhaicontinent.wuqijnjlcy=§4九龙禅音
 
 effect.shanhaicontinent.wuhunhuangbzmzzs=§b不知名至尊术
 effect.shanhaicontinent.wuhunhuanglhbs=§b轮回宝术
+
+
+advancement.shanhaicontinent.root=§1初到山海
+advancement.shanhaicontinent.root.desc=§f《§6山海大陆§f》 mod交流群：§e697487125
+
+advancement.shanhaicontinent.dengji_1=§a魂士
+advancement.shanhaicontinent.dengji_1.desc=§a第一次升级
+
+advancement.shanhaicontinent.dengji_6=§e武魂觉醒
+advancement.shanhaicontinent.dengji_6.desc=§e成功觉醒武魂，通过K键控制武魂开关
+
+advancement.shanhaicontinent.dengji_10=§b魂师
+advancement.shanhaicontinent.dengji_10.desc=§a成功吸收第一魂环并突破到§b魂师,通过R键可以召唤技能了~
+
+advancement.shanhaicontinent.dengji_20=§c大魂师
+advancement.shanhaicontinent.dengji_20.desc=§a成功吸收第二魂环并突破到§c大魂师
+
+advancement.shanhaicontinent.dengji_30=§d魂尊
+advancement.shanhaicontinent.dengji_30.desc=§a成功吸收第三魂环并突破到§d魂尊
+
+advancement.shanhaicontinent.dengji_40=§e魂宗
+advancement.shanhaicontinent.dengji_40.desc=§a成功吸收第四魂环并突破到§e魂宗
+
+advancement.shanhaicontinent.dengji_50=§8魂王
+advancement.shanhaicontinent.dengji_50.desc=§a成功吸收第五魂环并突破到§8魂王
+
+advancement.shanhaicontinent.dengji_60=§7魂帝
+advancement.shanhaicontinent.dengji_60.desc=§a成功吸收第六魂环并突破到§7魂帝
+
+advancement.shanhaicontinent.dengji_70=§6魂圣
+advancement.shanhaicontinent.dengji_70.desc=§a成功吸收第七魂环并突破到§6魂圣
+
+advancement.shanhaicontinent.dengji_80=§5魂斗罗
+advancement.shanhaicontinent.dengji_80.desc=§a成功吸收第八魂环并突破到§5魂斗罗
+
+advancement.shanhaicontinent.dengji_90=§4封号斗罗
+advancement.shanhaicontinent.dengji_90.desc=§a成功吸收第九魂环并突破到§4封号斗罗
+
+advancement.shanhaicontinent.dengji_99=§0九九至尊
+advancement.shanhaicontinent.dengji_99.desc=§8感受到天地的压制
+
+advancement.shanhaicontinent.xishouhunhuan_100=§a吸收白色魂环
+advancement.shanhaicontinent.xishouhunhuan_100.desc=§a成功吸收一个佰年以内魂环，末地与地狱存在更加强大的魂兽
+
+advancement.shanhaicontinent.xishouhunhuan_1000=§b吸收佰年魂环
+advancement.shanhaicontinent.xishouhunhuan_1000.desc=§a成功吸收一个佰年魂环，末地与地狱存在更加强大的魂兽
+
+advancement.shanhaicontinent.xishouhunhuan_10000=§c吸收千年魂环
+advancement.shanhaicontinent.xishouhunhuan_10000.desc=§a成功吸收一个千年魂环，末地与地狱存在更加强大的魂兽
+
+advancement.shanhaicontinent.xishouhunhuan_100000=§d吸收万年魂环
+advancement.shanhaicontinent.xishouhunhuan_100000.desc=§a成功吸收一个万年魂环
+
+advancement.shanhaicontinent.xishouhunhuan_1000000=§e吸收十万年魂环
+advancement.shanhaicontinent.xishouhunhuan_1000000.desc=§a成功吸收一个十万年魂环
+
+advancement.shanhaicontinent.xishouhunhuan_10000001=§4吸收百万年魂环
+advancement.shanhaicontinent.xishouhunhuan_10000001.desc=§a成功吸收一个百万年魂环
+
+advancement.shanhaicontinent.pot=获得造化炉
+advancement.shanhaicontinent.pot.desc=配方：工作台物品槽序号4-6-7-9<金锭> 序号5<钻石> 序号8<铁块>
+
+advancement.shanhaicontinent.hunye=提炼精华
+advancement.shanhaicontinent.hunye.desc=§f利用§e造化炉§f提炼§d精华,§a燃料槽放§b煤炭§a，任意属性槽放§d魂草
+
+advancement.shanhaicontinent.danyao=制作丹药
+advancement.shanhaicontinent.danyao.desc=§f利用§e造化炉§f制作§d丹药,§a配方槽放§b单方,§a燃料槽放§b煤炭§a，属性槽放§d魂草
+
+advancement.shanhaicontinent.bone=魂骨
+advancement.shanhaicontinent.bone.desc=成功获得一块魂骨，击杀魂怪概率掉落或秘境宝箱获得
+
+advancement.shanhaicontinent.soulbonemeal=魂骨粉
+advancement.shanhaicontinent.soulbonemeal.desc=右键魂土催生魂草，可以将多余的魂骨分解成魂骨粉
+
+advancement.shanhaicontinent.textpickaxe=开天稿
+advancement.shanhaicontinent.textpickaxe.desc=前期事半功倍，配方：工作台序号1-3<绿宝石>,2<钻石块>,5-8<铁块>
+
+advancement.shanhaicontinent.textsword=圣道之剑
+advancement.shanhaicontinent.textsword.desc=传说被镇压在末地居仙阁底下，
+
+advancement.shanhaicontinent.bianhua=彼岸花
+advancement.shanhaicontinent.bianhua.desc=生长时对附近玩家施加debuff<§d梦回万古§f>
+
+advancement.shanhaicontinent.zhuansheng=§4轮回转生
+advancement.shanhaicontinent.zhuansheng.desc=达到满级且带有梦回万古时，通过睡觉转生,返还武魂果实，保留十分之一的属性，等级归零

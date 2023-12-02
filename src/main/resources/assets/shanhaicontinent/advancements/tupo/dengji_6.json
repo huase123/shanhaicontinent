@@ -1,0 +1,28 @@
+{
+  "parent": "shanhaicontinent:tupo/dengji_1",
+  "display": {
+    "frame": "goal",
+    "icon": {
+      "item": "shanhaicontinent:wuqijingubang",
+      "data": 0
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.dengji_6"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.dengji_6.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "dengji_1": {
+      "trigger": "shanhaicontinent:dengji",
+      "conditions": {
+        "dengji": 6
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}

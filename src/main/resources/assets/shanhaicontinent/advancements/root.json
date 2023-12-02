@@ -1,0 +1,22 @@
+{
+  "display": {
+    "frame": "task",
+    "icon": {
+      "item": "shanhaicontinent:pot"
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.root"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.root.desc"
+    },
+    "background": "shanhaicontinent:textures/blocks/ore_ruby.png",
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "shanhaicontinent": {
+      "trigger": "minecraft:location"
+    }
+  }
+
+}

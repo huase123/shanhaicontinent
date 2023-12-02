@@ -1,10 +1,12 @@
 package hua.huase.shanhaicontinent.api;
 
+import hua.huase.shanhaicontinent.advancements.TFAdvancements;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.capability.MonsterCapability;
 import hua.huase.shanhaicontinent.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.network.NetworkRegistryHandler;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -84,6 +86,9 @@ public interface PlayerCapabilityApi {
                 }
 
             }
+
+
+            TFAdvancements.PLAYER_TUPO.trigger((EntityPlayerMP) player,capability.getDengji());
             NetworkRegistryHandler.PlayerListen.sendClientCustomPacket(player);
             return true;
         }

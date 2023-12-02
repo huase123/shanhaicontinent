@@ -1,0 +1,32 @@
+{
+  "parent": "shanhaicontinent:root",
+  "display": {
+    "frame": "task",
+    "icon": {
+      "item": "shanhaicontinent:pot",
+      "data": 0
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.pot"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.pot.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:pot"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}
