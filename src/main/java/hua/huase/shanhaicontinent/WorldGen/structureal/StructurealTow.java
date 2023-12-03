@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -18,7 +19,8 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
 
-import static hua.huase.shanhaicontinent.LootTablesHander.*;
+import static hua.huase.shanhaicontinent.LootTablesHander.GUFENGXIAOWU_CHESTS_MODI;
+import static hua.huase.shanhaicontinent.LootTablesHander.GUFENGXIAOWU_CHESTS_MODI_ZUIHOU;
 
 public class StructurealTow implements IWorldGenerator {
     int distance;
@@ -33,10 +35,13 @@ public class StructurealTow implements IWorldGenerator {
         if(world==null||!canSpawnStructureAtCoords(chunkX,chunkZ)||world.provider.getDimension()!=1) {
             return;
         }
-        MinecraftServer server = world.getMinecraftServer();
+        ((WorldServer)world).addScheduledTask(() ->
+                {
+
+                    MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template0 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou0"));
-        Template template1 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou1"));
+        Template template0 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou1"));
+        Template template1 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou0"));
         BlockPos pos = new BlockPos(chunkX * 16, 80, chunkZ * 16);
 
         for (IBlockState iblockstate = world.getBlockState(pos); (iblockstate.getBlock().isAir(iblockstate, world, pos) || iblockstate.getBlock().isLeaves(iblockstate, world, pos)) && pos.getY() > 40; iblockstate = world.getBlockState(pos))
@@ -45,19 +50,24 @@ public class StructurealTow implements IWorldGenerator {
         }
 
 
-
-        if(world.getBlockState(pos.down()).getBlock().isAir(world.getBlockState(pos.down()), world, pos)){
-            return;
-        }
+//
+//        if(world.getBlockState(pos.down()).getBlock().isAir(world.getBlockState(pos.down()), world, pos)){
+////            return;
+//        }
 
 
         final BlockPos posfinal = pos;
 
         for (Rotation rotation : Rotation.values()) {
 
-                    PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation).setRandom(random);
-                    template0.addBlocksToWorld(world, posfinal, placementsettings, 2 | 4 | 16);
-                    template1.addBlocksToWorld(world, posfinal.add(0,32,0), placementsettings, 2 | 4 | 16);
+            ((WorldServer)world).addScheduledTask(() ->
+                    {
+                PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation).setRandom(random);
+                template0.addBlocksToWorld(world, posfinal, placementsettings, 2 | 4 | 16);
+                template1.addBlocksToWorld(world, posfinal.add(0,32,0), placementsettings, 2 | 4 | 16);
+
+
+                    });
 
         }
 
@@ -107,7 +117,7 @@ public class StructurealTow implements IWorldGenerator {
         }
 
 
-
+                });
 
     }
 

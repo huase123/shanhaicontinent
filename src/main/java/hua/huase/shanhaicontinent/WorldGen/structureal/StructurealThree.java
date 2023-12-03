@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -32,7 +33,12 @@ public class StructurealThree implements IWorldGenerator {
         if(world==null||!canSpawnStructureAtCoords(chunkX,chunkZ)||world.provider.getDimension()!=-1) {
             return;
         }
-        MinecraftServer server = world.getMinecraftServer();
+
+        ((WorldServer)world).addScheduledTask(() ->
+        {
+
+
+            MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template2 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gufengxiaowu01"));
         Rotation[] arotation = Rotation.values();
@@ -73,7 +79,9 @@ public class StructurealThree implements IWorldGenerator {
 
 
         placementsettings.setIntegrity(1F);
+
         template2.addBlocksToWorld(world, blockpos1, placementsettings, 2 | 4 | 16);
+
 
 
         world.setBlockState(chestPos, Blocks.CHEST.getStateFromMeta(0), 3);
@@ -92,6 +100,9 @@ public class StructurealThree implements IWorldGenerator {
             ((TileEntityChest)tileentity1).setLootTable(LootTablesHander.GUFENGXIAOWU_CHESTS_DiYV, random.nextLong());
         }
 
+
+
+        });
     }
 
 

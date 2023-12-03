@@ -2,7 +2,6 @@ package hua.huase.shanhaicontinent.WorldGen;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.Teleporter;
@@ -12,6 +11,9 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import static hua.huase.shanhaicontinent.WorldGen.HanderBiome.myDim;
+
 
 public  class MyWorldProvider extends WorldProvider {
     private static final IRenderHandler cloudRenderer = new IRenderHandler() {
@@ -27,9 +29,17 @@ public  class MyWorldProvider extends WorldProvider {
     }
 
 
+
     public IChunkGenerator createChunkGenerator() {
-        return new UW_ChunkGeneratorGarden(this.world, true,this.world.getWorldTime(), new BlockPos(0,8,0));
+//        return new UW_ChunkGeneratorGarden(this.world, true,this.world.getWorldTime(), new BlockPos(0,8,0));
+
+//        return new ChunkGeneratorHell(this.world, this.world.getWorldInfo().isMapFeaturesEnabled(), this.world.getSeed());
+//        return super.createChunkGenerator();
+        return new UW_ChunkGeneratorGarden(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled(), world.getWorldInfo().getGeneratorOptions());
+
+//        return new ChunkGeneratorMy(this.world, false, this.world.getSeed(), this.getSpawnCoordinate());
     }
+
 
     public String getSaveFolder() {
         return "UW_GARDEN_" + this.getDimension();
@@ -44,9 +54,11 @@ public  class MyWorldProvider extends WorldProvider {
         return 1.0;
     }
 
-    public boolean isDaytime() {
-        return true;
+    public boolean isDaytime()
+    {
+        return world.getSkylightSubtracted() < 4;
     }
+
 
     public void calculateInitialWeather() {
         this.resetRainAndThunder();
@@ -71,15 +83,17 @@ public  class MyWorldProvider extends WorldProvider {
     }
 
     public long getWorldTime() {
-        return 6000L;
+//        return 1000L;
+        return super.getWorldTime();
     }
 
-    public float calculateCelestialAngle(long par1, float par3) {
-        return 0.0F;
-    }
+//    public float calculateCelestialAngle(long par1, float par3) {
+//        return 0.225f;
+//    }
 
     public boolean canDoLightning(Chunk chunk) {
-        return false;
+//        return false;
+        return super.canDoLightning(chunk);
     }
 
     public boolean canDoRainSnowIce(Chunk chunk) {
@@ -87,6 +101,11 @@ public  class MyWorldProvider extends WorldProvider {
     }
 
     public DimensionType getDimensionType() {
-        return DimensionType.valueOf("DIM21");
+        return myDim;
     }
+
+
+
+
+
 }

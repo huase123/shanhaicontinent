@@ -18,6 +18,7 @@ public class MonsterCapabilityProvider implements ICapabilitySerializable<NBTTag
         int i =0 ;
         switch (provider) {
             case -1:
+//                i=random.nextInt(110);
                 i=random.nextInt(110);
                 break;
             case 0:
@@ -25,6 +26,11 @@ public class MonsterCapabilityProvider implements ICapabilitySerializable<NBTTag
                 break;
             case 1:
                 i=random.nextInt(120);
+//                i=random.nextInt(120);
+                break;
+            default:
+                i=random.nextInt(130)+2;
+                break;
         }
         int v;
         if(i>=118){

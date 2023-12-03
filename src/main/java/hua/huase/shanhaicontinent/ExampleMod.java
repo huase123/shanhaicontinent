@@ -1,5 +1,6 @@
 package hua.huase.shanhaicontinent;
 
+import hua.huase.shanhaicontinent.WorldGen.HanderBiome;
 import hua.huase.shanhaicontinent.WorldGen.structureal.TemplateHander;
 import hua.huase.shanhaicontinent.advancements.TFAdvancements;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
@@ -62,7 +63,8 @@ public class ExampleMod
         changeAttributesIO();
 //成就系统
         TFAdvancements.init();
-
+//        维度注册
+        HanderBiome.registerDimension();
     }
 
     @EventHandler

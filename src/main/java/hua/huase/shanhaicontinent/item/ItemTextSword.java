@@ -7,6 +7,7 @@ import hua.huase.shanhaicontinent.handers.HanderAny;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
@@ -19,10 +20,12 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.common.util.ITeleporter;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -120,28 +123,72 @@ public class ItemTextSword extends ItemSword
 
 
 
-        if(!worldIn.isRemote){
-            EntityJiNengThread jiNengThread = new EntityJiNengThread(worldIn,entityLiving1);
-            jiNengThread.shoot(entityLiving1, entityLiving1.rotationPitch, entityLiving1.rotationYaw,0,2.0f,0.0f);
+        if(!worldIn.isRemote) {
+            EntityJiNengThread jiNengThread = new EntityJiNengThread(worldIn, entityLiving1);
+            jiNengThread.shoot(entityLiving1, entityLiving1.rotationPitch, entityLiving1.rotationYaw, 0, 2.0f, 0.0f);
             worldIn.spawnEntity(jiNengThread);
-            worldIn.playSound((EntityPlayer)null, entityLiving1.posX, entityLiving1.posY, entityLiving1.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
-            entityLiving1.hurtResistantTime=20;
+            worldIn.playSound((EntityPlayer) null, entityLiving1.posX, entityLiving1.posY, entityLiving1.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 2.0F, 2.0F);
+            entityLiving1.hurtResistantTime = 20;
 
 
             for (int i = 0; i < 360; i++) {
-                double d0 = (double)(-MathHelper.sin(i * 0.017453292F));
-                double d1 = (double)MathHelper.cos(i * 0.017453292F);
+                double d0 = (double) (-MathHelper.sin(i * 0.017453292F));
+                double d1 = (double) MathHelper.cos(i * 0.017453292F);
 
-                    ((WorldServer)entityLiving1.world).spawnParticle(EnumParticleTypes.REDSTONE, entityLiving1.posX + d0, entityLiving1.posY + (double)entityLiving1.height * 0.5D, entityLiving1.posZ + d1, 0, d0, 0.0D, d1, 1.0D);
+                ((WorldServer) worldIn).spawnParticle(EnumParticleTypes.REDSTONE, entityLiving1.posX + d0, entityLiving1.posY + (double) entityLiving1.height * 0.5D, entityLiving1.posZ + d1, 0, d0, 0.0D, d1, 1.0D);
 
             }
 
 
+//            ((EntityPlayerMP) playerIn).changeDimension(21,new CommandTeleporter(playerIn.getPosition()));
+            switch (worldIn.provider.getDimension()) {
+                case -1:
+//                地狱
+                    break;
+                case 0:
+//                主世界
+                    playerIn.changeDimension(21,new CommandTeleporter(playerIn.getPosition()));
+                    break;
+                case 1:
+//                末地
+                    break;
+                default:
+                    playerIn.changeDimension(0,new CommandTeleporter(playerIn.getPosition()));
+                    break;
+            }
+
         }
+
 
 
         return ActionResult.newResult(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
     }
+
+
+
+
+
+
+    private static class CommandTeleporter implements ITeleporter
+    {
+        private final BlockPos targetPos;
+
+        private CommandTeleporter(BlockPos targetPos)
+        {
+            this.targetPos = targetPos;
+        }
+
+        @Override
+        public void placeEntity(World world, Entity entity, float yaw)
+        {
+            entity.moveToBlockPosAndAngles(targetPos, yaw, entity.rotationPitch);
+        }
+    }
+
+
+
+
+
 
     public int getMaxItemUseDuration(ItemStack stack)
     {

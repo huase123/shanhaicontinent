@@ -153,7 +153,7 @@ public class HunhuanEntity extends Entity {
                             this.entityDropItem(nianxian);
                             this.setDead();
 
-                            playerTite.sendMessage(new TextComponentTranslation("message.hunhuan.fenjie"));
+                            player.sendMessage(new TextComponentTranslation("message.hunhuan.fenjie"));
                         }
 
                         viewPlayer= 0;

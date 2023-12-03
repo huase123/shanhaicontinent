@@ -21,6 +21,17 @@ shendaozhijianlist2=§6-------§a蕴含着极为强大的力量，是一把斩�
 shendaozhijianlist3=§6=======§c§k******************§6=======
 shendaozhijianlist4=§f++++++§0上古十大神器之一§f++++++
 
+
+item.shanhaicontinent.lianyaohu.name=§c伪神器 §f§k****** §e《炼妖壶》
+lianyaohu_list0=-------§dd天下妖族的克星§6-------
+lianyaohu_list1=§f++++++§0上古十大神器之一§f++++++
+lianyaohu_kong=空
+lianyaohu.health=血量：§e%s
+lianyaohu.mob_name=§b名字：§e%s
+
+
+
+
 itembanding.player.sccuess=§8拥有者：
 itembanding.player.fail=§8拥有者：§f未知
 
