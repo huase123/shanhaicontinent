@@ -53,7 +53,7 @@ public class EntityJinengItem extends Entity {
 
     public ItemStack getItemStack()
     {
-        return (ItemStack)this.getDataManager().get(ITEM_STACK);
+        return this.getDataManager().isDirty()? (ItemStack)this.getDataManager().get(ITEM_STACK):null;
     }
     public EntityJinengItem setItemStack()
     {

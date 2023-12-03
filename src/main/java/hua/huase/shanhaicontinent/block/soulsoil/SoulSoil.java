@@ -9,7 +9,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,6 +22,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -219,7 +219,7 @@ public class SoulSoil extends Block implements SoulSoilBase{
                                         FlowerBlock flowerBlock = FlowerBlock.flowerBlocksList.get(rand.nextInt(FlowerBlock.flowerBlocksList.size()));
 
                                         worldIn.setBlockState(blockpos1, flowerBlock.getStateFromMeta(i2), 3);
-                                        Minecraft.getMinecraft().addScheduledTask(() ->
+                                        ((WorldServer)worldIn).addScheduledTask(() ->
                                         {
                                             worldIn.observedNeighborChanged(blockpos1, flowerBlock, blockpos1);
                                             if(rand.nextInt(3)==0) {

@@ -9,6 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -18,7 +19,8 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 import java.util.Random;
 
-import static hua.huase.shanhaicontinent.LootTablesHander.*;
+import static hua.huase.shanhaicontinent.LootTablesHander.GUFENGXIAOWU_CHESTS_MODI;
+import static hua.huase.shanhaicontinent.LootTablesHander.GUFENGXIAOWU_CHESTS_MODI_ZUIHOU;
 
 public class StructurealTow implements IWorldGenerator {
     int distance;
@@ -33,7 +35,10 @@ public class StructurealTow implements IWorldGenerator {
         if(world==null||!canSpawnStructureAtCoords(chunkX,chunkZ)||world.provider.getDimension()!=1) {
             return;
         }
-        MinecraftServer server = world.getMinecraftServer();
+        ((WorldServer)world).addScheduledTask(() ->
+                {
+
+                    MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template0 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou0"));
         Template template1 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou1"));
@@ -55,9 +60,11 @@ public class StructurealTow implements IWorldGenerator {
 
         for (Rotation rotation : Rotation.values()) {
 
-                    PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation).setRandom(random);
-                    template0.addBlocksToWorld(world, posfinal, placementsettings, 2 | 4 | 16);
-                    template1.addBlocksToWorld(world, posfinal.add(0,32,0), placementsettings, 2 | 4 | 16);
+                PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation).setRandom(random);
+                template0.addBlocksToWorld(world, posfinal, placementsettings, 2 | 4 | 16);
+                template1.addBlocksToWorld(world, posfinal.add(0,32,0), placementsettings, 2 | 4 | 16);
+
+
 
         }
 
@@ -107,7 +114,7 @@ public class StructurealTow implements IWorldGenerator {
         }
 
 
-
+                });
 
     }
 
