@@ -1,0 +1,32 @@
+{
+  "parent": "shanhaicontinent:potuse/pot",
+  "display": {
+    "frame": "task",
+    "icon": {
+      "item": "shanhaicontinent:soulbonemeal",
+      "data": 1
+    },
+    "title": {
+      "translate": "advancement.shanhaicontinent.fenjiebonemeal"
+    },
+    "description": {
+      "translate": "advancement.shanhaicontinent.fenjiebonemeal.desc"
+    },
+    "announce_to_chat": true
+  },
+  "criteria": {
+    "obsidian": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "shanhaicontinent:soulbonemeal"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "experience": 100
+  }
+}
