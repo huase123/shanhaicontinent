@@ -40,8 +40,8 @@ public class StructurealTow implements IWorldGenerator {
 
                     MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
-        Template template0 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou1"));
-        Template template1 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou0"));
+        Template template0 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou0"));
+        Template template1 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou1"));
         BlockPos pos = new BlockPos(chunkX * 16, 80, chunkZ * 16);
 
         for (IBlockState iblockstate = world.getBlockState(pos); (iblockstate.getBlock().isAir(iblockstate, world, pos) || iblockstate.getBlock().isLeaves(iblockstate, world, pos)) && pos.getY() > 40; iblockstate = world.getBlockState(pos))
@@ -50,24 +50,21 @@ public class StructurealTow implements IWorldGenerator {
         }
 
 
-//
-//        if(world.getBlockState(pos.down()).getBlock().isAir(world.getBlockState(pos.down()), world, pos)){
-////            return;
-//        }
+
+        if(world.getBlockState(pos.down()).getBlock().isAir(world.getBlockState(pos.down()), world, pos)){
+            return;
+        }
 
 
         final BlockPos posfinal = pos;
 
         for (Rotation rotation : Rotation.values()) {
 
-            ((WorldServer)world).addScheduledTask(() ->
-                    {
                 PlacementSettings placementsettings = (new PlacementSettings()).setRotation(rotation).setRandom(random);
                 template0.addBlocksToWorld(world, posfinal, placementsettings, 2 | 4 | 16);
                 template1.addBlocksToWorld(world, posfinal.add(0,32,0), placementsettings, 2 | 4 | 16);
 
 
-                    });
 
         }
 
