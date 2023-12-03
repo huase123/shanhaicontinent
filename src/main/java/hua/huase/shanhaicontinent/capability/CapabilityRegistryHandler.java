@@ -185,6 +185,8 @@ public class CapabilityRegistryHandler
                     break;
 
                 default:
+                    if(random.nextInt(3)==0) monsterCapabilityProvider = new MonsterCapabilityProvider(entity.world.provider.getDimension(),random);
+                    break;
 
             }
 

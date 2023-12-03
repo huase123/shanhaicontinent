@@ -26,7 +26,7 @@ public interface PlayerCapabilityApi {
 //            return  true;
 //        }
 
-        if(capability.getMonsterCapabilityList()!=null &&(capability.getDengji()+1)/10>capability.getMonsterCapabilityList().size()&&capability.getMonsterCapabilityList().size()<=8){
+        if(capability.getMonsterCapabilityList()!=null &&(capability.getDengji()+1)/10>capability.getMonsterCapabilityList().size()&&capability.getMonsterCapabilityList().size()<=8 && capability.getJingyan()>=capability.getMaxjingyan()){
             return  true;
         }
 
@@ -44,7 +44,7 @@ public interface PlayerCapabilityApi {
             if(sizeMax < stringListEntry.getValue().size()) sizeMax = stringListEntry.getValue().size();
 
         }
-        if(jingyan>=maxjingyan&& (capability.getDengji())/10<=sizeMax&&dengji<=98){
+        if(jingyan>=maxjingyan&& (capability.getDengji())/10<=sizeMax && dengji<=98){
             capability.setDengji(dengji+1);
             capability.setJingyan(0);
             capability.setMaxjingyan((int) (maxjingyan+maxjingyan*0.1));

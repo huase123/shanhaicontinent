@@ -1,6 +1,8 @@
 package hua.huase.shanhaicontinent.WorldGen.structureal;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -10,6 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
@@ -20,6 +23,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import java.util.Random;
 
 import static hua.huase.shanhaicontinent.LootTablesHander.GUFENGXIAOWU_CHESTS;
+import static hua.huase.shanhaicontinent.villager.VillagerRegistryHandler.DIRT_WORKER;
 
 public class StructurealOne implements IWorldGenerator {
     int distance;
@@ -34,7 +38,11 @@ public class StructurealOne implements IWorldGenerator {
         if(world==null||!canSpawnStructureAtCoords(chunkX,chunkZ)||world.provider.getDimension()!=0) {
             return;
         }
-        MinecraftServer server = world.getMinecraftServer();
+
+        ((WorldServer)world).addScheduledTask(() ->
+        {
+
+            MinecraftServer server = world.getMinecraftServer();
         TemplateManager manager = world.getSaveHandler().getStructureTemplateManager();
         Template template2 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gufengxiaowu01"));
         Rotation[] arotation = Rotation.values();
@@ -69,7 +77,10 @@ public class StructurealOne implements IWorldGenerator {
 
 
         placementsettings.setIntegrity(1F);
+
         template2.addBlocksToWorld(world, blockpos1, placementsettings, 2 | 4 | 16);
+
+
 
 
         world.setBlockState(chestPos, Blocks.CHEST.getStateFromMeta(0), 3);
@@ -88,6 +99,19 @@ public class StructurealOne implements IWorldGenerator {
             ((TileEntityChest)tileentity1).setLootTable(GUFENGXIAOWU_CHESTS, random.nextLong());
         }
 
+
+
+
+        EntityVillager entityvillager = new EntityVillager(world);
+        entityvillager.setLocationAndAngles((double)chestPos.getX(), (double)chestPos.getY()+2, (double)chestPos.getZ(), 0.0F, 0.0F);
+//        net.minecraftforge.fml.common.registry.VillagerRegistry.setRandomProfession(entityvillager, worldIn.rand);
+
+        entityvillager.setProfession(DIRT_WORKER);
+        entityvillager.finalizeMobSpawn(world.getDifficultyForLocation(new BlockPos(entityvillager)), (IEntityLivingData)null, false);
+        world.spawnEntity(entityvillager);
+
+
+        });
     }
 
 
