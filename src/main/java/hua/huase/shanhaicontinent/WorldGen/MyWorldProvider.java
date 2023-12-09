@@ -83,7 +83,7 @@ public  class MyWorldProvider extends WorldProvider {
     }
 
     public long getWorldTime() {
-//        return 1000L;
+
         return super.getWorldTime();
     }
 
