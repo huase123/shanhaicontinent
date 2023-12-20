@@ -8,6 +8,7 @@ import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangSNSL;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengDZSY;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -32,7 +33,13 @@ public class EntityRegistryHandler
                     .id(EntityThrowableText.ID, 2).name(EntityThrowableText.NAME).tracker(64, 10, true).build();
 
 */
+
+
     public static int entityID=0;
+    public static final EntityEntry YE_TI =
+            EntityEntryBuilder.create().entity(EntityTFYeti.class)
+                    .id(EntityTFYeti.ID, entityID++).name(EntityTFYeti.NAME).tracker(80, 3, true)
+                    .egg(0xe52222, 0xd7ef39).spawn(EnumCreatureType.MONSTER, 50, 4, 4,EntityDirtBallKing.BIOMES).build();
     public static final EntityEntry HUNHUANENTITY =
             EntityEntryBuilder.create().entity(HunhuanEntity.class)
                     .id(HunhuanEntity.ID, entityID++).name(HunhuanEntity.NAME).tracker(64, 10, true).build();
@@ -99,5 +106,7 @@ public class EntityRegistryHandler
         registry.register(WuHunHuangSNSL);
         registry.register(WuHunHuangCMJJ);
         registry.register(WuHunHuangBSJ);
+
+        registry.register(YE_TI);
     }
 }

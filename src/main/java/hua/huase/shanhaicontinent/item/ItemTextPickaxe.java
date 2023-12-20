@@ -8,9 +8,11 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.init.Blocks;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,6 +20,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.UUID;
+
+import static hua.huase.shanhaicontinent.handers.HanderAny.shportal;
 
 public class ItemTextPickaxe extends ItemPickaxe
 {
@@ -80,6 +84,26 @@ public class ItemTextPickaxe extends ItemPickaxe
 
         return multimap;
     }
+
+
+
+
+    public boolean onEntityItemUpdate(net.minecraft.entity.item.EntityItem entityItem)
+    {
+
+        if(entityItem!=null){
+            World entityWorld = entityItem.getEntityWorld();
+            BlockPos position = entityItem.getPosition();
+            boolean equals = entityWorld.getBlockState(position.down()).equals(Blocks.GRASS.getDefaultState());
+            if(equals){
+                entityWorld.setBlockState(position.down(),shportal.getDefaultState());
+            }
+        }
+
+        return false;
+    }
+
+
 
 
     @Override

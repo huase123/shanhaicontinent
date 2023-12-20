@@ -2,6 +2,7 @@ package hua.huase.shanhaicontinent.handers;
 
 
 import hua.huase.shanhaicontinent.block.BlockPot;
+import hua.huase.shanhaicontinent.block.BlockSHPortal;
 import hua.huase.shanhaicontinent.block.FlowerBlock;
 import hua.huase.shanhaicontinent.block.soulsoil.SoulSoil;
 import hua.huase.shanhaicontinent.creativetab.TabExample;
@@ -73,6 +74,7 @@ public class HanderAny {
 
     public static Block soulsoil ;
     public static Block pot ;
+    public static Block shportal ;
 
     @SubscribeEvent
     public static void registerBlock(RegistryEvent.Register<Block> event) {
@@ -82,9 +84,10 @@ public class HanderAny {
 
         soulsoil = new SoulSoil("soulsoil",TabExample.TAB1);
         pot = new BlockPot("pot",TabExample.TAB1);
-
+        shportal = new BlockSHPortal();
 
         event.getRegistry().registerAll(blockList.toArray(new Block[0]));
+        event.getRegistry().register(shportal);
         TileEntity.register(TileEntityPot.ID, TileEntityPot.class);
     }
 

@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.client.renderer;
 
 import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.client.model.ModelTFYeti;
 import hua.huase.shanhaicontinent.client.renderer.jineng.RenderJiNengItme;
 import hua.huase.shanhaicontinent.client.renderer.jineng.RenderJiNengThread;
 import hua.huase.shanhaicontinent.client.renderer.jineng.huang.RenderWuHunHuangBSJ;
@@ -9,6 +10,7 @@ import hua.huase.shanhaicontinent.client.renderer.jineng.huang.RenderWuHunHuangK
 import hua.huase.shanhaicontinent.client.renderer.jineng.huang.RenderWuHunHuangSNSL;
 import hua.huase.shanhaicontinent.client.renderer.jineng.jingubang.RenderJiNengDZSY;
 import hua.huase.shanhaicontinent.client.renderer.jineng.jingubang.RenderJiNengFSHY;
+import hua.huase.shanhaicontinent.entity.EntityTFYeti;
 import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.entity.jineng.EntityJiNengThread;
 import hua.huase.shanhaicontinent.entity.jineng.huang.EntityWuHunHuangBSJ;
@@ -19,6 +21,7 @@ import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengDZSY;
 import hua.huase.shanhaicontinent.entity.jineng.jingubang.EntityJiNengFSHY;
 import hua.huase.shanhaicontinent.entity.jinengitem.EntityJinengItem;
 import hua.huase.shanhaicontinent.handers.HanderAny;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
@@ -50,6 +53,9 @@ public class RenderRegistryHandler
         RenderingRegistry.registerEntityRenderingHandler(EntityWuHunHuangCMJJ.class, RenderWuHunHuangCMJJ::new);
         RenderingRegistry.registerEntityRenderingHandler(EntityWuHunHuangBSJ.class, RenderWuHunHuangBSJ::new);
 
+
+
+        RenderingRegistry.registerEntityRenderingHandler(EntityTFYeti.class, (RenderManager manager) -> new RenderTFYeti(manager,new ModelTFYeti(),"yeti"));
 //        RenderingRegistry.registerEntityRenderingHandler(EntityJiNengThread.class, m -> new RenderSnowball<>(m, Items.ENDER_PEARL, Minecraft.getMinecraft().getRenderItem()));
 
 /*

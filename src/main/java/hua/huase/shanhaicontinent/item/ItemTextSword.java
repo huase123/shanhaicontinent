@@ -33,6 +33,9 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.UUID;
 
+import static hua.huase.shanhaicontinent.WorldGen.HanderBiome.dimensionTypeSH_ONE_ID;
+import static hua.huase.shanhaicontinent.handers.HanderAny.shportal;
+
 public class ItemTextSword extends ItemSword
 {
     public ItemTextSword(String name, CreativeTabs Tabs)
@@ -139,23 +142,31 @@ public class ItemTextSword extends ItemSword
 
             }
 
+            worldIn.setBlockState(playerIn.getPosition().down(),shportal.getDefaultState());
+
+
 
 //            ((EntityPlayerMP) playerIn).changeDimension(21,new CommandTeleporter(playerIn.getPosition()));
             switch (worldIn.provider.getDimension()) {
-                case -1:
+                case 1217:
 //                地狱
+                    playerIn.changeDimension(0,new CommandTeleporter(playerIn.getPosition()));
                     break;
                 case 0:
 //                主世界
-                    playerIn.changeDimension(21,new CommandTeleporter(playerIn.getPosition()));
+                    playerIn.changeDimension(dimensionTypeSH_ONE_ID,new CommandTeleporter(playerIn.getPosition()));
                     break;
                 case 1:
 //                末地
                     break;
                 default:
-                    playerIn.changeDimension(0,new CommandTeleporter(playerIn.getPosition()));
+                    playerIn.changeDimension(worldIn.provider.getDimension()+1,new CommandTeleporter(playerIn.getPosition()));
                     break;
             }
+
+
+
+
 
         }
 
@@ -169,11 +180,11 @@ public class ItemTextSword extends ItemSword
 
 
 
-    private static class CommandTeleporter implements ITeleporter
+    public static class CommandTeleporter implements ITeleporter
     {
         private final BlockPos targetPos;
 
-        private CommandTeleporter(BlockPos targetPos)
+        public CommandTeleporter(BlockPos targetPos)
         {
             this.targetPos = targetPos;
         }
@@ -184,8 +195,6 @@ public class ItemTextSword extends ItemSword
             entity.moveToBlockPosAndAngles(targetPos, yaw, entity.rotationPitch);
         }
     }
-
-
 
 
 

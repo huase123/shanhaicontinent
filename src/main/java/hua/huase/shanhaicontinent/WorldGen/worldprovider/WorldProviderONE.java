@@ -1,6 +1,7 @@
-package hua.huase.shanhaicontinent.WorldGen;
+package hua.huase.shanhaicontinent.WorldGen.worldprovider;
 
 import hua.huase.shanhaicontinent.WorldGen.BiomeProvider.BiomeProviderONE;
+import hua.huase.shanhaicontinent.WorldGen.UW_ChunkGeneratorGarden;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.util.math.Vec3d;
@@ -13,10 +14,10 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import static hua.huase.shanhaicontinent.WorldGen.HanderBiome.myDim;
+import static hua.huase.shanhaicontinent.WorldGen.HanderBiome.dimensionTypeSH_ONE;
 
 
-public  class MyWorldProvider extends WorldProvider {
+public  class WorldProviderONE extends WorldProvider {
     private static final IRenderHandler cloudRenderer = new IRenderHandler() {
         @Override
         public void render(float partialTicks, WorldClient world, Minecraft mc) {
@@ -25,7 +26,7 @@ public  class MyWorldProvider extends WorldProvider {
     };
     private static final Vec3d zeroVector = new Vec3d(0.0, 0.0, 0.0);
 
-    public MyWorldProvider() {
+    public WorldProviderONE() {
         this.doesWaterVaporize = false;
     }
     public void init()
@@ -55,7 +56,6 @@ public  class MyWorldProvider extends WorldProvider {
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
     public double getMovementFactor() {
         return 1.0;
     }
@@ -107,7 +107,7 @@ public  class MyWorldProvider extends WorldProvider {
     }
 
     public DimensionType getDimensionType() {
-        return myDim;
+        return dimensionTypeSH_ONE;
     }
 
 

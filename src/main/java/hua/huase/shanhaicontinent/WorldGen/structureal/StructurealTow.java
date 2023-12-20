@@ -1,5 +1,6 @@
 package hua.huase.shanhaicontinent.WorldGen.structureal;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
@@ -43,10 +44,10 @@ public class StructurealTow implements IWorldGenerator {
         Template template1 = manager.getTemplate(server,new ResourceLocation("shanhaicontinent","huasstr/gelou0"));
         BlockPos pos = new BlockPos(chunkX * 16, 80, chunkZ * 16);
 //
-//        for (IBlockState iblockstate = world.getBlockState(pos); (iblockstate.getBlock().isAir(iblockstate, world, pos) || iblockstate.getBlock().isLeaves(iblockstate, world, pos)) && pos.getY() > 40; iblockstate = world.getBlockState(pos))
-//        {
-////            pos = pos.down();
-//        }
+        for (IBlockState iblockstate = world.getBlockState(pos); (iblockstate.getBlock().isAir(iblockstate, world, pos) || iblockstate.getBlock().isLeaves(iblockstate, world, pos)) && pos.getY() > 40; iblockstate = world.getBlockState(pos))
+        {
+            pos = pos.down();
+        }
 
 
 

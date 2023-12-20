@@ -1,0 +1,269 @@
+package hua.huase.shanhaicontinent.block;
+
+import hua.huase.shanhaicontinent.ExampleMod;
+import hua.huase.shanhaicontinent.item.ItemTextSword;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBreakable;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
+
+public class BlockSHPortal  extends BlockBreakable {
+
+    public static final IProperty<Boolean> DISALLOW_RETURN = PropertyBool.create("is_one_way");
+
+    private static final AxisAlignedBB AABB = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.8125F, 1.0F);
+    private static final AxisAlignedBB AABB_ITEM = new AxisAlignedBB(0.0F, 0.0F, 0.0F, 1.0F, 0.4F, 1.0F);
+
+    private static final int MIN_PORTAL_SIZE =  4;
+    private static final int MAX_PORTAL_SIZE = 64;
+
+    public BlockSHPortal() {
+        super(Material.PORTAL, false);
+        this.setHardness(-1F);
+        this.setSoundType(SoundType.GLASS);
+        this.setLightLevel(0.75F);
+        this.setDefaultState(this.blockState.getBaseState().withProperty(DISALLOW_RETURN, false));
+        this.setUnlocalizedName(ExampleMod.MODID + "shportal");
+        this.setRegistryName("shportal");
+    }
+    public void onEntityCollidedWithBlock(World p_180634_1_, BlockPos p_180634_2_, IBlockState p_180634_3_, Entity p_180634_4_) {
+        if (!p_180634_1_.isRemote && !p_180634_4_.isRiding() && !p_180634_4_.isBeingRidden() && p_180634_4_.isNonBoss() && p_180634_4_.getEntityBoundingBox().intersects(p_180634_3_.getBoundingBox(p_180634_1_, p_180634_2_).offset(p_180634_2_))) {
+
+            if(p_180634_1_.provider.getDimension()==21){
+
+                p_180634_4_.changeDimension(0, new ItemTextSword.CommandTeleporter(p_180634_4_.getPosition().add(3,1,0)));
+            }else {
+
+                p_180634_4_.changeDimension(21,new ItemTextSword.CommandTeleporter(p_180634_4_.getPosition().add(3,1,0)));
+            }
+
+        }
+
+    }
+    @Override
+    public BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, DISALLOW_RETURN);
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state) {
+        return state.getValue(DISALLOW_RETURN) ? 1 : 0;
+    }
+
+    @Override
+    @Deprecated
+    public IBlockState getStateFromMeta(int meta) {
+        return getDefaultState().withProperty(DISALLOW_RETURN, meta == 1);
+    }
+
+    @Override
+    @Deprecated
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return AABB;
+    }
+
+    @Override
+    @Deprecated
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+        return state.getValue(DISALLOW_RETURN) ? AABB : NULL_AABB;
+    }
+
+    @Override
+    @Deprecated
+    public void addCollisionBoxToList(IBlockState state, World world, BlockPos pos, AxisAlignedBB entityBB, List<AxisAlignedBB> blockBBs, @Nullable Entity entity, boolean isActualState) {
+        addCollisionBoxToList(pos, entityBB, blockBBs, entity instanceof EntityItem ? AABB_ITEM : state.getCollisionBoundingBox(world, pos));
+    }
+
+    @Override
+    @Deprecated
+    public boolean isFullCube(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    @Deprecated
+    public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+        return BlockFaceShape.UNDEFINED;
+    }
+/*
+
+    public boolean tryToCreatePortal(World world, BlockPos pos, EntityItem catalyst, @Nullable EntityPlayer player) {
+
+        IBlockState state = world.getBlockState(pos);
+
+        if (canFormPortal(state) && world.getBlockState(pos.down()).isFullCube()) {
+            Map<BlockPos, Boolean> blocksChecked = new HashMap<>();
+            blocksChecked.put(pos, true);
+
+            MutableInt size = new MutableInt(0);
+
+            if (recursivelyValidatePortal(world, pos, blocksChecked, size, state) && size.intValue() >= MIN_PORTAL_SIZE) {
+
+                if (TFConfig.checkPortalDestination) {
+                    TFTeleporter teleporter = TFTeleporter.getTeleporterForDim(catalyst.getServer(), getDestination(catalyst));
+                    boolean checkProgression = TFWorld.isProgressionEnforced(catalyst.world);
+                    if (!teleporter.isSafeAround(pos, catalyst, checkProgression)) {
+                        // TODO: "failure" effect - particles?
+                        if (player != null) {
+                            player.sendStatusMessage(new TextComponentTranslation(TwilightForestMod.ID + ".twilight_portal.unsafe"), true);
+                        }
+                        return false;
+                    }
+                }
+
+                catalyst.getItem().shrink(1);
+                causeLightning(world, pos, TFConfig.portalLightning);
+
+                for (Map.Entry<BlockPos, Boolean> checkedPos : blocksChecked.entrySet()) {
+                    if (checkedPos.getValue()) {
+                        world.setBlockState(checkedPos.getKey(), TFBlocks.twilight_portal.getDefaultState(), 2);
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+*/
+/*
+
+    public boolean canFormPortal(IBlockState state) {
+        return state == Blocks.WATER.getDefaultState() || state.getBlock() == this && state.getValue(DISALLOW_RETURN);
+    }
+
+    private static void causeLightning(World world, BlockPos pos, boolean fake) {
+        EntityLightningBolt bolt = new EntityLightningBolt(world, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, fake);
+        world.addWeatherEffect(bolt);
+
+        if (fake) {
+            double range = 3.0D;
+            List<Entity> list = world.getEntitiesWithinAABB(Entity.class, new AxisAlignedBB(pos).grow(range));
+
+            for (Entity victim : list) {
+                if (!ForgeEventFactory.onEntityStruckByLightning(victim, bolt)) {
+                    victim.onStruckByLightning(bolt);
+                }
+            }
+        }
+    }
+
+    private static boolean recursivelyValidatePortal(World world, BlockPos pos, Map<BlockPos, Boolean> blocksChecked, MutableInt portalSize, IBlockState requiredState) {
+
+        if (portalSize.incrementAndGet() > MAX_PORTAL_SIZE) return false;
+
+        boolean isPoolProbablyEnclosed = true;
+
+        for (int i = 0; i < EnumFacing.HORIZONTALS.length && portalSize.intValue() <= MAX_PORTAL_SIZE; i++) {
+            BlockPos positionCheck = pos.offset(EnumFacing.HORIZONTALS[i]);
+
+            if (!blocksChecked.containsKey(positionCheck)) {
+                IBlockState state = world.getBlockState(positionCheck);
+
+                if (state == requiredState && world.getBlockState(positionCheck.down()).isFullCube()) {
+                    blocksChecked.put(positionCheck, true);
+                    if (isPoolProbablyEnclosed) {
+                        isPoolProbablyEnclosed = recursivelyValidatePortal(world, positionCheck, blocksChecked, portalSize, requiredState);
+                    }
+
+                } else if (isGrassOrDirt(state) && isNatureBlock(world.getBlockState(positionCheck.up())) || state.getBlock() == TFBlocks.uberous_soil) {
+                    blocksChecked.put(positionCheck, false);
+
+                } else return false;
+            }
+        }
+
+        return isPoolProbablyEnclosed;
+    }
+
+    private static boolean isNatureBlock(IBlockState state) {
+        Material mat = state.getMaterial();
+        return mat == Material.PLANTS || mat == Material.VINE || mat == Material.LEAVES;
+    }
+
+*/
+    private static boolean isGrassOrDirt(IBlockState state) {
+        Material mat = state.getMaterial();
+        return state.isFullCube() && (mat == Material.GRASS || mat == Material.GROUND);
+    }
+
+    @Override
+    @Deprecated
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block notUsed, BlockPos fromPos) {
+        boolean good = world.getBlockState(pos.down()).isFullCube();
+
+        for (EnumFacing facing : EnumFacing.HORIZONTALS) {
+            if (!good) break;
+
+            IBlockState neighboringState = world.getBlockState(pos.offset(facing));
+
+            good = isGrassOrDirt(neighboringState) || neighboringState == state;
+        }
+
+        if (!good) {
+            world.playEvent(2001, pos, Block.getStateId(state));
+            world.setBlockState(pos, Blocks.WATER.getDefaultState(), 0b11);
+        }
+    }
+
+    @Override
+    public int quantityDropped(Random random) {
+        return 0;
+    }
+
+    // Full [VanillaCopy] of BlockPortal.randomDisplayTick
+    // TODO Eeeh... Let's look at changing this too alongside a new model.
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        int random = rand.nextInt(100);
+        if (stateIn.getValue(DISALLOW_RETURN) && random < 80) return;
+
+        if (random == 0) {
+            worldIn.playSound((double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D, SoundEvents.BLOCK_PORTAL_AMBIENT, SoundCategory.BLOCKS, 0.5F, rand.nextFloat() * 0.4F + 0.8F, false);
+        }
+
+        for (int i = 0; i < 4; ++i) {
+            double xPos = (double) ((float) pos.getX() + rand.nextFloat());
+            double yPos = pos.getY()+1D;
+            double zPos = (double) ((float) pos.getZ() + rand.nextFloat());
+            double xSpeed = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            double ySpeed = rand.nextFloat();
+            double zSpeed = ((double) rand.nextFloat() - 0.5D) * 0.5D;
+            //int j = rand.nextInt(2) * 2 - 1;
+
+            //if (worldIn.getBlockState(pos.west()).getBlock() != this && worldIn.getBlockState(pos.east()).getBlock() != this) {
+            //	xPos = (double) pos.getX() + 0.5D + 0.25D * (double) j;
+            //	xSpeed = (double) (rand.nextFloat() * 2.0F * (float) j);
+            //} else {
+            //	zPos = (double) pos.getZ() + 0.5D + 0.25D * (double) j;
+            //	zSpeed = (double) (rand.nextFloat() * 2.0F * (float) j);
+            //}
+
+            worldIn.spawnParticle(EnumParticleTypes.PORTAL, xPos, yPos, zPos, xSpeed, ySpeed, zSpeed);
+        }
+    }
+}

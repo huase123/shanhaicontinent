@@ -1,0 +1,10 @@
+{
+	"forge_marker": 1,
+	"defaults": { "model": "shanhaicontinent:shportal" },
+	"variants": {
+		"is_one_way": {
+			"true": { "model": "shanhaicontinent:shportal" },
+			"false": { "model": "shanhaicontinent:shportal" }
+		}
+	}
+}
