@@ -8,12 +8,9 @@ import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapa
 import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
 import hua.huase.shanhaicontinent.potion.PotionAnimation;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
-import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.LevelRenderer;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -33,33 +30,44 @@ import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class PWRenderPlayerEvent {
 
-    /**
-     * 注入自定义事件
-     * @see LeveRenderPlaerEventPostEvent
-     */
+//    @SubscribeEvent
+//    public static void renderPlayerEventPost(LeveRenderPlaerEventPostEvent event) {
+//        renderHunhuan(event.getPlayer(), event.getPartialTick(), event.getPoseStack(),
+//                100, 1);
+//    }
+
     @SubscribeEvent
-    public static void renderPlayerEventPost(RenderLevelStageEvent event) {
-        if (event.getStage() !=RenderLevelStageEvent.Stage.AFTER_ENTITIES )return;
-        LocalPlayer player = Minecraft.getInstance().player;
-        LevelRenderer levelRenderer = event.getLevelRenderer();
-        float renderTick =Minecraft.getInstance().getPartialTick();
-        Camera camera = event.getCamera();
+    public static void renderPlayerEventPost(LeveRenderPlaerEventPostEvent event){
         PoseStack poseStack = event.getPoseStack();
-        double d0 = Mth.lerp((double)renderTick, player.xOld, player.getX()) - camera.getPosition().x;
-        double d1 = Mth.lerp((double)renderTick, player.yOld, player.getY()) - camera.getPosition().y;
-        double d2 = Mth.lerp((double)renderTick, player.zOld, player.getZ()) - camera.getPosition().z;
-        float f = Mth.lerp(renderTick, player.yRotO, player.getYRot());
-        poseStack.pushPose();
-        poseStack.translate(d0, d1, d2);
-        net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new LeveRenderPlaerEventPostEvent(player,levelRenderer,event.getPartialTick(),poseStack));
-        poseStack.popPose();
-    }
+        Player entity = event.getEntity();
+        if(entity !=null){
+            entity.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+                int count = 0;
+                if(capability.getWuhunList() != null){
+                    for (MonsterAttributeCapability monsterAttributeCapability : capability.getWuhunList()) {
+                        renderHunhuan(entity, event.getPartialTick(),poseStack,monsterAttributeCapability.getNianxian(),count);
+                        count++;
+                    }
+                }
+            });
+        }
 
-    @SubscribeEvent
-    public static void renderPlayerEventPost(LeveRenderPlaerEventPostEvent event) {
 
-        renderHunhuan(event.getPlayer(), event.getPartialTick(), event.getPoseStack(),
-                100, 1);
+        if(entity !=null) {
+            for (MobEffectInstance activeEffect : entity.getActiveEffects()) {
+                if (activeEffect.getEffect() instanceof PotionAnimation potionAnimation) {
+                    potionAnimation.renderPlayer(event);
+                }
+            }
+
+
+            Map<MobEffect, MobEffectInstance> activeEffectsMap = entity.getActiveEffectsMap();
+            for (Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry : activeEffectsMap.entrySet()) {
+                if (mobEffectMobEffectInstanceEntry.getKey() instanceof PotionAnimation potionAnimation) {
+                    potionAnimation.renderPlayer(event);
+                }
+            }
+        }
     }
 
 
@@ -165,41 +173,6 @@ public class PWRenderPlayerEvent {
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f,1.0f);
     }
 
-
-    @SubscribeEvent
-    public static void renderPlayerEventPost(RenderPlayerEvent.Post event){
-        PoseStack poseStack = event.getPoseStack();
-        Player entity = event.getEntity();
-        if(entity !=null){
-            entity.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                int count = 0;
-                if(capability.getWuhunList() != null){
-                    for (MonsterAttributeCapability monsterAttributeCapability : capability.getWuhunList()) {
-                        renderHunhuan(entity, event.getPartialTick(),poseStack,monsterAttributeCapability.getNianxian(),count);
-                        count++;
-                    }
-                }
-            });
-        }
-
-
-        if(entity !=null) {
-            for (MobEffectInstance activeEffect : entity.getActiveEffects()) {
-
-                if (activeEffect.getEffect() instanceof PotionAnimation potionAnimation) {
-                    potionAnimation.renderPlayer(event);
-                }
-            }
-
-
-            Map<MobEffect, MobEffectInstance> activeEffectsMap = entity.getActiveEffectsMap();
-            for (Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry : activeEffectsMap.entrySet()) {
-                if (mobEffectMobEffectInstanceEntry.getKey() instanceof PotionAnimation potionAnimation) {
-                    potionAnimation.renderPlayer(event);
-                }
-            }
-        }
-    }
 
 
     public static void renderHunhuan(Entity entity, float partialTick, PoseStack poseStack, int nianxian, int count){

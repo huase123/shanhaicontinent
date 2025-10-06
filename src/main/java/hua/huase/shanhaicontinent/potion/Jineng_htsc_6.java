@@ -3,28 +3,18 @@ package hua.huase.shanhaicontinent.potion;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
+import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
 import hua.huase.shanhaicontinent.init.ItemInit;
-import hua.huase.shanhaicontinent.render.SHRenderApi;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.entity.EntityTypeTest;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 
-import java.util.List;
 import java.util.Map;
 
 
@@ -54,7 +44,7 @@ public class Jineng_htsc_6 extends SHBaseMobEffect  implements PotionAnimation{
 
 	private static ItemStack itemStack;
 	@Override
-	public void renderPlayer(RenderPlayerEvent.Post event) {
+	public void renderPlayer(LeveRenderPlaerEventPostEvent event) {
 
 		if(itemStack == null){
 			itemStack = new ItemStack(ItemInit.jineng_htsc_0.get());

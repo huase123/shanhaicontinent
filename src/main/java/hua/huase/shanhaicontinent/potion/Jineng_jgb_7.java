@@ -1,14 +1,10 @@
 
 package hua.huase.shanhaicontinent.potion;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
 import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
+import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
 import hua.huase.shanhaicontinent.init.SHModMobEffectsinit;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -16,18 +12,13 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.entity.EntityTypeTest;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import org.joml.Matrix4f;
 
 import java.util.List;
 import java.util.Map;
-
-import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
 
 public class Jineng_jgb_7 extends SHBaseMobEffect implements PotionAnimation{
@@ -91,7 +82,7 @@ public class Jineng_jgb_7 extends SHBaseMobEffect implements PotionAnimation{
 	}
 
 	@Override
-	public void renderPlayer(RenderPlayerEvent.Post event) {
+	public void renderPlayer(LeveRenderPlaerEventPostEvent event) {
 		SHRenderApi.renderdibu(event.getEntity().level().getGameTime()+event.getPartialTick(),event.getPoseStack(),1,POLAR_BEAR_TEXTURE);
 		SHRenderApi.rendertian(event.getEntity().level().getGameTime()+event.getPartialTick(),event.getPoseStack(),1,POLAR_BEAR_TEXTURE,12);
 	}

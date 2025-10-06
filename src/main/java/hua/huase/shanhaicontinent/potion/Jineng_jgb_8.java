@@ -1,12 +1,11 @@
 
 package hua.huase.shanhaicontinent.potion;
 
-import hua.huase.shanhaicontinent.init.SHModMobEffectsinit;
+import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 
 import java.util.Map;
 
@@ -43,7 +42,7 @@ public class Jineng_jgb_8 extends SHBaseMobEffect  implements PotionAnimation{
 	}
 
 	@Override
-	public void renderPlayer(RenderPlayerEvent.Post event) {
+	public void renderPlayer(LeveRenderPlaerEventPostEvent event) {
 
 	}
 }
