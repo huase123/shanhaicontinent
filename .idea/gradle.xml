@@ -9,6 +9,7 @@
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="D:/gradle/gradle-8.1.1-bin/9wiye5v2saajue4irfo8ybqfp/gradle-8.1.1" />
+        <option name="gradleJvm" value="azul-17" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />

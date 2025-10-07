@@ -53,6 +53,7 @@ public class PWRenderLevelStageEvent {
                 poseStack.popPose();
             }
         }
+        bufferSource.endBatch();
     }
 
 

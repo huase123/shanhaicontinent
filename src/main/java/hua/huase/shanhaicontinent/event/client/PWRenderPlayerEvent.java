@@ -8,9 +8,11 @@ import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapa
 import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
 import hua.huase.shanhaicontinent.potion.PotionAnimation;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
+import hua.huase.shanhaicontinent.render.SHRenderUtil;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.*;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -18,50 +20,42 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
+
 import java.util.Map;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
+import static hua.huase.shanhaicontinent.render.SHRenderType.render_blitShader;
+import static hua.huase.shanhaicontinent.render.SHRenderType.render_hunhuan;
 
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class PWRenderPlayerEvent {
 
-//    @SubscribeEvent
-//    public static void renderPlayerEventPost(LeveRenderPlaerEventPostEvent event) {
-//        renderHunhuan(event.getPlayer(), event.getPartialTick(), event.getPoseStack(),
-//                100, 1);
-//    }
 
     @SubscribeEvent
     public static void renderPlayerEventPost(LeveRenderPlaerEventPostEvent event){
+        Player player = event.getEntity();
         PoseStack poseStack = event.getPoseStack();
-        Player entity = event.getEntity();
-        if(entity !=null){
-            entity.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                int count = 0;
-                if(capability.getWuhunList() != null){
-                    for (MonsterAttributeCapability monsterAttributeCapability : capability.getWuhunList()) {
-                        renderHunhuan(entity, event.getPartialTick(),poseStack,monsterAttributeCapability.getNianxian(),count);
-                        count++;
-                    }
-                }
-            });
-        }
+        MultiBufferSource.BufferSource multiBufferSource = event.getMultiBufferSource();
+        Camera camera = event.getCamera();
+        float partialTick = event.getPartialTick();
+        renderHunhuan(player, poseStack,multiBufferSource,camera,partialTick);
 
 
-        if(entity !=null) {
-            for (MobEffectInstance activeEffect : entity.getActiveEffects()) {
+
+
+        if(player !=null) {
+            for (MobEffectInstance activeEffect : player.getActiveEffects()) {
                 if (activeEffect.getEffect() instanceof PotionAnimation potionAnimation) {
                     potionAnimation.renderPlayer(event);
                 }
             }
 
 
-            Map<MobEffect, MobEffectInstance> activeEffectsMap = entity.getActiveEffectsMap();
+            Map<MobEffect, MobEffectInstance> activeEffectsMap = player.getActiveEffectsMap();
             for (Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry : activeEffectsMap.entrySet()) {
                 if (mobEffectMobEffectInstanceEntry.getKey() instanceof PotionAnimation potionAnimation) {
                     potionAnimation.renderPlayer(event);
@@ -69,37 +63,38 @@ public class PWRenderPlayerEvent {
             }
         }
     }
+    private static void renderHunhuan(Player player, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
+        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+            if(capability.getWuhunList() == null)return;
+            VertexConsumer bufferbuilder = multiBufferSource.getBuffer(render_hunhuan);
+            int count = 0;
+            for (MonsterAttributeCapability monsterAttributeCapability : capability.getWuhunList()) {
+                Matrix4f matrix4f = poseStack.last().pose();
+                int nianxian = monsterAttributeCapability.getNianxian();
+                
 
+                matrix4f.rotate((float)Math.PI*0.005f*(partialTick)*(count%2==0? -1:1), 0.0F, 1.0F, 0.0F);
+                matrix4f.scale(0.4f+count*0.12f,1, 0.4f+count*0.12f);
+
+                int color = SHRenderUtil.getColor(nianxian);
+                bufferbuilder.vertex(matrix4f, -6, 0.1f, -6).color(color).uv(0, 0).endVertex();
+                bufferbuilder.vertex(matrix4f, -6, 0.1f, +6).color(color).uv(0, 1).endVertex();
+                bufferbuilder.vertex(matrix4f, +6, 0.1f, +6).color(color).uv(1, 1).endVertex();
+                bufferbuilder.vertex(matrix4f, +6, 0.1f, -6).color(color).uv(1, 0).endVertex();
+                bufferbuilder.vertex(matrix4f, +6, 0.1f, -6).color(color).uv(1, 0).endVertex();
+                bufferbuilder.vertex(matrix4f, +6, 0.1f, +6).color(color).uv(1, 1).endVertex();
+                bufferbuilder.vertex(matrix4f, -6, 0.1f, +6).color(color).uv(0, 1).endVertex();
+                bufferbuilder.vertex(matrix4f, -6, 0.1f, -6).color(color).uv(0, 0).endVertex();
+                count++;
+            }
+        });
+    }
 
 
     //    @SubscribeEvent
     public static void renderPlayerEventPre(RenderPlayerEvent.Pre event){
 
     }
-
-//    @SubscribeEvent
-    public static void onRenderLevelStageEvent(RenderLevelStageEvent event){
-        if(event.getStage() == RenderLevelStageEvent.Stage.AFTER_LEVEL){
-            LocalPlayer player = Minecraft.getInstance().player;
-            player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                int count = 0;
-                if(capability.getWuhunList() != null){
-                    PoseStack poseStack = event.getPoseStack();
-                    float partialTick = event.getPartialTick();
-
-                    for (MonsterAttributeCapability monsterAttributeCapability : capability.getWuhunList()) {
-//                    renderHandHunhuan(player, event.getPartialTick(),event.getPoseStack(),monsterAttributeCapability.getNianxian(),count);
-                        renderHandHunhuan(player, partialTick,poseStack,monsterAttributeCapability.getNianxian(),count);
-                        count++;
-                    }
-
-
-                }
-            });
-        }
-
-    }
-
 
 //    @SubscribeEvent
     public static void onRenderHandEvent(RenderHandEvent event){
@@ -173,8 +168,11 @@ public class PWRenderPlayerEvent {
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f,1.0f);
     }
 
-
-
+/**
+ * TODO 功能描述：被淘汰的方法，留下它用来见证自己的进步
+ * @author :huase
+ * @date 2025/10/7 1:18
+ */
     public static void renderHunhuan(Entity entity, float partialTick, PoseStack poseStack, int nianxian, int count){
 
         SHRenderApi.renderStart(HUNHUAN,poseStack);
