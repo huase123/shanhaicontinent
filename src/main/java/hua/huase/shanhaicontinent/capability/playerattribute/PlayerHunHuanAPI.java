@@ -367,12 +367,31 @@ public interface PlayerHunHuanAPI {
                 }
             capability.getWuhunList().clear();
 
-            for (int i = 0; i < 9; i++) {
-                MonsterAttributeCapability monsterAttributeCapability = new MonsterAttributeCapability(60 + i * i * i * i * i * i * i * 10);
+//            for (int i = 0; i < 9; i++) {
+//                MonsterAttributeCapability monsterAttributeCapability = new MonsterAttributeCapability(60 + i * i * i * i * i * i * i * 10);
+//                capability.getWuhunList().add(monsterAttributeCapability);
+//            }
 
 
-                capability.getWuhunList().add(monsterAttributeCapability);
-            }
+            MonsterAttributeCapability monsterAttributeCapability1 = new MonsterAttributeCapability(1);
+            MonsterAttributeCapability monsterAttributeCapability2 = new MonsterAttributeCapability(100);
+            MonsterAttributeCapability monsterAttributeCapability3 = new MonsterAttributeCapability(1000);
+            MonsterAttributeCapability monsterAttributeCapability4 = new MonsterAttributeCapability(10000);
+            MonsterAttributeCapability monsterAttributeCapability5 = new MonsterAttributeCapability(100000);
+            MonsterAttributeCapability monsterAttributeCapability6 = new MonsterAttributeCapability(1000000);
+            MonsterAttributeCapability monsterAttributeCapability7 = new MonsterAttributeCapability(10000000);
+            MonsterAttributeCapability monsterAttributeCapability8 = new MonsterAttributeCapability(1);
+            MonsterAttributeCapability monsterAttributeCapability9 = new MonsterAttributeCapability(1);
+            capability.getWuhunList().add(monsterAttributeCapability1);
+            capability.getWuhunList().add(monsterAttributeCapability2);
+            capability.getWuhunList().add(monsterAttributeCapability3);
+            capability.getWuhunList().add(monsterAttributeCapability4);
+            capability.getWuhunList().add(monsterAttributeCapability5);
+            capability.getWuhunList().add(monsterAttributeCapability6);
+            capability.getWuhunList().add(monsterAttributeCapability7);
+            capability.getWuhunList().add(monsterAttributeCapability8);
+            capability.getWuhunList().add(monsterAttributeCapability9);
+
                 SynsAPI.synsPlayerAttribute(player);
         });
     }

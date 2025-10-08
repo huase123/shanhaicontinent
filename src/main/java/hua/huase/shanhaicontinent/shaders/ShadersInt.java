@@ -17,8 +17,9 @@ import java.util.Objects;
 public class ShadersInt {
 
     @Nullable
-
     private static ShaderInstance shmapshadertext;
+    @Nullable
+    private static ShaderInstance hunhuanshader;
 
 
     public static ShaderInstance getShmapshaderUnlitShader()
@@ -26,12 +27,19 @@ public class ShadersInt {
         return Objects.requireNonNull(shmapshadertext, "Attempted to call shmapshader before shaders have finished loading.");
     }
 
+    public static ShaderInstance gethunhuanshader()
+    {
+        return Objects.requireNonNull(hunhuanshader, "Attempted to call hunhuanshader before shaders have finished loading.");
+    }
+
     @SubscribeEvent
     public static void registerShaders(RegisterShadersEvent event) throws IOException
     {
-        event.registerShader(new TimeShader(event.getResourceProvider(), new ResourceLocation("shmapshadertext"), DefaultVertexFormat.POSITION_TEX),
+        event.registerShader(new TimeShader(event.getResourceProvider(), new ResourceLocation(SHMainBus.MOD_ID,"shmapshadertext"), DefaultVertexFormat.POSITION_TEX),
                 (p_172645_) -> {
             shmapshadertext = p_172645_;
         });
+        event.registerShader(new HunhuanShader(event.getResourceProvider(), new ResourceLocation(SHMainBus.MOD_ID,"hunhuan"), DefaultVertexFormat.POSITION_COLOR_TEX),
+                (shader) -> hunhuanshader = shader);
     }
 }

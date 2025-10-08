@@ -8,6 +8,7 @@ import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCa
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
+import hua.huase.shanhaicontinent.render.SHRenderType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.RenderType;
@@ -32,9 +33,12 @@ public class PWRenderLivingEvent {
     @SubscribeEvent
     public static void renderLivingEventPost(RenderLivingEvent.Post event){
         if(event.getEntity() == null)return;
-
         event.getEntity().getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(monsterAttributeCapability -> {
-                renderHunhuan(event.getEntity(),event.getPartialTick(),event.getPoseStack(), monsterAttributeCapability.getNianxian());
+            VertexConsumer bufferbuilder = event.getMultiBufferSource().getBuffer(SHRenderType.render_Material(HUNHUAN));
+            int nianxian = monsterAttributeCapability.getNianxian();
+            float size1 = (float) event.getEntity().getBoundingBox().getSize();
+            float size =1+ size1*2f;
+            SHRenderApi.renderHunhuan(nianxian,size,event.getPoseStack(),bufferbuilder,event.getPartialTick(),false);
         });
 
     }

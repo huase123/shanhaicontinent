@@ -8,6 +8,7 @@ import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapa
 import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
 import hua.huase.shanhaicontinent.potion.PotionAnimation;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
+import hua.huase.shanhaicontinent.render.SHRenderType;
 import hua.huase.shanhaicontinent.render.SHRenderUtil;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
@@ -28,8 +29,6 @@ import org.joml.Matrix4f;
 import java.util.Map;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
-import static hua.huase.shanhaicontinent.render.SHRenderType.render_blitShader;
-import static hua.huase.shanhaicontinent.render.SHRenderType.render_hunhuan;
 
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class PWRenderPlayerEvent {
@@ -42,7 +41,7 @@ public class PWRenderPlayerEvent {
         MultiBufferSource.BufferSource multiBufferSource = event.getMultiBufferSource();
         Camera camera = event.getCamera();
         float partialTick = event.getPartialTick();
-        renderHunhuan(player, poseStack,multiBufferSource,camera,partialTick);
+        renderPlayerHunhuan(player, poseStack,multiBufferSource,camera,partialTick);
 
 
 
@@ -63,28 +62,16 @@ public class PWRenderPlayerEvent {
             }
         }
     }
-    private static void renderHunhuan(Player player, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
+    private static void renderPlayerHunhuan(Player player, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
         player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
             if(capability.getWuhunList() == null)return;
-            VertexConsumer bufferbuilder = multiBufferSource.getBuffer(render_hunhuan);
-            int count = 0;
+            VertexConsumer bufferbuilder = multiBufferSource.getBuffer(SHRenderType.render_Material(HUNHUAN));
+            int count = 1;
+            int size1 = capability.getWuhunList().size();
             for (MonsterAttributeCapability monsterAttributeCapability : capability.getWuhunList()) {
-                Matrix4f matrix4f = poseStack.last().pose();
                 int nianxian = monsterAttributeCapability.getNianxian();
-                
-
-                matrix4f.rotate((float)Math.PI*0.005f*(partialTick)*(count%2==0? -1:1), 0.0F, 1.0F, 0.0F);
-                matrix4f.scale(0.4f+count*0.12f,1, 0.4f+count*0.12f);
-
-                int color = SHRenderUtil.getColor(nianxian);
-                bufferbuilder.vertex(matrix4f, -6, 0.1f, -6).color(color).uv(0, 0).endVertex();
-                bufferbuilder.vertex(matrix4f, -6, 0.1f, +6).color(color).uv(0, 1).endVertex();
-                bufferbuilder.vertex(matrix4f, +6, 0.1f, +6).color(color).uv(1, 1).endVertex();
-                bufferbuilder.vertex(matrix4f, +6, 0.1f, -6).color(color).uv(1, 0).endVertex();
-                bufferbuilder.vertex(matrix4f, +6, 0.1f, -6).color(color).uv(1, 0).endVertex();
-                bufferbuilder.vertex(matrix4f, +6, 0.1f, +6).color(color).uv(1, 1).endVertex();
-                bufferbuilder.vertex(matrix4f, -6, 0.1f, +6).color(color).uv(0, 1).endVertex();
-                bufferbuilder.vertex(matrix4f, -6, 0.1f, -6).color(color).uv(0, 0).endVertex();
+                float size =2.0f-size1/9.0f*1.5f+count*count*0.15f;
+                SHRenderApi.renderHunhuan(nianxian,size,poseStack,bufferbuilder,partialTick,count%2==0);
                 count++;
             }
         });
@@ -173,7 +160,7 @@ public class PWRenderPlayerEvent {
  * @author :huase
  * @date 2025/10/7 1:18
  */
-    public static void renderHunhuan(Entity entity, float partialTick, PoseStack poseStack, int nianxian, int count){
+    public static void renderPlayerHunhuan(Entity entity, float partialTick, PoseStack poseStack, int nianxian, int count){
 
         SHRenderApi.renderStart(HUNHUAN,poseStack);
 

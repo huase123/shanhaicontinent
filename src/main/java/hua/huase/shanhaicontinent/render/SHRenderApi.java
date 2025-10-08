@@ -3,13 +3,41 @@ package hua.huase.shanhaicontinent.render;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
+import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapability;
+import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import org.joml.Matrix4f;
 
+import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
+
 public interface SHRenderApi {
+
+
+    public static void renderHunhuan(int nianxian,float size, PoseStack poseStack, VertexConsumer bufferbuilder, float partialTick, boolean direction) {
+        poseStack.pushPose();
+        Matrix4f matrix4f = poseStack.last().pose();
+        matrix4f.translate(0,0.001f*size,0);
+        matrix4f.scale(size,1, size);
+        matrix4f.rotate((float)Math.PI*0.005f*(Minecraft.getInstance().level.getGameTime()+partialTick)*(direction? -1:1), 0.0F, 1.0F, 0.0F);
+        int color = SHRenderUtil.getColor(nianxian);
+        bufferbuilder.vertex(matrix4f, -1, 0.01f, -1).color(color).uv(0, 0).endVertex();
+        bufferbuilder.vertex(matrix4f, -1, 0.01f, +1).color(color).uv(0, 1).endVertex();
+        bufferbuilder.vertex(matrix4f, +1, 0.01f, +1).color(color).uv(1, 1).endVertex();
+        bufferbuilder.vertex(matrix4f, +1, 0.01f, -1).color(color).uv(1, 0).endVertex();
+        bufferbuilder.vertex(matrix4f, +1, 0.01f, -1).color(color).uv(1, 0).endVertex();
+        bufferbuilder.vertex(matrix4f, +1, 0.01f, +1).color(color).uv(1, 1).endVertex();
+        bufferbuilder.vertex(matrix4f, -1, 0.01f, +1).color(color).uv(0, 1).endVertex();
+        bufferbuilder.vertex(matrix4f, -1, 0.01f, -1).color(color).uv(0, 0).endVertex();
+        poseStack.popPose();
+    }
+
+
 
     static void renderStart(ResourceLocation resourceLocation, PoseStack poseStack){
         RenderSystem.enableBlend();
