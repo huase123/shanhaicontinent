@@ -31,6 +31,6 @@ public class IceLayer<T extends LivingEntity, M extends EntityModel<T>> extends 
         float size1 = (float) entity.getBoundingBox().getSize();
         float size =1+ size1*2f;
         VertexConsumer bufferbuilder = buffer.getBuffer(SHRenderType.render_Material(HUNHUAN));
-        SHRenderApi.renderHunhuan(10000,size,stack,bufferbuilder,partialTicks,false);
+//        SHRenderApi.renderHunhuan(10000,size,stack,bufferbuilder,partialTicks,false);
     }
 }

@@ -2,7 +2,7 @@
 package hua.huase.shanhaicontinent.potion;
 
 import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
-import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
+import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
 import hua.huase.shanhaicontinent.init.SHModMobEffectsinit;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
 import net.minecraft.core.particles.ParticleTypes;
@@ -82,7 +82,7 @@ public class Jineng_jgb_7 extends SHBaseMobEffect implements PotionAnimation{
 	}
 
 	@Override
-	public void renderPlayer(LeveRenderPlaerEventPostEvent event) {
+	public void renderPlayer(LeveRenderLivingEntityPostEvent event) {
 		SHRenderApi.renderdibu(event.getEntity().level().getGameTime()+event.getPartialTick(),event.getPoseStack(),1,POLAR_BEAR_TEXTURE);
 		SHRenderApi.rendertian(event.getEntity().level().getGameTime()+event.getPartialTick(),event.getPoseStack(),1,POLAR_BEAR_TEXTURE,12);
 	}

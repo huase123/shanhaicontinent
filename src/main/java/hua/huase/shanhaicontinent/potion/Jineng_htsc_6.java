@@ -3,7 +3,7 @@ package hua.huase.shanhaicontinent.potion;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
+import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
 import hua.huase.shanhaicontinent.init.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
@@ -44,7 +44,7 @@ public class Jineng_htsc_6 extends SHBaseMobEffect  implements PotionAnimation{
 
 	private static ItemStack itemStack;
 	@Override
-	public void renderPlayer(LeveRenderPlaerEventPostEvent event) {
+	public void renderPlayer(LeveRenderLivingEntityPostEvent event) {
 
 		if(itemStack == null){
 			itemStack = new ItemStack(ItemInit.jineng_htsc_0.get());

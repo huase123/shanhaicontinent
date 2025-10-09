@@ -1,6 +1,6 @@
 package hua.huase.shanhaicontinent.potion;
 
-import hua.huase.shanhaicontinent.event.api.LeveRenderPlaerEventPostEvent;
+import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -41,7 +41,7 @@ public class Jineng_huang_6 extends SHBaseMobEffect  implements PotionAnimation{
     }
 
     @Override
-    public void renderPlayer(LeveRenderPlaerEventPostEvent event) {
+    public void renderPlayer(LeveRenderLivingEntityPostEvent event) {
 
     }
 

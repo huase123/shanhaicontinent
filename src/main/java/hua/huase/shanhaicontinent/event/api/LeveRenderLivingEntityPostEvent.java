@@ -4,20 +4,22 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
 /**
  *
  * 因为原版中第一人称不会渲染玩家自身，所以创建了这个事件来取代forge的
- * @see RenderPlayerEvent.Post 事件
+ * @see RenderHandEvent 事件
  * 创建方式请查看
  * @see hua.huase.shanhaicontinent.event.client.PWRenderPlayerEvent
  */
-public class LeveRenderPlaerEventPostEvent extends Event {
+public class LeveRenderLivingEntityPostEvent extends Event {
 
-    public Player getEntity() {
-        return player;
+    public LivingEntity getEntity() {
+        return entity;
     }
 
     public LevelRenderer getLevelRenderer() {
@@ -40,16 +42,16 @@ public class LeveRenderPlaerEventPostEvent extends Event {
         return bufferSource;
     }
 
-    private final Player player;
+    private final LivingEntity entity;
     private final LevelRenderer levelRenderer;
     private final MultiBufferSource.BufferSource bufferSource;
     private final float partialTick;
     private final PoseStack poseStack;
     private final Camera camera;
 
-    public LeveRenderPlaerEventPostEvent(Player player, LevelRenderer levelRenderer, MultiBufferSource.BufferSource bufferSource, float partialTick, PoseStack poseStack, Camera camera) {
+    public LeveRenderLivingEntityPostEvent(LivingEntity entity, LevelRenderer levelRenderer, MultiBufferSource.BufferSource bufferSource, float partialTick, PoseStack poseStack, Camera camera) {
 
-        this.player = player;
+        this.entity = entity;
         this.levelRenderer = levelRenderer;
         this.bufferSource = bufferSource;
         this.partialTick = partialTick;
