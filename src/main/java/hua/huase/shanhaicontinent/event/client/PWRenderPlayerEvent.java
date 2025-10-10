@@ -8,6 +8,7 @@ import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCa
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
+import hua.huase.shanhaicontinent.potion.PotionAnimation;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
 import hua.huase.shanhaicontinent.render.SHRenderType;
 import net.minecraft.client.Camera;
@@ -16,6 +17,8 @@ import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.*;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -26,6 +29,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
 import org.joml.Quaternionf;
+
+import java.util.Map;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
@@ -47,22 +52,14 @@ public class PWRenderPlayerEvent {
         }
 
 
-//
-//        if(player !=null) {
-//            for (MobEffectInstance activeEffect : player.getActiveEffects()) {
-//                if (activeEffect.getEffect() instanceof PotionAnimation potionAnimation) {
-//                    potionAnimation.renderPlayer(event);
-//                }
-//            }
-//
-//
-//            Map<MobEffect, MobEffectInstance> activeEffectsMap = player.getActiveEffectsMap();
-//            for (Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry : activeEffectsMap.entrySet()) {
-//                if (mobEffectMobEffectInstanceEntry.getKey() instanceof PotionAnimation potionAnimation) {
-//                    potionAnimation.renderPlayer(event);
-//                }
-//            }
-//        }
+
+        if(livingEntity !=null) {
+            for (MobEffectInstance activeEffect : livingEntity.getActiveEffects()) {
+                if (activeEffect.getEffect() instanceof PotionAnimation potionAnimation) {
+                    potionAnimation.renderPlayer(event);
+                }
+            }
+        }
     }
 
     private static void renderLivingEntityHunhuan(LivingEntity livingEntity, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
