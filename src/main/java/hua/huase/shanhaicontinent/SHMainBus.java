@@ -2,6 +2,7 @@ package hua.huase.shanhaicontinent;
 
 import com.mojang.serialization.Codec;
 import hua.huase.shanhaicontinent.command.SHCommand;
+import hua.huase.shanhaicontinent.config.Config;
 import hua.huase.shanhaicontinent.init.*;
 import hua.huase.shanhaicontinent.init.ModelBlockEntitiesinit;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
@@ -21,7 +22,9 @@ import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.Bindings;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
@@ -81,6 +84,8 @@ public class SHMainBus {
 
         NetworkHandler.register();
 
+        // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
         changeAttributesIO();
 
 //联动
