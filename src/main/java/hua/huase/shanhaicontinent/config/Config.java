@@ -56,7 +56,11 @@ public class Config
     {
         return obj instanceof final String itemName && ForgeRegistries.ITEMS.containsKey(new ResourceLocation(itemName));
     }
-
+/**
+ * TODO 功能描述：通过这个触发事件获取配置,在更改配置后可能不触发,所以不用
+ * @author :huase
+ * @date 2025/10/11 5:05
+ */
 //    @SubscribeEvent
     static void onLoad(final ModConfigEvent event)
     {

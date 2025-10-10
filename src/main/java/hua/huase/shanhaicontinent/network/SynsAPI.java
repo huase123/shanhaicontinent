@@ -28,9 +28,7 @@ public interface SynsAPI {
     }
     static void synsEntityAttribute(Entity entity){
             entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                NetworkHandler.INSTANCE.send(PacketDistributor.ALL.with(() -> {
-                    return null;
-                }), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
             });
     }
 }
