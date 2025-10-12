@@ -3,16 +3,29 @@ package hua.huase.shanhaicontinent.network;
 import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
+import hua.huase.shanhaicontinent.capabilitys.CapabilityUtil;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
+import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.network.server.SPacketEntityAttribute;
 import hua.huase.shanhaicontinent.network.server.SPacketPlayerAttribute;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraftforge.network.PacketDistributor;
+import org.jetbrains.annotations.NotNull;
 
 public interface SynsAPI {
+    static void synsPlayerCapability(ServerPlayer serverPlayer, @NotNull PlayerCapability playerCapability){
+        CapabilityUtil.synsMaxhealth(serverPlayer,playerCapability);
+        NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> serverPlayer), new SPacketPlayerAttribute(serverPlayer.getId(),playerCapability.serializeNBT()));
+    }
+    static void synsEntityCapability(Entity entity, @NotNull MosterCapability capability){
+        CapabilityUtil.synsMaxhealth(entity,capability);
+        CapabilityUtil.synsCustomName(entity,capability);
+        NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+    }
     static void synsPlayerAttribute(Entity entity){
         if(entity instanceof ServerPlayer livingEntity){
             float maxshengming = AttrubuteAPI.getMaxshengming(livingEntity);

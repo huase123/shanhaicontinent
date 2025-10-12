@@ -21,13 +21,17 @@ package hua.huase.shanhaicontinent.network.server;
 
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.common.util.NonNullConsumer;
 import net.minecraftforge.network.NetworkEvent;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
 import java.util.function.Supplier;
@@ -58,16 +62,8 @@ public class SPacketPlayerAttribute {
       if (world != null) {
         Entity entity = world.getEntity(msg.entityId);
         if(entity != null){
-          LazyOptional<PlayerAttributeCapability> capability = entity.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY);
-          capability.ifPresent(capability1 -> {
-            capability1.deserializeNBT(msg.nbt);
-
-
-            //排序
-            Collections.sort(capability1.getWuhunListsname());
-          });
+          entity.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(playerCapability -> playerCapability.deserializeNBT(msg.nbt));
         }
-
       }
     });
     ctx.get().setPacketHandled(true);

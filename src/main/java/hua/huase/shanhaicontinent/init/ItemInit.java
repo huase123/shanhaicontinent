@@ -2,14 +2,17 @@ package hua.huase.shanhaicontinent.init;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capability.playerattribute.WuHunName;
+import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.item.*;
 import hua.huase.shanhaicontinent.item.armor.SHArmorBaseItem;
 import hua.huase.shanhaicontinent.item.armor.SHArmorMaterial;
 import hua.huase.shanhaicontinent.item.guoshi.WuhunGuoshiItem;
+import hua.huase.shanhaicontinent.item.hunji.HunjiItem;
 import hua.huase.shanhaicontinent.item.jineng.haotianshengchui.*;
 import hua.huase.shanhaicontinent.item.jineng.huang.*;
 import hua.huase.shanhaicontinent.item.jineng.jinggubang.*;
 import hua.huase.shanhaicontinent.item.tool.SHTiers;
+import hua.huase.shanhaicontinent.item.wuhun.WuhunItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
@@ -47,6 +50,26 @@ public class ItemInit {
 
     public static final RegistryObject<Item> wanfajieshao = ITEMS.register("wanfajieshao",
             () -> new WanfajieshaoItem(new Item.Properties()));
+
+    public static ArrayList<Item> hunjilist = new ArrayList<>();
+
+    public static final RegistryObject<Item> hunji0 = ITEMS.register("hunji0", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji1 = ITEMS.register("hunji1", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji2 = ITEMS.register("hunji2", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji3 = ITEMS.register("hunji3", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji4 = ITEMS.register("hunji4", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji5 = ITEMS.register("hunji5", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji6 = ITEMS.register("hunji6", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji7 = ITEMS.register("hunji7", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji8 = ITEMS.register("hunji8", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> hunji9 = ITEMS.register("hunji9", () -> new HunjiItem(FunctionTypeInit.defense.get()));
+
+    public static ArrayList<Item> wuhunlist = new ArrayList<>();
+    public static final RegistryObject<Item> wuhun0 = ITEMS.register("wuhun0", () -> new WuhunItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> wuhun1 = ITEMS.register("wuhun1", () -> new WuhunItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> wuhun2 = ITEMS.register("wuhun2", () -> new WuhunItem(FunctionTypeInit.defense.get()));
+    public static final RegistryObject<Item> wuhun3 = ITEMS.register("wuhun3", () -> new WuhunItem(FunctionTypeInit.defense.get()));
+
 
 
     public static final RegistryObject<Item> hunyeping0 = ITEMS.register("hunyeping0", () -> new HunyePing(new Item.Properties().stacksTo(1)).setMaxnengliang(300));

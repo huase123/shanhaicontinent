@@ -20,6 +20,7 @@
 package hua.huase.shanhaicontinent.network.server;
 
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.nbt.CompoundTag;
@@ -56,9 +57,7 @@ public class SPacketEntityAttribute {
       if (world != null) {
         Entity entity = world.getEntity(msg.entityId);
         if(entity!=null){
-          entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.deserializeNBT(msg.nbt);
-          });
+          entity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(capability -> capability.deserializeNBT(msg.nbt));
         }else {
           monsterHashMapCapability.put(msg.entityId,msg.nbt);
         }

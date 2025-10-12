@@ -3,6 +3,7 @@ package hua.huase.shanhaicontinent;
 import com.mojang.serialization.Codec;
 import hua.huase.shanhaicontinent.command.SHCommand;
 import hua.huase.shanhaicontinent.config.Config;
+import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.init.*;
 import hua.huase.shanhaicontinent.init.ModelBlockEntitiesinit;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
@@ -72,6 +73,7 @@ public class SHMainBus {
         CreativeModTabsInit.register(modEventBus);
         SHModMobEffectsinit.register(modEventBus);
 
+        FunctionTypeInit.register(modEventBus);
 //        world
         SHStructureTypes.STRUCTURE_TYPES.register(modEventBus);
 

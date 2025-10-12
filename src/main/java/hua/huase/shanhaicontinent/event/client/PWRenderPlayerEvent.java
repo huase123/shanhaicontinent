@@ -36,8 +36,6 @@ import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class PWRenderPlayerEvent {
-
-
     @SubscribeEvent
     public static void renderPlayerEventPost(LeveRenderLivingEntityPostEvent event){
         LivingEntity livingEntity = event.getEntity();

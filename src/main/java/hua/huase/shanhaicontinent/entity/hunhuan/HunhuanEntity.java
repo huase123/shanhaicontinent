@@ -3,6 +3,7 @@ package hua.huase.shanhaicontinent.entity.hunhuan;
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.entity.NoHunhuan;
 import hua.huase.shanhaicontinent.entity.hunhe.HunheEntity;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -15,7 +16,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
-public class HunhuanEntity extends Entity {
+public class HunhuanEntity extends Entity implements NoHunhuan {
     private int existenceTime;
     private int livetime;
     private Player player;
