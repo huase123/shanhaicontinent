@@ -3,10 +3,13 @@ package hua.huase.shanhaicontinent.capabilitys;
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capabilitys.capability.AttributeBase;
 import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
+import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.compat.sophisticatedbackpacks.SophisticatedbackpacksAPI;
 import hua.huase.shanhaicontinent.compat.twilightforest.TwilightforestAPI;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
+import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.RandomSource;
@@ -15,6 +18,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Enemy;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
@@ -27,6 +33,20 @@ import java.util.List;
  */
 public class CapabilityUtil {
 
+    public static boolean juexingWuhun(Player entity, @NotNull PlayerCapability capability){
+        if(capability.isIsjuexing()){
+            entity.sendSystemMessage(Component.translatable("你已觉醒了武魂，无需再觉醒").withStyle(ChatFormatting.GRAY));
+            return false;
+        }
+        Item item = ItemInit.wuhunlist.get(entity.level().random.nextInt(ItemInit.wuhunlist.size()));
+        ItemStack itemStack = new ItemStack(item);
+        itemStack.getCapability(RegisterCapabilitys.WUHUNCAPABILITY).ifPresent(wuhunCapability -> {
+            wuhunCapability.init(itemStack);
+        });
+        capability.juexinWUhun(entity,itemStack,entity.level().random.nextInt(100)+1);
+        capability.setIsjuexing(true);
+        return true;
+    }
     public static void genMonsterCapability(Entity entity, @NotNull MosterCapability capability){
         RandomSource random = entity.level().random;
         int nianxian = getNianxian(entity,random);
@@ -97,7 +117,9 @@ public class CapabilityUtil {
             float maxshengming = capability.getMaxshengming();
             if(livingEntity.getAttribute(Attributes.MAX_HEALTH).getValue() != maxshengming){
                 livingEntity.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxshengming);
-                livingEntity.setHealth(maxshengming);
+                if(!(entity instanceof Player)){
+                    livingEntity.setHealth(maxshengming);
+                }
             }
         }
     }
