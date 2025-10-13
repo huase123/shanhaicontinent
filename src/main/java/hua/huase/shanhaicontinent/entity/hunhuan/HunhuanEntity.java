@@ -2,6 +2,7 @@ package hua.huase.shanhaicontinent.entity.hunhuan;
 
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.entity.NoHunhuan;
 import hua.huase.shanhaicontinent.entity.hunhe.HunheEntity;
 import net.minecraft.nbt.CompoundTag;
@@ -44,14 +45,27 @@ public class HunhuanEntity extends Entity implements NoHunhuan {
 
 
     public void secondtick() {
+
+
+
         if(player != null && player.getVehicle()!=null && player.getVehicle() == this){
-            if(PlayerHunHuanAPI.isXishouHunhuan((ServerPlayer) player,this)){
-                PlayerHunHuanAPI.xishouHunhuan(player,this);
-                existenceTime++;
-            }
+            player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(c->{
+                if(c.isXishouHunhuan((ServerPlayer) player,this)){
+                    c.xishouHunhuan(player,this,existenceTime);
+                    existenceTime++;
+                }
+            });
         }else {
             existenceTime= 0;
         }
+//        if(player != null && player.getVehicle()!=null && player.getVehicle() == this){
+//            if(PlayerHunHuanAPI.isXishouHunhuan((ServerPlayer) player,this)){
+//                PlayerHunHuanAPI.xishouHunhuan(player,this);
+//                existenceTime++;
+//            }
+//        }else {
+//            existenceTime= 0;
+//        }
     }
 
     public boolean isAttackable() {

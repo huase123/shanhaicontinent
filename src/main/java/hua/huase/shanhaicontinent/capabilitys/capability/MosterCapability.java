@@ -1,12 +1,15 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
+import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 import static hua.huase.shanhaicontinent.SHMainBus.random;
@@ -63,6 +66,11 @@ public class MosterCapability extends AttributeBase{
     public void inti(Entity entity, int nianxian, FunctionType functionType) {
         this.nianxian = nianxian;
         this.functionType = functionType;
+        ItemStack hunhuan = new ItemStack(ItemInit.hunhuan0.get());
+        hunhuan.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).ifPresent(c->{
+            c.inti(entity,nianxian,functionType,hunhuan,this);
+        });
+        this.hunhuan.setStackInSlot(0,hunhuan);
 
         if(nianxian<100){
             float g = 2 + (float) nianxian / 10 + random.nextInt(10);

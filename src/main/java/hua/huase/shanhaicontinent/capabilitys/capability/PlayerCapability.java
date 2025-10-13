@@ -1,5 +1,7 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -243,5 +245,15 @@ public class PlayerCapability extends AttributeBase{
 
     public void addTupochenggonggailv(ServerPlayer player, float tupochenggonggailv) {
         this.tupochenggonggailv +=tupochenggonggailv;
+    }
+
+    public boolean isXishouHunhuan(ServerPlayer player, HunhuanEntity hunhuanEntity) {
+        return true;
+    }
+
+    public void xishouHunhuan(Player player, HunhuanEntity hunhuanEntity, int existenceTime) {
+        wuhun.getStackInSlot(0).getCapability(RegisterCapabilitys.WUHUNCAPABILITY).ifPresent(c->{
+            c.xishouHunhuan(player,hunhuanEntity,existenceTime,this);
+        });
     }
 }

@@ -1,9 +1,14 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.SHRegistries;
+import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -38,6 +43,19 @@ public class WuhunCapability extends AttributeBase{
     }
 
     public void init(ItemStack itemStack) {
+
+    }
+
+    public void xishouHunhuan(Player player, HunhuanEntity hunhuanEntity, int existenceTime, PlayerCapability playerCapability) {
+        hunhuanEntity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(c->{
+            ItemStackHandler hunhuan = c.getHunhuan();
+            ItemStack stackInSlot = hunhuan.getStackInSlot(0);
+            stackInSlot.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).ifPresent(hc->{
+                ItemStack stackInSlot1 = hc.hunji.getStackInSlot(0);
+                hunjilist.setStackInSlot(0,stackInSlot1);
+                player.sendSystemMessage(Component.translatable("成功吸收魂环").withStyle(ChatFormatting.YELLOW));
+            });
+        });
 
     }
 }

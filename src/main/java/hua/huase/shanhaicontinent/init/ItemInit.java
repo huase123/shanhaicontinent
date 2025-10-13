@@ -51,6 +51,9 @@ public class ItemInit {
     public static final RegistryObject<Item> wanfajieshao = ITEMS.register("wanfajieshao",
             () -> new WanfajieshaoItem(new Item.Properties()));
 
+    public static final RegistryObject<Item> hunhuan0 = ITEMS.register("hunhuan0", () -> new HunHuanitem(FunctionTypeInit.defense.get()));
+
+
     public static ArrayList<Item> hunjilist = new ArrayList<>();
 
     public static final RegistryObject<Item> hunji0 = ITEMS.register("hunji0", () -> new HunjiItem(FunctionTypeInit.defense.get()));

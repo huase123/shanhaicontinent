@@ -6,13 +6,11 @@ import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCa
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterCapabilityAPI;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
-import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
-import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
-import hua.huase.shanhaicontinent.capabilitys.capability.WuhunCapability;
+import hua.huase.shanhaicontinent.capabilitys.capability.*;
 import hua.huase.shanhaicontinent.entity.NoHunhuan;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
 import hua.huase.shanhaicontinent.item.Hunhuan;
+import hua.huase.shanhaicontinent.item.Hunji;
 import hua.huase.shanhaicontinent.item.Wuhun;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import hua.huase.shanhaicontinent.network.server.SPacketEntityAttribute;
@@ -42,12 +40,14 @@ import org.jetbrains.annotations.Nullable;
 public class RegisterCapabilitys {
 
     public static Capability<HunhuanCapability> HUNHUANCAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
+    public static Capability<HujiCapability> HUJICAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
     public static Capability<MosterCapability> MOSTERCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     public static Capability<WuhunCapability> WUHUNCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     public static Capability<PlayerCapability> PLAYERCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     @SubscribeEvent
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.register(HunhuanCapability.class);
+        event.register(HujiCapability.class);
         event.register(MosterCapability.class);
         event.register(WuhunCapability.class);
         event.register(PlayerCapability.class);
@@ -104,6 +104,17 @@ public class RegisterCapabilitys {
                         public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                             if(cap != HUNHUANCAPABILITY) return LazyOptional.empty();
                             return LazyOptional.of(HunhuanCapability::new).cast();
+                        }
+                    }
+            );
+        }
+        if (event.getObject().getItem() instanceof Hunji) {
+            event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunhuanitem"),
+                    new ICapabilityProvider() {
+                        @Override
+                        public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+                            if(cap != HUNHUANCAPABILITY) return LazyOptional.empty();
+                            return LazyOptional.of(HujiCapability::new).cast();
                         }
                     }
             );

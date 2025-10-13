@@ -1,8 +1,6 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
-import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -15,8 +13,8 @@ import net.minecraftforge.items.ItemStackHandler;
  * - @author: huase。
  * - @date: 2025/10/12 3:18
  */
-public class HunhuanCapability extends AttributeBase{
-    ItemStackHandler hunji = new ItemStackHandler();
+public class HujiCapability extends AttributeBase{
+    ItemStackHandler hunhuan = new ItemStackHandler();
     FunctionType functionType;
     int nianxian;
 
@@ -24,7 +22,7 @@ public class HunhuanCapability extends AttributeBase{
     public CompoundTag serializeNBT() {
         CompoundTag nbt = super.serializeNBT();
         nbt.putInt("nianxian",nianxian);
-        nbt.put("hunji", hunji.serializeNBT());
+        nbt.put("hunhuan", hunhuan.serializeNBT());
         ResourceLocation key = SHRegistries.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
         return nbt;
@@ -34,24 +32,15 @@ public class HunhuanCapability extends AttributeBase{
     public void deserializeNBT(CompoundTag nbt) {
         super.deserializeNBT(nbt);
         nianxian = nbt.getInt("nianxian");
-        if(nbt.get("hunji")!=null){
-            this.hunji.deserializeNBT((CompoundTag) nbt.get("hunji"));
+        if(nbt.get("hunhuan")!=null){
+            this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
         }
         functionType = SHRegistries.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
     }
 
-
-    public void inti(Entity entity, int nianxian, FunctionType functionType, ItemStack hunhuan, MosterCapability mosterCapability) {
-
+    public void inti(Entity entity, int nianxian, FunctionType functionType, ItemStack hunhuan, ItemStack hunji, HunhuanCapability hunhuanCapability, MosterCapability mosterCapability) {
+        this.hunhuan.setStackInSlot(0,hunhuan);
         this.functionType = functionType;
         this.nianxian = nianxian;
-        this.hunhuanAddhunji(entity,nianxian,functionType,hunhuan,mosterCapability);
-    }
-    public void hunhuanAddhunji(Entity entity, int nianxian, FunctionType functionType, ItemStack hunhuan, MosterCapability mosterCapability) {
-        ItemStack hunji = new ItemStack(ItemInit.hunji0.get());
-        hunji.getCapability(RegisterCapabilitys.HUJICAPABILITY).ifPresent(c ->{
-            c.inti(entity,nianxian,functionType,hunhuan,hunji,this,mosterCapability);
-        });
-        this.hunji.setStackInSlot(0,hunji);
     }
 }

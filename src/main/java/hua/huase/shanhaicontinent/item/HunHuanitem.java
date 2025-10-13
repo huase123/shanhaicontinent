@@ -1,8 +1,6 @@
-package hua.huase.shanhaicontinent.item.hunji;
+package hua.huase.shanhaicontinent.item;
 
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.item.Hunhuan;
-import hua.huase.shanhaicontinent.item.Hunji;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -12,7 +10,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -20,14 +17,14 @@ import java.util.List;
 import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
 
 /**
- * - @description:HunjiItem类
+ * - @description:HunHuanitem类
  * - @author: huase。
- * - @date: 2025/10/12 6:52
+ * - @date: 2025/10/14 6:30
  */
-public class HunjiItem extends Item implements Hunji {
+public class HunHuanitem  extends Item implements Hunji {
     FunctionType functionType;
 
-    public HunjiItem(FunctionType functionType) {
+    public HunHuanitem(FunctionType functionType) {
         super(new Item.Properties().stacksTo(1));
         this.functionType = functionType;
         hunjilist.add(this);
