@@ -1,12 +1,10 @@
 package hua.huase.shanhaicontinent.entity.hunhuan;
 
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
 import hua.huase.shanhaicontinent.entity.NoHunhuan;
 import hua.huase.shanhaicontinent.entity.hunhe.HunheEntity;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;

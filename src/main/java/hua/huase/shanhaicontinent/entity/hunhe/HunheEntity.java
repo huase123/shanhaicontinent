@@ -1,38 +1,29 @@
 package hua.huase.shanhaicontinent.entity.hunhe;
 
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.init.AdvenceInit;
 import hua.huase.shanhaicontinent.init.EntityInit;
-import hua.huase.shanhaicontinent.item.HunyePing;
 import hua.huase.shanhaicontinent.item.Nengliang;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
-import net.minecraft.network.protocol.game.ClientboundSetSubtitleTextPacket;
-import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobSpawnType;
 import net.minecraft.world.entity.MoverType;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 
-import static net.minecraft.sounds.SoundEvents.EGG_THROW;
 import static net.minecraft.sounds.SoundEvents.EXPERIENCE_ORB_PICKUP;
 
 public class HunheEntity extends Entity {
@@ -86,16 +77,17 @@ public class HunheEntity extends Entity {
                 contacttime--;
             }
             if(contacttime<=0){
-//                serverPlayer.connection.send(new ClientboundSetTitleTextPacket(Component.translatable("§2hahah")));
-
-                PlayerHunHuanAPI.addJingyan(serverPlayer,this.getValue());
+                serverPlayer.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(c ->{
+                        c.addJingyan(serverPlayer,this.getValue());
+                        SynsAPI.synsPlayerCapability(serverPlayer,c);
+                    }
+                );
 
 
                 AdvenceInit.xishouhunhetrigger.trigger(serverPlayer);
 
                 this.playSound(EXPERIENCE_ORB_PICKUP, 1.1F, (this.random.nextFloat() - this.random.nextFloat()) * 0.35F + 0.9F);
 
-                SynsAPI.synsPlayerAttribute(serverPlayer);
                 this.discard();
             }
         }

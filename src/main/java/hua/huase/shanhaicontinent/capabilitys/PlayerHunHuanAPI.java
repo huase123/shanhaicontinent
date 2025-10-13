@@ -1,7 +1,9 @@
-package hua.huase.shanhaicontinent.capability.playerattribute;
+package hua.huase.shanhaicontinent.capabilitys;
 
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapability;
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
+import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
+import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
 import hua.huase.shanhaicontinent.init.AdvenceInit;
 import hua.huase.shanhaicontinent.network.SynsAPI;
@@ -243,119 +245,6 @@ public interface PlayerHunHuanAPI {
         return false;
     }
 
-    static void addJingyan(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setJingyan(capability.getJingyan()+value);
-
-            if(capability.getJingyan()>=capability.getMaxjingyan()){
-                tupoDengji(player,capability);
-            }
-            player.connection.send(new ClientboundSetActionBarTextPacket(Component.translatable("吸收经验成功",value)));
-        });
-    }
-
-    static void addBaojilv(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setBaojilv(capability.getBaojilv()+value);
-
-        });
-    }
-
-    static void addBaojishanhai(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setBaojishanghai(capability.getBaojishanghai()+value);
-
-        });
-    }
-
-    static void addKangbao(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setKangbao(capability.getKangbao()+value);
-        });
-    }
-
-    static void addShanbi(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setShanbi(capability.getShanbi()+value);
-        });
-    }
-
-    static void addJingshenli(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setJingshenli(Math.min(capability.getJingshenli()+value,capability.getMaxjingshenli()));
-        });
-    }
-
-    static void addMaxshengming(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setMaxshengming(capability.getMaxshengming()+value);
-            player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(capability.getMaxshengming()+value);
-        });
-    }
-
-    static void addMingzhong(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setMingzhong(capability.getMingzhong()+value);
-        });
-    }
-
-    static void addShengming(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            float v = player.getHealth() + value;
-            float maxHealth = player.getMaxHealth();
-            player.setHealth(Math.min(v, maxHealth));
-        });
-
-    }
-
-    static void addShengminghuifu(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setShengminghuifu(capability.getShengminghuifu()+value);
-        });
-    }
-
-    static void addTupochenggonggailv(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setTupochenggonggailv(capability.getTupochenggonggailv()+value);
-        });
-    }
-
-    static void addWuchuan(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setWuchuan(capability.getWuchuan()+value);
-        });
-    }
-
-    static void addWufang(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setWufang(capability.getWufang()+value);
-        });
-    }
-
-    static void addWugong(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setWugong(capability.getWugong()+value);
-        });
-    }
-
-    static void addXixue(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setXixue(capability.getXixue()+value);
-        });
-    }
-
-    static void addZhenshang(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setZhenshang(capability.getZhenshang()+value);
-        });
-    }
-
-    static void addMaxJingshenli(ServerPlayer player, float value) {
-        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-            capability.setMaxjingshenli(capability.getMaxjingshenli()+value);
-        });
-
-    }
 
 
 

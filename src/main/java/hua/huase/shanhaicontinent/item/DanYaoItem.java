@@ -2,10 +2,10 @@ package hua.huase.shanhaicontinent.item;
 
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -79,69 +79,66 @@ public class DanYaoItem extends Item {
 
     private void addDanyaoAttribute(ItemStack itemStack, Level level, LivingEntity livingEntity) {
         if(itemStack.getItem() instanceof DanYaoItem danYaoItem && livingEntity instanceof ServerPlayer player){
-            livingEntity.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+            livingEntity.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(capability -> {
                 if(danYaoItem.baojilv>0){
-                    PlayerHunHuanAPI.addBaojilv(player,danYaoItem.baojilv);
+                    capability.addBaojilv(player,danYaoItem.baojilv);
                 }
                 if(danYaoItem.baojishanghai>0){
-                    PlayerHunHuanAPI.addBaojishanhai(player,danYaoItem.baojishanghai);
+                    capability.addBaojishanhai(player,danYaoItem.baojishanghai);
                 }
                 if(danYaoItem.jingyan>0){
-                    PlayerHunHuanAPI.addJingyan(player,danYaoItem.jingyan);
+                    capability.addJingyan(player,danYaoItem.jingyan);
                 }
                 if(danYaoItem.kangbao>0){
-                    PlayerHunHuanAPI.addKangbao(player,danYaoItem.kangbao);
+                    capability.addKangbao(player,danYaoItem.kangbao);
                 }
                 if(danYaoItem.shanbi>0){
-                    PlayerHunHuanAPI.addShanbi(player,danYaoItem.shanbi);
+                    capability.addShanbi(player,danYaoItem.shanbi);
                 }
                 if(danYaoItem.jingshenli>0){
-//                    PlayerHunHuanAPI.addJingshenli(player,danYaoItem.jingshenli);
-                    PlayerHunHuanAPI.addJingshenli(player,danYaoItem.jingshenli);
+                    capability.addJingshenli(player,danYaoItem.jingshenli);
                 }
                 if(danYaoItem.maxjingshenli>0){
-                    PlayerHunHuanAPI.addMaxJingshenli(player,danYaoItem.maxjingshenli);
+                    capability.addMaxJingshenli(player,danYaoItem.maxjingshenli);
                 }
                 if(danYaoItem.maxshengming>0){
-                    PlayerHunHuanAPI.addMaxshengming(player,danYaoItem.maxshengming);
+                    capability.addMaxshengming(player,danYaoItem.maxshengming);
                 }
                 if(danYaoItem.mingzhong >0){
-                    PlayerHunHuanAPI.addMingzhong(player,danYaoItem.mingzhong);
+                    capability.addMingzhong(player,danYaoItem.mingzhong);
                 }
                 if(danYaoItem.shengming >0){
-                    PlayerHunHuanAPI.addShengming(player,danYaoItem.shengming);
+                    capability.addShengming(player,danYaoItem.shengming);
                 }
                 if(danYaoItem.shengminghuifu >0){
-                    PlayerHunHuanAPI.addShengminghuifu(player,danYaoItem.shengminghuifu);
+                    capability.addShengminghuifu(player,danYaoItem.shengminghuifu);
                 }
                 if(danYaoItem.tupochenggonggailv >0){
-                    PlayerHunHuanAPI.addTupochenggonggailv(player,danYaoItem.tupochenggonggailv);
+                    capability.addTupochenggonggailv(player,danYaoItem.tupochenggonggailv);
                 }
                 if(danYaoItem.wuchuan >0){
-                    PlayerHunHuanAPI.addWuchuan(player,danYaoItem.wuchuan);
+                    capability.addWuchuan(player,danYaoItem.wuchuan);
                 }
                 if(danYaoItem.wufang >0){
-                    PlayerHunHuanAPI.addWufang(player,danYaoItem.wufang);
+                    capability.addWufang(player,danYaoItem.wufang);
                 }
                 if(danYaoItem.wugong >0){
-                    PlayerHunHuanAPI.addWugong(player,danYaoItem.wugong);
+                    capability.addWugong(player,danYaoItem.wugong);
                 }
                 if(danYaoItem.xixue >0){
-                    PlayerHunHuanAPI.addXixue(player,danYaoItem.xixue);
+                    capability.addXixue(player,danYaoItem.xixue);
                 }
                 if(danYaoItem.zhenshang >0){
-                    PlayerHunHuanAPI.addZhenshang(player,danYaoItem.zhenshang);
+                    capability.addZhenshang(player,danYaoItem.zhenshang);
                 }
                 if(danYaoItem.shengmingbaifenbi >0){
-                    PlayerHunHuanAPI.addShengming(player,player.getMaxHealth()*danYaoItem.shengmingbaifenbi /100f);
+                    capability.addShengming(player,player.getMaxHealth()*danYaoItem.shengmingbaifenbi /100f);
                 }
                 if(danYaoItem.jingshenlibaifenbi >0){
-                    PlayerHunHuanAPI.addJingshenli(player, PlayerAttrubuteAPI.getMaxjingshenli(player)* danYaoItem.jingshenlibaifenbi /100f);
+                    capability.addJingshenli(player, PlayerAttrubuteAPI.getMaxjingshenli(player)* danYaoItem.jingshenlibaifenbi /100f);
                 }
+                SynsAPI.synsPlayerCapability(player,capability);
 
-
-
-                SynsAPI.synsPlayerAttribute(player);
             });
         }
 

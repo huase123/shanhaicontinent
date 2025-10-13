@@ -3,9 +3,14 @@ package hua.huase.shanhaicontinent.capabilitys.capability;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
+
+import static hua.huase.shanhaicontinent.SHMainBus.random;
 
 
 /**
@@ -83,7 +88,7 @@ public class PlayerCapability extends AttributeBase{
         this.isjuexing=nbt.getBoolean("isjuexing");
     }
 
-    public float getJingyan() {
+    public float getJingyan(Player player) {
         return jingyan;
     }
 
@@ -91,7 +96,7 @@ public class PlayerCapability extends AttributeBase{
         this.jingyan = jingyan;
     }
 
-    public float getMaxjingyan() {
+    public float getMaxjingyan(Player player) {
         return maxjingyan;
     }
 
@@ -99,7 +104,7 @@ public class PlayerCapability extends AttributeBase{
         this.maxjingyan = maxjingyan;
     }
 
-    public float getJingshenli() {
+    public float getJingshenli(Player player) {
         return jingshenli;
     }
 
@@ -107,7 +112,7 @@ public class PlayerCapability extends AttributeBase{
         this.jingshenli = jingshenli;
     }
 
-    public float getMaxjingshenli() {
+    public float getMaxjingshenli(Player player) {
         return maxjingshenli;
     }
 
@@ -115,7 +120,7 @@ public class PlayerCapability extends AttributeBase{
         this.maxjingshenli = maxjingshenli;
     }
 
-    public int getDengji() {
+    public int getDengji(Player player) {
         return dengji;
     }
 
@@ -190,5 +195,53 @@ public class PlayerCapability extends AttributeBase{
         itemStackHandler.setStackInSlot(wuhun.getSlots(),itemStack);
 
         entity.sendSystemMessage(Component.translatable("武魂添加成功").withStyle(ChatFormatting.YELLOW));
+    }
+
+    @Override
+    public float Hurt(LivingEntity directEntity, DamageSource source, float amount) {
+
+//        public static float huiProcessing(Entity directEntity,Entity causingEntity,float amount){
+//            AttributeBase directcapability = CapabilityUtil.getCapability(directEntity);
+////处理闪避
+//            float v1 = Math.max(AttrubuteAPI.getShanbi(directEntity) - AttrubuteAPI.getMinghzong(causingEntity), 0f) / (Math.max(AttrubuteAPI.getShanbi(directEntity) - AttrubuteAPI.getMinghzong(causingEntity), 0f) + 100f);
+//            if((float)random.nextInt(100)/100f<=v1){
+//                return 0f;
+//            }
+//
+////处理减伤
+//            float jianshang =1- Math.max(AttrubuteAPI.getWufang(directEntity) - AttrubuteAPI.getWuchuan(causingEntity), 0f)/(Math.max(AttrubuteAPI.getWufang(directEntity) - AttrubuteAPI.getWuchuan(causingEntity), 0f)+500f);
+////处理暴击概率
+//            boolean b = random.nextInt(100) <= AttrubuteAPI.getBaojilv(causingEntity);
+//
+//            float v = b? (AttrubuteAPI.getWugong(causingEntity)*jianshang + AttrubuteAPI.getZhenshang(causingEntity)+amount*jianshang) * Math.max((AttrubuteAPI.getBaojishanghai(causingEntity)-AttrubuteAPI.getKangbao(directEntity)+100f)/100f,1f):(AttrubuteAPI.getWugong(causingEntity)*jianshang + AttrubuteAPI.getZhenshang(causingEntity)+amount);
+//
+//// 处理吸血
+//            if(causingEntity != null &&causingEntity instanceof LivingEntity livingEntity &&!livingEntity.isDeadOrDying())
+//                livingEntity.setHealth(AttrubuteAPI.getXixue(causingEntity)/(AttrubuteAPI.getXixue(causingEntity)+100)*v+livingEntity.getHealth());
+//            return v;
+//
+//        }
+
+        return super.Hurt(directEntity, source, amount);
+    }
+
+    public void addJingyan(ServerPlayer player, float jingyan) {
+        this.jingyan +=jingyan;
+    }
+
+    public void addJingshenli(ServerPlayer player, float jingshenli) {
+        this.jingshenli +=jingshenli;
+    }
+
+    public void addMaxJingshenli(ServerPlayer player, float maxjingshenli) {
+        this.maxjingshenli +=maxjingshenli;
+    }
+
+    public void addShengming(ServerPlayer player, float shengming) {
+        player.heal(shengming);
+    }
+
+    public void addTupochenggonggailv(ServerPlayer player, float tupochenggonggailv) {
+        this.tupochenggonggailv +=tupochenggonggailv;
     }
 }

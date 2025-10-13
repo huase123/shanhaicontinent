@@ -142,4 +142,12 @@ public class CapabilityUtil {
             }
         }
     }
+
+    public static AttributeBase getCapability(Entity entity) {
+        if(entity == null)return null;
+        if(entity instanceof Player)return entity.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElseThrow(RuntimeException::new);
+        if(entity instanceof LivingEntity)return entity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).orElseThrow(RuntimeException::new);
+        return null;
+
+    }
 }

@@ -4,7 +4,9 @@ import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.items.ItemStackHandler;
 
 import static hua.huase.shanhaicontinent.SHMainBus.random;
@@ -164,5 +166,11 @@ public class MosterCapability extends AttributeBase{
             super.setShanbi(l);
             super.setShengminghuifu(0);
         }
+    }
+
+
+    @Override
+    public float Hurt(LivingEntity directEntity, DamageSource source, float amount) {
+        return super.Hurt(directEntity, source, amount);
     }
 }

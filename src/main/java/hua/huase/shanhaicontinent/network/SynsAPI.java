@@ -17,7 +17,7 @@ import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 public interface SynsAPI {
-    static void synsPlayerCapability(ServerPlayer serverPlayer, @NotNull PlayerCapability playerCapability){
+    static void synsPlayerCapability(Entity serverPlayer, @NotNull PlayerCapability playerCapability){
         CapabilityUtil.synsMaxhealth(serverPlayer,playerCapability);
         NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> serverPlayer), new SPacketPlayerAttribute(serverPlayer.getId(),playerCapability.serializeNBT()));
     }

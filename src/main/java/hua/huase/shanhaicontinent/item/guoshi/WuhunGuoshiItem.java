@@ -1,15 +1,11 @@
 package hua.huase.shanhaicontinent.item.guoshi;
 
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerHunHuanAPI;
+import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
 import hua.huase.shanhaicontinent.capability.playerattribute.WuHunName;
 import hua.huase.shanhaicontinent.init.ItemInit;
-import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.stats.ServerStatsCounter;
-import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;

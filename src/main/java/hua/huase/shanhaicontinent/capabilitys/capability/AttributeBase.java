@@ -1,6 +1,11 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.INBTSerializable;
 
 public class
@@ -100,7 +105,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.maxshengming = maxshengming;
     }
 
-    public float getWugong() {
+    public float getWugong(Player player) {
         return wugong;
     }
 
@@ -108,7 +113,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.wugong = wugong;
     }
 
-    public float getWufang() {
+    public float getWufang(Player player) {
         return wufang;
     }
 
@@ -116,7 +121,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.wufang = wufang;
     }
 
-    public float getBaojishanghai() {
+    public float getBaojishanghai(Player player) {
         return baojishanghai;
     }
 
@@ -124,7 +129,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.baojishanghai = baojishanghai;
     }
 
-    public float getBaojilv() {
+    public float getBaojilv(Player player) {
         return baojilv;
     }
 
@@ -132,7 +137,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.baojilv = baojilv;
     }
 
-    public float getZhenshang() {
+    public float getZhenshang(Player player) {
         return zhenshang;
     }
 
@@ -140,7 +145,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.zhenshang = zhenshang;
     }
 
-    public float getWuchuan() {
+    public float getWuchuan(Player player) {
         return wuchuan;
     }
 
@@ -148,7 +153,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.wuchuan = wuchuan;
     }
 
-    public float getKangbao() {
+    public float getKangbao(Player player) {
         return kangbao;
     }
 
@@ -156,7 +161,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.kangbao = kangbao;
     }
 
-    public float getXixue() {
+    public float getXixue(Player player) {
         return xixue;
     }
 
@@ -164,7 +169,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.xixue = xixue;
     }
 
-    public float getShengminghuifu() {
+    public float getShengminghuifu(Player player) {
         return shengminghuifu;
     }
 
@@ -172,7 +177,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.shengminghuifu = shengminghuifu;
     }
 
-    public float getMingzhong() {
+    public float getMingzhong(Player player) {
         return mingzhong;
     }
 
@@ -180,11 +185,64 @@ AttributeBase implements INBTSerializable<CompoundTag> {
         this.mingzhong = mingzhong;
     }
 
-    public float getShanbi() {
+    public float getShanbi(Entity directEntity) {
         return shanbi;
     }
 
     public void setShanbi(float shanbi) {
         this.shanbi = shanbi;
+    }
+
+    public float Hurt(LivingEntity directEntity, DamageSource source, float amount) {
+        return amount;
+    }
+
+    public void addBaojilv(ServerPlayer player, float baojilv) {
+        this.baojilv +=baojilv;
+    }
+
+    public void addBaojishanhai(ServerPlayer player, float baojishanghai) {
+        this.baojishanghai +=baojishanghai;
+    }
+
+    public void addKangbao(ServerPlayer player, float kangbao) {
+        this.kangbao +=kangbao;
+
+    }
+
+    public void addShanbi(ServerPlayer player, float shanbi) {
+        this.shanbi +=shanbi;
+    }
+
+    public void addMaxshengming(ServerPlayer player, float maxshengming) {
+        this.maxshengming +=maxshengming;
+    }
+
+    public void addMingzhong(ServerPlayer player, float mingzhong) {
+        this.mingzhong +=mingzhong;
+    }
+
+    public void addShengminghuifu(ServerPlayer player, float shengminghuifu) {
+        this.shengminghuifu +=shengminghuifu;
+    }
+
+    public void addWuchuan(ServerPlayer player, float wuchuan) {
+        this.wuchuan +=wuchuan;
+    }
+
+    public void addWufang(ServerPlayer player, float wufang) {
+        this.wufang +=wufang;
+    }
+
+    public void addWugong(ServerPlayer player, float wugong) {
+        this.wugong +=wugong;
+    }
+
+    public void addXixue(ServerPlayer player, float xixue) {
+        this.xixue +=xixue;
+    }
+
+    public void addZhenshang(ServerPlayer player, float zhenshang) {
+        this.zhenshang +=zhenshang;
     }
 }

@@ -3,10 +3,10 @@ package hua.huase.shanhaicontinent.screen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -151,24 +151,25 @@ public class PlayerAttrubuteContiainerScreen extends AbstractContainerScreen<Pla
 
 
     private void renderPlayerAttibute(GuiGraphics guiGraphics,Player player,int x,int y ){
-
         mutableComponents.clear();
-        mutableComponents.add(Component.translatable("生命", (int)player.getHealth(),(int)player.getMaxHealth()));
-        mutableComponents.add(Component.translatable("精神力", (int)PlayerAttrubuteAPI.getJingshenli(player),(int)PlayerAttrubuteAPI.getMaxjingshenli(player)));
-        mutableComponents.add(Component.translatable("物攻", (int) AttrubuteAPI.getWugong(player)));
-        mutableComponents.add(Component.translatable("物防", (int)AttrubuteAPI.getWufang(player)));
-        mutableComponents.add(Component.translatable("爆伤", (int)AttrubuteAPI.getBaojishanghai(player)));
-        mutableComponents.add(Component.translatable("爆率", (int)AttrubuteAPI.getBaojilv(player)));
-        mutableComponents.add(Component.translatable("真伤", (int)AttrubuteAPI.getZhenshang(player)));
-        mutableComponents.add(Component.translatable("物穿", (int)AttrubuteAPI.getWuchuan(player)));
-        mutableComponents.add(Component.translatable("抗暴", (int)AttrubuteAPI.getKangbao(player)));
-        mutableComponents.add(Component.translatable("吸血", (int)AttrubuteAPI.getXixue(player)));
-        mutableComponents.add(Component.translatable("回复", (int)AttrubuteAPI.getShengminghuifu(player)));
-        mutableComponents.add(Component.translatable("命中", (int)AttrubuteAPI.getMinghzong(player)));
-        mutableComponents.add(Component.translatable("闪避", (int)AttrubuteAPI.getShanbi(player)));
-        mutableComponents.add(Component.translatable("经验", (int)PlayerAttrubuteAPI.getJingyan(player),(int)PlayerAttrubuteAPI.getMaxJingyan(player)));
-        mutableComponents.add(Component.translatable("等级", (int)PlayerAttrubuteAPI.getDengji(player)));
-        mutableComponents.add(Component.translatable("转生", (int)PlayerAttrubuteAPI.getZhuansheng(player)));
+        player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(c->{
+            mutableComponents.add(Component.translatable("生命", (int)player.getHealth(),(int)player.getMaxHealth()));
+            mutableComponents.add(Component.translatable("精神力", (int)c.getJingshenli(player),(int)c.getMaxjingshenli(player)));
+            mutableComponents.add(Component.translatable("物攻", (int) c.getWugong(player)));
+            mutableComponents.add(Component.translatable("物防", (int)c.getWufang(player)));
+            mutableComponents.add(Component.translatable("爆伤", (int)c.getBaojishanghai(player)));
+            mutableComponents.add(Component.translatable("爆率", (int)c.getBaojilv(player)));
+            mutableComponents.add(Component.translatable("真伤", (int)c.getZhenshang(player)));
+            mutableComponents.add(Component.translatable("物穿", (int)c.getWuchuan(player)));
+            mutableComponents.add(Component.translatable("抗暴", (int)c.getKangbao(player)));
+            mutableComponents.add(Component.translatable("吸血", (int)c.getXixue(player)));
+            mutableComponents.add(Component.translatable("回复", (int)c.getShengminghuifu(player)));
+            mutableComponents.add(Component.translatable("命中", (int)c.getMingzhong(player)));
+            mutableComponents.add(Component.translatable("闪避", (int)c.getShanbi(player)));
+            mutableComponents.add(Component.translatable("经验", (int)c.getJingyan(player),(int)c.getMaxjingyan(player)));
+            mutableComponents.add(Component.translatable("等级", (int)c.getDengji(player)));
+//            mutableComponents.add(Component.translatable("转生", (int)c.getZhuansheng(player)));
+        });
 
 //        renderListText(guiGraphics,mutableComponents, x+60, y+36);
         renderListText(guiGraphics,mutableComponents, x, y);
