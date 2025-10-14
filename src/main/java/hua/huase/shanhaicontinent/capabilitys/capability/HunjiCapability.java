@@ -1,7 +1,7 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
+import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -13,7 +13,7 @@ import net.minecraftforge.items.ItemStackHandler;
  * - @author: huase。
  * - @date: 2025/10/12 3:18
  */
-public class HujiCapability extends AttributeBase{
+public class HunjiCapability extends AttributeBase{
     ItemStackHandler hunhuan = new ItemStackHandler();
     FunctionType functionType;
     int nianxian;
@@ -23,7 +23,7 @@ public class HujiCapability extends AttributeBase{
         CompoundTag nbt = super.serializeNBT();
         nbt.putInt("nianxian",nianxian);
         nbt.put("hunhuan", hunhuan.serializeNBT());
-        ResourceLocation key = SHRegistries.FUNCTION_TYPE_Registry.getKey(functionType);
+        ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
         return nbt;
     }
@@ -35,7 +35,7 @@ public class HujiCapability extends AttributeBase{
         if(nbt.get("hunhuan")!=null){
             this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
         }
-        functionType = SHRegistries.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
+        functionType = FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
     }
 
     public void inti(Entity entity, int nianxian, FunctionType functionType, ItemStack hunhuan, ItemStack hunji, HunhuanCapability hunhuanCapability, MosterCapability mosterCapability) {

@@ -88,7 +88,7 @@ public class PWLivingDeathEvent {
 
     }
 
-    public static void addHunhuanEntity(@NotNull MosterCapability capability, Level level, BlockPos onPos){
+    public static void  addHunhuanEntity(@NotNull MosterCapability capability, Level level, BlockPos onPos){
 
         HunhuanEntity hunhuanEntity = new HunhuanEntity(EntityInit.HUNHUAN.get(), level);
         hunhuanEntity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(capability1 -> {

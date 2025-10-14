@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
@@ -49,7 +50,7 @@ public class MosterCapability extends AttributeBase{
     public CompoundTag serializeNBT() {
         CompoundTag nbt = super.serializeNBT();
         nbt.put("hunhuan", hunhuan.serializeNBT());
-        ResourceLocation key = SHRegistries.FUNCTION_TYPE_Registry.getKey(functionType);
+        ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
         return nbt;
     }
@@ -60,7 +61,7 @@ public class MosterCapability extends AttributeBase{
         if(nbt.get("hunhuan")!=null){
             this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
         }
-        functionType = SHRegistries.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
+        functionType = FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
     }
 
     public void inti(Entity entity, int nianxian, FunctionType functionType) {

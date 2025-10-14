@@ -14,7 +14,9 @@ import net.minecraftforge.registries.*;
  * - @date: 2025/10/12 6:20
  */
 public class FunctionTypeInit {
-    public static final DeferredRegister<FunctionType> FUNCTION = DeferredRegister.create(SHRegistries.FUNCTION_TYPE_Registry, SHMainBus.MOD_ID);
+
+    public static final IForgeRegistry<FunctionType> FUNCTION_TYPE_Registry = RegistryManager.ACTIVE.getRegistry(SHRegistries.FUNCTION_TYPE_Resourcekey);
+    public static final DeferredRegister<FunctionType> FUNCTION = DeferredRegister.create(FUNCTION_TYPE_Registry, SHMainBus.MOD_ID);
 /**
  * TODO 功能描述：    强攻系、控制系、敏攻系、辅助系、食物系、防御系
  * @author :huase
@@ -22,7 +24,7 @@ public class FunctionTypeInit {
  */
     public static final RegistryObject<FunctionType> strongattack = FUNCTION.register("strongattack", () -> new FunctionType());
     public static final RegistryObject<FunctionType> control = FUNCTION.register("control", () -> new FunctionType());
-    public static final RegistryObject<FunctionType> sensitiveAttack = FUNCTION.register("sensitiveAttack", () -> new FunctionType());
+    public static final RegistryObject<FunctionType> sensitiveAttack = FUNCTION.register("sensitiveattack", () -> new FunctionType());
     public static final RegistryObject<FunctionType> assistance = FUNCTION.register("assistance", () -> new FunctionType());
     public static final RegistryObject<FunctionType> food = FUNCTION.register("food", () -> new FunctionType());
     public static final RegistryObject<FunctionType> defense = FUNCTION.register("defense", () -> new FunctionType());

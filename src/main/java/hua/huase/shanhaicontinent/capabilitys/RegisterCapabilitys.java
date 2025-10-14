@@ -1,11 +1,6 @@
 package hua.huase.shanhaicontinent.capabilitys;
 
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapability;
-import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterCapabilityAPI;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capabilitys.capability.*;
 import hua.huase.shanhaicontinent.entity.NoHunhuan;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
@@ -16,17 +11,15 @@ import hua.huase.shanhaicontinent.network.SynsAPI;
 import hua.huase.shanhaicontinent.network.server.SPacketEntityAttribute;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.*;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.common.util.NonNullConsumer;
+import net.minecraftforge.common.util.NonNullSupplier;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -36,18 +29,19 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-@Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID,bus = Mod.EventBusSubscriber.Bus.MOD)
+//@Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID,bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class RegisterCapabilitys {
 
     public static Capability<HunhuanCapability> HUNHUANCAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
-    public static Capability<HujiCapability> HUJICAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
+    public static Capability<HunjiCapability> HUNJICAPABILITY = CapabilityManager.get(new CapabilityToken<>(){});
     public static Capability<MosterCapability> MOSTERCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     public static Capability<WuhunCapability> WUHUNCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     public static Capability<PlayerCapability> PLAYERCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     @SubscribeEvent
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.register(HunhuanCapability.class);
-        event.register(HujiCapability.class);
+        event.register(HunjiCapability.class);
         event.register(MosterCapability.class);
         event.register(WuhunCapability.class);
         event.register(PlayerCapability.class);
@@ -60,10 +54,11 @@ public class RegisterCapabilitys {
         if (event.getObject() instanceof Player) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "playercapability"),
                 new ICapabilityProvider() {
+                    private PlayerCapability capability =new PlayerCapability();
                     @Override
                     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                         if(cap != PLAYERCAPABILITY) return LazyOptional.empty();
-                        return LazyOptional.of(PlayerCapability::new).cast();
+                        return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
                     }
                 }
             );
@@ -71,10 +66,11 @@ public class RegisterCapabilitys {
         if (event.getObject() instanceof Mob || event.getObject() instanceof HunhuanEntity) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "mostercapability"),
                     new ICapabilityProvider() {
+                        private MosterCapability capability =new MosterCapability();
                         @Override
                         public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                             if(cap != MOSTERCAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of(MosterCapability::new).cast();
+                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
                         }
                     }
             );
@@ -89,10 +85,11 @@ public class RegisterCapabilitys {
         if (event.getObject().getItem() instanceof Wuhun) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "wuhunitme"),
                     new ICapabilityProvider() {
+                        private WuhunCapability capability =new WuhunCapability();
                         @Override
                         public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                             if(cap != WUHUNCAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of(WuhunCapability::new).cast();
+                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
                         }
                     }
             );
@@ -100,10 +97,11 @@ public class RegisterCapabilitys {
         if (event.getObject().getItem() instanceof Hunhuan) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunhuanitem"),
                     new ICapabilityProvider() {
+                        private HunhuanCapability capability =new HunhuanCapability();
                         @Override
                         public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                             if(cap != HUNHUANCAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of(HunhuanCapability::new).cast();
+                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
                         }
                     }
             );
@@ -111,10 +109,11 @@ public class RegisterCapabilitys {
         if (event.getObject().getItem() instanceof Hunji) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunhuanitem"),
                     new ICapabilityProvider() {
+                        private HunjiCapability capability =new HunjiCapability();
                         @Override
                         public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-                            if(cap != HUNHUANCAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of(HujiCapability::new).cast();
+                            if(cap != HUNJICAPABILITY) return LazyOptional.empty();
+                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
                         }
                     }
             );

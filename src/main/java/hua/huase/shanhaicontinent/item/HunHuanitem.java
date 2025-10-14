@@ -10,6 +10,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -21,12 +22,12 @@ import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
  * - @author: huase。
  * - @date: 2025/10/14 6:30
  */
-public class HunHuanitem  extends Item implements Hunji {
+public class HunHuanitem  extends Item implements Hunhuan {
     FunctionType functionType;
 
-    public HunHuanitem(FunctionType functionType) {
+    public HunHuanitem(RegistryObject<FunctionType> functionType) {
         super(new Item.Properties().stacksTo(1));
-        this.functionType = functionType;
+//        this.functionType = functionType.get();
         hunjilist.add(this);
     }
 

@@ -6,6 +6,7 @@ import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.compat.sophisticatedbackpacks.SophisticatedbackpacksAPI;
 import hua.huase.shanhaicontinent.compat.twilightforest.TwilightforestAPI;
+import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
@@ -59,7 +60,7 @@ public class CapabilityUtil {
     }
 
     private static FunctionType getFunctionType(Entity entity, RandomSource random) {
-        List<FunctionType> list = SHRegistries.FUNCTION_TYPE_Registry.getValues().stream().toList();
+        List<FunctionType> list = FunctionTypeInit.FUNCTION_TYPE_Registry.getValues().stream().toList();
         return  list.get(random.nextInt(list.size()));
     }
 

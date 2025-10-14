@@ -2,6 +2,7 @@ package hua.huase.shanhaicontinent.capabilitys.capability;
 
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.ChatFormatting;
@@ -24,11 +25,27 @@ public class WuhunCapability extends AttributeBase{
 //    魂技
     ItemStackHandler hunjilist = new ItemStackHandler();
 
+    public FunctionType getFunctionType() {
+        return functionType;
+    }
+
+    public void setFunctionType(FunctionType functionType) {
+        this.functionType = functionType;
+    }
+
+    public ItemStackHandler getHunjilist() {
+        return hunjilist;
+    }
+
+    public void setHunjilist(ItemStackHandler hunjilist) {
+        this.hunjilist = hunjilist;
+    }
+
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag nbt = super.serializeNBT();
         nbt.put("hunjilist", hunjilist.serializeNBT());
-        ResourceLocation key = SHRegistries.FUNCTION_TYPE_Registry.getKey(functionType);
+        ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
         return nbt;
     }
@@ -39,7 +56,7 @@ public class WuhunCapability extends AttributeBase{
         if(nbt.get("hunjilist")!=null){
             this.hunjilist.deserializeNBT((CompoundTag) nbt.get("hunjilist"));
         }
-        functionType = SHRegistries.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
+        functionType = FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
     }
 
     public void init(ItemStack itemStack) {

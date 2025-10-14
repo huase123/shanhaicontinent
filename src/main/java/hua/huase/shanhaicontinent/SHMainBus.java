@@ -64,6 +64,9 @@ public class SHMainBus {
 //指令
         MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
 
+        SHRegistries.Init();
+        FunctionTypeInit.register(modEventBus);
+
         BlockInit.register(modEventBus);
         ItemInit.register(modEventBus);
         EntityInit.register(modEventBus);
@@ -73,7 +76,6 @@ public class SHMainBus {
         CreativeModTabsInit.register(modEventBus);
         SHModMobEffectsinit.register(modEventBus);
 
-        FunctionTypeInit.register(modEventBus);
 //        world
         SHStructureTypes.STRUCTURE_TYPES.register(modEventBus);
 

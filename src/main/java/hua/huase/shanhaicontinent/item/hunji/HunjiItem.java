@@ -1,7 +1,6 @@
 package hua.huase.shanhaicontinent.item.hunji;
 
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.item.Hunji;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -27,9 +26,9 @@ import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
 public class HunjiItem extends Item implements Hunji {
     FunctionType functionType;
 
-    public HunjiItem(FunctionType functionType) {
+    public HunjiItem(RegistryObject<FunctionType> functionType) {
         super(new Item.Properties().stacksTo(1));
-        this.functionType = functionType;
+//        this.functionType = functionType;
         hunjilist.add(this);
     }
 
