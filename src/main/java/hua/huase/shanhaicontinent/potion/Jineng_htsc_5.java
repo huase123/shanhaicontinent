@@ -32,8 +32,8 @@ public class Jineng_htsc_5 extends SHBaseMobEffect  implements PotionAnimation{
 			List<LivingEntity> nearbyEntities = entity.level().getEntities(EntityTypeTest.forClass(LivingEntity.class), entity.getBoundingBox().inflate(8,5,8), Entity::isAlive);
 			for (LivingEntity nearbyEntity : nearbyEntities) {
 				if(nearbyEntity.getId() != entity.getId()){
-					nearbyEntity.hurt(entity.damageSources().playerAttack((Player) entity), AttrubuteAPI.getWugong((entity))*0.03f);
-					entity.level().playSound((Player)null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundSource.NEUTRAL, 0.5F, 1.0f);
+					nearbyEntity.hurt(entity.damageSources().mobAttack( entity), 3);
+					entity.level().playSound(null, entity.getX(), entity.getY(), entity.getZ(), SoundEvents.ENDER_PEARL_THROW, SoundSource.NEUTRAL, 0.5F, 1.0f);
 
 					for(int i = 0; i < 8; ++i) {
 						entity.level().addParticle(ParticleTypes.LAVA, nearbyEntity.getX(), nearbyEntity.getY(), nearbyEntity.getZ(), 0.0D, 0.0D, 0.0D);

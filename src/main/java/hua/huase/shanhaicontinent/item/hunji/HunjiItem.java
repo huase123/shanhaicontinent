@@ -1,11 +1,16 @@
 package hua.huase.shanhaicontinent.item.hunji;
 
+import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
+import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
+import hua.huase.shanhaicontinent.init.SHModMobEffectsinit;
 import hua.huase.shanhaicontinent.item.Hunji;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -63,5 +68,12 @@ public class HunjiItem extends Item implements Hunji {
         list.add(Component.translatable("能在地面上产生威力无比的震动，对前方造成伤害").withStyle(ChatFormatting.GREEN));
 
         list.add(Component.translatable("蹲下释放可破环地形").withStyle(ChatFormatting.GRAY));
+    }
+
+    @Override
+    public void monsterHoldTick(LivingEntity entity, MosterCapability mosterCapability, ItemStack hunhuanitemstack, HunhuanCapability hunhuanCapability, ItemStack hunji) {
+        if(entity.level().getGameTime() %1000 == 0){
+            entity.addEffect(new MobEffectInstance(SHModMobEffectsinit.jineng_htsc_5.get(), 600, 0));
+        }
     }
 }
