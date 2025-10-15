@@ -5,6 +5,7 @@ import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
+import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.ChatFormatting;
@@ -25,6 +26,15 @@ public class PWPlayerTickEvent {
     public static void onStartTracking(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
         if(event.phase == TickEvent.Phase.END){
+            player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(c->{
+                if(c.isIsupdate())SynsAPI.synsPlayerCapability(player,c);
+            });
+
+
+
+
+
+
             if(!player.level().isClientSide){
                 if(player.level().getGameTime()%100==0){
                     SynsAPI.synsPlayerAttribute(player);

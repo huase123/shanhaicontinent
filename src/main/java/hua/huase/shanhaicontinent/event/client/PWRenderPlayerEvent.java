@@ -1,38 +1,23 @@
 package hua.huase.shanhaicontinent.event.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
-import com.mojang.math.Axis;
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapability;
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
 import hua.huase.shanhaicontinent.potion.PotionAnimation;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
 import hua.huase.shanhaicontinent.render.SHRenderType;
 import net.minecraft.client.Camera;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.*;
-import net.minecraft.util.Mth;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.joml.Matrix4f;
-import org.joml.Quaternionf;
-
-import java.util.Map;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
@@ -77,7 +62,7 @@ public class PWRenderPlayerEvent {
             ItemStack stackInSlot = capability.getWuhun().getStackInSlot(0);
             if(stackInSlot.isEmpty())return;
             stackInSlot.getCapability(RegisterCapabilitys.WUHUNCAPABILITY).ifPresent(c->{
-                ItemStack stackInSlot1 = c.getHunjilist().getStackInSlot(0);
+                ItemStack stackInSlot1 = c.getHunhuanlist().getStackInSlot(0);
                 if(stackInSlot1.isEmpty())return;
                 stackInSlot1.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).ifPresent(c1->{
 

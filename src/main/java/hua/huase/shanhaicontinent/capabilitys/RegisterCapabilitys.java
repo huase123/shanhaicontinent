@@ -84,38 +84,17 @@ public class RegisterCapabilitys {
     {
         if (event.getObject().getItem() instanceof Wuhun) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "wuhunitme"),
-                    new ICapabilityProvider() {
-                        private WuhunCapability capability =new WuhunCapability();
-                        @Override
-                        public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-                            if(cap != WUHUNCAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
-                        }
-                    }
+                    new ItemICapabilityProvider(new WuhunCapability())
             );
         }
         if (event.getObject().getItem() instanceof Hunhuan) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunhuanitem"),
-                    new ICapabilityProvider() {
-                        private HunhuanCapability capability =new HunhuanCapability();
-                        @Override
-                        public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-                            if(cap != HUNHUANCAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
-                        }
-                    }
+                    new ItemICapabilityProvider(new HunhuanCapability())
             );
         }
         if (event.getObject().getItem() instanceof Hunji) {
-            event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunhuanitem"),
-                    new ICapabilityProvider() {
-                        private HunjiCapability capability =new HunjiCapability();
-                        @Override
-                        public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-                            if(cap != HUNJICAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
-                        }
-                    }
+            event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunjiitem"),
+                    new ItemICapabilityProvider(new HunjiCapability())
             );
         }
 

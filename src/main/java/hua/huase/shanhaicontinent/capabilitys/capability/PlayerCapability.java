@@ -29,6 +29,7 @@ public class PlayerCapability extends AttributeBase{
 //    魂骨
 //    是否觉醒
 //    先天魂力
+//    是否同步客户端
 
     private float jingyan;
     private float maxjingyan;
@@ -44,6 +45,16 @@ public class PlayerCapability extends AttributeBase{
 
     private boolean isjuexing;
     private int xiantianhunli;
+    private boolean isupdate;
+
+    public boolean isIsupdate() {
+        return isupdate;
+    }
+
+    public void setIsupdate(boolean isupdate) {
+        this.isupdate = isupdate;
+    }
+
 
 
     public PlayerCapability() {
@@ -182,7 +193,8 @@ public class PlayerCapability extends AttributeBase{
         this.xiantianhunli = xiantianhunli;
         wuhun.setStackInSlot(0,itemStack);
         entity.sendSystemMessage(Component.translatable("成功觉醒武魂").withStyle(ChatFormatting.YELLOW));
-
+        setIsjuexing(true);
+        setIsupdate(true);
     }
     public void addWUhun(Player entity, ItemStack itemStack, int xiantianhunli) {
         ItemStackHandler itemStackHandler = new ItemStackHandler(wuhun.getSlots() + 1);
@@ -255,5 +267,6 @@ public class PlayerCapability extends AttributeBase{
         wuhun.getStackInSlot(0).getCapability(RegisterCapabilitys.WUHUNCAPABILITY).ifPresent(c->{
             c.xishouHunhuan(player,hunhuanEntity,existenceTime,this);
         });
+        setIsupdate(true);
     }
 }

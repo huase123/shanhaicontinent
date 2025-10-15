@@ -20,6 +20,7 @@ public interface SynsAPI {
     static void synsPlayerCapability(Entity serverPlayer, @NotNull PlayerCapability playerCapability){
         CapabilityUtil.synsMaxhealth(serverPlayer,playerCapability);
         NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> serverPlayer), new SPacketPlayerAttribute(serverPlayer.getId(),playerCapability.serializeNBT()));
+        playerCapability.setIsupdate(false);
     }
     static void synsEntityCapability(Entity entity, @NotNull MosterCapability capability){
         CapabilityUtil.synsMaxhealth(entity,capability);
@@ -27,21 +28,21 @@ public interface SynsAPI {
         NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
     }
     static void synsPlayerAttribute(Entity entity){
-        if(entity instanceof ServerPlayer livingEntity){
-            float maxshengming = AttrubuteAPI.getMaxshengming(livingEntity);
-            if(livingEntity.getMaxHealth() != maxshengming){
-                livingEntity.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxshengming);
-            }
-
-            entity.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-
-                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> livingEntity), new SPacketPlayerAttribute(entity.getId(),capability.serializeNBT()));
-            });
-        }
+//        if(entity instanceof ServerPlayer livingEntity){
+//            float maxshengming = AttrubuteAPI.getMaxshengming(livingEntity);
+//            if(livingEntity.getMaxHealth() != maxshengming){
+//                livingEntity.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxshengming);
+//            }
+//
+//            entity.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+//
+//                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> livingEntity), new SPacketPlayerAttribute(entity.getId(),capability.serializeNBT()));
+//            });
+//        }
     }
     static void synsEntityAttribute(Entity entity){
-            entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
-            });
+//            entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+//                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+//            });
     }
 }

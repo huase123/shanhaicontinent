@@ -10,6 +10,7 @@ import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
+import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -45,7 +46,6 @@ public class CapabilityUtil {
             wuhunCapability.init(itemStack);
         });
         capability.juexinWUhun(entity,itemStack,entity.level().random.nextInt(100)+1);
-        capability.setIsjuexing(true);
         return true;
     }
     public static void genMonsterCapability(Entity entity, @NotNull MosterCapability capability){

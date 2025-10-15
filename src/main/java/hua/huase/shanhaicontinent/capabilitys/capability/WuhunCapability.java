@@ -4,7 +4,6 @@ import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -23,7 +22,7 @@ public class WuhunCapability extends AttributeBase{
     FunctionType functionType;
 
 //    魂技
-    ItemStackHandler hunjilist = new ItemStackHandler();
+    ItemStackHandler hunhuanlist = new ItemStackHandler();
 
     public FunctionType getFunctionType() {
         return functionType;
@@ -33,18 +32,18 @@ public class WuhunCapability extends AttributeBase{
         this.functionType = functionType;
     }
 
-    public ItemStackHandler getHunjilist() {
-        return hunjilist;
+    public ItemStackHandler getHunhuanlist() {
+        return hunhuanlist;
     }
 
-    public void setHunjilist(ItemStackHandler hunjilist) {
-        this.hunjilist = hunjilist;
+    public void setHunhuanlist(ItemStackHandler hunhuanlist) {
+        this.hunhuanlist = hunhuanlist;
     }
 
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag nbt = super.serializeNBT();
-        nbt.put("hunjilist", hunjilist.serializeNBT());
+        nbt.put("hunhuanlist", hunhuanlist.serializeNBT());
         ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
         return nbt;
@@ -52,9 +51,10 @@ public class WuhunCapability extends AttributeBase{
 
     @Override
     public void deserializeNBT(CompoundTag nbt) {
+        if(nbt == null)return;
         super.deserializeNBT(nbt);
-        if(nbt.get("hunjilist")!=null){
-            this.hunjilist.deserializeNBT((CompoundTag) nbt.get("hunjilist"));
+        if(nbt.get("hunhuanlist")!=null){
+            this.hunhuanlist.deserializeNBT((CompoundTag) nbt.get("hunhuanlist"));
         }
         functionType = FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
     }
@@ -67,11 +67,7 @@ public class WuhunCapability extends AttributeBase{
         hunhuanEntity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(c->{
             ItemStackHandler hunhuan = c.getHunhuan();
             ItemStack stackInSlot = hunhuan.getStackInSlot(0);
-            stackInSlot.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).ifPresent(hc->{
-                ItemStack stackInSlot1 = hc.hunji.getStackInSlot(0);
-                hunjilist.setStackInSlot(0,stackInSlot1);
-                player.sendSystemMessage(Component.translatable("成功吸收魂环").withStyle(ChatFormatting.YELLOW));
-            });
+            hunhuanlist.setStackInSlot(0,stackInSlot);
         });
 
     }

@@ -19,7 +19,7 @@ public class PWPlayerXpEvent {
     public static void onPlayerXpEvent(PlayerXpEvent.PickupXp event){
         Player player = event.getEntity();
         int experienceLevel = player.experienceLevel;
-        if(experienceLevel == 1){
+        if(experienceLevel > 1){
             player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(capability ->{
                 if(!capability.isIsjuexing()){
                     CapabilityUtil.juexingWuhun(player,capability);

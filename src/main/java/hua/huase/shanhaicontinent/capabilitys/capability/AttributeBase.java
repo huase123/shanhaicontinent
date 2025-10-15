@@ -83,6 +83,7 @@ AttributeBase implements INBTSerializable<CompoundTag> {
 
     @Override
     public void deserializeNBT(CompoundTag nbt) {
+        if(nbt == null)return;
         this.wugong=nbt.getFloat("wugong");
         this.baojishanghai=nbt.getFloat("baojishanghai");
         this.baojilv=nbt.getFloat("baojilv");

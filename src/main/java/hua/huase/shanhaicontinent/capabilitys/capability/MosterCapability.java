@@ -49,6 +49,7 @@ public class MosterCapability extends AttributeBase{
     @Override
     public CompoundTag serializeNBT() {
         CompoundTag nbt = super.serializeNBT();
+        nbt.putInt("nianxian", nianxian);
         nbt.put("hunhuan", hunhuan.serializeNBT());
         ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
@@ -58,6 +59,7 @@ public class MosterCapability extends AttributeBase{
     @Override
     public void deserializeNBT(CompoundTag nbt) {
         super.deserializeNBT(nbt);
+        this.nianxian = nbt.getInt("nianxian");
         if(nbt.get("hunhuan")!=null){
             this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
         }

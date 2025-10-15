@@ -14,7 +14,7 @@ import net.minecraftforge.items.ItemStackHandler;
  * - @date: 2025/10/12 3:18
  */
 public class HunjiCapability extends AttributeBase{
-    ItemStackHandler hunhuan = new ItemStackHandler();
+//    ItemStackHandler hunhuan = new ItemStackHandler();
     FunctionType functionType;
     int nianxian;
 
@@ -22,7 +22,7 @@ public class HunjiCapability extends AttributeBase{
     public CompoundTag serializeNBT() {
         CompoundTag nbt = super.serializeNBT();
         nbt.putInt("nianxian",nianxian);
-        nbt.put("hunhuan", hunhuan.serializeNBT());
+//        nbt.put("hunhuan", hunhuan.serializeNBT());
         ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
         return nbt;
@@ -32,14 +32,14 @@ public class HunjiCapability extends AttributeBase{
     public void deserializeNBT(CompoundTag nbt) {
         super.deserializeNBT(nbt);
         nianxian = nbt.getInt("nianxian");
-        if(nbt.get("hunhuan")!=null){
-            this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
-        }
+//        if(nbt.get("hunhuan")!=null){
+//            this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
+//        }
         functionType = FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
     }
 
     public void inti(Entity entity, int nianxian, FunctionType functionType, ItemStack hunhuan, ItemStack hunji, HunhuanCapability hunhuanCapability, MosterCapability mosterCapability) {
-        this.hunhuan.setStackInSlot(0,hunhuan);
+//        this.hunhuan.setStackInSlot(0,hunhuan);
         this.functionType = functionType;
         this.nianxian = nianxian;
     }
