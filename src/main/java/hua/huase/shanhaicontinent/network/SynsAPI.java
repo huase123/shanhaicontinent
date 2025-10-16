@@ -9,10 +9,13 @@ import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.network.server.SPacketEntityAttribute;
 import hua.huase.shanhaicontinent.network.server.SPacketPlayerAttribute;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,7 +28,15 @@ public interface SynsAPI {
     static void synsEntityCapability(Entity entity, @NotNull MosterCapability capability){
         CapabilityUtil.synsMaxhealth(entity,capability);
         CapabilityUtil.synsCustomName(entity,capability);
-        NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+
+        NetworkHandler.INSTANCE.send(PacketDistributor.ALL.with(() -> null), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+
+
+//        ServerLevel level = (ServerLevel) entity.level();
+//        for (ServerPlayer player : level.players()) {
+//            NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+//        }
+
     }
     static void synsPlayerAttribute(Entity entity){
 //        if(entity instanceof ServerPlayer livingEntity){
@@ -41,8 +52,8 @@ public interface SynsAPI {
 //        }
     }
     static void synsEntityAttribute(Entity entity){
-//            entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-//                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
-//            });
+            entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+            });
     }
 }

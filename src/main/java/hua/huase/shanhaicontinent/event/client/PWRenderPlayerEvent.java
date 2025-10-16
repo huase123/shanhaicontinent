@@ -4,7 +4,9 @@ import com.mojang.blaze3d.vertex.*;
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
 import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
+import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.potion.PotionAnimation;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
 import hua.huase.shanhaicontinent.render.SHRenderType;
@@ -18,6 +20,7 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.items.ItemStackHandler;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
@@ -48,44 +51,43 @@ public class PWRenderPlayerEvent {
     }
 
     private static void renderLivingEntityHunhuan(LivingEntity livingEntity, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
-        livingEntity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(monsterAttributeCapability -> {
+        livingEntity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(monstercapability -> {
             VertexConsumer bufferbuilder = multiBufferSource.getBuffer(SHRenderType.render_Material(HUNHUAN));
-            int nianxian = monsterAttributeCapability.getNianxian();
-            float size1 = (float)livingEntity.getBoundingBox().getSize();
-            float size =1+ size1*2f;
-            SHRenderApi.renderHunhuan(nianxian,size,poseStack,bufferbuilder,partialTick,false);
+            ItemStackHandler hunhuanlist = monstercapability.getHunhuan();
+            for (int i = 0; i < hunhuanlist.getSlots(); i++) {
+                ItemStack hunhuan = hunhuanlist.getStackInSlot(i);
+                if(!hunhuan.isEmpty() && hunhuan.getItem() instanceof Hunhuan){
+                    HunhuanCapability hunhuanCapability = hunhuan.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).orElse(null);
+                    if(hunhuanCapability ==null)return;
+                    int nianxian = hunhuanCapability.getNianxian();
+                    float size1 = (float)livingEntity.getBoundingBox().getSize();
+                        float size2 =1+ size1*2f;
+                    float size =size2+i*i*0.15f;
+                    SHRenderApi.renderHunhuan(nianxian,size,poseStack,bufferbuilder,partialTick,false);
+                }
+            }
         });
     }
 
     private static void renderPlayerHunhuan(Player player, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
         player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(capability -> {
-            ItemStack stackInSlot = capability.getWuhun().getStackInSlot(0);
+            ItemStack stackInSlot = capability.getUseWuhun();
             if(stackInSlot.isEmpty())return;
+            VertexConsumer bufferbuilder = multiBufferSource.getBuffer(SHRenderType.render_Material(HUNHUAN));
             stackInSlot.getCapability(RegisterCapabilitys.WUHUNCAPABILITY).ifPresent(c->{
-                ItemStack stackInSlot1 = c.getHunhuanlist().getStackInSlot(0);
-                if(stackInSlot1.isEmpty())return;
-                stackInSlot1.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).ifPresent(c1->{
+                ItemStackHandler hunhuanlist = c.getHunhuanlist();
+                for (int i = 0; i < hunhuanlist.getSlots(); i++) {
+                    ItemStack hunhuan = hunhuanlist.getStackInSlot(i);
+                    if(hunhuan.isEmpty())return;
+                    HunhuanCapability hunhuanCapability = hunhuan.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).orElse(null);
+                    if(hunhuanCapability == null)return;
+                    int nianxian = hunhuanCapability.getNianxian();
+                float size =2.0f-hunhuanlist.getSlots()/9.0f*1.5f+i*i*0.15f;
+                SHRenderApi.renderHunhuan(nianxian,size,poseStack,bufferbuilder,partialTick,i%2==0);
 
-                    VertexConsumer bufferbuilder = multiBufferSource.getBuffer(SHRenderType.render_Material(HUNHUAN));
-                    int nianxian = c1.getNianxian();
-                    float size =2.0f;
-                    SHRenderApi.renderHunhuan(nianxian,size,poseStack,bufferbuilder,partialTick,true);
-
-                });
+                }
             });
         });
-//        player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-//            if(capability.getWuhunList() == null)return;
-//            VertexConsumer bufferbuilder = multiBufferSource.getBuffer(SHRenderType.render_Material(HUNHUAN));
-//            int count = 1;
-//            int size1 = capability.getWuhunList().size();
-//            for (MonsterAttributeCapability monsterAttributeCapability : capability.getWuhunList()) {
-//                int nianxian = monsterAttributeCapability.getNianxian();
-//                float size =2.0f-size1/9.0f*1.5f+count*count*0.15f;
-//                SHRenderApi.renderHunhuan(nianxian,size,poseStack,bufferbuilder,partialTick,count%2==0);
-//                count++;
-//            }
-//        });
     }
 
 

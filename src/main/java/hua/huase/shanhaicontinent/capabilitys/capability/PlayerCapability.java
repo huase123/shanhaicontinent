@@ -12,8 +12,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
-import static hua.huase.shanhaicontinent.SHMainBus.random;
-
 
 /**
  * - @description:PlayerCapability类
@@ -30,6 +28,7 @@ public class PlayerCapability extends AttributeBase{
 //    是否觉醒
 //    先天魂力
 //    是否同步客户端
+//    使用的武魂索引
 
     private float jingyan;
     private float maxjingyan;
@@ -46,6 +45,7 @@ public class PlayerCapability extends AttributeBase{
     private boolean isjuexing;
     private int xiantianhunli;
     private boolean isupdate;
+    private int indexofwuhunused;
 
     public boolean isIsupdate() {
         return isupdate;
@@ -74,6 +74,7 @@ public class PlayerCapability extends AttributeBase{
         nbt.putInt("dengji",dengji);
         nbt.putInt("hunhuankuaiguan",hunhuankuaiguan);
         nbt.putInt("xiantianhunli",xiantianhunli);
+        nbt.putInt("indexofwuhunused", indexofwuhunused);
 
         nbt.put("boneslot", boneslot.serializeNBT());
         nbt.put("wuhun", wuhun.serializeNBT());
@@ -92,6 +93,7 @@ public class PlayerCapability extends AttributeBase{
         this.dengji=nbt.getInt("dengji");
         this.hunhuankuaiguan=nbt.getInt("hunhuankuaiguan");
         this.xiantianhunli=nbt.getInt("xiantianhunli");
+        this.indexofwuhunused =nbt.getInt("indexofwuhunused");
         if(nbt.get("boneslot")!=null){
             this.boneslot.deserializeNBT((CompoundTag) nbt.get("boneslot"));
         }
@@ -268,5 +270,9 @@ public class PlayerCapability extends AttributeBase{
             c.xishouHunhuan(player,hunhuanEntity,existenceTime,this);
         });
         setIsupdate(true);
+    }
+
+    public ItemStack getUseWuhun() {
+        return wuhun.getStackInSlot(indexofwuhunused);
     }
 }
