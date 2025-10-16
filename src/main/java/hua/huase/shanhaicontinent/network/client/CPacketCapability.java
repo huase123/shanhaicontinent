@@ -17,52 +17,50 @@
  * License along with Curios.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package hua.huase.shanhaicontinent.network.server;
+package hua.huase.shanhaicontinent.network.client;
 
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
+import hua.huase.shanhaicontinent.capabilitys.CapabilityUtil;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
-import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
+import hua.huase.shanhaicontinent.capabilitys.capability.AttributeBase;
+import hua.huase.shanhaicontinent.capabilitys.capability.Update;
+import hua.huase.shanhaicontinent.network.NetworkHandler;
+import hua.huase.shanhaicontinent.network.server.SPacketCapability;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.common.util.NonNullConsumer;
 import net.minecraftforge.network.NetworkEvent;
-import org.jetbrains.annotations.NotNull;
+import net.minecraftforge.network.PacketDistributor;
 
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.function.Supplier;
 
-public class SPacketPlayerAttribute {
+public class CPacketCapability {
 
   private int entityId;
-  private CompoundTag nbt;
 
-  public SPacketPlayerAttribute(int entityId, CompoundTag nbt) {
+  public CPacketCapability(int entityId) {
     this.entityId = entityId;
-    this.nbt = nbt;
   }
 
-  public static void encode(SPacketPlayerAttribute msg, FriendlyByteBuf buf) {
+  public static void encode(CPacketCapability msg, FriendlyByteBuf buf) {
     buf.writeInt(msg.entityId);
-    buf.writeNbt(msg.nbt);
   }
 
-  public static SPacketPlayerAttribute decode(FriendlyByteBuf buf) {
-    return new SPacketPlayerAttribute(buf.readInt(), buf.readNbt());
+  public static CPacketCapability decode(FriendlyByteBuf buf) {
+    return new CPacketCapability(buf.readInt());
   }
 
-  public static void handle(SPacketPlayerAttribute msg, Supplier<NetworkEvent.Context> ctx) {
+  public static void handle(CPacketCapability msg, Supplier<NetworkEvent.Context> ctx) {
     ctx.get().enqueueWork(() -> {
-      ClientLevel world = Minecraft.getInstance().level;
-
-      if (world != null) {
-        Entity entity = world.getEntity(msg.entityId);
+      ServerPlayer sender = ctx.get().getSender();
+      if (sender != null) {
+        Entity entity = sender.level().getEntity(msg.entityId);
         if(entity != null){
-          entity.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(playerCapability -> playerCapability.deserializeNBT(msg.nbt));
+          AttributeBase capability = CapabilityUtil.getCapability(entity);
+          NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> sender), new SPacketCapability(entity.getId(),capability.serializeNBT()));
         }
       }
     });

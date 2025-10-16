@@ -5,5 +5,5 @@ package hua.huase.shanhaicontinent.entity;
  * - @author: huase。
  * - @date: 2025/10/12 12:16
  */
-public interface NoHunhuan {
+public interface HunhuanEntity {
 }

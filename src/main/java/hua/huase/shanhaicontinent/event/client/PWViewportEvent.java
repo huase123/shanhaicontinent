@@ -1,25 +1,16 @@
 package hua.huase.shanhaicontinent.event.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.*;
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapability;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.client.event.ViewportEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.joml.Matrix4f;
-
-import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 public class PWViewportEvent {
@@ -44,7 +35,7 @@ public class PWViewportEvent {
 
         GameRenderer renderer = event.getRenderer();
         Minecraft minecraft = renderer.getMinecraft();
-        if(minecraft.player != null && minecraft.player.getVehicle()!=null && minecraft.player.getVehicle() instanceof HunhuanEntity){
+        if(minecraft.player != null && minecraft.player.getVehicle()!=null && minecraft.player.getVehicle() instanceof HunhuanEntityEntity){
             double v = minecraft.level.getGameTime() + event.getPartialTick();
 //            event.setYaw((float) (v));
 //            event.setYaw((float) (0));
@@ -60,7 +51,7 @@ public class PWViewportEvent {
     public static void renderPlayerEventPost(RenderLevelStageEvent event){
 
         Minecraft minecraft = Minecraft.getInstance();
-        if(minecraft.player != null && minecraft.player.getVehicle()!=null && minecraft.player.getVehicle() instanceof HunhuanEntity){
+        if(minecraft.player != null && minecraft.player.getVehicle()!=null && minecraft.player.getVehicle() instanceof HunhuanEntityEntity){
             Matrix4f pose = event.getPoseStack().last().pose();
             double v = minecraft.level.getGameTime() + event.getPartialTick();
             double x = Math.sin((float) 0.01f*v* Math.PI / 180f) * 3f;

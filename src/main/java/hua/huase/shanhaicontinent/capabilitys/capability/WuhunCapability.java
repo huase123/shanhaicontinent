@@ -1,12 +1,10 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -63,7 +61,7 @@ public class WuhunCapability extends AttributeBase{
 
     }
 
-    public void xishouHunhuan(Player player, HunhuanEntity hunhuanEntity, int existenceTime, PlayerCapability playerCapability) {
+    public void xishouHunhuan(Player player, HunhuanEntityEntity hunhuanEntity, int existenceTime, PlayerCapability playerCapability) {
         hunhuanEntity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(c->{
             ItemStackHandler hunhuan = c.getHunhuan();
             ItemStack stackInSlot = hunhuan.getStackInSlot(0);

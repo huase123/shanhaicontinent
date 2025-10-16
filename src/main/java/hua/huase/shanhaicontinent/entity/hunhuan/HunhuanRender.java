@@ -11,12 +11,12 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.resources.ResourceLocation;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
-public class HunhuanRender extends EntityRenderer<HunhuanEntity> {
+public class HunhuanRender extends EntityRenderer<HunhuanEntityEntity> {
     public HunhuanRender(EntityRendererProvider.Context context) {
         super(context);
     }
 
-    public void render(HunhuanEntity entity, float v, float v1, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
+    public void render(HunhuanEntityEntity entity, float v, float v1, PoseStack poseStack, MultiBufferSource multiBufferSource, int i) {
         entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
 
             VertexConsumer bufferbuilder = multiBufferSource.getBuffer(SHRenderType.render_Material(HUNHUAN));
@@ -26,7 +26,7 @@ public class HunhuanRender extends EntityRenderer<HunhuanEntity> {
         });
     }
     @Override
-    public ResourceLocation getTextureLocation(HunhuanEntity p_114482_) {
+    public ResourceLocation getTextureLocation(HunhuanEntityEntity p_114482_) {
         return null;
     }
 }

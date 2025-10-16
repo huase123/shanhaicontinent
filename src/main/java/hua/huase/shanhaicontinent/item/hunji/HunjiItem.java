@@ -73,7 +73,7 @@ public class HunjiItem extends Item implements Hunji {
     @Override
     public void monsterHoldTick(LivingEntity entity, MosterCapability mosterCapability, ItemStack hunhuanitemstack, HunhuanCapability hunhuanCapability, ItemStack hunji) {
         if(entity.level().getGameTime() %1000 == 0){
-            entity.addEffect(new MobEffectInstance(SHModMobEffectsinit.jineng_htsc_5.get(), 600, 0));
+//            entity.addEffect(new MobEffectInstance(SHModMobEffectsinit.jineng_htsc_5.get(), 600, 0));
         }
     }
 }

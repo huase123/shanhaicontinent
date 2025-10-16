@@ -2,11 +2,9 @@ package hua.huase.shanhaicontinent.init;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.entity.client.RhinoModel;
-import hua.huase.shanhaicontinent.entity.client.RhinoRenderer;
-import hua.huase.shanhaicontinent.entity.custom.RhinoEntity;
 import hua.huase.shanhaicontinent.entity.hunhe.HunheEntity;
 import hua.huase.shanhaicontinent.entity.hunhe.HunheRender;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanRender;
 import hua.huase.shanhaicontinent.entity.jinengentity.haotianchui.*;
 import hua.huase.shanhaicontinent.entity.jinengentity.huang.*;
@@ -57,8 +55,8 @@ public class EntityInit {
 
 
 
-    public static final RegistryObject<EntityType<HunhuanEntity>> HUNHUAN =
-            ENTITY_TYPES.register("hunhuan", () -> EntityType.Builder.of(HunhuanEntity::new, MobCategory.MISC)
+    public static final RegistryObject<EntityType<HunhuanEntityEntity>> HUNHUAN =
+            ENTITY_TYPES.register("hunhuan", () -> EntityType.Builder.of(HunhuanEntityEntity::new, MobCategory.MISC)
                     .updateInterval(Integer.MAX_VALUE)
                     .sized(1.0f, 1.0f).build("hunhuan"));
     public static final RegistryObject<EntityType<HunheEntity>> HUNHE =

@@ -7,8 +7,7 @@ import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCa
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterCapabilityAPI;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.item.ItemAttribute;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import hua.huase.shanhaicontinent.network.server.SPacketEntityAttribute;
@@ -19,13 +18,11 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.*;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -58,7 +55,7 @@ public class CapabilityRegistryHandler{
                 PlayerAttributeCapabilityProvider playerAttributeCapabilityProvider = new PlayerAttributeCapabilityProvider();
                 event.addCapability(new ResourceLocation(SHMainBus.MOD_ID,"player_attribute"), playerAttributeCapabilityProvider);
             }
-            if (event.getObject() instanceof Mob || event.getObject() instanceof HunhuanEntity)
+            if (event.getObject() instanceof Mob || event.getObject() instanceof HunhuanEntityEntity)
             {
                 MonsterAttributeCapabilityProvider monsterAttributeCapabilityProvider = new MonsterAttributeCapabilityProvider<>();
                 event.addCapability(new ResourceLocation(SHMainBus.MOD_ID,"monster_attribute"), monsterAttributeCapabilityProvider);
@@ -82,7 +79,7 @@ public class CapabilityRegistryHandler{
             Entity entity = event.getEntity();
             if(entity==null)return;
 // 魂环属性
-            if(entity instanceof HunhuanEntity hunhuan){
+            if(entity instanceof HunhuanEntityEntity hunhuan){
                 hunhuanJoin(hunhuan);
             }
 
@@ -155,7 +152,7 @@ public class CapabilityRegistryHandler{
                 }
             }
         }
-        public static void hunhuanJoin(HunhuanEntity entity){
+        public static void hunhuanJoin(HunhuanEntityEntity entity){
 
             if(!entity.level().isClientSide){
                 LazyOptional<MonsterAttributeCapability> capability = entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY);

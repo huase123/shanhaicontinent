@@ -1,7 +1,8 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
+import hua.huase.shanhaicontinent.capabilitys.CapabilityUtil;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -18,7 +19,7 @@ import net.minecraftforge.items.ItemStackHandler;
  * - @author: huase。
  * - @date: 2025/10/12 3:37
  */
-public class PlayerCapability extends AttributeBase{
+public class PlayerCapability extends AttributeBase implements Update{
 //    经验  最大经验
 //    精神力 最大精神力
 //    等级 魂环快关
@@ -44,7 +45,7 @@ public class PlayerCapability extends AttributeBase{
 
     private boolean isjuexing;
     private int xiantianhunli;
-    private boolean isupdate;
+    private boolean isupdate =true;
     private int indexofwuhunused;
 
     public boolean isIsupdate() {
@@ -58,6 +59,9 @@ public class PlayerCapability extends AttributeBase{
 
 
     public PlayerCapability() {
+    }
+    public PlayerCapability(Player player) {
+
     }
 
 
@@ -75,7 +79,7 @@ public class PlayerCapability extends AttributeBase{
         nbt.putInt("hunhuankuaiguan",hunhuankuaiguan);
         nbt.putInt("xiantianhunli",xiantianhunli);
         nbt.putInt("indexofwuhunused", indexofwuhunused);
-
+        nbt.putBoolean("isupdate",isupdate);
         nbt.put("boneslot", boneslot.serializeNBT());
         nbt.put("wuhun", wuhun.serializeNBT());
         nbt.putBoolean("isjuexing", isjuexing);
@@ -94,6 +98,7 @@ public class PlayerCapability extends AttributeBase{
         this.hunhuankuaiguan=nbt.getInt("hunhuankuaiguan");
         this.xiantianhunli=nbt.getInt("xiantianhunli");
         this.indexofwuhunused =nbt.getInt("indexofwuhunused");
+        isupdate = nbt.getBoolean("isupdate");
         if(nbt.get("boneslot")!=null){
             this.boneslot.deserializeNBT((CompoundTag) nbt.get("boneslot"));
         }
@@ -261,11 +266,11 @@ public class PlayerCapability extends AttributeBase{
         this.tupochenggonggailv +=tupochenggonggailv;
     }
 
-    public boolean isXishouHunhuan(ServerPlayer player, HunhuanEntity hunhuanEntity) {
+    public boolean isXishouHunhuan(ServerPlayer player, HunhuanEntityEntity hunhuanEntity) {
         return true;
     }
 
-    public void xishouHunhuan(Player player, HunhuanEntity hunhuanEntity, int existenceTime) {
+    public void xishouHunhuan(Player player, HunhuanEntityEntity hunhuanEntity, int existenceTime) {
         wuhun.getStackInSlot(0).getCapability(RegisterCapabilitys.WUHUNCAPABILITY).ifPresent(c->{
             c.xishouHunhuan(player,hunhuanEntity,existenceTime,this);
         });

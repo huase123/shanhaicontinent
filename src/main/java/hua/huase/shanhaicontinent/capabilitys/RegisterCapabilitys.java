@@ -2,18 +2,16 @@ package hua.huase.shanhaicontinent.capabilitys;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capabilitys.capability.*;
-import hua.huase.shanhaicontinent.entity.NoHunhuan;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.item.Hunji;
 import hua.huase.shanhaicontinent.item.Wuhun;
-import hua.huase.shanhaicontinent.network.SynsAPI;
-import hua.huase.shanhaicontinent.network.server.SPacketEntityAttribute;
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -51,10 +49,10 @@ public class RegisterCapabilitys {
     @SubscribeEvent
     public static void onAttachCapabilities(AttachCapabilitiesEvent<Entity> event)
     {
-        if (event.getObject() instanceof Player) {
+        if (event.getObject() instanceof Player player) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "playercapability"),
                 new ICapabilityProvider() {
-                    private PlayerCapability capability =new PlayerCapability();
+                    private PlayerCapability capability =new PlayerCapability(player);
                     @Override
                     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                         if(cap != PLAYERCAPABILITY) return LazyOptional.empty();
@@ -63,10 +61,10 @@ public class RegisterCapabilitys {
                 }
             );
         }
-        if (event.getObject() instanceof Mob || event.getObject() instanceof HunhuanEntity) {
+        if (event.getObject() instanceof Mob || event.getObject() instanceof HunhuanEntityEntity) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "mostercapability"),
                     new ICapabilityProvider() {
-                        private MosterCapability capability =new MosterCapability();
+                        private MosterCapability capability =new MosterCapability(event.getObject());
                         @Override
                         public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
                             if(cap != MOSTERCAPABILITY) return LazyOptional.empty();
@@ -107,38 +105,25 @@ public class RegisterCapabilitys {
 
 
 //修改怪属性
-        if (entity instanceof Mob  || entity instanceof HunhuanEntity)
+        if (entity instanceof LivingEntity livingEntity)
         {
-            monsterJoin(entity);
+            monsterJoin(livingEntity);
         }
-//修改玩家属性
-        if (entity instanceof ServerPlayer serverPlayerEntity)
+        if (entity instanceof ServerPlayer serverPlayer)
         {
-            serverplayerJoin(serverPlayerEntity);
+            CapabilityUtil.synsMaxhealth(serverPlayer,CapabilityUtil.getCapability(serverPlayer));
         }
 
     }
 
-    public static void serverplayerJoin(ServerPlayer serverPlayerEntity){
-        serverPlayerEntity.getCapability(PLAYERCAPABILITY).ifPresent(playerCapability -> {
-            SynsAPI.synsPlayerCapability(serverPlayerEntity,playerCapability);
-        });
-    }
-    public static void monsterJoin(Entity entity){
+    public static void monsterJoin(LivingEntity livingEntity){
 
-        if(!entity.level().isClientSide){
-            entity.getCapability(MOSTERCAPABILITY).ifPresent(capability ->{
-                if(!(entity instanceof NoHunhuan)){
-                    CapabilityUtil.genMonsterCapability(entity,capability);
+        if(!livingEntity.level().isClientSide){
+            livingEntity.getCapability(MOSTERCAPABILITY).ifPresent(capability ->{
+                if(capability.getNianxian() ==0){
+                    CapabilityUtil.genMonsterCapability(livingEntity,capability);
                 }
-                SynsAPI.synsEntityCapability(entity,capability);
             });
-        }else {
-            CompoundTag compoundTag = SPacketEntityAttribute.monsterHashMapCapability.get(entity.getId());
-            if(compoundTag!=null){
-                entity.getCapability(MOSTERCAPABILITY).ifPresent(capability -> capability.deserializeNBT(compoundTag));
-                SPacketEntityAttribute.monsterHashMapCapability.remove(entity.getId());
-            }
         }
     }
 //    玩家生成事件

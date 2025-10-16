@@ -48,15 +48,16 @@ public class CapabilityUtil {
         capability.juexinWUhun(entity,itemStack,entity.level().random.nextInt(100)+1);
         return true;
     }
-    public static void genMonsterCapability(Entity entity, @NotNull MosterCapability capability){
+    public static void genMonsterCapability(LivingEntity entity, @NotNull MosterCapability capability){
         RandomSource random = entity.level().random;
         int nianxian = getNianxian(entity,random);
         FunctionType functionType = getFunctionType(entity,random);
 
         MosterCapability mosterCapability = new MosterCapability();
         mosterCapability.inti(entity,nianxian,functionType);
-
         capability.deserializeNBT(mosterCapability.serializeNBT());
+        CapabilityUtil.synsMaxhealth(entity,capability);
+        CapabilityUtil.synsCustomName(entity,capability);
     }
 
     private static FunctionType getFunctionType(Entity entity, RandomSource random) {

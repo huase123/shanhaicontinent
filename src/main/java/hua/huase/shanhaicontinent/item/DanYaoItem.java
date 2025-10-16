@@ -137,7 +137,7 @@ public class DanYaoItem extends Item {
                 if(danYaoItem.jingshenlibaifenbi >0){
                     capability.addJingshenli(player, PlayerAttrubuteAPI.getMaxjingshenli(player)* danYaoItem.jingshenlibaifenbi /100f);
                 }
-                SynsAPI.synsPlayerCapability(player,capability);
+                capability.setIsupdate(true);
 
             });
         }

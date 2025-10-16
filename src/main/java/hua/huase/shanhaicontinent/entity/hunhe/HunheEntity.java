@@ -79,7 +79,7 @@ public class HunheEntity extends Entity {
             if(contacttime<=0){
                 serverPlayer.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(c ->{
                         c.addJingyan(serverPlayer,this.getValue());
-                        SynsAPI.synsPlayerCapability(serverPlayer,c);
+                        c.setIsupdate(true);
                     }
                 );
 

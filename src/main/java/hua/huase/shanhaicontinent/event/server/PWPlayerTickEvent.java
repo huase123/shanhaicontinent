@@ -5,8 +5,7 @@ import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
-import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -15,24 +14,16 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PWPlayerTickEvent {
 
-    @SubscribeEvent
+//    @SubscribeEvent
     public static void onStartTracking(TickEvent.PlayerTickEvent event) {
         Player player = event.player;
         if(event.phase == TickEvent.Phase.END){
-            player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(c->{
-                if(c.isIsupdate())SynsAPI.synsPlayerCapability(player,c);
-            });
-
-
-
-
 
 
             if(!player.level().isClientSide){
@@ -88,7 +79,7 @@ public class PWPlayerTickEvent {
         float jingshenli = PlayerAttrubuteAPI.getJingshenli(player);
         if(jingshenli<0){
             player.sendSystemMessage(Component.translatable("精神力不足").withStyle(ChatFormatting.GRAY));
-            if(player.getVehicle() instanceof HunhuanEntity){
+            if(player.getVehicle() instanceof HunhuanEntityEntity){
                 player.removeVehicle();
             }
             player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 2));

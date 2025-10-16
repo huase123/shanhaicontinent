@@ -20,11 +20,27 @@ import static hua.huase.shanhaicontinent.SHMainBus.random;
  * - @author: huase。
  * - @date: 2025/10/12 3:33
  */
-public class MosterCapability extends AttributeBase{
+public class MosterCapability extends AttributeBase implements Update{
 
     int nianxian;
     ItemStackHandler hunhuan = new ItemStackHandler();
     FunctionType functionType;
+    private boolean isupdate =true;
+
+    public MosterCapability() {
+
+    }
+    public MosterCapability(Entity object) {
+
+    }
+
+    public boolean isIsupdate() {
+        return isupdate;
+    }
+
+    public void setIsupdate(boolean isupdate) {
+        this.isupdate = isupdate;
+    }
 
     public FunctionType getFunctionType() {
         return functionType;
@@ -51,6 +67,7 @@ public class MosterCapability extends AttributeBase{
         CompoundTag nbt = super.serializeNBT();
         nbt.putInt("nianxian", nianxian);
         nbt.put("hunhuan", hunhuan.serializeNBT());
+        nbt.putBoolean("isupdate",isupdate);
         ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
         nbt.putString("functiontype",key == null ? "air" : key.toString());
         return nbt;
@@ -60,6 +77,7 @@ public class MosterCapability extends AttributeBase{
     public void deserializeNBT(CompoundTag nbt) {
         super.deserializeNBT(nbt);
         this.nianxian = nbt.getInt("nianxian");
+        isupdate = nbt.getBoolean("isupdate");
         if(nbt.get("hunhuan")!=null){
             this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
         }

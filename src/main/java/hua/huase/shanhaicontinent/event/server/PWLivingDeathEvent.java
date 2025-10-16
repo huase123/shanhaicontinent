@@ -2,11 +2,10 @@ package hua.huase.shanhaicontinent.event.server;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capability.itemattribute.ItemAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.entity.mob.hunmin.HunminEntity;
 import hua.huase.shanhaicontinent.init.EntityInit;
 import net.minecraft.core.BlockPos;
@@ -90,7 +89,7 @@ public class PWLivingDeathEvent {
 
     public static void  addHunhuanEntity(@NotNull MosterCapability capability, Level level, BlockPos onPos){
 
-        HunhuanEntity hunhuanEntity = new HunhuanEntity(EntityInit.HUNHUAN.get(), level);
+        HunhuanEntityEntity hunhuanEntity = new HunhuanEntityEntity(EntityInit.HUNHUAN.get(), level);
         hunhuanEntity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(capability1 -> {
             capability1.deserializeNBT(capability.serializeNBT());
             hunhuanEntity.setPos(onPos.getCenter().add(0,1,0));

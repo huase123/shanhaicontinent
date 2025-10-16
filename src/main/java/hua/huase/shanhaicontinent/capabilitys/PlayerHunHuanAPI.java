@@ -4,14 +4,13 @@ import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCa
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
-import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntity;
+import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.init.AdvenceInit;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSetActionBarTextPacket;
 import net.minecraft.network.protocol.game.ClientboundSetTitleTextPacket;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
@@ -113,7 +112,7 @@ public interface PlayerHunHuanAPI {
 1310720 70047
 2621440 12726
            */
-    static void xishouHunhuan(Player player, HunhuanEntity entity){
+    static void xishouHunhuan(Player player, HunhuanEntityEntity entity){
 
         entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
 
@@ -134,7 +133,7 @@ public interface PlayerHunHuanAPI {
         });
     }
 
-    static void addHunhuan(Player player, HunhuanEntity entity) {
+    static void addHunhuan(Player player, HunhuanEntityEntity entity) {
         player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
             entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability1 -> {
                 if(capability.getWuhunList() == null){
@@ -224,7 +223,7 @@ public interface PlayerHunHuanAPI {
         return true;
     }
 
-    static boolean isXishouHunhuan(ServerPlayer player, HunhuanEntity hunhuanEntity) {
+    static boolean isXishouHunhuan(ServerPlayer player, HunhuanEntityEntity hunhuanEntity) {
         LazyOptional<PlayerAttributeCapability> capability1 = player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY);
         if(capability1.isPresent()){
             PlayerAttributeCapability capability = capability1.orElseThrow(RuntimeException::new);

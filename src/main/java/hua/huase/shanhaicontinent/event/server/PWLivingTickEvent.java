@@ -1,10 +1,16 @@
 package hua.huase.shanhaicontinent.event.server;
 
 import hua.huase.shanhaicontinent.SHMainBus;
+import hua.huase.shanhaicontinent.capabilitys.CapabilityUtil;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.capabilitys.capability.AttributeBase;
+import hua.huase.shanhaicontinent.capabilitys.capability.Update;
 import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.item.Hunji;
+import hua.huase.shanhaicontinent.network.NetworkHandler;
 import hua.huase.shanhaicontinent.network.SynsAPI;
+import hua.huase.shanhaicontinent.network.client.CPacketCapability;
+import hua.huase.shanhaicontinent.network.client.CPacketHunji;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,6 +26,31 @@ public class PWLivingTickEvent {
 
     @SubscribeEvent
     public static void onLivingTickEvent(LivingEvent.LivingTickEvent event){
+        livngUseHunji(event);
+        capabilitySyns(event);
+    }
+
+    private static void capabilitySyns(LivingEvent.LivingTickEvent event) {
+        LivingEntity entity = event.getEntity();
+//        服务端同步至客户端
+        if(event.getEntity()!=null &&!event.getEntity().level().isClientSide && entity.isAlive()){
+            AttributeBase capability = CapabilityUtil.getCapability(entity);
+            if(capability instanceof Update update && update.isIsupdate()){
+                    update.setIsupdate(false);
+                    SynsAPI.synsCapability(entity,capability);
+            }
+        }
+//        客户端同步至服务端
+        if(event.getEntity()!=null &&event.getEntity().level().isClientSide && entity.isAlive()){
+            AttributeBase capability = CapabilityUtil.getCapability(entity);
+            if(capability instanceof Update update && update.isIsupdate()){
+                update.setIsupdate(false);
+                NetworkHandler.INSTANCE.sendToServer(new CPacketCapability(event.getEntity().getId()));
+            }
+        }
+    }
+
+    private static void livngUseHunji(LivingEvent.LivingTickEvent event) {
         if(event.getEntity()!=null &&!event.getEntity().level().isClientSide){
             event.getEntity().getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(mosterCapability->{
                 ItemStackHandler hunhuanlist = mosterCapability.getHunhuan();

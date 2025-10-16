@@ -48,13 +48,14 @@ public class NetworkHandler {
 
     //Client Packets
 //    register(CPacketDemo.class, CPacketDemo::encode, CPacketDemo::decode, CPacketDemo::handle);
+    register(CPacketCapability.class, CPacketCapability::encode, CPacketCapability::decode, CPacketCapability::handle);
     register(CPacketOpenAttrGUI.class, CPacketOpenAttrGUI::encode, CPacketOpenAttrGUI::decode, CPacketOpenAttrGUI::handle);
     register(CPacketQiehuanWuhun.class, CPacketQiehuanWuhun::encode, CPacketQiehuanWuhun::decode, CPacketQiehuanWuhun::handle);
     register(CPacketHunji.class, CPacketHunji::encode, CPacketHunji::decode, CPacketHunji::handle);
 
     // Server Packets
 //    register(SPacketDemo.class, SPacketDemo::encode, SPacketDemo::decode, SPacketDemo::handle);
-    register(SPacketPlayerAttribute.class, SPacketPlayerAttribute::encode, SPacketPlayerAttribute::decode, SPacketPlayerAttribute::handle);
+    register(SPacketCapability.class, SPacketCapability::encode, SPacketCapability::decode, SPacketCapability::handle);
     register(SPacketEntityAttribute.class, SPacketEntityAttribute::encode, SPacketEntityAttribute::decode, SPacketEntityAttribute::handle);
     register(AreaProtectionPacket.class, AreaProtectionPacket::encode, AreaProtectionPacket::new, AreaProtectionPacket.Handler::onMessage);
 
