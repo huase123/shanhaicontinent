@@ -74,7 +74,7 @@ public class CapabilityRegistryHandler{
 
         }
 
-        @SubscribeEvent
+//        @SubscribeEvent
         public static void onEntityJoin(EntityJoinLevelEvent event){
             Entity entity = event.getEntity();
             if(entity==null)return;
