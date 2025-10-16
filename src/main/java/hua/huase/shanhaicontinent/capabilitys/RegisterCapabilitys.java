@@ -2,7 +2,6 @@ package hua.huase.shanhaicontinent.capabilitys;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capabilitys.capability.*;
-import hua.huase.shanhaicontinent.entity.HunhuanEntity;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.item.Hunji;
@@ -51,26 +50,12 @@ public class RegisterCapabilitys {
     {
         if (event.getObject() instanceof Player player) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "playercapability"),
-                new ICapabilityProvider() {
-                    private PlayerCapability capability =new PlayerCapability(player);
-                    @Override
-                    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-                        if(cap != PLAYERCAPABILITY) return LazyOptional.empty();
-                        return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
-                    }
-                }
+                    new SHCapabilityProvider(new PlayerCapability(player))
             );
         }
         if (event.getObject() instanceof Mob || event.getObject() instanceof HunhuanEntityEntity) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "mostercapability"),
-                    new ICapabilityProvider() {
-                        private MosterCapability capability =new MosterCapability(event.getObject());
-                        @Override
-                        public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-                            if(cap != MOSTERCAPABILITY) return LazyOptional.empty();
-                            return LazyOptional.of((NonNullSupplier<Object>) () -> capability).cast();
-                        }
-                    }
+                    new SHCapabilityProvider(new MosterCapability(event.getObject()))
             );
         }
 
@@ -82,17 +67,17 @@ public class RegisterCapabilitys {
     {
         if (event.getObject().getItem() instanceof Wuhun) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "wuhunitme"),
-                    new ItemICapabilityProvider(new WuhunCapability())
+                    new SHCapabilityProvider(new WuhunCapability())
             );
         }
         if (event.getObject().getItem() instanceof Hunhuan) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunhuanitem"),
-                    new ItemICapabilityProvider(new HunhuanCapability())
+                    new SHCapabilityProvider(new HunhuanCapability())
             );
         }
         if (event.getObject().getItem() instanceof Hunji) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "hunjiitem"),
-                    new ItemICapabilityProvider(new HunjiCapability())
+                    new SHCapabilityProvider(new HunjiCapability())
             );
         }
 
@@ -102,8 +87,6 @@ public class RegisterCapabilitys {
     public static void onEntityJoin(EntityJoinLevelEvent event){
         Entity entity = event.getEntity();
         if(entity==null)return;
-
-
 //修改怪属性
         if (entity instanceof LivingEntity livingEntity)
         {
@@ -119,11 +102,13 @@ public class RegisterCapabilitys {
     public static void monsterJoin(LivingEntity livingEntity){
 
         if(!livingEntity.level().isClientSide){
-            livingEntity.getCapability(MOSTERCAPABILITY).ifPresent(capability ->{
-                if(capability.getNianxian() ==0){
-                    CapabilityUtil.genMonsterCapability(livingEntity,capability);
+            AttributeBase capability1 = CapabilityUtil.getCapability(livingEntity);
+            if(capability1 !=null && capability1 instanceof MosterCapability mosterCapability){
+                if(mosterCapability.getNianxian() ==0){
+                    CapabilityUtil.genMonsterCapability(livingEntity,mosterCapability);
                 }
-            });
+
+            }
         }
     }
 //    玩家生成事件

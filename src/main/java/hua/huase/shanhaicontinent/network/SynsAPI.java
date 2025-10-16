@@ -25,7 +25,7 @@ public interface SynsAPI {
     @Deprecated
     static void synsEntityCapability(Entity entity, @NotNull MosterCapability capability){
         CapabilityUtil.synsMaxhealth(entity,capability);
-        CapabilityUtil.synsCustomName(entity,capability);
+//        CapabilityUtil.synsCustomName(entity,capability);
         capability.setIsupdate(false);
         NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketCapability(entity.getId(),capability.serializeNBT()));
 
@@ -52,8 +52,8 @@ public interface SynsAPI {
     }
     @Deprecated
     static void synsEntityAttribute(Entity entity){
-            entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
-            });
+//            entity.getCapability(MonsterAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+//                NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> entity), new SPacketEntityAttribute(entity.getId(),capability.serializeNBT()));
+//            });
     }
 }

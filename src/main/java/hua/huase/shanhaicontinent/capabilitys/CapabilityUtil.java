@@ -2,6 +2,7 @@ package hua.huase.shanhaicontinent.capabilitys;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capabilitys.capability.AttributeBase;
+import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.compat.sophisticatedbackpacks.SophisticatedbackpacksAPI;
@@ -10,6 +11,9 @@ import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
+import hua.huase.shanhaicontinent.item.Hunhuan;
+import hua.huase.shanhaicontinent.item.Hunji;
+import hua.huase.shanhaicontinent.item.Wuhun;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -24,6 +28,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -145,10 +150,13 @@ public class CapabilityUtil {
         }
     }
 
-    public static AttributeBase getCapability(Entity entity) {
-        if(entity == null)return null;
-        if(entity instanceof Player)return entity.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElseThrow(RuntimeException::new);
-        if(entity instanceof LivingEntity)return entity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).orElseThrow(RuntimeException::new);
+    public static AttributeBase getCapability(ICapabilityProvider capabilityProvider) {
+        if(capabilityProvider == null)return null;
+        if(capabilityProvider instanceof Player)return capabilityProvider.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).orElse(null);
+        if(capabilityProvider instanceof LivingEntity)return capabilityProvider.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).orElse(null);
+        if(capabilityProvider instanceof Wuhun)return capabilityProvider.getCapability(RegisterCapabilitys.WUHUNCAPABILITY).orElse(null);
+        if(capabilityProvider instanceof Hunhuan)return capabilityProvider.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).orElse(null);
+        if(capabilityProvider instanceof Hunji)return capabilityProvider.getCapability(RegisterCapabilitys.HUNJICAPABILITY).orElse(null);
         return null;
 
     }

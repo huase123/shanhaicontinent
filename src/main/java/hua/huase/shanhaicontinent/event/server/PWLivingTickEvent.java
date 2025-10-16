@@ -4,6 +4,7 @@ import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capabilitys.CapabilityUtil;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.capabilitys.capability.AttributeBase;
+import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.Update;
 import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.item.Hunji;
@@ -52,7 +53,8 @@ public class PWLivingTickEvent {
 
     private static void livngUseHunji(LivingEvent.LivingTickEvent event) {
         if(event.getEntity()!=null &&!event.getEntity().level().isClientSide){
-            event.getEntity().getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(mosterCapability->{
+            AttributeBase capability = CapabilityUtil.getCapability(event.getEntity());
+            if(capability instanceof MosterCapability mosterCapability){
                 ItemStackHandler hunhuanlist = mosterCapability.getHunhuan();
                 for (int i = 0; i <hunhuanlist.getSlots(); i++) {
                     ItemStack hunhuanitemstack = hunhuanlist.getStackInSlot(i);
@@ -68,7 +70,8 @@ public class PWLivingTickEvent {
                         });
                     }
                 }
-            });
+
+            }
         }
     }
 }
