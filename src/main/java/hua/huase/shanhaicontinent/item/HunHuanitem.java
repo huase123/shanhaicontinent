@@ -23,12 +23,12 @@ import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
  * - @date: 2025/10/14 6:30
  */
 public class HunHuanitem  extends Item implements Hunhuan {
-    FunctionType functionType;
+    RegistryObject<FunctionType> functionType;
 
     public HunHuanitem(RegistryObject<FunctionType> functionType) {
         super(new Item.Properties().stacksTo(1));
-//        this.functionType = functionType.get();
-        hunjilist.add(this);
+        this.functionType = functionType;
+//        hunjilist.add(this);
     }
 
 

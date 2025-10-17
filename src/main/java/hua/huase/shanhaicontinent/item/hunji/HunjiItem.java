@@ -29,11 +29,11 @@ import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
  * - @date: 2025/10/12 6:52
  */
 public class HunjiItem extends Item implements Hunji {
-    FunctionType functionType;
+    RegistryObject<FunctionType> functionType;
 
     public HunjiItem(RegistryObject<FunctionType> functionType) {
         super(new Item.Properties().stacksTo(1));
-//        this.functionType = functionType;
+        this.functionType = functionType;
         hunjilist.add(this);
     }
 

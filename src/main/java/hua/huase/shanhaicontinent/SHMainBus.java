@@ -1,6 +1,5 @@
 package hua.huase.shanhaicontinent;
 
-import com.mojang.serialization.Codec;
 import hua.huase.shanhaicontinent.command.SHCommand;
 import hua.huase.shanhaicontinent.config.Config;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
@@ -11,27 +10,20 @@ import hua.huase.shanhaicontinent.network.NetworkHandler;
 import hua.huase.shanhaicontinent.init.ModRecipesInit;
 import hua.huase.shanhaicontinent.screen.ModMenuTypes;
 import hua.huase.shanhaicontinent.world.structure.SHStructureTypes;
-import hua.huase.shanhaicontinent.world.biome.ModBiomes;
 import hua.huase.shanhaicontinent.world.biome.OverworldModifications;
-import hua.huase.shanhaicontinent.world.biomesource.SHBiomeSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.RangedAttribute;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.Bindings;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLLoadCompleteEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import twilightforest.command.TFCommand;
 
 import java.io.IOException;
 import java.lang.reflect.Field;

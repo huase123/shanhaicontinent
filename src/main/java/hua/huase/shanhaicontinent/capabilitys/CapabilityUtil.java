@@ -2,7 +2,6 @@ package hua.huase.shanhaicontinent.capabilitys;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capabilitys.capability.AttributeBase;
-import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.PlayerCapability;
 import hua.huase.shanhaicontinent.compat.sophisticatedbackpacks.SophisticatedbackpacksAPI;
@@ -10,11 +9,9 @@ import hua.huase.shanhaicontinent.compat.twilightforest.TwilightforestAPI;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.ItemInit;
-import hua.huase.shanhaicontinent.init.SHRegistries;
 import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.item.Hunji;
 import hua.huase.shanhaicontinent.item.Wuhun;
-import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
@@ -132,7 +129,7 @@ public class CapabilityUtil {
     }
 
     public static void synsCustomName(Entity entity, MosterCapability capability) {
-        if(entity.getCustomName() == null){
+//        if(entity.getCustomName() == null){
             int nianxian = capability.getNianxian();
             if(nianxian>=1000000){
                 entity.setCustomName(Component.translatable(entity.getDisplayName().getString()+"-----------"+"§4"+nianxian+"年"));
@@ -147,7 +144,7 @@ public class CapabilityUtil {
             }else if(nianxian>=1){
                 entity.setCustomName(Component.translatable(entity.getDisplayName().getString()+"-----------"+"§f"+nianxian+"年"));
             }
-        }
+//        }
     }
 
     public static AttributeBase getCapability(ICapabilityProvider capabilityProvider) {

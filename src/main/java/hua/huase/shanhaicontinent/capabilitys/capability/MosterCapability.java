@@ -4,7 +4,6 @@ import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
 import hua.huase.shanhaicontinent.init.ItemInit;
-import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
@@ -12,6 +11,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static hua.huase.shanhaicontinent.SHMainBus.random;
 
@@ -24,7 +26,7 @@ public class MosterCapability extends AttributeBase implements Update{
 
     int nianxian;
     ItemStackHandler hunhuan = new ItemStackHandler();
-    FunctionType functionType;
+    List<FunctionType> functionTypelist = new ArrayList();
     private boolean isupdate =true;
 
     public MosterCapability() {
@@ -42,8 +44,12 @@ public class MosterCapability extends AttributeBase implements Update{
         this.isupdate = isupdate;
     }
 
-    public FunctionType getFunctionType() {
-        return functionType;
+    public List<FunctionType> getFunctionTypelist() {
+        return functionTypelist;
+    }
+
+    public void setFunctionTypelist(List<FunctionType> functionTypelist) {
+        this.functionTypelist = functionTypelist;
     }
 
     public int getNianxian() {
@@ -68,8 +74,11 @@ public class MosterCapability extends AttributeBase implements Update{
         nbt.putInt("nianxian", nianxian);
         nbt.put("hunhuan", hunhuan.serializeNBT());
         nbt.putBoolean("isupdate",isupdate);
-        ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
-        nbt.putString("functiontype",key == null ? "air" : key.toString());
+        nbt.putInt("functionSize",functionTypelist.size());
+        for (int i = 0; i < functionTypelist.size(); i++) {
+            ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionTypelist.get(i));
+            nbt.putString("functiontype"+i,key == null ? FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(FunctionTypeInit.empty.get()).toString() : key.toString());
+        }
         return nbt;
     }
 
@@ -81,12 +90,18 @@ public class MosterCapability extends AttributeBase implements Update{
         if(nbt.get("hunhuan")!=null){
             this.hunhuan.deserializeNBT((CompoundTag) nbt.get("hunhuan"));
         }
-        functionType = FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
+
+        functionTypelist.clear();
+        int functionSize = nbt.getInt("functionSize");
+        for (int i = 0; i < functionSize; i++) {
+            functionTypelist.add(FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype"+i))));
+
+        }
     }
 
     public void inti(Entity entity, int nianxian, FunctionType functionType) {
         this.nianxian = nianxian;
-        this.functionType = functionType;
+        this.addFunction(functionType);
         ItemStack hunhuan = new ItemStack(ItemInit.hunhuan0.get());
         hunhuan.getCapability(RegisterCapabilitys.HUNHUANCAPABILITY).ifPresent(c->{
             c.inti(entity,nianxian,functionType,hunhuan,this);
@@ -195,6 +210,10 @@ public class MosterCapability extends AttributeBase implements Update{
             super.setShanbi(l);
             super.setShengminghuifu(0);
         }
+    }
+
+    private void addFunction(FunctionType functionType) {
+        functionTypelist.add(functionType);
     }
 
 
