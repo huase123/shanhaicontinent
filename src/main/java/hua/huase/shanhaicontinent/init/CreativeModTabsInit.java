@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.init;
 
 import hua.huase.shanhaicontinent.SHMainBus;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import static hua.huase.shanhaicontinent.init.BlockInit.ORELIST;
-import static hua.huase.shanhaicontinent.init.ItemInit.ARMORLIST;
+import static hua.huase.shanhaicontinent.item.ItemInit.ARMORLIST;
 
 public class CreativeModTabsInit {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =

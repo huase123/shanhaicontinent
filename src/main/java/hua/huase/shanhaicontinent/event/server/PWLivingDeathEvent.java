@@ -23,8 +23,8 @@ import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
 import static hua.huase.shanhaicontinent.SHMainBus.random;
-import static hua.huase.shanhaicontinent.init.ItemInit.HUNGULIST;
-import static hua.huase.shanhaicontinent.init.ItemInit.SEEDLIST;
+import static hua.huase.shanhaicontinent.item.ItemInit.HUNGULIST;
+import static hua.huase.shanhaicontinent.item.ItemInit.SEEDLIST;
 
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PWLivingDeathEvent {

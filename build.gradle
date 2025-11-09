@@ -180,6 +180,14 @@ repositories {
         content { includeGroup "curse.maven" }
         mavenCentral()
     }
+    maven {
+        name = 'GeckoLib'
+        url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+        content {
+            includeGroupByRegex("software\\.bernie.*")
+            includeGroup("com.eliotlash.mclib")
+        }
+    }
 }
 
 dependencies {
@@ -212,6 +220,10 @@ dependencies {
 //    runtimeOnly fg.deobf("curse.maven:TslatEntityStatus-830420:4979147")
 //一键整理
 //    runtimeOnly fg.deobf("curse.maven:inventory-profiles-next-495267:5209064")
+
+
+    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.8.2")
+    implementation("com.eliotlash.mclib:mclib:20")
 
 
 //暮色森林
@@ -250,8 +262,7 @@ def replaceProperties = [
         forge_version: forge_version, forge_version_range: forge_version_range,
         loader_version_range: loader_version_range,
         mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-        mod_authors: mod_authors, mod_description: mod_description,
-        terrablender_version_range: terrablender_version_range
+        mod_authors: mod_authors, mod_description: mod_description
 ]
 processResources {
     inputs.properties replaceProperties

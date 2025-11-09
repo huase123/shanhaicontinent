@@ -3,13 +3,11 @@ package hua.huase.shanhaicontinent.item.hunji;
 import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
 import hua.huase.shanhaicontinent.capabilitys.capability.MosterCapability;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.init.SHModMobEffectsinit;
 import hua.huase.shanhaicontinent.item.Hunji;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -19,9 +17,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
-import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
+import static hua.huase.shanhaicontinent.item.ItemInit.hunjilist;
 
 /**
  * - @description:HunjiItem类
@@ -29,16 +28,28 @@ import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
  * - @date: 2025/10/12 6:52
  */
 public class HunjiItem extends Item implements Hunji {
-    RegistryObject<FunctionType> functionType;
+    ArrayList<RegistryObject<FunctionType>> registryFunctionTypeList = new ArrayList<>();
+    int index = 0;
 
-    public HunjiItem(RegistryObject<FunctionType> functionType) {
+    public HunjiItem() {
         super(new Item.Properties().stacksTo(1));
-        this.functionType = functionType;
         hunjilist.add(this);
     }
 
 
+    public List<FunctionType> getRegistryFunctionTypeList() {
+        return registryFunctionTypeList.stream().map(RegistryObject::get).toList();
+    }
 
+    public HunjiItem addRegistryFunctionTypeList(RegistryObject<FunctionType> registryFunctionTypeList) {
+        this.registryFunctionTypeList.add(registryFunctionTypeList);
+        return this;
+    }
+
+    public HunjiItem  setIndex(int i) {
+        this.index = i;
+        return this;
+    }
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
 //        if(!this.isBelongToPlayer(player,itemstack))return InteractionResultHolder.sidedSuccess(itemstack, level.isClientSide());
@@ -76,4 +87,5 @@ public class HunjiItem extends Item implements Hunji {
 //            entity.addEffect(new MobEffectInstance(SHModMobEffectsinit.jineng_htsc_5.get(), 600, 0));
         }
     }
+
 }

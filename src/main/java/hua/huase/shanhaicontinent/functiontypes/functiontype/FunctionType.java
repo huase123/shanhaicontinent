@@ -8,9 +8,7 @@ import hua.huase.shanhaicontinent.functiontypes.MonsterType;
  * - @date: 2025/10/12 6:18
  */
 public class FunctionType {
-    String s = "jahahah";
     public FunctionType() {
-        System.out.println("构建成功");
     }
 
     public boolean isMonster(){

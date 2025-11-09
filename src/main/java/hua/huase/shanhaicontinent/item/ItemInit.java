@@ -1,9 +1,10 @@
-package hua.huase.shanhaicontinent.init;
+package hua.huase.shanhaicontinent.item;
 
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.capability.playerattribute.WuHunName;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
-import hua.huase.shanhaicontinent.item.*;
+import hua.huase.shanhaicontinent.init.BlockInit;
+import hua.huase.shanhaicontinent.init.EntityInit;
 import hua.huase.shanhaicontinent.item.armor.SHArmorBaseItem;
 import hua.huase.shanhaicontinent.item.armor.SHArmorMaterial;
 import hua.huase.shanhaicontinent.item.guoshi.WuhunGuoshiItem;
@@ -51,27 +52,65 @@ public class ItemInit {
     public static final RegistryObject<Item> wanfajieshao = ITEMS.register("wanfajieshao",
             () -> new WanfajieshaoItem(new Item.Properties()));
 
-    public static final RegistryObject<Item> hunhuan0 = ITEMS.register("hunhuan0", () -> new HunHuanitem(FunctionTypeInit.defense));
+
+
+    public static final RegistryObject<Item> hunhuan0 = ITEMS.register("hunhuan0", () -> new HunHuanitem());
 
 
     public static ArrayList<Item> hunjilist = new ArrayList<>();
 
-    public static final RegistryObject<Item> hunji0 = ITEMS.register("hunji0", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji1 = ITEMS.register("hunji1", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji2 = ITEMS.register("hunji2", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji3 = ITEMS.register("hunji3", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji4 = ITEMS.register("hunji4", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji5 = ITEMS.register("hunji5", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji6 = ITEMS.register("hunji6", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji7 = ITEMS.register("hunji7", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji8 = ITEMS.register("hunji8", () -> new HunjiItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> hunji9 = ITEMS.register("hunji9", () -> new HunjiItem(FunctionTypeInit.defense));
+    public static final RegistryObject<Item> potianshengunhunji0 = ITEMS.register("hunji0", () -> new HunjiItem().addRegistryFunctionTypeList(FunctionTypeInit.qianggong).setIndex(0));
+    public static final RegistryObject<Item> potianshengunhunji1 = ITEMS.register("hunji1", () -> new HunjiItem());
+    public static final RegistryObject<Item> potianshengunhunji2 = ITEMS.register("hunji2", () -> new HunjiItem());
+    public static final RegistryObject<Item> potianshengunhunji3 = ITEMS.register("hunji3", () -> new HunjiItem());
+    public static final RegistryObject<Item> potianshengunhunji4 = ITEMS.register("hunji4", () -> new HunjiItem());
+    public static final RegistryObject<Item> potianshengunhunji5 = ITEMS.register("hunji5", () -> new HunjiItem());
+    public static final RegistryObject<Item> potianshengunhunji6 = ITEMS.register("hunji6", () -> new HunjiItem());
+    public static final RegistryObject<Item> potianshengunhunji7 = ITEMS.register("hunji7", () -> new HunjiItem());
+    public static final RegistryObject<Item> potianshengunhunji8 = ITEMS.register("hunji8", () -> new HunjiItem());
+
+//    public static final RegistryObject<Item> haotianchuihunji0 = ITEMS.register("hunji0", () -> new HunjiItem().addRegistryFunctionTypeList(FunctionTypeInit.qianggong).setIndex(0));
+//    public static final RegistryObject<Item> haotianchuihunji1 = ITEMS.register("hunji1", () -> new HunjiItem());
+//    public static final RegistryObject<Item> haotianchuihunji2 = ITEMS.register("hunji2", () -> new HunjiItem());
+//    public static final RegistryObject<Item> haotianchuihunji3 = ITEMS.register("hunji3", () -> new HunjiItem());
+//    public static final RegistryObject<Item> haotianchuihunji4 = ITEMS.register("hunji4", () -> new HunjiItem());
+//    public static final RegistryObject<Item> haotianchuihunji5 = ITEMS.register("hunji5", () -> new HunjiItem());
+//    public static final RegistryObject<Item> haotianchuihunji6 = ITEMS.register("hunji6", () -> new HunjiItem());
+//    public static final RegistryObject<Item> haotianchuihunji7 = ITEMS.register("hunji7", () -> new HunjiItem());
+//    public static final RegistryObject<Item> haotianchuihunji8 = ITEMS.register("hunji8", () -> new HunjiItem());
 
     public static ArrayList<Item> wuhunlist = new ArrayList<>();
-    public static final RegistryObject<Item> wuhun0 = ITEMS.register("wuhun0", () -> new WuhunItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> wuhun1 = ITEMS.register("wuhun1", () -> new WuhunItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> wuhun2 = ITEMS.register("wuhun2", () -> new WuhunItem(FunctionTypeInit.defense));
-    public static final RegistryObject<Item> wuhun3 = ITEMS.register("wuhun3", () -> new WuhunItem(FunctionTypeInit.defense));
+
+    public static final RegistryObject<Item> potianshengun = ITEMS.register("potianshengun", () -> new WuhunItem()
+            .addJinengList(potianshengunhunji0)
+            .addJinengList(potianshengunhunji1)
+            .addJinengList(potianshengunhunji2)
+            .addJinengList(potianshengunhunji3)
+            .addJinengList(potianshengunhunji4)
+            .addJinengList(potianshengunhunji5)
+            .addJinengList(potianshengunhunji6)
+            .addJinengList(potianshengunhunji7)
+            .addJinengList(potianshengunhunji8)
+            .setRegistryFunctionTypeList(FunctionTypeInit.qihun)
+            .setRegistryFunctionTypeList(FunctionTypeInit.qianggong)
+    );
+//    public static final RegistryObject<Item> haotianchui = ITEMS.register("haotianchui", () -> new WuhunItem()
+//            .addJinengList(haotianchuihunji0)
+//            .addJinengList(haotianchuihunji1)
+//            .addJinengList(haotianchuihunji2)
+//            .addJinengList(haotianchuihunji3)
+//            .addJinengList(haotianchuihunji4)
+//            .addJinengList(haotianchuihunji5)
+//            .addJinengList(haotianchuihunji6)
+//            .addJinengList(haotianchuihunji7)
+//            .addJinengList(haotianchuihunji8)
+//            .setRegistryFunctionTypeList(FunctionTypeInit.qihun)
+//            .setRegistryFunctionTypeList(FunctionTypeInit.qianggong)
+//    );
+
+    public static final RegistryObject<Item> wuhun1 = ITEMS.register("wuhun1", () -> new WuhunItem());
+    public static final RegistryObject<Item> wuhun2 = ITEMS.register("wuhun2", () -> new WuhunItem());
+    public static final RegistryObject<Item> wuhun3 = ITEMS.register("wuhun3", () -> new WuhunItem());
 
 
 

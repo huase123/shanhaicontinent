@@ -6,6 +6,7 @@ import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.init.*;
 import hua.huase.shanhaicontinent.init.ModelBlockEntitiesinit;
 import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import hua.huase.shanhaicontinent.network.NetworkHandler;
 import hua.huase.shanhaicontinent.init.ModRecipesInit;
 import hua.huase.shanhaicontinent.screen.ModMenuTypes;

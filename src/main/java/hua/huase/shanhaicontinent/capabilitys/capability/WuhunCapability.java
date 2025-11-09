@@ -10,24 +10,25 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * - @description:HunhuanCapability类
  * - @author: huase。
  * - @date: 2025/10/12 3:18
  */
 public class WuhunCapability extends AttributeBase{
-//    类型
-    FunctionType functionType;
-
+    List<FunctionType> functionTypelist = new ArrayList();
 //    魂技
     ItemStackHandler hunhuanlist = new ItemStackHandler();
 
-    public FunctionType getFunctionType() {
-        return functionType;
+    public List<FunctionType> getFunctionTypelist() {
+        return functionTypelist;
     }
 
-    public void setFunctionType(FunctionType functionType) {
-        this.functionType = functionType;
+    public void setFunctionTypelist(List<FunctionType> functionTypelist) {
+        this.functionTypelist = functionTypelist;
     }
 
     public ItemStackHandler getHunhuanlist() {
@@ -42,8 +43,11 @@ public class WuhunCapability extends AttributeBase{
     public CompoundTag serializeNBT() {
         CompoundTag nbt = super.serializeNBT();
         nbt.put("hunhuanlist", hunhuanlist.serializeNBT());
-        ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionType);
-        nbt.putString("functiontype",key == null ? "air" : key.toString());
+        nbt.putInt("functionSize",functionTypelist.size());
+        for (int i = 0; i < functionTypelist.size(); i++) {
+            ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionTypelist.get(i));
+            nbt.putString("functiontype"+i,key == null ? FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(FunctionTypeInit.empty.get()).toString() : key.toString());
+        }
         return nbt;
     }
 
@@ -54,7 +58,13 @@ public class WuhunCapability extends AttributeBase{
         if(nbt.get("hunhuanlist")!=null){
             this.hunhuanlist.deserializeNBT((CompoundTag) nbt.get("hunhuanlist"));
         }
-        functionType = FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype")));
+
+
+        functionTypelist.clear();
+        int functionSize = nbt.getInt("functionSize");
+        for (int i = 0; i < functionSize; i++) {
+            functionTypelist.add(FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype"+i))));
+        }
     }
 
     public void init(ItemStack itemStack) {

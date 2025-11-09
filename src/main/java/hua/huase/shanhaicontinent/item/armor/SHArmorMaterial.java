@@ -1,6 +1,6 @@
 package hua.huase.shanhaicontinent.item.armor;
 
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;

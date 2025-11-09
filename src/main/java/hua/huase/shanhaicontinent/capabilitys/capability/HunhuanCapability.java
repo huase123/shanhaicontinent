@@ -3,7 +3,7 @@ package hua.huase.shanhaicontinent.capabilitys.capability;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -91,7 +91,7 @@ public class HunhuanCapability extends AttributeBase{
     }
 
     public void hunhuanAddhunji(Entity entity, int nianxian, FunctionType functionType, ItemStack hunhuan, MosterCapability mosterCapability) {
-        ItemStack hunji = new ItemStack(ItemInit.hunji0.get());
+        ItemStack hunji = new ItemStack(ItemInit.potianshengunhunji0.get());
         hunji.getCapability(RegisterCapabilitys.HUNJICAPABILITY).ifPresent(c ->{
             c.inti(entity,nianxian,functionType,hunhuan,hunji,this,mosterCapability);
         });

@@ -4,7 +4,7 @@ package hua.huase.shanhaicontinent.potion;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;

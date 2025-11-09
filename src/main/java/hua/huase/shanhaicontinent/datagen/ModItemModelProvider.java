@@ -1,7 +1,7 @@
 package hua.huase.shanhaicontinent.datagen;
 
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static hua.huase.shanhaicontinent.init.ItemInit.ARMORLIST;
+import static hua.huase.shanhaicontinent.item.ItemInit.ARMORLIST;
 
 public class ModItemModelProvider extends ItemModelProvider {
     private static LinkedHashMap<ResourceKey<TrimMaterial>, Float> trimMaterials = new LinkedHashMap<>();

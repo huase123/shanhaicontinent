@@ -3,7 +3,7 @@ package hua.huase.shanhaicontinent.potion;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -11,7 +11,6 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 

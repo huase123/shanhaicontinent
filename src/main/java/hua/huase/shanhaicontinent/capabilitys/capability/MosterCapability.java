@@ -3,7 +3,7 @@ package hua.huase.shanhaicontinent.capabilitys.capability;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;

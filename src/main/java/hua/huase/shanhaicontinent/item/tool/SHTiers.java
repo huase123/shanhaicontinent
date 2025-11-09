@@ -1,9 +1,7 @@
 package hua.huase.shanhaicontinent.item.tool;
 
-import hua.huase.shanhaicontinent.init.ItemInit;
-import net.minecraft.tags.ItemTags;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;

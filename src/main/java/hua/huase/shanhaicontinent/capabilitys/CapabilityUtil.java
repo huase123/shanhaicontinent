@@ -8,7 +8,7 @@ import hua.huase.shanhaicontinent.compat.sophisticatedbackpacks.Sophisticatedbac
 import hua.huase.shanhaicontinent.compat.twilightforest.TwilightforestAPI;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.item.Hunji;
 import hua.huase.shanhaicontinent.item.Wuhun;

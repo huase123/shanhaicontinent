@@ -5,7 +5,7 @@ import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapa
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
 import hua.huase.shanhaicontinent.init.AdvenceInit;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import hua.huase.shanhaicontinent.init.SHModMobEffectsinit;
 import hua.huase.shanhaicontinent.item.DanYaoItem;
 import hua.huase.shanhaicontinent.item.guoshi.WuhunGuoshiItem;

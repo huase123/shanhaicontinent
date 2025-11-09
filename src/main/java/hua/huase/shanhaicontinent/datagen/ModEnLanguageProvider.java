@@ -2,7 +2,7 @@ package hua.huase.shanhaicontinent.datagen;
 
 import hua.huase.shanhaicontinent.init.BlockInit;
 import hua.huase.shanhaicontinent.init.EntityInit;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import hua.huase.shanhaicontinent.init.SHModMobEffectsinit;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.LanguageProvider;

@@ -22,7 +22,7 @@ package hua.huase.shanhaicontinent.network.client;
 import hua.huase.shanhaicontinent.capability.monsterattribute.MonsterAttributeCapability;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.entity.jinengitem.JinengItemEntity;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import hua.huase.shanhaicontinent.item.jineng.Jineng;
 import hua.huase.shanhaicontinent.network.SynsAPI;
 import net.minecraft.network.FriendlyByteBuf;

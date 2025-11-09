@@ -11,9 +11,10 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
 
-import static hua.huase.shanhaicontinent.init.ItemInit.wuhunlist;
+import static hua.huase.shanhaicontinent.item.ItemInit.wuhunlist;
 
 /**
  * - @description:WuhunItem类
@@ -21,12 +22,30 @@ import static hua.huase.shanhaicontinent.init.ItemInit.wuhunlist;
  * - @date: 2025/10/12 9:02
  */
 public class WuhunItem extends Item implements Wuhun {
-    FunctionType functionType;
+    ArrayList<RegistryObject<FunctionType>> registryFunctionTypeList = new ArrayList<>();
+    ArrayList<RegistryObject<Item>> jinengList = new ArrayList<>();
 
-    public WuhunItem(RegistryObject<FunctionType> functionType) {
+    public WuhunItem() {
         super(new Item.Properties().stacksTo(1));
-//        this.functionType = functionType;
         wuhunlist.add(this);
+    }
+
+    public List<Item> getJinengList() {
+        return jinengList.stream().map(RegistryObject::get).toList();
+    }
+
+    public WuhunItem addJinengList(RegistryObject<Item> jinenng) {
+        this.jinengList.add(jinenng);
+        return this;
+    }
+
+    public List<FunctionType> getRegistryFunctionTypeList() {
+        return registryFunctionTypeList.stream().map(RegistryObject::get).toList();
+    }
+
+    public WuhunItem setRegistryFunctionTypeList(RegistryObject<FunctionType> registryFunctionTypeList) {
+        this.registryFunctionTypeList.add(registryFunctionTypeList);
+        return this;
     }
 
     public void appendHoverText(ItemStack itemStack, @Nullable Level level, List<Component> list, TooltipFlag tooltipFlag) {

@@ -1,24 +1,17 @@
 package hua.huase.shanhaicontinent.entity.jinengentity.jinggubang;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
-import hua.huase.shanhaicontinent.init.ItemInit;
-import hua.huase.shanhaicontinent.item.jineng.Jineng;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.ItemRenderer;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import org.joml.Matrix4f;
-
-import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
 public class JiNengFSHYRender extends EntityRenderer<JiNengFSHYEntity> {
 

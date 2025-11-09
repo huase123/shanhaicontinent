@@ -3,7 +3,7 @@ package hua.huase.shanhaicontinent.datagen;
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.datagen.util.SHFinishedRecipe;
 import hua.huase.shanhaicontinent.init.BlockInit;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.Item;

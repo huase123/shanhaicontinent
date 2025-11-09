@@ -13,9 +13,8 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
 
 import javax.annotation.Nullable;
+import java.util.ArrayList;
 import java.util.List;
-
-import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
 
 /**
  * - @description:HunHuanitem类
@@ -23,15 +22,20 @@ import static hua.huase.shanhaicontinent.init.ItemInit.hunjilist;
  * - @date: 2025/10/14 6:30
  */
 public class HunHuanitem  extends Item implements Hunhuan {
-    RegistryObject<FunctionType> functionType;
+    ArrayList<RegistryObject<FunctionType>> registryFunctionTypeList = new ArrayList<>();
 
-    public HunHuanitem(RegistryObject<FunctionType> functionType) {
+    public HunHuanitem() {
         super(new Item.Properties().stacksTo(1));
-        this.functionType = functionType;
-//        hunjilist.add(this);
     }
 
+    public List<FunctionType> getRegistryFunctionTypeList() {
+        return registryFunctionTypeList.stream().map(RegistryObject::get).toList();
+    }
 
+    public HunHuanitem setRegistryFunctionTypeList(RegistryObject<FunctionType> registryFunctionTypeList) {
+        this.registryFunctionTypeList.add(registryFunctionTypeList);
+        return this;
+    }
 
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);

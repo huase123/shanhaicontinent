@@ -7,19 +7,16 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.ZombieVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.registries.RegistryObject;
 
-import static hua.huase.shanhaicontinent.SHMainBus.random;
-import static hua.huase.shanhaicontinent.init.ItemInit.DANFANGLIST;
-import static hua.huase.shanhaicontinent.init.ItemInit.DANYAOLIST;
+import static hua.huase.shanhaicontinent.item.ItemInit.DANFANGLIST;
+import static hua.huase.shanhaicontinent.item.ItemInit.DANYAOLIST;
 
 public class HunminEntity extends ZombieVillager {
     public HunminEntity(EntityType<? extends ZombieVillager> p_34368_, Level p_34369_) {

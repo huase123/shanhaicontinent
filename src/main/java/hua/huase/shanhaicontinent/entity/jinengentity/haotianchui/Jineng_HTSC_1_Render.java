@@ -2,11 +2,8 @@ package hua.huase.shanhaicontinent.entity.jinengentity.haotianchui;
 
 import com.mojang.blaze3d.vertex.*;
 import com.mojang.math.Axis;
-import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.init.ItemInit;
-import hua.huase.shanhaicontinent.render.SHRenderApi;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
@@ -15,7 +12,6 @@ import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import org.joml.Matrix4f;
 import org.joml.Quaternionf;
 
 public class Jineng_HTSC_1_Render extends EntityRenderer<Jineng_HTSC_1_Entity> {

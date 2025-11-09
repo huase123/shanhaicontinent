@@ -1,6 +1,6 @@
 package hua.huase.shanhaicontinent.datagen.loot;
 
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import hua.huase.shanhaicontinent.world.lootables.SHLootTables;
 import net.minecraft.data.loot.packs.VanillaChestLoot;
 import net.minecraft.network.chat.Component;
@@ -8,7 +8,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.StructureTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.saveddata.maps.MapDecoration;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.EmptyLootItem;

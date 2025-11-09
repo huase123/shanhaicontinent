@@ -2,7 +2,7 @@ package hua.huase.shanhaicontinent.item.guoshi;
 
 import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
 import hua.huase.shanhaicontinent.capability.playerattribute.WuHunName;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

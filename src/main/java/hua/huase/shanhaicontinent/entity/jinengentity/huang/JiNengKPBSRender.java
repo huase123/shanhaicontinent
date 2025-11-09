@@ -1,7 +1,7 @@
 package hua.huase.shanhaicontinent.entity.jinengentity.huang;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import hua.huase.shanhaicontinent.init.ItemInit;
+import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;

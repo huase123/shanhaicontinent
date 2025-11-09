@@ -2,7 +2,6 @@ package hua.huase.shanhaicontinent.datagen.util;
 
 import com.google.gson.JsonObject;
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.init.ItemInit;
 import hua.huase.shanhaicontinent.init.ModRecipesInit;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -10,7 +9,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.ItemLike;
-import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.Nullable;
 
 public class SHFinishedRecipe implements FinishedRecipe {
