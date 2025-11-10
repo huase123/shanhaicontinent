@@ -13,9 +13,10 @@ import net.minecraftforge.registries.*;
  */
 public class FunctionTypeInit {
 
-    public static final IForgeRegistry<FunctionType> FUNCTION_TYPE_Registry = RegistryManager.ACTIVE.getRegistry(SHRegistries.FUNCTION_TYPE_Resourcekey);
-    public static final DeferredRegister<FunctionType> FUNCTION = DeferredRegister.create(FUNCTION_TYPE_Registry, SHMainBus.MOD_ID);
-/**
+//    public static final DeferredRegister<FunctionType> FUNCTION = DeferredRegister.create(FUNCTION_TYPE_Registry, SHMainBus.MOD_ID);
+    public static final DeferredRegister<FunctionType> FUNCTION = DeferredRegister.create(SHRegistries.FUNCTION_TYPE_Resourcekey, SHMainBus.MOD_ID);
+    public static  IForgeRegistry<FunctionType> FUNCTION_TYPE_Registry;
+    /**
  * TODO 功能描述：    兽魂，器魂，植物，控制，治疗，防御，强攻，寒冰，火焰，雷电，
  * @author :huase
  * @date 2025/10/12 6:25

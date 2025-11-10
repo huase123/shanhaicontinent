@@ -57,8 +57,11 @@ public class SHMainBus {
 //指令
         MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
 
-        SHRegistries.Init();
-        FunctionTypeInit.register(modEventBus);
+//        SHRegistries.Init();
+        modEventBus.addListener(SHRegistries::registerNewRegistry);
+
+//        FunctionTypeInit.register(modEventBus);
+        FunctionTypeInit.FUNCTION.register(modEventBus);
 
         BlockInit.register(modEventBus);
         ItemInit.register(modEventBus);

@@ -1,10 +1,12 @@
 package hua.huase.shanhaicontinent.mixin;
 
 import hua.huase.shanhaicontinent.entity.animations.ModAnimationDefinitions;
+import hua.huase.shanhaicontinent.event.api.HumanoidModelsteupAnimEvent;
 import hua.huase.shanhaicontinent.item.TextItem;
 import net.minecraft.client.animation.AnimationChannel;
 import net.minecraft.client.animation.AnimationDefinition;
 import net.minecraft.client.animation.Keyframe;
+import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
@@ -14,6 +16,7 @@ import org.joml.Vector3f;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -21,33 +24,31 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
 
-@Mixin(PlayerModel.class)
-public abstract class MixinPlayerModel {
-
-
-    @Shadow @Final private List<ModelPart> parts;
+@Mixin(HumanoidModel.class)
+public abstract class MixinHumanoidModel {
 
 
-    @Shadow protected abstract Iterable<ModelPart> bodyParts();
 
+
+    @Unique
     private  final Vector3f ANIMATION_VECTOR_CACHE = new Vector3f();
+    @Unique
     private   ModelPart pRoot;
 
-    @Inject(at = @At(value = "RETURN"), method = "<init>(Lnet/minecraft/client/model/geom/ModelPart;Z)V")
-    public void PlayerModel(ModelPart pRoot, boolean pSlim, CallbackInfo ci) {
+    @Inject(at = @At(value = "RETURN"), method = "Lnet/minecraft/client/model/HumanoidModel;<init>(Lnet/minecraft/client/model/geom/ModelPart;Ljava/util/function/Function;)V")
+    public void HumanoidModel(ModelPart pRoot, Function pRenderType, CallbackInfo ci) {
          this.pRoot = pRoot;
     }
     @Inject(method = "setupAnim",at = @At(
-            value ="INVOKE",
-            target = "Lnet/minecraft/client/model/HumanoidModel;setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V", shift = At.Shift.AFTER
+            value ="RETURN",
+            target = "Lnet/minecraft/client/model/HumanoidModel;setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V"
     ))
     public void setupAnim(LivingEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, CallbackInfo ci) {
-        Iterable<ModelPart> modelParts = this.bodyParts();
-        ModelPart head = ((PlayerModel<?>) ((Object) this)).head;
-        System.out.println(head.xRot);
+        new HumanoidModelsteupAnimEvent(((HumanoidModel<?>) ((Object) this)),pRoot,pEntity, pLimbSwing, pLimbSwingAmount, pAgeInTicks, pNetHeadYaw, pHeadPitch);
+
         float v = pAgeInTicks * 10.0f;
-//        animate(pRoot, ModAnimationDefinitions.playerfly, (long) v,1.0f,ANIMATION_VECTOR_CACHE);
         animate(pRoot, TextItem.attackAnimationState, ModAnimationDefinitions.playerfly, (long) v,1.0f,ANIMATION_VECTOR_CACHE);
     }
 
