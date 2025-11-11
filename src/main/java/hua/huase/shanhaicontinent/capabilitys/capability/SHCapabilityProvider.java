@@ -1,5 +1,6 @@
 package hua.huase.shanhaicontinent.capabilitys.capability;
 
+import hua.huase.shanhaicontinent.animation.AnimationControllerInstance;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -16,25 +17,26 @@ import org.jetbrains.annotations.Nullable;
  * - @author: huase。
  * - @date: 2025/10/15 9:09
  */
-public class SHCapabilityProvider implements ICapabilityProvider, INBTSerializable {
+public class SHCapabilityProvider<M extends INBTSerializable> implements ICapabilityProvider, INBTSerializable {
 
 
-    private AttributeBase attributeBase = null;
+    private M cap;
 
-    private final LazyOptional<AttributeBase> CapabilityLazyOptional;
+    private final LazyOptional<M> CapabilityLazyOptional;
 
-    public SHCapabilityProvider(AttributeBase attributeBase) {
-        this.attributeBase =attributeBase;
-        CapabilityLazyOptional = LazyOptional.of(() -> attributeBase);
+    public SHCapabilityProvider(M cap) {
+        this.cap = cap;
+        CapabilityLazyOptional = LazyOptional.of(() -> cap);
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if (cap == RegisterCapabilitys.HUNHUANCAPABILITY
-                || cap == RegisterCapabilitys.HUNJICAPABILITY
-                || cap == RegisterCapabilitys.WUHUNCAPABILITY
-                || cap == RegisterCapabilitys.MOSTERCAPABILITY
-                || cap == RegisterCapabilitys.PLAYERCAPABILITY
+        if ((cap == RegisterCapabilitys.HUNHUANCAPABILITY && this.cap instanceof HunhuanCapability)
+                || (cap == RegisterCapabilitys.HUNJICAPABILITY  && this.cap instanceof HunjiCapability)
+                || (cap == RegisterCapabilitys.WUHUNCAPABILITY  && this.cap instanceof WuhunCapability)
+                || (cap == RegisterCapabilitys.MOSTERCAPABILITY && this.cap instanceof MosterCapability)
+                || (cap == RegisterCapabilitys.PLAYERCAPABILITY && this.cap instanceof PlayerCapability)
+                || (cap == RegisterCapabilitys.ANIMATIONCONTROLLERINSTANCE  && this.cap instanceof AnimationControllerInstance)
         )
             return CapabilityLazyOptional.cast();
         return LazyOptional.empty();
@@ -42,11 +44,11 @@ public class SHCapabilityProvider implements ICapabilityProvider, INBTSerializab
 
     @Override
     public Tag serializeNBT() {
-        return attributeBase.serializeNBT();
+        return cap.serializeNBT();
     }
 
     @Override
     public void deserializeNBT(Tag nbt) {
-        attributeBase.deserializeNBT((CompoundTag) nbt);
+        cap.deserializeNBT((CompoundTag) nbt);
     }
 }

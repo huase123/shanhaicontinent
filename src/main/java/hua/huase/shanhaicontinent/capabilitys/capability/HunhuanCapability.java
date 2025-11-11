@@ -3,6 +3,7 @@ package hua.huase.shanhaicontinent.capabilitys.capability;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.functiontypes.functiontype.FunctionType;
+import hua.huase.shanhaicontinent.init.SHRegistries;
 import hua.huase.shanhaicontinent.item.ItemInit;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
@@ -56,8 +57,8 @@ public class HunhuanCapability extends AttributeBase{
 
         nbt.putInt("functionSize",functionTypelist.size());
         for (int i = 0; i < functionTypelist.size(); i++) {
-            ResourceLocation key = FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(functionTypelist.get(i));
-            nbt.putString("functiontype"+i,key == null ? FunctionTypeInit.FUNCTION_TYPE_Registry.getKey(FunctionTypeInit.empty.get()).toString() : key.toString());
+            ResourceLocation key = SHRegistries.FUNCTION_TYPE_IForgeRegistry.getKey(functionTypelist.get(i));
+            nbt.putString("functiontype"+i,key == null ? SHRegistries.FUNCTION_TYPE_IForgeRegistry.getKey(FunctionTypeInit.empty.get()).toString() : key.toString());
         }
         return nbt;
     }
@@ -73,7 +74,7 @@ public class HunhuanCapability extends AttributeBase{
         functionTypelist.clear();
         int functionSize = nbt.getInt("functionSize");
         for (int i = 0; i < functionSize; i++) {
-            functionTypelist.add(FunctionTypeInit.FUNCTION_TYPE_Registry.getValue(new ResourceLocation(nbt.getString("functiontype"+i))));
+            functionTypelist.add(SHRegistries.FUNCTION_TYPE_IForgeRegistry.getValue(new ResourceLocation(nbt.getString("functiontype"+i))));
 
         }
     }

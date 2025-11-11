@@ -13,9 +13,7 @@ import net.minecraftforge.registries.*;
  */
 public class FunctionTypeInit {
 
-//    public static final DeferredRegister<FunctionType> FUNCTION = DeferredRegister.create(FUNCTION_TYPE_Registry, SHMainBus.MOD_ID);
     public static final DeferredRegister<FunctionType> FUNCTION = DeferredRegister.create(SHRegistries.FUNCTION_TYPE_Resourcekey, SHMainBus.MOD_ID);
-    public static  IForgeRegistry<FunctionType> FUNCTION_TYPE_Registry;
     /**
  * TODO 功能描述：    兽魂，器魂，植物，控制，治疗，防御，强攻，寒冰，火焰，雷电，
  * @author :huase
@@ -33,12 +31,6 @@ public class FunctionTypeInit {
     public static final RegistryObject<FunctionType> hanbing = FUNCTION.register("hanbing", () -> new HanbingType());
     public static final RegistryObject<FunctionType> huoyan = FUNCTION.register("huoyan", () -> new HuoyanType());
     public static final RegistryObject<FunctionType> leidian = FUNCTION.register("leidian", () -> new LeidianType());
-
-
-
     public static final RegistryObject<FunctionType> defense = FUNCTION.register("defense", () -> new FunctionType());
-    public static void register(IEventBus eventBus) {
-        FUNCTION.register(eventBus);
-    }
 
 }

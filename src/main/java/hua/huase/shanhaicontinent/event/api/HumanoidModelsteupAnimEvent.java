@@ -3,6 +3,7 @@ package hua.huase.shanhaicontinent.event.api;
 import net.minecraft.client.model.HumanoidModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.eventbus.api.Event;
 
 /**
 *      - @description:HumanoidModelsteupAnimEvent类
@@ -10,7 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 *      - @date: 2025/11/10 3:57
 *      
 */
-public class HumanoidModelsteupAnimEvent {
+public class HumanoidModelsteupAnimEvent extends Event {
     public HumanoidModel<?> getHumanoidModel() {
         return humanoidModel;
     }

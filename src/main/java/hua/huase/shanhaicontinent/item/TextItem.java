@@ -1,5 +1,7 @@
 package hua.huase.shanhaicontinent.item;
 
+import hua.huase.shanhaicontinent.animation.AnimationControllerInit;
+import hua.huase.shanhaicontinent.animation.AnimationUtil;
 import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -21,12 +23,8 @@ public class TextItem extends Item {
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
 
+        AnimationUtil.play(livingEntity, AnimationControllerInit.empty.get());
         if (!level.isClientSide) {
-            if(attackAnimationState.isStarted()){
-                attackAnimationState.stop();
-            }else {
-                attackAnimationState.start(livingEntity.tickCount);
-            }
 //            attackAnimationState.stop();
         }
 //        int i;

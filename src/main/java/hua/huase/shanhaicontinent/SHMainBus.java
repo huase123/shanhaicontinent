@@ -1,5 +1,6 @@
 package hua.huase.shanhaicontinent;
 
+import hua.huase.shanhaicontinent.animation.AnimationControllerInit;
 import hua.huase.shanhaicontinent.command.SHCommand;
 import hua.huase.shanhaicontinent.config.Config;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
@@ -57,11 +58,10 @@ public class SHMainBus {
 //指令
         MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
 
-//        SHRegistries.Init();
         modEventBus.addListener(SHRegistries::registerNewRegistry);
 
-//        FunctionTypeInit.register(modEventBus);
         FunctionTypeInit.FUNCTION.register(modEventBus);
+        AnimationControllerInit.AnimationController.register(modEventBus);
 
         BlockInit.register(modEventBus);
         ItemInit.register(modEventBus);

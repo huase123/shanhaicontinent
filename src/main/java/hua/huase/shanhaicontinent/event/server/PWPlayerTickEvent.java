@@ -1,9 +1,9 @@
 package hua.huase.shanhaicontinent.event.server;
 
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.capability.AttrubuteAPI;
+import hua.huase.shanhaicontinent.animation.AnimationControllerInstance;
+import hua.huase.shanhaicontinent.animation.AnimationUtil;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapability;
-import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttributeCapabilityProvider;
 import hua.huase.shanhaicontinent.capability.playerattribute.PlayerAttrubuteAPI;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.network.SynsAPI;
@@ -11,45 +11,60 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
 @Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PWPlayerTickEvent {
 
-//    @SubscribeEvent
+    @SubscribeEvent
     public static void onStartTracking(TickEvent.PlayerTickEvent event) {
+
         Player player = event.player;
-        if(event.phase == TickEvent.Phase.END){
-
-
-            if(!player.level().isClientSide){
-                if(player.level().getGameTime()%100==0){
-                    SynsAPI.synsPlayerAttribute(player);
-                }
-                float maxshengming = AttrubuteAPI.getMaxshengming(player);
-                if(maxshengming != player.getMaxHealth()){
-                    player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxshengming);
-                }
-
-
-                player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                    playerUpdateServere(player,capability);
-                });
-
-            }
-
-
-            player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
-                updatePlayerFly(player,capability);
-            });
-
-
+        if(event.phase == TickEvent.Phase.END ) {
+            updateAnimation(player);
         }
     }
+
+    private static void updateAnimation(Player player) {
+        AnimationControllerInstance animationControllerInstance =  AnimationUtil.getAnimationControllerInstance(player);
+        if(animationControllerInstance != null && !animationControllerInstance.isover(player)){
+            animationControllerInstance.tick(player);
+        }
+    }
+//    @SubscribeEvent
+//    public static void onStartTracking(TickEvent.PlayerTickEvent event) {
+//        Player player = event.player;
+//        if(event.phase == TickEvent.Phase.END){
+//
+//
+//            if(!player.level().isClientSide){
+//                if(player.level().getGameTime()%100==0){
+//                    SynsAPI.synsPlayerAttribute(player);
+//                }
+//                float maxshengming = AttrubuteAPI.getMaxshengming(player);
+//                if(maxshengming != player.getMaxHealth()){
+//                    player.getAttribute(Attributes.MAX_HEALTH).setBaseValue(maxshengming);
+//                }
+//
+//
+//                player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+//                    playerUpdateServere(player,capability);
+//                });
+//
+//            }
+//
+//
+//            player.getCapability(PlayerAttributeCapabilityProvider.CAPABILITY).ifPresent(capability -> {
+//                updatePlayerFly(player,capability);
+//            });
+//
+//
+//        }
+//    }
 
     private static void updatePlayerFly(Player player, @NotNull PlayerAttributeCapability capability) {
 

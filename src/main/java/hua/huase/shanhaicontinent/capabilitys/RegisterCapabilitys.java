@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.capabilitys;
 
 import hua.huase.shanhaicontinent.SHMainBus;
+import hua.huase.shanhaicontinent.animation.AnimationControllerInstance;
 import hua.huase.shanhaicontinent.capabilitys.capability.*;
 import hua.huase.shanhaicontinent.entity.hunhuan.HunhuanEntityEntity;
 import hua.huase.shanhaicontinent.item.Hunhuan;
@@ -35,6 +36,7 @@ public class RegisterCapabilitys {
     public static Capability<MosterCapability> MOSTERCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     public static Capability<WuhunCapability> WUHUNCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
     public static Capability<PlayerCapability> PLAYERCAPABILITY = CapabilityManager.get(new CapabilityToken<>() {});
+    public static Capability<AnimationControllerInstance> ANIMATIONCONTROLLERINSTANCE = CapabilityManager.get(new CapabilityToken<>() {});
     @SubscribeEvent
     public static void registerCaps(RegisterCapabilitiesEvent event) {
         event.register(HunhuanCapability.class);
@@ -42,6 +44,7 @@ public class RegisterCapabilitys {
         event.register(MosterCapability.class);
         event.register(WuhunCapability.class);
         event.register(PlayerCapability.class);
+        event.register(AnimationControllerInstance.class);
     }
 
     //    实体增加Capabilities事件
@@ -51,6 +54,9 @@ public class RegisterCapabilitys {
         if (event.getObject() instanceof Player player) {
             event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "playercapability"),
                     new SHCapabilityProvider(new PlayerCapability(player))
+            );
+            event.addCapability(new ResourceLocation(SHMainBus.MOD_ID, "animationcontrollerinstance"),
+                    new SHCapabilityProvider(new AnimationControllerInstance(player))
             );
         }
         if (event.getObject() instanceof Mob || event.getObject() instanceof HunhuanEntityEntity) {
