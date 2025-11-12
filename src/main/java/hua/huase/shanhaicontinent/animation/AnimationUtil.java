@@ -20,11 +20,9 @@ public class AnimationUtil {
 
     public static void play(LivingEntity livingEntity, @NotNull SHAnimationController empty) {
         AnimationControllerInstance animationControllerInstance = getAnimationControllerInstance(livingEntity);
+        animationControllerInstance.play(empty,livingEntity);
         if(!livingEntity.level().isClientSide){
             NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> livingEntity), new SPacketAnimationData(livingEntity.getId(),animationControllerInstance.serializeNBT()));
         }
-        animationControllerInstance.play(empty,livingEntity);
-
-
     }
 }

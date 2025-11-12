@@ -3,7 +3,10 @@ package hua.huase.shanhaicontinent.animation.animationcontrollers;
 import hua.huase.shanhaicontinent.animation.SHAnimationController;
 import hua.huase.shanhaicontinent.entity.animations.ModAnimationDefinitions;
 import net.minecraft.client.animation.AnimationDefinition;
+import net.minecraft.client.model.HumanoidModel;
+import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 
 /**
  * - @description:AnimationControllerDemo类
@@ -19,5 +22,15 @@ public class AnimationControllerDemo implements SHAnimationController {
     @Override
     public AnimationDefinition getAnimationDefinition(LivingEntity livingEntity) {
         return ModAnimationDefinitions.playerfly;
+    }
+
+    @Override
+    public void steupAnimtick(LivingEntity livingEntity, HumanoidModel<?> humanoidModel, ModelPart modelPart, float nowtime) {
+
+    }
+
+    @Override
+    public void tick(Player player) {
+
     }
 }

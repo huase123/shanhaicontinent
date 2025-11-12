@@ -50,11 +50,11 @@ public class AnimationControllerInstance implements INBTSerializable<CompoundTag
     }
 
     public void steupAnimtick(LivingEntity livingEntity, HumanoidModel<?> humanoidModel, ModelPart modelPart, float nowtime) {
-
+        animationcontroller.steupAnimtick(livingEntity,humanoidModel,modelPart,nowtime);
     }
 
     public void tick(Player player) {
-
+        animationcontroller.tick(player);
     }
 
     @Override
