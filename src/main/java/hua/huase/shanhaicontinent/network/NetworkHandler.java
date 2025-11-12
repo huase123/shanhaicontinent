@@ -58,6 +58,7 @@ public class NetworkHandler {
     register(SPacketCapability.class, SPacketCapability::encode, SPacketCapability::decode, SPacketCapability::handle);
     register(SPacketEntityAttribute.class, SPacketEntityAttribute::encode, SPacketEntityAttribute::decode, SPacketEntityAttribute::handle);
     register(AreaProtectionPacket.class, AreaProtectionPacket::encode, AreaProtectionPacket::new, AreaProtectionPacket.Handler::onMessage);
+    register(SPacketAnimationData.class, SPacketAnimationData::encode, SPacketAnimationData::decode, SPacketAnimationData::handle);
 
   }
 

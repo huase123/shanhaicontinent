@@ -23,8 +23,8 @@ public class TextItem extends Item {
 
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
 
-        AnimationUtil.play(livingEntity, AnimationControllerInit.empty.get());
         if (!level.isClientSide) {
+            AnimationUtil.play(livingEntity, AnimationControllerInit.empty.get());
 //            attackAnimationState.stop();
         }
 //        int i;

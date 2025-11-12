@@ -1,7 +1,11 @@
 package hua.huase.shanhaicontinent.animation;
 
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
+import hua.huase.shanhaicontinent.network.NetworkHandler;
+import hua.huase.shanhaicontinent.network.server.SPacketAnimationData;
+import hua.huase.shanhaicontinent.network.server.SPacketCapability;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -15,6 +19,12 @@ public class AnimationUtil {
     }
 
     public static void play(LivingEntity livingEntity, @NotNull SHAnimationController empty) {
-        getAnimationControllerInstance(livingEntity).play(empty,livingEntity);
+        AnimationControllerInstance animationControllerInstance = getAnimationControllerInstance(livingEntity);
+        if(!livingEntity.level().isClientSide){
+            NetworkHandler.INSTANCE.send(PacketDistributor.TRACKING_ENTITY_AND_SELF.with(() -> livingEntity), new SPacketAnimationData(livingEntity.getId(),animationControllerInstance.serializeNBT()));
+        }
+        animationControllerInstance.play(empty,livingEntity);
+
+
     }
 }
