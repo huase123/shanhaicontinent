@@ -40,21 +40,21 @@ public class Jineng_jgb_6 extends SHBaseMobEffect implements PotionAnimation {
 	@Override
 	public void renderPlayer(LeveRenderLivingEntityPostEvent event) {
 
-		LivingEntity entity = event.getEntity();
-		PoseStack poseStack = event.getPoseStack();
-//		if(itemStack)
-		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-		if(itemStack == null){
-			itemStack = new ItemStack(ItemInit.jineng_jgb_0.get());
-		}
-
-		poseStack.pushPose();
-		poseStack.last().pose().rotate((float)Math.PI*0.225f, 0.0F, 0.0F, 1.0F);
-		poseStack.translate(-1.0f, 1.0f, -1.0f);
-		poseStack.scale(5f, 5f, 5f);
-//		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.02F);
-		itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, 15728880,
-				OverlayTexture.NO_OVERLAY, poseStack, event.getMultiBufferSource(), entity.level(), 1);
-		poseStack.popPose();
+//		LivingEntity entity = event.getEntity();
+//		PoseStack poseStack = event.getPoseStack();
+////		if(itemStack)
+//		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+//		if(itemStack == null){
+//			itemStack = new ItemStack(ItemInit.jineng_jgb_0.get());
+//		}
+//
+//		poseStack.pushPose();
+//		poseStack.last().pose().rotate((float)Math.PI*0.225f, 0.0F, 0.0F, 1.0F);
+//		poseStack.translate(-1.0f, 1.0f, -1.0f);
+//		poseStack.scale(5f, 5f, 5f);
+////		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.02F);
+//		itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, 15728880,
+//				OverlayTexture.NO_OVERLAY, poseStack, event.getMultiBufferSource(), entity.level(), 1);
+//		poseStack.popPose();
 	}
 }

@@ -2,6 +2,9 @@ package hua.huase.shanhaicontinent.event.client;
 
 import com.mojang.blaze3d.vertex.*;
 import hua.huase.shanhaicontinent.SHMainBus;
+import hua.huase.shanhaicontinent.animation.AnimationControllerInstance;
+import hua.huase.shanhaicontinent.animation.AnimationUtil;
+import hua.huase.shanhaicontinent.animation.IClientMobAnimationExtensions;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
 import hua.huase.shanhaicontinent.entity.animations.ModAnimationDefinitions;
@@ -48,6 +51,11 @@ public class PWRenderPlayerEvent {
         float partialTick = event.getPartialTick();
         if(livingEntity instanceof Player player){
             renderPlayerHunhuan(player, poseStack,multiBufferSource,camera,partialTick);
+            AnimationControllerInstance animationControllerInstance =  AnimationUtil.getAnimationControllerInstance(livingEntity);
+            if(animationControllerInstance != null && !animationControllerInstance.isover(livingEntity)){
+                IClientMobAnimationExtensions.of(animationControllerInstance).render(animationControllerInstance,livingEntity, poseStack,multiBufferSource,camera,partialTick);
+            }
+
         }else {
             renderLivingEntityHunhuan(livingEntity, poseStack,multiBufferSource,camera,partialTick);
         }

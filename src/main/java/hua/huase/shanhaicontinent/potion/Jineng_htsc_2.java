@@ -14,6 +14,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Map;
 
@@ -39,6 +41,7 @@ public class Jineng_htsc_2 extends SHBaseMobEffect  implements PotionAnimation{
 
 	private static ItemStack itemStack;
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public void renderPlayer(LeveRenderLivingEntityPostEvent event) {
 
 		if(itemStack == null){

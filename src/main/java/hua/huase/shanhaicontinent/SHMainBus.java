@@ -61,7 +61,7 @@ public class SHMainBus {
         modEventBus.addListener(SHRegistries::registerNewRegistry);
 
         FunctionTypeInit.FUNCTION.register(modEventBus);
-        AnimationControllerInit.AnimationController.register(modEventBus);
+        AnimationControllerInit.ANIMATIONCONTROLLER.register(modEventBus);
 
         BlockInit.register(modEventBus);
         ItemInit.register(modEventBus);
@@ -70,6 +70,7 @@ public class SHMainBus {
         ModMenuTypes.register(modEventBus);
         ModRecipesInit.register(modEventBus);
         CreativeModTabsInit.register(modEventBus);
+
         SHModMobEffectsinit.register(modEventBus);
 
 //        world

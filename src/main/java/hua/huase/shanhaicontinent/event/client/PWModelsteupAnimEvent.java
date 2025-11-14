@@ -3,6 +3,7 @@ package hua.huase.shanhaicontinent.event.client;
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.animation.AnimationControllerInstance;
 import hua.huase.shanhaicontinent.animation.AnimationUtil;
+import hua.huase.shanhaicontinent.animation.IClientMobAnimationExtensions;
 import hua.huase.shanhaicontinent.event.api.HumanoidModelsteupAnimEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.animation.AnimationChannel;
@@ -34,7 +35,7 @@ public class PWModelsteupAnimEvent {
         AnimationControllerInstance animationControllerInstance =  AnimationUtil.getAnimationControllerInstance(livingEntity);
         if(animationControllerInstance != null && !animationControllerInstance.isover(livingEntity)){
             animate(event.getpRoot(),animationControllerInstance.getAnimationDefinition(livingEntity),animationControllerInstance.getCumulativeTime(livingEntity)*50, 1.0f,ANIMATION_VECTOR_CACHE);
-            animationControllerInstance.steupAnimtick(event.getpEntity(),event.getHumanoidModel(),event.getpRoot(),event.getpAgeInTicks());
+            IClientMobAnimationExtensions.of(animationControllerInstance).steupAnimtick(event.getpEntity(),event.getHumanoidModel(),event.getpRoot(),event.getpAgeInTicks());
         }
     }
 

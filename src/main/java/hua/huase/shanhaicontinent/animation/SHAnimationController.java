@@ -1,10 +1,9 @@
 package hua.huase.shanhaicontinent.animation;
 
 import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 /**
  * - @description:AnimationController接口
@@ -13,11 +12,13 @@ import net.minecraft.world.entity.player.Player;
  */
 public interface SHAnimationController {
     //动画播放的时间
-    long getDuration(LivingEntity livingEntity);
+    long getDuration(Entity livingEntity);
     //播放的动画
-    AnimationDefinition getAnimationDefinition(LivingEntity livingEntity);
+    @OnlyIn(Dist.CLIENT)
+    AnimationDefinition getAnimationDefinition(Entity livingEntity);
 
-    void steupAnimtick(LivingEntity livingEntity, HumanoidModel<?> humanoidModel, ModelPart modelPart, float nowtime);
+    //服务端与客户端实体tick
+    void tick(Entity entity);
+    Object getEffectRendererInternal();
 
-    void tick(Player player);
 }

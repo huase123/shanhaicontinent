@@ -12,10 +12,13 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.joml.Matrix4f;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
+@OnlyIn(Dist.CLIENT)
 public interface SHRenderApi {
 
 

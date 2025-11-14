@@ -6,6 +6,8 @@ import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
@@ -16,6 +18,7 @@ import net.minecraftforge.eventbus.api.Event;
  * 创建方式请查看
  * @see hua.huase.shanhaicontinent.event.client.PWRenderPlayerEvent
  */
+@OnlyIn(Dist.CLIENT)
 public class LeveRenderLivingEntityPostEvent extends Event {
 
     public LivingEntity getEntity() {

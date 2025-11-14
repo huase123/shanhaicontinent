@@ -1,12 +1,10 @@
 package hua.huase.shanhaicontinent.animation;
 
-import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.init.SHRegistries;
 import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -29,7 +27,7 @@ public class AnimationControllerInstance implements INBTSerializable<CompoundTag
     }
 
     //动画是否结束
-    public boolean isover(LivingEntity livingEntity) {
+    public boolean isover(Entity livingEntity) {
         if(animationcontroller == null ||(
                 startime+ animationcontroller.getDuration(livingEntity)<livingEntity.level().getGameTime())
         ){
@@ -39,18 +37,18 @@ public class AnimationControllerInstance implements INBTSerializable<CompoundTag
     }
 
     //返回动画播放时间
-    public long getCumulativeTime(LivingEntity livingEntity) {
+    public long getCumulativeTime(Entity livingEntity) {
         if(isover(livingEntity))return 0;
         return livingEntity.level().getGameTime()-startime;
     }
 
     //获取播放的动画
-    public AnimationDefinition getAnimationDefinition(LivingEntity livingEntity) {
+    public AnimationDefinition getAnimationDefinition(Entity livingEntity) {
         return animationcontroller.getAnimationDefinition(livingEntity);
     }
 
-    public void steupAnimtick(LivingEntity livingEntity, HumanoidModel<?> humanoidModel, ModelPart modelPart, float nowtime) {
-        animationcontroller.steupAnimtick(livingEntity,humanoidModel,modelPart,nowtime);
+    public SHAnimationController getAnimationcontroller() {
+        return animationcontroller;
     }
 
     public void tick(Player player) {
@@ -75,5 +73,9 @@ public class AnimationControllerInstance implements INBTSerializable<CompoundTag
     public void deserializeNBT(CompoundTag compoundTag) {
         this.animationcontroller = SHRegistries.shAnimationControllers__IForgeRegistry.getValue(new ResourceLocation(compoundTag.getString("animationcontroller")));
         this.startime = compoundTag.getLong("startime");
+    }
+
+    public float getDuration(Entity entity) {
+        return animationcontroller.getDuration(entity);
     }
 }

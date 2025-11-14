@@ -4,7 +4,6 @@
  */
 package hua.huase.shanhaicontinent.init;
 
-import ca.weblite.objc.Proxy;
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.potion.*;
 import net.minecraftforge.eventbus.api.IEventBus;

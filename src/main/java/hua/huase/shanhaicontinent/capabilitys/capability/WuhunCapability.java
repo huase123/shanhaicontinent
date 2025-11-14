@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class WuhunCapability extends AttributeBase{
     List<FunctionType> functionTypelist = new ArrayList();
-//    魂技
+//    魂环
     ItemStackHandler hunhuanlist = new ItemStackHandler();
 
     public List<FunctionType> getFunctionTypelist() {

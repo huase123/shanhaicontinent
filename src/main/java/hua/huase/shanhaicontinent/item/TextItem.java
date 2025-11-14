@@ -2,18 +2,10 @@ package hua.huase.shanhaicontinent.item;
 
 import hua.huase.shanhaicontinent.animation.AnimationControllerInit;
 import hua.huase.shanhaicontinent.animation.AnimationUtil;
-import hua.huase.shanhaicontinent.capabilitys.PlayerHunHuanAPI;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 
 public class TextItem extends Item {
@@ -24,7 +16,7 @@ public class TextItem extends Item {
     public ItemStack finishUsingItem(ItemStack itemStack, Level level, LivingEntity livingEntity) {
 
         if (!level.isClientSide) {
-            AnimationUtil.play(livingEntity, AnimationControllerInit.empty.get());
+            AnimationUtil.play(livingEntity, AnimationControllerInit.demo.get());
 //            attackAnimationState.stop();
         }
 //        int i;
