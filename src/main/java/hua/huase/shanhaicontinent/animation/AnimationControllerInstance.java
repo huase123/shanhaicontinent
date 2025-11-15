@@ -10,16 +10,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.util.INBTSerializable;
 
 /**
- * - @description:AnimationControllerInstance类
+ * - @description:AnimationControllerInstance类动画控制实列
  * - @author: huase。
  * - @date: 2025/11/11 1:13
  */
 public class AnimationControllerInstance implements INBTSerializable<CompoundTag> {
+    private final Entity entity;
     SHAnimationController animationcontroller;
     long startime;
 
-    public AnimationControllerInstance(Player player) {
-
+    public AnimationControllerInstance(Entity entity) {
+        this.entity = entity;
     }
     public void play(SHAnimationController shAnimationController,LivingEntity livingEntity){
         this.animationcontroller = shAnimationController;
@@ -27,9 +28,9 @@ public class AnimationControllerInstance implements INBTSerializable<CompoundTag
     }
 
     //动画是否结束
-    public boolean isover(Entity livingEntity) {
+    public boolean isover() {
         if(animationcontroller == null ||(
-                startime+ animationcontroller.getDuration(livingEntity)<livingEntity.level().getGameTime())
+                startime+ animationcontroller.getDuration(entity)<entity.level().getGameTime())
         ){
             return true;
         }
@@ -37,22 +38,21 @@ public class AnimationControllerInstance implements INBTSerializable<CompoundTag
     }
 
     //返回动画播放时间
-    public long getCumulativeTime(Entity livingEntity) {
-        if(isover(livingEntity))return 0;
-        return livingEntity.level().getGameTime()-startime;
-    }
-
-    //获取播放的动画
-    public AnimationDefinition getAnimationDefinition(Entity livingEntity) {
-        return animationcontroller.getAnimationDefinition(livingEntity);
+    public long getCumulativeTime() {
+        if(isover())return 0;
+        return entity.level().getGameTime()-startime;
     }
 
     public SHAnimationController getAnimationcontroller() {
         return animationcontroller;
     }
 
-    public void tick(Player player) {
-        animationcontroller.tick(player);
+    public Entity getEntity() {
+        return entity;
+    }
+
+    public void tick() {
+        animationcontroller.tick(entity);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class AnimationControllerInstance implements INBTSerializable<CompoundTag
         this.startime = compoundTag.getLong("startime");
     }
 
-    public float getDuration(Entity entity) {
+    public float getDuration() {
         return animationcontroller.getDuration(entity);
     }
 }

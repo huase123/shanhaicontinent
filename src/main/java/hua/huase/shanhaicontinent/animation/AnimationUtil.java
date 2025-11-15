@@ -14,10 +14,11 @@ import org.jetbrains.annotations.NotNull;
  * - @date: 2025/11/11 0:25
  */
 public class AnimationUtil {
+//    获取动画控制器
     public static AnimationControllerInstance getAnimationControllerInstance(LivingEntity livingEntity) {
         return livingEntity.getCapability(RegisterCapabilitys.ANIMATIONCONTROLLERINSTANCE).orElse(null);
     }
-
+//播放动画
     public static void play(LivingEntity livingEntity, @NotNull SHAnimationController empty) {
         AnimationControllerInstance animationControllerInstance = getAnimationControllerInstance(livingEntity);
         animationControllerInstance.play(empty,livingEntity);

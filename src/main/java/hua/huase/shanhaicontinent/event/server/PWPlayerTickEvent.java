@@ -31,8 +31,8 @@ public class PWPlayerTickEvent {
 
     private static void updateAnimation(Player player) {
         AnimationControllerInstance animationControllerInstance =  AnimationUtil.getAnimationControllerInstance(player);
-        if(animationControllerInstance != null && !animationControllerInstance.isover(player)){
-            animationControllerInstance.tick(player);
+        if(animationControllerInstance != null && !animationControllerInstance.isover()){
+            animationControllerInstance.tick();
         }
     }
 //    @SubscribeEvent

@@ -3,7 +3,7 @@ package hua.huase.shanhaicontinent.event.client;
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.animation.AnimationControllerInstance;
 import hua.huase.shanhaicontinent.animation.AnimationUtil;
-import hua.huase.shanhaicontinent.animation.IClientMobAnimationExtensions;
+import hua.huase.shanhaicontinent.animation.client.IClientMobAnimationExtensions;
 import hua.huase.shanhaicontinent.event.api.HumanoidModelsteupAnimEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.animation.AnimationChannel;
@@ -33,9 +33,8 @@ public class PWModelsteupAnimEvent {
     public static void onModelsteupAnimEvent(HumanoidModelsteupAnimEvent event){
         LivingEntity livingEntity = event.getpEntity();
         AnimationControllerInstance animationControllerInstance =  AnimationUtil.getAnimationControllerInstance(livingEntity);
-        if(animationControllerInstance != null && !animationControllerInstance.isover(livingEntity)){
-            animate(event.getpRoot(),animationControllerInstance.getAnimationDefinition(livingEntity),animationControllerInstance.getCumulativeTime(livingEntity)*50, 1.0f,ANIMATION_VECTOR_CACHE);
-            IClientMobAnimationExtensions.of(animationControllerInstance).steupAnimtick(event.getpEntity(),event.getHumanoidModel(),event.getpRoot(),event.getpAgeInTicks());
+        if(animationControllerInstance != null && !animationControllerInstance.isover()){
+            IClientMobAnimationExtensions.of(animationControllerInstance).steupAnimtick(animationControllerInstance,event.getpEntity(),event.getHumanoidModel(),event.getpRoot(),event.getpAgeInTicks());
         }
     }
 
@@ -57,9 +56,9 @@ public class PWModelsteupAnimEvent {
 //            Optional<ModelPart> optional = pModel.getAnyDescendantWithName(entry.getKey());
             Optional<ModelPart> optional = getAnyDescendantWithName(pModel,entry.getKey());
             List<AnimationChannel> list = entry.getValue();
-            optional.ifPresent((p_232330_) -> {
+            optional.ifPresent((modelPart) -> {
 
-                p_232330_.resetPose();
+                modelPart.resetPose();
 
                 list.forEach((p_288241_) -> {
                     Keyframe[] akeyframe = p_288241_.keyframes();
@@ -78,7 +77,7 @@ public class PWModelsteupAnimEvent {
                     }
 
                     keyframe1.interpolation().apply(pAnimationVecCache, f2, akeyframe, i, j, pScale);
-                    p_288241_.target().apply(p_232330_, pAnimationVecCache);
+                    p_288241_.target().apply(modelPart, pAnimationVecCache);
                 });
             });
         }

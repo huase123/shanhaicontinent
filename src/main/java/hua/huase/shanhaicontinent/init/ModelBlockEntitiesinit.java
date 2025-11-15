@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent.init;
 
 import hua.huase.shanhaicontinent.SHMainBus;
+import hua.huase.shanhaicontinent.animation.client.AnimationRenderers;
 import hua.huase.shanhaicontinent.block.entityblock.pot.PotBlockEntity;
 import hua.huase.shanhaicontinent.block.entityblock.pot.PotBlockEntityRenderer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -35,6 +36,7 @@ public class ModelBlockEntitiesinit {
         public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModelBlockEntitiesinit.Pot_ENTITY.get(), PotBlockEntityRenderer::new);
 
+//            AnimationRenderers.init();
 //            event.registerBlockEntityRenderer(ModBlockEntities.MOD_SIGN.get(), SignRenderer::new);
 //            event.registerBlockEntityRenderer(ModBlockEntities.MOD_HANGING_SIGN.get(), HangingSignRenderer::new);
         }

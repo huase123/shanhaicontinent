@@ -4,39 +4,27 @@ import com.mojang.blaze3d.vertex.*;
 import hua.huase.shanhaicontinent.SHMainBus;
 import hua.huase.shanhaicontinent.animation.AnimationControllerInstance;
 import hua.huase.shanhaicontinent.animation.AnimationUtil;
-import hua.huase.shanhaicontinent.animation.IClientMobAnimationExtensions;
+import hua.huase.shanhaicontinent.animation.client.IClientMobAnimationExtensions;
 import hua.huase.shanhaicontinent.capabilitys.RegisterCapabilitys;
 import hua.huase.shanhaicontinent.capabilitys.capability.HunhuanCapability;
-import hua.huase.shanhaicontinent.entity.animations.ModAnimationDefinitions;
 import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
 import hua.huase.shanhaicontinent.item.Hunhuan;
 import hua.huase.shanhaicontinent.potion.PotionAnimation;
 import hua.huase.shanhaicontinent.render.SHRenderApi;
 import hua.huase.shanhaicontinent.render.SHRenderType;
 import net.minecraft.client.Camera;
-import net.minecraft.client.animation.AnimationChannel;
-import net.minecraft.client.animation.AnimationDefinition;
-import net.minecraft.client.animation.Keyframe;
-import net.minecraft.client.model.HumanoidModel;
-import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.*;
-import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.items.ItemStackHandler;
 import org.joml.Vector3f;
-
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 import static hua.huase.shanhaicontinent.SHMainBus.HUNHUAN;
 
@@ -52,8 +40,9 @@ public class PWRenderPlayerEvent {
         if(livingEntity instanceof Player player){
             renderPlayerHunhuan(player, poseStack,multiBufferSource,camera,partialTick);
             AnimationControllerInstance animationControllerInstance =  AnimationUtil.getAnimationControllerInstance(livingEntity);
-            if(animationControllerInstance != null && !animationControllerInstance.isover(livingEntity)){
-                IClientMobAnimationExtensions.of(animationControllerInstance).render(animationControllerInstance,livingEntity, poseStack,multiBufferSource,camera,partialTick);
+            if(animationControllerInstance != null && !animationControllerInstance.isover()){
+                IClientMobAnimationExtensions of = IClientMobAnimationExtensions.of(animationControllerInstance);
+                of.render(animationControllerInstance,livingEntity, poseStack,multiBufferSource,camera,partialTick);
             }
 
         }else {

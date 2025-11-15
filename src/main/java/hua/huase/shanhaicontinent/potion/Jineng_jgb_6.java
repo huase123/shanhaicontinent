@@ -13,6 +13,8 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.Map;
 
@@ -23,38 +25,45 @@ public class Jineng_jgb_6 extends SHBaseMobEffect implements PotionAnimation {
 	}
 
 	@Override
-	public float getWugong(LivingEntity livingEntity, Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry, float value) {
-		return 3000;
+	public void applyEffectTick(LivingEntity entity, int amplifier) {
+
 	}
+
 	@Override
-	public float getBaojishanghai(LivingEntity livingEntity, Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry, float value) {
-		return 50;
+	public float getWufang(LivingEntity livingEntity, Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry, float value) {
+		return 20000;
 	}
+
 	@Override
-	public float getBaojilv(LivingEntity livingEntity, Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry, float value) {
+	public float getShanbi(LivingEntity livingEntity, Map.Entry<MobEffect, MobEffectInstance> mobEffectMobEffectInstanceEntry, float value) {
 		return 20;
 	}
-
+	@Override
+	public boolean isDurationEffectTick(int duration, int amplifier) {
+		return true;
+	}
 
 	private static ItemStack itemStack;
+
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public void renderPlayer(LeveRenderLivingEntityPostEvent event) {
 
-//		LivingEntity entity = event.getEntity();
-//		PoseStack poseStack = event.getPoseStack();
-////		if(itemStack)
-//		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
-//		if(itemStack == null){
-//			itemStack = new ItemStack(ItemInit.jineng_jgb_0.get());
-//		}
-//
-//		poseStack.pushPose();
-//		poseStack.last().pose().rotate((float)Math.PI*0.225f, 0.0F, 0.0F, 1.0F);
-//		poseStack.translate(-1.0f, 1.0f, -1.0f);
-//		poseStack.scale(5f, 5f, 5f);
-////		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.02F);
-//		itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, 15728880,
-//				OverlayTexture.NO_OVERLAY, poseStack, event.getMultiBufferSource(), entity.level(), 1);
-//		poseStack.popPose();
+		LivingEntity entity = event.getEntity();
+		PoseStack poseStack = event.getPoseStack();
+//		if(itemStack)
+		ItemRenderer itemRenderer = Minecraft.getInstance().getItemRenderer();
+		if(itemStack == null){
+			itemStack = new ItemStack(ItemInit.jineng_jgb_0.get());
+		}
+
+		poseStack.pushPose();
+		poseStack.last().pose().rotate((float)Math.PI*0.225f, 0.0F, 0.0F, 1.0F);
+		poseStack.translate(-1.0f, 1.0f, -1.0f);
+		poseStack.scale(5f, 5f, 5f);
+//		RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.02F);
+		itemRenderer.renderStatic(itemStack, ItemDisplayContext.FIXED, 15728880,
+				OverlayTexture.NO_OVERLAY, poseStack, event.getMultiBufferSource(), entity.level(), 1);
+		poseStack.popPose();
 	}
 }

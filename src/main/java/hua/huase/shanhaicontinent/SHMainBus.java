@@ -1,6 +1,7 @@
 package hua.huase.shanhaicontinent;
 
 import hua.huase.shanhaicontinent.animation.AnimationControllerInit;
+import hua.huase.shanhaicontinent.animation.client.AnimationRenderers;
 import hua.huase.shanhaicontinent.command.SHCommand;
 import hua.huase.shanhaicontinent.config.Config;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
@@ -62,7 +63,6 @@ public class SHMainBus {
 
         FunctionTypeInit.FUNCTION.register(modEventBus);
         AnimationControllerInit.ANIMATIONCONTROLLER.register(modEventBus);
-
         BlockInit.register(modEventBus);
         ItemInit.register(modEventBus);
         EntityInit.register(modEventBus);
