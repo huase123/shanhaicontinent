@@ -21,6 +21,7 @@ import org.joml.Vector3f;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 
 /**
@@ -65,28 +66,51 @@ public class AnimationRender implements IClientMobAnimationExtensions {
 
             List<AnimationChannel> list = entry.getValue();
             optional.ifPresent((modelPart) -> {
+                if(Objects.equals(entry.getKey(), "root")){
+                    modelPart.resetPose();
+                    for (ModelPart part : modelPart.getAllParts().toList()) {
+                        list.forEach((p_288241_) -> {
+                            Keyframe[] akeyframe = p_288241_.keyframes();
+                            int i = Math.max(0, Mth.binarySearch(0, akeyframe.length, (p_232315_) -> {
+                                return f <= akeyframe[p_232315_].timestamp();
+                            }) - 1);
+                            int j = Math.min(akeyframe.length - 1, i + 1);
+                            Keyframe keyframe = akeyframe[i];
+                            Keyframe keyframe1 = akeyframe[j];
+                            float f1 = f - keyframe.timestamp();
+                            float f2;
+                            if (j != i) {
+                                f2 = Mth.clamp(f1 / (keyframe1.timestamp() - keyframe.timestamp()), 0.0F, 1.0F);
+                            } else {
+                                f2 = 0.0F;
+                            }
 
-                modelPart.resetPose();
-
-                list.forEach((p_288241_) -> {
-                    Keyframe[] akeyframe = p_288241_.keyframes();
-                    int i = Math.max(0, Mth.binarySearch(0, akeyframe.length, (p_232315_) -> {
-                        return f <= akeyframe[p_232315_].timestamp();
-                    }) - 1);
-                    int j = Math.min(akeyframe.length - 1, i + 1);
-                    Keyframe keyframe = akeyframe[i];
-                    Keyframe keyframe1 = akeyframe[j];
-                    float f1 = f - keyframe.timestamp();
-                    float f2;
-                    if (j != i) {
-                        f2 = Mth.clamp(f1 / (keyframe1.timestamp() - keyframe.timestamp()), 0.0F, 1.0F);
-                    } else {
-                        f2 = 0.0F;
+                            keyframe1.interpolation().apply(pAnimationVecCache, f2, akeyframe, i, j, pScale);
+                            p_288241_.target().apply(part, pAnimationVecCache);
+                        });
                     }
 
-                    keyframe1.interpolation().apply(pAnimationVecCache, f2, akeyframe, i, j, pScale);
-                    p_288241_.target().apply(modelPart, pAnimationVecCache);
-                });
+                }else {
+                    list.forEach((p_288241_) -> {
+                        Keyframe[] akeyframe = p_288241_.keyframes();
+                        int i = Math.max(0, Mth.binarySearch(0, akeyframe.length, (p_232315_) -> {
+                            return f <= akeyframe[p_232315_].timestamp();
+                        }) - 1);
+                        int j = Math.min(akeyframe.length - 1, i + 1);
+                        Keyframe keyframe = akeyframe[i];
+                        Keyframe keyframe1 = akeyframe[j];
+                        float f1 = f - keyframe.timestamp();
+                        float f2;
+                        if (j != i) {
+                            f2 = Mth.clamp(f1 / (keyframe1.timestamp() - keyframe.timestamp()), 0.0F, 1.0F);
+                        } else {
+                            f2 = 0.0F;
+                        }
+
+                        keyframe1.interpolation().apply(pAnimationVecCache, f2, akeyframe, i, j, pScale);
+                        p_288241_.target().apply(modelPart, pAnimationVecCache);
+                    });
+                }
             });
         }
 

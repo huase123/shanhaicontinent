@@ -20,6 +20,17 @@ public class DamoAnimationRender extends AnimationRender {
     @Nullable
     @Override
     public RenderType getRenderType() {
+
+
+//        ResourceLocation resourcelocation = this.getTextureLocation(pLivingEntity);
+//        if (pTranslucent) {
+//            return RenderType.itemEntityTranslucentCull(resourcelocation);
+//        } else if (pBodyVisible) {
+//            return this.model.renderType(resourcelocation);
+//        } else {
+//            return RenderType.outline(this.getTextureLocation());
+//        }
+
         return RenderType.itemEntityTranslucentCull(this.getTextureLocation());
     }
 
