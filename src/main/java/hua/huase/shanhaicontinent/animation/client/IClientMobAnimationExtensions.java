@@ -37,7 +37,7 @@ public interface IClientMobAnimationExtensions {
     /**
      *额外渲染
      */
-    default void render(AnimationControllerInstance animationControllerInstance, Entity entity, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
+    default void render(AnimationControllerInstance animationControllerInstance, Entity entity, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera, float partialTick) {
 
     }
     /**

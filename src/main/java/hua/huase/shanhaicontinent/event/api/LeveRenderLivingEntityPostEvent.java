@@ -4,12 +4,10 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Camera;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.eventbus.api.Event;
 /**
  *
@@ -41,18 +39,18 @@ public class LeveRenderLivingEntityPostEvent extends Event {
         return camera;
     }
 
-    public MultiBufferSource.BufferSource getMultiBufferSource() {
+    public MultiBufferSource getMultiBufferSource() {
         return bufferSource;
     }
 
     private final LivingEntity entity;
     private final LevelRenderer levelRenderer;
-    private final MultiBufferSource.BufferSource bufferSource;
+    private final MultiBufferSource bufferSource;
     private final float partialTick;
     private final PoseStack poseStack;
     private final Camera camera;
 
-    public LeveRenderLivingEntityPostEvent(LivingEntity entity, LevelRenderer levelRenderer, MultiBufferSource.BufferSource bufferSource, float partialTick, PoseStack poseStack, Camera camera) {
+    public LeveRenderLivingEntityPostEvent(LivingEntity entity, LevelRenderer levelRenderer, MultiBufferSource bufferSource, float partialTick, PoseStack poseStack, Camera camera) {
 
         this.entity = entity;
         this.levelRenderer = levelRenderer;

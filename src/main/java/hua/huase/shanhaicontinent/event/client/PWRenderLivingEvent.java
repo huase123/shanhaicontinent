@@ -22,7 +22,7 @@ public class PWRenderLivingEvent {
         LivingEntity entity = event.getEntity();
         if(entity == null)return;
         LevelRenderer levelRenderer = Minecraft.getInstance().levelRenderer;
-        MultiBufferSource.BufferSource bufferSource = (MultiBufferSource.BufferSource) event.getMultiBufferSource();
+        MultiBufferSource bufferSource =event.getMultiBufferSource();
         Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
         PoseStack poseStack = event.getPoseStack();
         net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(new LeveRenderLivingEntityPostEvent(entity,levelRenderer,bufferSource,event.getPartialTick(),poseStack,camera));

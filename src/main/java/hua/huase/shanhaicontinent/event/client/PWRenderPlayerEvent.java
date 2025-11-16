@@ -34,7 +34,7 @@ public class PWRenderPlayerEvent {
     public static void renderPlayerEventPost(LeveRenderLivingEntityPostEvent event){
         LivingEntity livingEntity = event.getEntity();
         PoseStack poseStack = event.getPoseStack();
-        MultiBufferSource.BufferSource multiBufferSource = event.getMultiBufferSource();
+        MultiBufferSource multiBufferSource = event.getMultiBufferSource();
         Camera camera = event.getCamera();
         float partialTick = event.getPartialTick();
         if(livingEntity instanceof Player player){
@@ -60,7 +60,7 @@ public class PWRenderPlayerEvent {
         }
     }
 
-    private static void renderLivingEntityHunhuan(LivingEntity livingEntity, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
+    private static void renderLivingEntityHunhuan(LivingEntity livingEntity, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera, float partialTick) {
         livingEntity.getCapability(RegisterCapabilitys.MOSTERCAPABILITY).ifPresent(monstercapability -> {
             VertexConsumer bufferbuilder = multiBufferSource.getBuffer(SHRenderType.render_Material(HUNHUAN));
             ItemStackHandler hunhuanlist = monstercapability.getHunhuan();
@@ -79,7 +79,7 @@ public class PWRenderPlayerEvent {
         });
     }
 
-    private static void renderPlayerHunhuan(Player player, PoseStack poseStack, MultiBufferSource.BufferSource multiBufferSource, Camera camera, float partialTick) {
+    private static void renderPlayerHunhuan(Player player, PoseStack poseStack, MultiBufferSource multiBufferSource, Camera camera, float partialTick) {
         player.getCapability(RegisterCapabilitys.PLAYERCAPABILITY).ifPresent(capability -> {
             ItemStack stackInSlot = capability.getUseWuhun();
             if(stackInSlot.isEmpty())return;

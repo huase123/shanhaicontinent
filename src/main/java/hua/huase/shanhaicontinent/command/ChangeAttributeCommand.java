@@ -14,8 +14,6 @@ import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
-import net.minecraftforge.common.util.LazyOptional;
-import twilightforest.capabilities.CapabilityList;
 
 public class ChangeAttributeCommand {
 	public static LiteralArgumentBuilder<CommandSourceStack> register() {
