@@ -50,7 +50,8 @@ public interface IClientMobAnimationExtensions {
 
     @Nullable
     default RenderType getRenderType() {
-            return RenderType.itemEntityTranslucentCull(this.getTextureLocation());
+            return RenderType.outline(this.getTextureLocation());
+//            return RenderType.itemEntityTranslucentCull(this.getTextureLocation());
 //        ResourceLocation resourcelocation = this.getTextureLocation(pLivingEntity);
 //        if (pTranslucent) {
 //            return RenderType.itemEntityTranslucentCull(resourcelocation);

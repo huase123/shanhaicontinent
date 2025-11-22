@@ -2,11 +2,10 @@ package hua.huase.shanhaicontinent.event.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.config.Config;
+import hua.huase.shanhaicontinent.config.SHConfig;
 import hua.huase.shanhaicontinent.event.api.LeveRenderLivingEntityPostEvent;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.util.Mth;
@@ -32,7 +31,7 @@ public class PWRenderLevelStageEvent {
      * @see LeveRenderLivingEntityPostEvent
      */
     private static void postEvent(RenderLevelStageEvent event) {
-        if(!Config.FIRSTPERSONDISPLAY.get())return;
+        if(!SHConfig.FIRSTPERSONDISPLAY.get())return;
         if (event.getStage() !=RenderLevelStageEvent.Stage.AFTER_ENTITIES )return;
         Player player = Minecraft.getInstance().player;
         if(Minecraft.getInstance().gameMode.getPlayerMode() == GameType.SPECTATOR || Minecraft.getInstance().options.hideGui || !Minecraft.getInstance().options.getCameraType().isFirstPerson())return;

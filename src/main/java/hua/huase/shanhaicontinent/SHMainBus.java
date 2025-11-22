@@ -1,9 +1,8 @@
 package hua.huase.shanhaicontinent;
 
 import hua.huase.shanhaicontinent.animation.AnimationControllerInit;
-import hua.huase.shanhaicontinent.animation.client.AnimationRenderers;
 import hua.huase.shanhaicontinent.command.SHCommand;
-import hua.huase.shanhaicontinent.config.Config;
+import hua.huase.shanhaicontinent.config.SHConfig;
 import hua.huase.shanhaicontinent.functiontypes.FunctionTypeInit;
 import hua.huase.shanhaicontinent.init.*;
 import hua.huase.shanhaicontinent.init.ModelBlockEntitiesinit;
@@ -86,7 +85,7 @@ public class SHMainBus {
         NetworkHandler.register();
 
         // Register our mod's ForgeConfigSpec so that Forge can create and load the config file for us
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, Config.CLIENT_SPEC);
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, SHConfig.CLIENT_SPEC);
         changeAttributesIO();
 
 //联动

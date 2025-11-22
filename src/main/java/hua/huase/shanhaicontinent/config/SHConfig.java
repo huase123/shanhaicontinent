@@ -1,11 +1,8 @@
 package hua.huase.shanhaicontinent.config;
 
-import hua.huase.shanhaicontinent.SHMainBus;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.common.ForgeConfigSpec;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -15,8 +12,8 @@ import java.util.stream.Collectors;
 
 // An shxiuxian config class. This is not required, but it's a good idea to have one to keep your config organized.
 // Demonstrates how to use Forge's config APIs
-@Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class Config
+//@Mod.EventBusSubscriber(modid = SHMainBus.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class SHConfig
 {
     private static final ForgeConfigSpec.Builder CLIENT = new ForgeConfigSpec.Builder();
 
@@ -35,7 +32,7 @@ public class Config
     // a list of strings that are treated as resource locations for items
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = CLIENT
             .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
+            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), SHConfig::validateItemName);
 
 
 

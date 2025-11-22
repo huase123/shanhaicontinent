@@ -2,25 +2,18 @@ package hua.huase.shanhaicontinent.init;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import hua.huase.shanhaicontinent.SHMainBus;
-import hua.huase.shanhaicontinent.config.Config;
+import hua.huase.shanhaicontinent.config.SHConfig;
 import hua.huase.shanhaicontinent.network.NetworkHandler;
 import hua.huase.shanhaicontinent.network.client.CPacketHunji;
 import hua.huase.shanhaicontinent.network.client.CPacketOpenAttrGUI;
 import hua.huase.shanhaicontinent.network.client.CPacketQiehuanWuhun;
-import hua.huase.shanhaicontinent.screen.PlayerAttrubuteContainerMenu;
 import net.minecraft.client.KeyMapping;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.common.util.Lazy;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import org.jline.utils.Log;
 import org.lwjgl.glfw.GLFW;
 
 public class KeyMappingInit {
@@ -72,7 +65,7 @@ public class KeyMappingInit {
         public static void onKeyPressed(InputEvent.Key event) {
             if(event.getAction() == InputConstants.PRESS){
                 if (FIRSTPERSONDISPLAY_MAPPING.getKey().getValue() == event.getKey()) {
-                    Config.FIRSTPERSONDISPLAY.set(!Config.FIRSTPERSONDISPLAY.get());
+                    SHConfig.FIRSTPERSONDISPLAY.set(!SHConfig.FIRSTPERSONDISPLAY.get());
                 }
                 if (ATTRIBUTE_MAPPING.getKey().getValue() == event.getKey()) {
                     NetworkHandler.INSTANCE.sendToServer(new CPacketOpenAttrGUI());

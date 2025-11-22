@@ -10,6 +10,7 @@
     "MultiNoiseBiomeSourceParameterListPresetAccessor"
   ],
   "client": [
+    "MixinBlockRenderDispatcher",
     "MixinHumanoidModel"
   ],
   "injectors": {

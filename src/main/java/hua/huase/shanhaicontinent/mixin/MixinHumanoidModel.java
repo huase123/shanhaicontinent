@@ -41,7 +41,7 @@ public abstract class MixinHumanoidModel {
          this.pRoot = pRoot;
     }
     @Inject(method = "setupAnim",at = @At(
-            value ="RETURN",
+            value ="TAIL",
             target = "Lnet/minecraft/client/model/HumanoidModel;setupAnim(Lnet/minecraft/world/entity/LivingEntity;FFFFF)V"
     ))
     public void setupAnim(LivingEntity pEntity, float pLimbSwing, float pLimbSwingAmount, float pAgeInTicks, float pNetHeadYaw, float pHeadPitch, CallbackInfo ci) {

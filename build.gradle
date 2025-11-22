@@ -228,12 +228,13 @@ dependencies {
 
 //    implementation fg.deobf("software.bernie.geckolib:geckolib-forge-1.20.1:4.8.2")
 //    implementation("com.eliotlash.mclib:mclib:20")
-
-
+//史诗战斗
+//    implementation fg.deobf("curse.maven:epic-fight-mod-405076:7213635")
+    implementation fg.deobf("curse.maven:epic-fight-mod-405076:6145747")
 //暮色森林
 //    compileOnly fg.deobf("curse.maven:the-twilight-forest-227639:5468648")
 //    runtimeOnly fg.deobf("curse.maven:the-twilight-forest-227639:5468648")
-    implementation fg.deobf("teamtwilight:twilightforest:4.3.1860:universal")
+//    implementation fg.deobf("teamtwilight:twilightforest:4.3.1860:universal")
 //冰火传说
 //    compileOnly fg.deobf("curse.maven:ice-and-fire-dragons-264231:5633453")
 //    runtimeOnly fg.deobf("curse.maven:ice-and-fire-dragons-264231:5633453")
