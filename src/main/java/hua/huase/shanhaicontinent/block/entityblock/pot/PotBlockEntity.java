@@ -97,14 +97,14 @@ public class PotBlockEntity extends BlockEntity implements MenuProvider {
         }
     }
 
-    @Override
-    public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
-        if(cap == ForgeCapabilities.ITEM_HANDLER) {
-            return lazyItemHandler.cast();
-        }
+        @Override
+        public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+            if(cap == ForgeCapabilities.ITEM_HANDLER) {
+                return lazyItemHandler.cast();
+            }
 
-        return super.getCapability(cap, side);
-    }
+            return super.getCapability(cap, side);
+        }
 
     @Override
     public void onLoad() {
@@ -123,6 +123,7 @@ public class PotBlockEntity extends BlockEntity implements MenuProvider {
         for(int i = 0; i < itemHandler.getSlots(); i++) {
             inventory.setItem(i, itemHandler.getStackInSlot(i));
         }
+        Containers.dropContents(this.level, this.worldPosition, inventory);
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 

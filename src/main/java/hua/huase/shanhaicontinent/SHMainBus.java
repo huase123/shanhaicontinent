@@ -10,6 +10,7 @@ import hua.huase.shanhaicontinent.capability.CapabilityRegistryHandler;
 import hua.huase.shanhaicontinent.item.ItemInit;
 import hua.huase.shanhaicontinent.network.NetworkHandler;
 import hua.huase.shanhaicontinent.init.ModRecipesInit;
+import hua.huase.shanhaicontinent.particles.ParticleTypesInti;
 import hua.huase.shanhaicontinent.screen.ModMenuTypes;
 import hua.huase.shanhaicontinent.world.structure.SHStructureTypes;
 import hua.huase.shanhaicontinent.world.biome.OverworldModifications;
@@ -69,7 +70,7 @@ public class SHMainBus {
         ModMenuTypes.register(modEventBus);
         ModRecipesInit.register(modEventBus);
         CreativeModTabsInit.register(modEventBus);
-
+        ParticleTypesInti.PARTICLE_TYPES.register(modEventBus);
         SHModMobEffectsinit.register(modEventBus);
 
 //        world

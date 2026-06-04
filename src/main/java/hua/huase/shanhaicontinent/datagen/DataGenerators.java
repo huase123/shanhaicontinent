@@ -35,6 +35,8 @@ public class DataGenerators {
 //        物品，方块模型
         generator.addProvider(event.includeClient(), new ModBlockStateProvider(packOutput, existingFileHelper));
         generator.addProvider(event.includeClient(), new ModItemModelProvider(packOutput, existingFileHelper));
+//        粒子材质配置
+        generator.addProvider(event.includeClient(), new ModParticleDescriptionProvider(packOutput, existingFileHelper));
 //方块标签
         generator.addProvider(event.includeServer(), new SHBlockTagsProvider(packOutput, lookupProvider));
 

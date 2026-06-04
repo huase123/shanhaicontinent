@@ -23,6 +23,7 @@ public class SHRegistries {
  */
     public static final ResourceKey<Registry<FunctionType>> FUNCTION_TYPE_Resourcekey = createRegistryKey("function_type");
     public static final ResourceKey<Registry<SHAnimationController>> SHAnimationController = createRegistryKey("shanimationcontroller");
+
 /**
  * TODO 功能描述：注册表查询使用
  * @author :huase
